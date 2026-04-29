@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grand City Sahiwal | A Project of SS Associates</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-blue: #003366;
+            --brand-green: #22c55e;
+            --brand-gold: #b8860b;
+        }
+        body {
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .serif-font {
+            font-family: 'Cinzel', serif;
+        }
+        .accent-serif {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+        }
+        .text-brand-blue { color: var(--brand-blue); }
+        .bg-brand-blue { background-color: var(--brand-blue); }
+        .text-brand-green { color: var(--brand-green); }
+        .bg-brand-green { background-color: var(--brand-green); }
+        
+        .hero-gradient {
+            background: linear-gradient(rgba(0, 31, 63, 0.85), rgba(0, 31, 63, 0.7)), url('https://images.unsplash.com/photo-1590487988256-9ed24133863e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Auto-Running Slider Styles */
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-250px * 6)); }
+        }
+
+        .slider-container {
+            overflow: hidden;
+            width: 100%;
+            background: white;
+            padding: 40px 0;
+            position: relative;
+        }
+
+        .slider-track {
+            display: flex;
+            width: calc(250px * 12);
+            animation: scroll 30s linear infinite;
+        }
+
+        .slide {
+            width: 250px;
+            flex-shrink: 0;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .nav-link:hover {
+            color: var(--brand-green);
+        }
+        
+        .logo-g-container {
+            filter: drop-shadow(0 0 15px rgba(255,255,255,0.2));
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-sm shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <!-- Mini Logo -->
+                <svg width="35" height="35" viewBox="0 0 100 100" class="logo-g">
+                    <path d="M10 10 H90 V90 H10 Z" fill="none" stroke="#003366" stroke-width="12"/>
+                    <path d="M35 35 H75 V75 H25 V50 H50" fill="none" stroke="#22c55e" stroke-width="14" stroke-linejoin="miter"/>
+                </svg>
+                <div>
+                    <span class="text-xl font-extrabold block leading-none text-brand-blue uppercase">Grand City</span>
+                    <span class="text-xs font-bold tracking-widest text-brand-green uppercase">Sahiwal</span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-10 font-bold text-sm uppercase tracking-wider">
+                <a href="#home" class="nav-link transition">Home</a>
+                <a href="#about" class="nav-link transition">The Project</a>
+                <a href="#features" class="nav-link transition">Features</a>
+                <a href="#plots" class="nav-link transition">Plot Plans</a>
+                <a href="#contact" class="bg-brand-green text-white px-8 py-2.5 rounded-full hover:bg-green-600 shadow-md transition text-xs">Bookings</a>
+            </div>
+
+            <div class="md:hidden">
+                <button id="menu-btn" class="text-brand-blue focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient min-h-screen flex flex-col items-center justify-center text-center text-white px-6 pt-32 pb-20">
+        <div class="max-w-4xl space-y-10 animate-fade-in">
+            <!-- Central Large Logo -->
+            <div class="logo-g-container mx-auto flex flex-col items-center">
+                <svg width="150" height="150" viewBox="0 0 100 100" class="mb-4">
+                    <path d="M10 10 H90 V90 H10 Z" fill="none" stroke="#FFFFFF" stroke-width="12"/>
+                    <path d="M35 35 H75 V75 H25 V50 H50" fill="none" stroke="#22c55e" stroke-width="14" stroke-linejoin="miter"/>
+                </svg>
+                <div class="space-y-1">
+                    <p class="text-brand-green font-bold text-xs md:text-sm tracking-[0.5em] uppercase italic">
+                        "May This Land Bring Prosperity"
+                    </p>
+                    <h2 class="serif-font text-4xl md:text-5xl font-black uppercase tracking-widest">Grand City</h2>
+                    <p class="text-base md:text-lg font-bold tracking-[0.6em] text-white/80">SAHIWAL</p>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <h1 class="serif-font text-3xl md:text-5xl max-w-3xl mx-auto font-bold leading-tight px-4">
+                    Redefining Luxury Living on Noor Shah Road
+                </h1>
+                <p class="text-base md:text-lg opacity-80 max-w-xl mx-auto font-light px-6">
+                    A premium project of <span class="font-bold text-brand-green">SS Associates</span>. Experience world-class infrastructure and a secure environment.
+                </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row justify-center gap-4 pt-6 px-4">
+                <a href="#plots" class="bg-brand-green hover:bg-green-600 text-white px-8 py-3.5 rounded-full font-bold text-base transition shadow-xl transform hover:scale-105">View Price Plans</a>
+                <a href="#contact" class="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-white px-8 py-3.5 rounded-full font-bold text-base transition shadow-xl">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Auto-Running Features Slider -->
+    <section id="features" class="py-20 bg-white border-b overflow-hidden">
+        <div class="container mx-auto px-6 text-center mb-10">
+            <h2 class="text-brand-blue font-black text-3xl uppercase tracking-[0.2em] serif-font">Premium Features</h2>
+        </div>
+
+        <div class="slider-container">
+            <div class="slider-track">
+                <!-- Set of 6 items (Duplicated for infinite scroll) -->
+                <div class="slide">
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:border-brand-green transition group">
+                        <i class="fas fa-mosque text-brand-blue text-4xl mb-4 group-hover:text-brand-green"></i>
+                        <h4 class="font-bold uppercase text-xs tracking-widest text-brand-blue">Grand Mosque</h4>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:border-brand-green transition group">
+                        <i class="fas fa-shield-alt text-brand-blue text-4xl mb-4 group-hover:text-brand-green"></i>
+                        <h4 class="font-bold uppercase text-xs tracking-widest text-brand-blue">Gated Security</h4>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:border-brand-green transition group">
+                        <i class="fas fa-road text-brand-blue text-4xl mb-4 group-hover:text-brand-green"></i>
+                        <h4 class="font-bold uppercase text-xs tracking-widest text-brand-blue">70ft Boulevard</h4>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:border-brand-green transition group">
+                        <i class="fas fa-tree text-brand-blue text-4xl mb-4 group-hover:text-brand-green"></i>
+                        <h4 class="font-bold uppercase text-xs tracking-widest text-brand-blue">Green Parks</h4>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:border-brand-green transition group">
+                        <i class="fas fa-bolt text-brand-blue text-4xl mb-4 group-hover:text-brand-green"></i>
+                        <h4 class="font-bold uppercase text-xs tracking-widest text-brand-blue">Underground Power</h4>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100 hover:border-brand-green transition group">
+                        <i class="fas fa-shopping-bag text-brand-blue text-4xl mb-4 group-hover:text-brand-green"></i>
+                        <h4 class="font-bold uppercase text-xs tracking-widest text-brand-blue">Commercial Hub</h4>
+                    </div>
+                </div>
+                <!-- Duplicate items for loop -->
+                <div class="slide">
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <i class="fas fa-mosque text-brand-blue text-4xl mb-4"></i>
+                        <h4 class="font-bold uppercase text-xs tracking-widest text-brand-blue">Grand Mosque</h4>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <i class="fas fa-shield-alt text-brand-blue text-4xl mb-4"></i>
+                        <h4 class="font-bold uppercase text-xs tracking-widest text-brand-blue">Gated Security</h4>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <i class="fas fa-road text-brand-blue text-4xl mb-4"></i>
+                        <h4 class="font-bold uppercase text-xs tracking-widest text-brand-blue">70ft Boulevard</h4>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <i class="fas fa-tree text-brand-blue text-4xl mb-4"></i>
+                        <h4 class="font-bold uppercase text-xs tracking-widest text-brand-blue">Green Parks</h4>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <i class="fas fa-bolt text-brand-blue text-4xl mb-4"></i>
+                        <h4 class="font-bold uppercase text-xs tracking-widest text-brand-blue">Underground Power</h4>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="bg-slate-50 p-6 rounded-2xl border border-slate-100">
+                        <i class="fas fa-shopping-bag text-brand-blue text-4xl mb-4"></i>
+                        <h4 class="font-bold uppercase text-xs tracking-widest text-brand-blue">Commercial Hub</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Details -->
+    <section id="about" class="py-24 bg-brand-blue text-white overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 relative">
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-brand-green/20 rounded-full blur-3xl"></div>
+                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Entrance" class="rounded-3xl shadow-2xl relative z-10 border-4 border-brand-green/30">
+                    <div class="absolute -bottom-8 -right-8 bg-brand-green p-8 rounded-2xl shadow-xl z-20 hidden md:block">
+                        <p class="text-3xl font-black">100%</p>
+                        <p class="text-[10px] font-bold uppercase tracking-widest">Safe Investment</p>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 space-y-6">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-0.5 bg-brand-green"></div>
+                        <span class="text-brand-green font-black uppercase tracking-widest text-xs">Our Vision</span>
+                    </div>
+                    <h2 class="serif-font text-4xl md:text-5xl font-bold">A Masterpiece by SS Associates</h2>
+                    <p class="text-lg text-slate-300 leading-relaxed font-light">
+                        Grand City Sahiwal is more than just a housing scheme; it's a testament to architectural excellence and strategic urban planning. We provide a lifestyle that balances luxury, safety, and community.
+                    </p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-white/10 p-2 rounded-lg text-xs"><i class="fas fa-check text-brand-green"></i></div>
+                            <span class="font-bold text-sm">Approved Society</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-white/10 p-2 rounded-lg text-xs"><i class="fas fa-check text-brand-green"></i></div>
+                            <span class="font-bold text-sm">Rapid Development</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-white/10 p-2 rounded-lg text-xs"><i class="fas fa-check text-brand-green"></i></div>
+                            <span class="font-bold text-sm">Prime Location</span>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-white/10 p-2 rounded-lg text-xs"><i class="fas fa-check text-brand-green"></i></div>
+                            <span class="font-bold text-sm">Gated Access</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plots & Investment -->
+    <section id="plots" class="py-24 bg-slate-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-brand-blue text-4xl font-black uppercase mb-4 serif-font">Investment Categories</h2>
+                <p class="text-slate-500 font-medium">Choose the perfect space for your dream home. Flexible monthly installment plans available for all categories.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Plot Card -->
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="w-12 h-12 bg-brand-blue/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-green transition">
+                        <i class="fas fa-home text-brand-blue text-lg group-hover:text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-brand-blue mb-1">4 Marla</h3>
+                    <p class="text-brand-green font-bold text-[10px] uppercase mb-4 tracking-widest">Residential</p>
+                    <p class="text-slate-500 text-sm mb-6 font-light">Optimized for compact luxury and affordable entry.</p>
+                    <a href="#contact" class="inline-block w-full text-center py-3 border border-brand-blue/30 text-brand-blue text-sm font-bold rounded-xl hover:bg-brand-blue hover:text-white transition">Book Now</a>
+                </div>
+
+                <div class="bg-brand-green p-8 rounded-3xl shadow-lg border border-brand-green shadow-green-100 transform scale-105 relative">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-brand-blue text-white text-[9px] font-black uppercase py-1 px-4 rounded-full tracking-widest">Most Popular</div>
+                    <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-star text-white text-lg"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-white mb-1">5 Marla</h3>
+                    <p class="text-white/80 font-bold text-[10px] uppercase mb-4 tracking-widest">Residential</p>
+                    <p class="text-white/90 text-sm mb-6 font-light">The gold standard for modern family living in Sahiwal.</p>
+                    <a href="#contact" class="inline-block w-full text-center py-3 bg-white text-brand-green text-sm font-black rounded-xl hover:bg-brand-blue hover:text-white transition">Book Now</a>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="w-12 h-12 bg-brand-blue/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-green transition">
+                        <i class="fas fa-layer-group text-brand-blue text-lg group-hover:text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-brand-blue mb-1">7 Marla</h3>
+                    <p class="text-brand-green font-bold text-[10px] uppercase mb-4 tracking-widest">Residential</p>
+                    <p class="text-slate-500 text-sm mb-6 font-light">Extra space for growing families needing more comfort.</p>
+                    <a href="#contact" class="inline-block w-full text-center py-3 border border-brand-blue/30 text-brand-blue text-sm font-bold rounded-xl hover:bg-brand-blue hover:text-white transition">Book Now</a>
+                </div>
+
+                <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 group">
+                    <div class="w-12 h-12 bg-brand-blue/5 rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-green transition">
+                        <i class="fas fa-chess-queen text-brand-blue text-lg group-hover:text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-black text-brand-blue mb-1">10 Marla</h3>
+                    <p class="text-brand-green font-bold text-[10px] uppercase mb-4 tracking-widest">Residential</p>
+                    <p class="text-slate-500 text-sm mb-6 font-light">Premium estate sizing for high-end luxury mansions.</p>
+                    <a href="#contact" class="inline-block w-full text-center py-3 border border-brand-blue/30 text-brand-blue text-sm font-bold rounded-xl hover:bg-brand-blue hover:text-white transition">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location -->
+    <section id="location" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 order-2 lg:order-1">
+                    <h2 class="text-brand-blue text-4xl font-black uppercase mb-6 leading-tight serif-font">Located at the Heart of Sahiwal</h2>
+                    <p class="text-slate-600 mb-10 text-lg font-light">Situated on the main <span class="font-bold text-brand-blue">Noor Shah Road</span>, providing easy access to all major city points while maintaining a serene neighborhood feel.</p>
+                    
+                    <div class="space-y-6">
+                        <!-- Redesigned Location Card 1 -->
+                        <div class="flex items-center group">
+                            <div class="w-14 h-14 rounded-full bg-brand-blue/5 flex items-center justify-center mr-5 transition-all duration-300 group-hover:bg-brand-green">
+                                <i class="fas fa-map-pin text-brand-blue text-xl group-hover:text-white"></i>
+                            </div>
+                            <div class="border-b border-slate-100 flex-1 pb-4">
+                                <span class="block font-bold text-brand-blue text-base">3 Minutes Drive</span>
+                                <span class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">From NADRA Executive Center</span>
+                            </div>
+                        </div>
+
+                        <!-- Redesigned Location Card 2 -->
+                        <div class="flex items-center group">
+                            <div class="w-14 h-14 rounded-full bg-brand-blue/5 flex items-center justify-center mr-5 transition-all duration-300 group-hover:bg-brand-green">
+                                <i class="fas fa-university text-brand-blue text-xl group-hover:text-white"></i>
+                            </div>
+                            <div class="border-b border-slate-100 flex-1 pb-4">
+                                <span class="block font-bold text-brand-blue text-base">5 Minutes Drive</span>
+                                <span class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">From Govt Postgraduate College</span>
+                            </div>
+                        </div>
+
+                        <!-- Redesigned Location Card 3 -->
+                        <div class="flex items-center group">
+                            <div class="w-14 h-14 rounded-full bg-brand-blue/5 flex items-center justify-center mr-5 transition-all duration-300 group-hover:bg-brand-green">
+                                <i class="fas fa-hospital text-brand-blue text-xl group-hover:text-white"></i>
+                            </div>
+                            <div class="border-b border-slate-100 flex-1 pb-4">
+                                <span class="block font-bold text-brand-blue text-base">10 Minutes Drive</span>
+                                <span class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">From Sahiwal DHQ Hospital</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 order-1 lg:order-2">
+                    <div class="relative">
+                        <div class="absolute -top-4 -right-4 w-full h-full border-2 border-brand-green rounded-3xl"></div>
+                        <img src="https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Map View" class="rounded-3xl shadow-2xl relative z-10 grayscale hover:grayscale-0 transition duration-500">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form -->
+    <section id="contact" class="py-24 bg-brand-green text-white">
+        <div class="container mx-auto px-6">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-w-5xl mx-auto">
+                <div class="md:w-1/3 bg-brand-blue p-10 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-2xl font-black uppercase mb-6 serif-font tracking-widest">Contact Us</h3>
+                        <p class="text-slate-300 mb-8 text-sm font-light">Fill out the form and our sales representative will call you with details and site visit arrangements.</p>
+                        <div class="space-y-6 text-sm">
+                            <div class="flex items-center space-x-4">
+                                <i class="fas fa-phone text-brand-green"></i>
+                                <span>+92 300 1234567</span>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <i class="fas fa-envelope text-brand-green"></i>
+                                <span>sales@grandcitysahiwal.pk</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pt-10">
+                        <p class="text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400">Project by</p>
+                        <p class="text-lg font-black tracking-widest">SS ASSOCIATES</p>
+                    </div>
+                </div>
+                <div class="md:w-2/3 p-10">
+                    <form id="lead-form" class="space-y-5">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                            <div class="space-y-1.5">
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Full Name</label>
+                                <input type="text" class="w-full p-3.5 bg-slate-100 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-green text-slate-800 text-sm" placeholder="John Doe" required>
+                            </div>
+                            <div class="space-y-1.5">
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Phone Number</label>
+                                <input type="tel" class="w-full p-3.5 bg-slate-100 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-green text-slate-800 text-sm" placeholder="0300-0000000" required>
+                            </div>
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Interested In</label>
+                            <select class="w-full p-3.5 bg-slate-100 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-green text-slate-800 text-sm">
+                                <option>4 Marla Residential</option>
+                                <option>5 Marla Residential</option>
+                                <option>7 Marla Residential</option>
+                                <option>10 Marla Residential</option>
+                                <option>Commercial Plot</option>
+                            </select>
+                        </div>
+                        <div class="space-y-1.5">
+                            <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Message (Optional)</label>
+                            <textarea rows="3" class="w-full p-3.5 bg-slate-100 rounded-xl focus:outline-none focus:ring-1 focus:ring-brand-green text-slate-800 text-sm" placeholder="I'm interested in installment plans..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-brand-green text-white py-4 rounded-xl font-black text-lg hover:bg-green-600 transition shadow-lg mt-2">Submit Inquiry</button>
+                    </form>
+                    <div id="success-message" class="hidden text-center p-8 bg-green-50 rounded-2xl">
+                        <i class="fas fa-check-circle text-brand-green text-5xl mb-4"></i>
+                        <h4 class="text-2xl font-bold text-brand-blue mb-2">Message Sent!</h4>
+                        <p class="text-slate-600">We will contact you within 24 hours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-white py-16">
+        <div class="container mx-auto px-6 text-center">
+            <!-- Footer Logo -->
+            <div class="flex flex-col items-center mb-10">
+                <svg width="50" height="50" viewBox="0 0 100 100" class="mb-4">
+                    <path d="M10 10 H90 V90 H10 Z" fill="none" stroke="#FFFFFF" stroke-width="8"/>
+                    <path d="M35 35 H75 V75 H25 V50 H50" fill="none" stroke="#22c55e" stroke-width="10"/>
+                </svg>
+                <h4 class="text-xl font-black uppercase tracking-tighter serif-font">Grand City Sahiwal</h4>
+                <p class="text-brand-green font-bold text-[10px] uppercase tracking-[0.4em]">A Project of SS Associates</p>
+            </div>
+            
+            <div class="flex justify-center space-x-5 mb-10">
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-green transition"><i class="fab fa-facebook-f text-sm"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-green transition"><i class="fab fa-instagram text-sm"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-green transition"><i class="fab fa-youtube text-sm"></i></a>
+            </div>
+
+            <p class="text-slate-600 text-[10px] uppercase tracking-widest border-t border-white/5 pt-10">&copy; 2026 Grand City Sahiwal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/923000000000" class="fixed bottom-8 right-8 bg-brand-green text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl z-50 hover:scale-110 transition duration-300">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <script>
+        // Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+        // Form Handling
+        const form = document.getElementById('lead-form');
+        const success = document.getElementById('success-message');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            form.classList.add('hidden');
+            success.classList.remove('hidden');
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2', 'shadow-md');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-2', 'shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>

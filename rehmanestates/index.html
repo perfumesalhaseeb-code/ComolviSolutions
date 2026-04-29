@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rehman Estate - Sahiwal's Trusted Property Partner</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body { font-family: 'Montserrat', sans-serif; }
+        .font-script { font-family: 'Caveat', cursive; }
+        .brand-red { color: #e31e24; }
+        .bg-brand-red { background-color: #e31e24; }
+        .brand-yellow { color: #ffc107; }
+        .bg-brand-yellow { background-color: #ffc107; }
+        .brand-dark { color: #1e1e24; }
+        .bg-brand-dark { background-color: #1e1e24; }
+        
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 20px rgba(37, 211, 102, 0.4);
+            z-index: 100;
+            padding: 15px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1) translateY(-5px);
+            background-color: #128c7e;
+        }
+        html { scroll-behavior: smooth; }
+
+        /* Animation for the plot pulse */
+        @keyframes custom-pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .animate-custom-pulse { animation: custom-pulse 3s infinite ease-in-out; }
+    </style>
+</head>
+<body class="bg-white text-slate-900">
+
+    <!-- Top Bar -->
+    <div class="bg-brand-dark text-white py-2 px-4 text-xs md:text-sm hidden md:block border-b border-white/5">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <a href="tel:03126939248" class="flex items-center hover:text-[#ffc107] transition">
+                    <i data-lucide="phone" class="w-4 h-4 mr-2 brand-yellow"></i> 0312-6939248
+                </a>
+                <a href="mailto:rehmanestate5757@gmail.com" class="flex items-center hover:text-[#ffc107] transition">
+                    <i data-lucide="mail" class="w-4 h-4 mr-2 brand-yellow"></i> rehmanestate5757@gmail.com
+                </a>
+            </div>
+            <span class="flex items-center font-bold">
+                <i data-lucide="map-pin" class="w-4 h-4 mr-2 brand-yellow"></i> Main Madhali Road, Sahiwal
+            </span>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white sticky top-0 z-50 shadow-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <div class="flex flex-col">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-9 h-9 bg-brand-red flex items-center justify-center rounded shadow-sm">
+                                <i data-lucide="home" class="text-white w-6 h-6"></i>
+                            </div>
+                            <h1 class="text-xl md:text-2xl font-black tracking-tighter brand-dark uppercase leading-none">
+                                REHMAN <span class="brand-red">ESTATE</span>
+                            </h1>
+                        </div>
+                        <div class="flex items-center mt-1">
+                            <div class="h-1 w-full bg-brand-red"></div>
+                            <div class="h-1 w-8 bg-brand-yellow ml-0.5"></div>
+                            <div class="h-1 w-4 bg-brand-red ml-0.5"></div>
+                        </div>
+                        <span class="text-[9px] uppercase tracking-[0.3em] font-bold text-gray-400 mt-1">A Trusted Name</span>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8 font-bold text-xs uppercase tracking-widest">
+                    <a href="#featured" class="hover:text-[#e31e24] transition py-2">69 Marla Plot</a>
+                    <a href="#philosophy" class="hover:text-[#e31e24] transition py-2">Philosophy</a>
+                    <a href="https://wa.me/923126939248" target="_blank" class="bg-[#25d366] text-white px-6 py-3 rounded-full hover:shadow-lg transition-all flex items-center transform hover:-translate-y-0.5">
+                        <i data-lucide="message-circle" class="w-4 h-4 mr-2"></i> WHATSAPP
+                    </a>
+                </div>
+
+                <div class="md:hidden flex items-center">
+                    <button id="menu-btn" class="text-gray-900 focus:outline-none">
+                        <i data-lucide="menu" class="w-8 h-8"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-[60] bg-brand-dark text-white p-8">
+        <div class="flex justify-between items-center mb-12">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 bg-brand-red flex items-center justify-center rounded">
+                    <i data-lucide="home" class="text-white w-5 h-5"></i>
+                </div>
+                <h2 class="text-xl font-black">REHMAN ESTATE</h2>
+            </div>
+            <button id="close-menu"><i data-lucide="x" class="w-10 h-10"></i></button>
+        </div>
+        <div class="flex flex-col space-y-10 text-3xl font-black uppercase">
+            <a href="#featured" class="mobile-link">Featured Plot</a>
+            <a href="#philosophy" class="mobile-link">Investment</a>
+            <a href="https://wa.me/923126939248" class="text-[#25d366] flex items-center">
+                <i data-lucide="message-circle" class="w-8 h-8 mr-4"></i> WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24 flex flex-col md:flex-row items-center gap-12">
+            <div class="w-full md:w-1/2 z-10 text-center md:text-left">
+                <h2 class="text-5xl md:text-7xl font-black brand-dark leading-[0.9] mb-4">
+                    SAHIWAL KA <br/>
+                    <span class="brand-yellow italic">FUTURE</span>
+                </h2>
+                <p class="font-script text-4xl md:text-6xl brand-red mb-8 -rotate-2">Kahan Hai?</p>
+                
+                <div class="bg-brand-red text-white py-4 px-8 inline-block font-bold text-lg md:text-xl uppercase mb-8 shadow-2xl transform -rotate-1 skew-x-[-5deg]">
+                    <span class="inline-block skew-x-[5deg]">Investment Profitable Nahi Hoti Har Jagah.</span>
+                </div>
+                
+                <p class="text-xl text-gray-500 mb-10 max-w-md font-medium leading-relaxed mx-auto md:mx-0 border-l-4 border-brand-yellow pl-6">
+                    Sirf kuch locations hi real growth deti hain. Rehman Estate aapko sahi raasta dikhata hai.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#featured" class="bg-brand-dark text-white px-12 py-5 rounded-full font-black text-lg hover:bg-brand-red transition-all shadow-xl flex items-center justify-center transform hover:scale-105">
+                        VIEW PLOTS <i data-lucide="arrow-right" class="ml-2 w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="w-full md:w-1/2 relative">
+                <div class="relative z-10 rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.15)] border-8 border-white">
+                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1000" alt="Sahiwal Real Estate Landmark" class="w-full h-[450px] md:h-[600px] object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-8 left-8 right-8">
+                        <div class="bg-white/95 backdrop-blur-md p-5 rounded-2xl flex items-center justify-between border border-white/20 shadow-xl">
+                            <div>
+                                <p class="brand-red font-black uppercase text-[10px] tracking-[0.2em] mb-1">Elite Location</p>
+                                <p class="font-bold brand-dark text-lg">Main Madhali Road, Sahiwal</p>
+                            </div>
+                            <div class="bg-brand-red p-3 rounded-full text-white">
+                                <i data-lucide="map-pin" class="w-6 h-6"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Decorative element -->
+                <div class="absolute -top-6 -right-6 w-32 h-32 bg-brand-yellow rounded-full -z-10 blur-2xl opacity-40"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 69 Marla Plot Section -->
+    <section id="featured" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-6xl md:text-9xl font-black brand-dark leading-none tracking-tighter mb-2">
+                    <span class="brand-red">69</span> MARLA
+                </h2>
+                <div class="bg-brand-yellow text-brand-dark px-12 py-3 inline-block font-black text-2xl md:text-5xl shadow-xl mb-4 transform -rotate-1 tracking-tight">
+                    PRIME PLOT
+                </div>
+                <p class="font-script text-5xl md:text-7xl text-gray-800 mt-4">For Sale</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-12 items-stretch">
+                <!-- Large Image Visual -->
+                <div class="w-full lg:w-3/5 relative min-h-[500px] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=1200" alt="Lush Green Plot Area" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-black/10"></div>
+                    <div class="absolute inset-0 flex flex-col items-center justify-center">
+                        <div class="w-24 h-24 bg-brand-red rounded-full flex items-center justify-center shadow-2xl animate-custom-pulse border-4 border-white">
+                            <i data-lucide="navigation" class="text-white w-10 h-10"></i>
+                        </div>
+                        <div class="bg-brand-dark/95 text-brand-yellow px-10 py-4 rounded-full mt-10 font-black text-xl md:text-2xl uppercase tracking-widest border-2 border-brand-yellow/30 shadow-2xl backdrop-blur-sm">
+                            PRIME LOCATION
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Redesigned Highlights Side -->
+                <div class="w-full lg:w-2/5 flex flex-col justify-between space-y-6">
+                    <div class="space-y-4">
+                        <!-- Point 1 -->
+                        <div class="flex items-center group">
+                            <div class="w-16 h-16 rounded-2xl bg-white shadow-md flex items-center justify-center group-hover:bg-brand-red transition-all duration-300">
+                                <i data-lucide="home" class="brand-red group-hover:text-white w-8 h-8"></i>
+                            </div>
+                            <div class="ml-6">
+                                <h4 class="text-xl font-black brand-dark uppercase tracking-tight">Ideal for Farmhouse</h4>
+                                <p class="text-gray-500 font-medium text-sm">Perfect for your elite family retreat.</p>
+                            </div>
+                        </div>
+
+                        <!-- Point 2 -->
+                        <div class="flex items-center group">
+                            <div class="w-16 h-16 rounded-2xl bg-white shadow-md flex items-center justify-center group-hover:bg-brand-red transition-all duration-300">
+                                <i data-lucide="building-2" class="brand-red group-hover:text-white w-8 h-8"></i>
+                            </div>
+                            <div class="ml-6">
+                                <h4 class="text-xl font-black brand-dark uppercase tracking-tight">Commercial Use</h4>
+                                <p class="text-gray-500 font-medium text-sm">Strategic location for high-yield business.</p>
+                            </div>
+                        </div>
+
+                        <!-- Point 3 -->
+                        <div class="flex items-center group">
+                            <div class="w-16 h-16 rounded-2xl bg-white shadow-md flex items-center justify-center group-hover:bg-brand-red transition-all duration-300">
+                                <i data-lucide="trending-up" class="brand-red group-hover:text-white w-8 h-8"></i>
+                            </div>
+                            <div class="ml-6">
+                                <h4 class="text-xl font-black brand-dark uppercase tracking-tight">High Future Value</h4>
+                                <p class="text-gray-500 font-medium text-sm">Rapid appreciation in a developing hub.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location Marker -->
+                    <div class="bg-brand-dark p-8 rounded-[2rem] text-white shadow-2xl relative overflow-hidden group">
+                        <div class="absolute -right-10 -bottom-10 opacity-10 group-hover:opacity-20 transition">
+                            <i data-lucide="map" class="w-40 h-40"></i>
+                        </div>
+                        <div class="relative z-10">
+                            <div class="flex items-center mb-4">
+                                <i data-lucide="map-pin" class="brand-yellow w-6 h-6 mr-3"></i>
+                                <span class="brand-yellow font-black uppercase text-xs tracking-widest">Property Address</span>
+                            </div>
+                            <p class="text-lg md:text-xl font-bold leading-snug">Main Madhali Road Opposite Iris Resort, Sahiwal</p>
+                        </div>
+                    </div>
+
+                    <!-- Call Button -->
+                    <a href="tel:03126939248" class="bg-brand-red text-white py-6 rounded-2xl font-black text-2xl text-center shadow-xl hover:shadow-2xl transition-all transform hover:-translate-y-1 uppercase tracking-tighter">
+                        Call for Details
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Section -->
+    <section id="philosophy" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <div class="w-full md:w-1/2">
+                    <h2 class="text-7xl md:text-9xl font-black brand-dark leading-[0.8] mb-10 tracking-tighter">
+                        LAND <br/>
+                        <span class="brand-red">NEVER</span> <br/>
+                        LOSES VALUE
+                    </h2>
+                    
+                    <div class="relative mb-12 max-w-md">
+                        <div class="bg-brand-red text-white px-10 py-6 font-bold text-xl md:text-2xl shadow-2xl relative z-10 transform -skew-x-12">
+                            <span class="inline-block skew-x-12">Zameen limited hai... demand barhti rehti hai.</span>
+                        </div>
+                    </div>
+
+                    <div class="p-10 bg-slate-50 shadow-inner rounded-3xl border-l-[12px] border-brand-dark">
+                        <p class="font-bold text-3xl md:text-4xl text-gray-800 leading-tight">
+                            "Jo Aaj Mehnga Lagta Hai, <br/>
+                            <span class="brand-red italic font-script text-5xl md:text-6xl mt-2 block">Kal Aur Mehnga Hota Hai.</span>"
+                        </p>
+                    </div>
+                </div>
+
+                <div class="w-full md:w-1/2 flex justify-center">
+                    <div class="relative w-80 h-80 md:w-[450px] md:h-[450px] flex items-center justify-center">
+                        <!-- Orbiting Circles -->
+                        <div class="absolute inset-0 rounded-full border-4 border-dashed border-gray-100 animate-spin" style="animation-duration: 20s;"></div>
+                        <div class="absolute inset-10 rounded-full border-2 border-dashed border-brand-yellow/30 animate-spin" style="animation-duration: 15s; animation-direction: reverse;"></div>
+                        
+                        <div class="relative z-10 text-center bg-white p-12 rounded-[3rem] shadow-[0_30px_60px_rgba(0,0,0,0.1)] transform hover:scale-105 transition duration-500 border-b-[15px] border-gray-200">
+                            <div class="w-20 h-20 bg-brand-yellow rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-lg transform rotate-12">
+                                <i data-lucide="trending-up" class="brand-dark w-10 h-10 transform -rotate-12"></i>
+                            </div>
+                            <p class="text-3xl font-black brand-dark uppercase tracking-tighter">Secure <br/> Investment</p>
+                            <p class="text-xs font-bold text-gray-400 uppercase tracking-[0.3em] mt-4">Future Guaranteed</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+                <div class="lg:col-span-2">
+                    <div class="flex items-center space-x-4 mb-10">
+                        <div class="w-12 h-12 bg-brand-red flex items-center justify-center rounded-xl shadow-lg transform -rotate-12">
+                            <i data-lucide="home" class="text-white w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-3xl font-black uppercase tracking-tighter">Rehman Estate</h3>
+                    </div>
+                    <p class="text-gray-400 font-medium text-lg leading-relaxed mb-10 max-w-sm">
+                        Sahiwal's most trusted name for over a decade. We don't just sell plots; we build wealth through strategic land ownership.
+                    </p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center hover:bg-brand-red transition shadow-lg"><i data-lucide="facebook" class="w-6 h-6"></i></a>
+                        <a href="#" class="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center hover:bg-brand-red transition shadow-lg"><i data-lucide="instagram" class="w-6 h-6"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="brand-yellow font-black uppercase text-xs tracking-[0.4em] mb-10">Contact Support</h4>
+                    <div class="space-y-8">
+                        <a href="tel:03126939248" class="flex items-center group">
+                            <div class="w-10 h-10 bg-brand-red rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition">
+                                <i data-lucide="phone" class="text-white w-5 h-5"></i>
+                            </div>
+                            <span class="font-bold text-xl tracking-tight">0312-6939248</span>
+                        </a>
+                        <a href="tel:03000969157" class="flex items-center group">
+                            <div class="w-10 h-10 bg-brand-yellow rounded-lg flex items-center justify-center mr-4 group-hover:scale-110 transition">
+                                <i data-lucide="phone" class="brand-dark w-5 h-5"></i>
+                            </div>
+                            <span class="font-bold text-xl tracking-tight">0300-0969157</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="brand-yellow font-black uppercase text-xs tracking-[0.4em] mb-10">Head Office</h4>
+                    <div class="flex items-start">
+                        <div class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center mr-4 flex-shrink-0">
+                            <i data-lucide="map-pin" class="brand-red w-5 h-5"></i>
+                        </div>
+                        <p class="font-bold text-xl leading-snug">Main Madhali Road, Sahiwal.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-white/5 pt-12 flex flex-col md:flex-row justify-between items-center text-gray-500 font-bold text-[10px] uppercase tracking-[0.5em]">
+                <p>&copy; 2024 REHMAN ESTATE. SAHIWAL REAL ESTATE PARTNER.</p>
+                <div class="mt-8 md:mt-0 flex items-center space-x-6">
+                    <span class="hover:text-white transition cursor-default">QUALITY</span>
+                    <span class="brand-red">●</span>
+                    <span class="hover:text-white transition cursor-default">TRUST</span>
+                    <span class="brand-red">●</span>
+                    <span class="hover:text-white transition cursor-default">GROWTH</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/923126939248" class="whatsapp-float" target="_blank">
+        <i data-lucide="message-circle" class="w-9 h-9"></i>
+    </a>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        const openMenu = () => {
+            mobileMenu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        };
+
+        const hideMenu = () => {
+            mobileMenu.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        };
+
+        menuBtn.addEventListener('click', openMenu);
+        closeBtn.addEventListener('click', hideMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', hideMenu));
+
+        // Subtle parallax effect on scroll for images
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImg = document.querySelector('img[alt*="Landmark"]');
+            if (heroImg) {
+                heroImg.style.transform = `translateY(${scrolled * 0.05}px)`;
+            }
+        });
+    </script>
+</body>
+</html>

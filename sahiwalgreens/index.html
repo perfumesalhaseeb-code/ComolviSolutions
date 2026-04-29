@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sahiwal Greens Phase 2 | Luxury Living Redefined</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Sacramento&family=Montserrat:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        /* Brand Specific Font Assignments */
+        .font-brand-serif { font-family: 'Cinzel', serif; letter-spacing: 0.15em; }
+        .font-brand-script { font-family: 'Sacramento', cursive; }
+        .font-brand-sans { font-family: 'Montserrat', sans-serif; }
+
+        /* Custom Colors from Images */
+        .brand-navy { background-color: #000c2a; }
+        .brand-text-navy { color: #000c2a; }
+        .brand-gold-script { color: #d9e021; }
+        .brand-gold-block { color: #f8bf45; }
+        .brand-red { background-color: #e31e24; }
+        
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-up { animation: fadeIn 0.8s ease-out forwards; }
+
+        /* Puzzle Grid Card Effects */
+        .puzzle-card {
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+            position: relative;
+        }
+        .puzzle-card:hover {
+            z-index: 20;
+            transform: scale(1.02);
+            box-shadow: 0 30px 60px -12px rgba(0, 12, 42, 0.4);
+        }
+        .puzzle-card img {
+            transition: transform 1s ease;
+        }
+        .puzzle-card:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-white font-brand-sans text-slate-900 overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-[100] transition-all duration-500 py-6">
+        <div class="container mx-auto px-4 md:px-8 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="text-white">
+                    <h1 class="font-brand-serif text-lg md:text-2xl font-bold uppercase leading-tight">SAHIWAL</h1>
+                    <p class="font-brand-script brand-gold-script text-xl md:text-3xl -mt-2">Greens</p>
+                </div>
+            </div>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center space-x-8 text-white text-[10px] font-bold tracking-[0.2em] uppercase">
+                <a href="#about" class="hover:brand-gold-script transition pb-1">About</a>
+                <a href="#amenities" class="hover:brand-gold-script transition pb-1">Features</a>
+                <a href="#plots" class="hover:brand-gold-script transition pb-1">Plots</a>
+                <a href="tel:03111178178" class="brand-red px-6 py-2.5 rounded shadow-lg flex items-center gap-2 hover:brightness-110 transition active:scale-95">
+                    <i data-lucide="phone" class="w-4 h-4"></i>
+                    03-111-178-178
+                </a>
+            </div>
+
+            <button id="menu-toggle" class="md:hidden text-white p-2">
+                <i data-lucide="menu" id="menu-icon" class="w-8 h-8"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden brand-navy absolute top-full left-0 w-full p-10 border-t border-white/10 shadow-2xl space-y-8 text-center">
+            <a href="#about" class="mobile-link block text-white text-lg font-bold uppercase tracking-widest">About Us</a>
+            <a href="#amenities" class="mobile-link block text-white text-lg font-bold uppercase tracking-widest">Amenities</a>
+            <a href="#plots" class="mobile-link block text-white text-lg font-bold uppercase tracking-widest">Plots</a>
+            <a href="tel:03111178178" class="brand-red text-white py-5 rounded-xl font-bold flex items-center justify-center gap-2">
+                <i data-lucide="phone"></i>
+                Call 03-111-178-178
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
+        <div class="absolute inset-0 brand-navy">
+            <div class="absolute inset-0 opacity-40 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-500/20 via-transparent to-transparent"></div>
+        </div>
+        
+        <div class="container mx-auto px-6 relative z-10 text-center mt-12 animate-fade-up">
+            <div class="flex flex-col items-center">
+                <div class="relative mb-8">
+                    <div class="w-24 h-24 md:w-36 md:h-36 border-white/20 border-[1px] rounded-full flex items-center justify-center">
+                        <div class="flex items-center text-white">
+                            <span class="text-6xl md:text-9xl font-brand-serif translate-x-1.5">S</span>
+                            <div class="w-[1px] h-12 md:h-20 bg-white/20 mx-2"></div>
+                            <span class="text-6xl md:text-9xl font-brand-serif -translate-x-1.5">G</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <h1 class="text-white text-5xl md:text-9xl font-brand-serif font-bold uppercase tracking-[0.2em] leading-none">
+                    SAHIWAL
+                </h1>
+                <p class="font-brand-script brand-gold-script text-6xl md:text-[11rem] -mt-5 md:-mt-16 mb-6 drop-shadow-2xl">
+                    Greens
+                </p>
+                <div class="brand-red text-white font-bold py-2 px-8 md:px-12 rounded-sm text-lg md:text-3xl shadow-2xl uppercase tracking-[0.4em] inline-block">
+                    Phase 2
+                </div>
+            </div>
+
+            <p class="text-white/60 text-[10px] md:text-sm font-bold tracking-[0.8em] uppercase mt-20 md:mt-24">
+                Luxury - Living - Redefined
+            </p>
+        </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2">
+            <div class="w-[1px] h-20 bg-gradient-to-b from-white/60 to-transparent"></div>
+        </div>
+    </header>
+
+    <!-- Puzzle Features Section -->
+    <section id="amenities" class="py-24 bg-white overflow-hidden">
+        <div class="container mx-auto px-6 mb-16 text-center">
+            <p class="font-brand-script brand-text-navy text-5xl md:text-6xl mb-2">Modern Lifestyle</p>
+            <h2 class="font-brand-sans text-3xl md:text-6xl font-black brand-text-navy uppercase tracking-tighter leading-none mb-6">
+                FEATURES <span class="brand-gold-block">& FACILITIES</span>
+            </h2>
+            <div class="w-24 h-1 brand-red mx-auto"></div>
+        </div>
+
+        <!-- Puzzle Grid -->
+        <div class="container mx-auto px-4 max-w-7xl">
+            <div class="grid grid-cols-2 md:grid-cols-4 grid-rows-none md:grid-rows-3 gap-3 md:gap-4 h-auto md:h-[900px]">
+                
+                <!-- Card 1: Gated Security (Big Vertical Puzzle Piece) -->
+                <div class="puzzle-card col-span-2 row-span-2 rounded-[2rem] md:rounded-[3rem] brand-navy relative group">
+                    <img src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&q=80&w=1200" alt="Security" class="absolute inset-0 w-full h-full object-cover opacity-60">
+                    <div class="absolute inset-0 bg-gradient-to-t from-navy-900 to-transparent brand-navy opacity-40"></div>
+                    <div class="relative h-full flex flex-col justify-end p-8 md:p-12 z-10">
+                        <div class="w-16 h-16 brand-red rounded-2xl flex items-center justify-center mb-6 shadow-xl">
+                            <i data-lucide="shield-check" class="w-8 h-8 text-white"></i>
+                        </div>
+                        <h4 class="font-brand-sans text-3xl md:text-4xl font-black text-white uppercase leading-none">Gated Security</h4>
+                        <p class="text-white/70 text-sm md:text-base mt-3 font-medium uppercase tracking-widest">24/7 Professional Surveillance</p>
+                    </div>
+                </div>
+
+                <!-- Card 2: Underground Power (Small Square Puzzle Piece) -->
+                <div class="puzzle-card col-span-1 row-span-1 rounded-[2rem] md:rounded-[3rem] brand-gold-block relative group">
+                    <div class="absolute inset-0 p-6 md:p-10 flex flex-col items-center justify-center text-center">
+                        <i data-lucide="zap" class="w-10 h-10 md:w-14 md:h-14 brand-text-navy mb-4"></i>
+                        <h4 class="font-brand-sans text-sm md:text-lg font-black brand-text-navy uppercase leading-tight tracking-widest">Underground Power</h4>
+                    </div>
+                </div>
+
+                <!-- Card 3: Water (Small Square Puzzle Piece) -->
+                <div class="puzzle-card col-span-1 row-span-1 rounded-[2rem] md:rounded-[3rem] bg-slate-100 relative group overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1517646287270-a5a9ca602e5c?auto=format&fit=crop&q=80&w=600" alt="Water" class="absolute inset-0 w-full h-full object-cover opacity-20">
+                    <div class="absolute inset-0 p-6 md:p-10 flex flex-col items-center justify-center text-center">
+                        <i data-lucide="droplets" class="w-10 h-10 md:w-14 md:h-14 brand-text-navy mb-4 opacity-80"></i>
+                        <h4 class="font-brand-sans text-sm md:text-lg font-black brand-text-navy uppercase leading-tight tracking-widest">Pure Water</h4>
+                    </div>
+                </div>
+
+                <!-- Card 4: Parks (Wide Puzzle Piece) -->
+                <div class="puzzle-card col-span-2 row-span-1 rounded-[2rem] md:rounded-[3rem] bg-slate-50 relative group">
+                    <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80&w=800" alt="Parks" class="absolute inset-0 w-full h-full object-cover opacity-80">
+                    <div class="absolute inset-0 bg-navy-900/10 brand-navy opacity-20"></div>
+                    <div class="relative h-full flex flex-col justify-center px-10 z-10">
+                        <div class="flex items-center gap-6">
+                            <div class="w-14 h-14 brand-navy text-brand-gold-block rounded-2xl flex items-center justify-center shadow-lg shrink-0">
+                                <i data-lucide="tree-pine" class="w-7 h-7"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-brand-sans text-xl md:text-2xl font-black brand-text-navy uppercase tracking-widest leading-none">Themed Parks</h4>
+                                <p class="text-slate-500 text-xs md:text-sm font-bold uppercase tracking-widest mt-2">Family Relaxation Areas</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Grand Mosque (Vertical Puzzle Piece) -->
+                <div class="puzzle-card col-span-1 row-span-1 md:row-span-2 rounded-[2rem] md:rounded-[3rem] brand-red relative group">
+                    <img src="https://images.unsplash.com/photo-1564769625905-50e93615e769?auto=format&fit=crop&q=80&w=800" alt="Mosque" class="absolute inset-0 w-full h-full object-cover opacity-40">
+                    <div class="absolute inset-0 bg-gradient-to-t from-red-900/80 to-transparent"></div>
+                    <div class="relative h-full flex flex-col justify-end p-8 z-10 text-white">
+                        <i data-lucide="landmark" class="w-10 h-10 mb-4 text-white"></i>
+                        <h4 class="font-brand-sans text-xl font-black uppercase leading-tight tracking-widest">Grand Mosque</h4>
+                    </div>
+                </div>
+
+                <!-- Card 6: Roads (Small Square Puzzle Piece) -->
+                <div class="puzzle-card col-span-1 row-span-1 rounded-[2rem] md:rounded-[3rem] brand-navy relative group">
+                    <div class="absolute inset-0 p-8 flex flex-col items-center justify-center text-center">
+                        <i data-lucide="car" class="w-12 h-12 brand-gold-block mb-4"></i>
+                        <h4 class="font-brand-sans text-xs md:text-sm font-bold text-white uppercase tracking-[0.2em]">Spacious <br>Boulevards</h4>
+                    </div>
+                </div>
+
+                <!-- Card 7: Play Areas (Horizontal Puzzle Piece) -->
+                <div class="puzzle-card col-span-2 row-span-1 rounded-[2rem] md:rounded-[3rem] bg-slate-900 relative group">
+                    <div class="absolute inset-0 bg-slate-800 opacity-90"></div>
+                    <div class="relative h-full flex items-center justify-between px-10 z-10">
+                        <div class="flex items-center gap-6">
+                            <i data-lucide="play" class="w-10 h-10 text-white opacity-40"></i>
+                            <h4 class="font-brand-sans text-lg md:text-xl font-black text-white uppercase tracking-widest">Kids Play Zone</h4>
+                        </div>
+                        <i data-lucide="sun" class="w-10 h-10 brand-gold-block"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro Section -->
+    <section id="about" class="py-24 md:py-40 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16 md:gap-24">
+                <div class="lg:w-1/2 space-y-8 text-center lg:text-left">
+                    <p class="font-brand-script brand-text-navy text-6xl md:text-8xl">Where Dreams Blossom!</p>
+                    
+                    <div class="space-y-2">
+                        <h3 class="text-[10px] font-black brand-text-navy tracking-[0.4em] opacity-60 uppercase">
+                            Excellence in Real Estate
+                        </h3>
+                        <h2 class="text-4xl md:text-7xl font-black brand-gold-block uppercase leading-[0.95]">
+                            SAHIWAL GREENS <br class="hidden md:block" /> PHASE 2
+                        </h2>
+                    </div>
+
+                    <div class="w-24 h-1 brand-red mx-auto lg:mx-0"></div>
+
+                    <p class="text-slate-500 leading-relaxed text-sm md:text-xl max-w-xl mx-auto lg:mx-0 font-medium">
+                        A landmark residential project designed for those who seek the perfect blend of security, luxury, and affordability. Join the community where your future thrives.
+                    </p>
+                    
+                    <button class="brand-red text-white px-10 md:px-14 py-4 md:py-6 rounded-full font-black text-xs md:text-sm tracking-widest uppercase shadow-xl hover:brightness-110 transition active:scale-95">
+                        Download Brochure
+                    </button>
+                </div>
+
+                <div class="lg:w-1/2 w-full relative">
+                    <div class="rounded-[3rem] overflow-hidden shadow-2xl border-4 md:border-[16px] border-slate-50">
+                        <img 
+                            src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&q=80&w=1200" 
+                            alt="Modern Architecture" 
+                            class="w-full aspect-video object-cover"
+                        />
+                    </div>
+                    <!-- SD Logo Badge -->
+                    <div class="absolute -top-10 -left-6 md:-left-12 brand-navy p-6 md:p-8 rounded-[2rem] shadow-2xl hidden md:flex flex-col items-center">
+                        <div class="w-16 h-16 border-2 border-brand-gold-block rounded-xl flex items-center justify-center mb-3">
+                            <span class="text-brand-gold-block font-brand-serif font-bold text-3xl">SD</span>
+                        </div>
+                        <span class="brand-gold-block text-[10px] font-black tracking-[0.4em] uppercase">SARMAD</span>
+                        <span class="text-white/40 text-[8px] tracking-[0.2em] uppercase">DEVELOPERS</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plots Section -->
+    <section id="plots" class="py-24 md:py-40 brand-navy text-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20 space-y-6">
+                 <h2 class="text-4xl md:text-8xl font-black uppercase tracking-tighter">ONGROUND PLOTS</h2>
+                 <p class="tracking-[0.6em] uppercase text-[10px] md:text-xs font-black opacity-40">Choose the foundation of your dream home</p>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-12 max-w-6xl mx-auto">
+                <div class="brand-red aspect-square rounded-[2rem] md:rounded-[3rem] flex flex-col items-center justify-center shadow-2xl border border-white/10 group hover:scale-105 transition-transform duration-500">
+                    <span class="text-7xl md:text-[11rem] font-black leading-none mb-1">3</span>
+                    <span class="text-[10px] md:text-2xl font-black tracking-[0.4em] opacity-90 uppercase">Marla</span>
+                </div>
+                <div class="brand-red aspect-square rounded-[2rem] md:rounded-[3rem] flex flex-col items-center justify-center shadow-2xl border border-white/10 group hover:scale-105 transition-transform duration-500">
+                    <span class="text-7xl md:text-[11rem] font-black leading-none mb-1">5</span>
+                    <span class="text-[10px] md:text-2xl font-black tracking-[0.4em] opacity-90 uppercase">Marla</span>
+                </div>
+                <div class="brand-red aspect-square rounded-[2rem] md:rounded-[3rem] flex flex-col items-center justify-center shadow-2xl border border-white/10 group hover:scale-105 transition-transform duration-500">
+                    <span class="text-7xl md:text-[11rem] font-black leading-none mb-1">7</span>
+                    <span class="text-[10px] md:text-2xl font-black tracking-[0.4em] opacity-90 uppercase">Marla</span>
+                </div>
+                <div class="brand-red aspect-square rounded-[2rem] md:rounded-[3rem] flex flex-col items-center justify-center shadow-2xl border border-white/10 group hover:scale-105 transition-transform duration-500">
+                    <span class="text-7xl md:text-[11rem] font-black leading-none mb-1">10</span>
+                    <span class="text-[10px] md:text-2xl font-black tracking-[0.4em] opacity-90 uppercase">Marla</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Connect Section -->
+    <section id="contact" class="py-16 md:py-40 bg-white">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="max-w-6xl mx-auto bg-slate-50 rounded-[2.5rem] md:rounded-[5rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row border border-white">
+                
+                <div class="lg:w-5/12 brand-navy p-10 md:p-20 text-white relative">
+                    <div class="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none overflow-hidden select-none">
+                         <span class="text-[20rem] md:text-[40rem] font-brand-serif absolute -bottom-10 -right-10 md:-bottom-32 md:-right-32">S</span>
+                    </div>
+                    
+                    <div class="relative z-10 space-y-16">
+                        <div>
+                            <h2 class="font-brand-serif text-4xl md:text-6xl mb-6">Connect</h2>
+                            <div class="w-16 h-1 brand-red"></div>
+                        </div>
+                        
+                        <div class="space-y-12">
+                            <div class="flex gap-6 items-center">
+                                <div class="w-14 h-14 md:w-16 md:h-16 brand-red rounded-2xl flex items-center justify-center shrink-0 shadow-xl">
+                                    <i data-lucide="phone" class="w-8 h-8"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] font-black text-blue-300 tracking-[0.3em] uppercase mb-2">Official Helpline</p>
+                                    <p class="text-2xl md:text-4xl font-black tracking-tighter">03-111-178-178</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-6 items-center">
+                                <div class="w-14 h-14 md:w-16 md:h-16 brand-red rounded-2xl flex items-center justify-center shrink-0 shadow-xl">
+                                    <i data-lucide="map-pin" class="w-8 h-8"></i>
+                                </div>
+                                <div>
+                                    <p class="text-[10px] font-black text-blue-300 tracking-[0.3em] uppercase mb-2">Project Site</p>
+                                    <p class="text-lg md:text-2xl font-bold leading-tight">Main Bypass Road, Sahiwal City</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-12 border-t border-white/10 flex items-center gap-6">
+                            <div class="flex gap-4">
+                                <a href="#" class="w-12 h-12 border border-white/20 rounded-full flex items-center justify-center hover:brand-gold-script hover:border-brand-gold-script transition"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                                <a href="#" class="w-12 h-12 border border-white/20 rounded-full flex items-center justify-center hover:brand-gold-script hover:border-brand-gold-script transition"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                            </div>
+                            <p class="text-[10px] font-black tracking-widest uppercase opacity-40 hidden sm:block">Stay Updated <br> with Progress</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:w-7/12 p-10 md:p-24 bg-white">
+                    <h3 class="text-3xl md:text-5xl font-black brand-text-navy uppercase tracking-tighter mb-10 md:mb-12">Request a Site Visit</h3>
+                    <form class="space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="space-y-3">
+                                <label class="text-[10px] font-black text-slate-400 tracking-widest uppercase ml-1">Full Name</label>
+                                <input type="text" class="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-5 outline-none text-sm font-medium focus:ring-2 focus:ring-red-500 transition" placeholder="John Doe" required />
+                            </div>
+                            <div class="space-y-3">
+                                <label class="text-[10px] font-black text-slate-400 tracking-widest uppercase ml-1">Phone Number</label>
+                                <input type="tel" class="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-5 outline-none text-sm font-medium focus:ring-2 focus:ring-red-500 transition" placeholder="03xx-xxxxxxx" required />
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                             <label class="text-[10px] font-black text-slate-400 tracking-widest uppercase ml-1">Message</label>
+                             <textarea rows="4" class="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-5 outline-none text-sm font-medium focus:ring-2 focus:ring-red-500 transition" placeholder="I am interested in..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full brand-red text-white font-black py-5 md:py-7 rounded-2xl shadow-2xl hover:brightness-110 active:scale-95 transition-all flex items-center justify-center gap-4 uppercase tracking-[0.3em] text-sm md:text-base mt-4">
+                            Send Inquiry
+                            <i data-lucide="arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="brand-navy py-16 md:py-24 border-t border-white/5">
+        <div class="container mx-auto px-6 text-center">
+             <div class="flex flex-col items-center mb-12">
+                    <h2 class="font-brand-serif text-white text-3xl md:text-5xl tracking-[0.2em] uppercase">SAHIWAL GREENS</h2>
+                    <p class="font-brand-script brand-gold-script text-3xl md:text-5xl -mt-2">Phase 2</p>
+             </div>
+             <div class="flex justify-center gap-10 mb-12 text-[10px] font-black text-white/30 tracking-[0.2em] uppercase">
+                <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition">Terms of Use</a>
+             </div>
+             <p class="text-[10px] text-white/20 tracking-[0.4em] uppercase">
+                 Project by Sarmad Developers &copy; 2024. All Rights Reserved.
+             </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Sticky Navbar Toggle
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('brand-navy', 'shadow-2xl', 'py-3');
+                navbar.classList.remove('py-6');
+            } else {
+                navbar.classList.remove('brand-navy', 'shadow-2xl', 'py-3');
+                navbar.classList.add('py-6');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuToggle.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.toggle('hidden');
+            if (!isHidden) {
+                menuToggle.innerHTML = '<i data-lucide="x" class="w-8 h-8"></i>';
+            } else {
+                menuToggle.innerHTML = '<i data-lucide="menu" class="w-8 h-8"></i>';
+            }
+            lucide.createIcons(); 
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuToggle.innerHTML = '<i data-lucide="menu" class="w-8 h-8"></i>';
+                lucide.createIcons();
+            });
+        });
+    </script>
+</body>
+</html>
