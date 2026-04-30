@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al Raees Property and Builders</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Tailwind Configuration to match branding -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            DEFAULT: '#E6C15D',
+                            light: '#F8DF8B',
+                            dark: '#B3913B',
+                        },
+                        dark: {
+                            DEFAULT: '#1E1E1E',
+                            lighter: '#2A2A2A',
+                            darker: '#111111'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Oswald', 'sans-serif'],
+                        body: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom styles for image layout mimicking the banner */
+        .image-cluster {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 1 / 1;
+            margin: 0 auto;
+        }
+
+        .cluster-img {
+            position: absolute;
+            object-fit: cover;
+            border: 6px solid white;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .cluster-img:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        /* Exterior */
+        .img-1 {
+            width: 65%;
+            height: 55%;
+            top: 5%;
+            right: 0;
+            border-radius: 2rem 2rem 2rem 0.5rem;
+            z-index: 2;
+        }
+
+        /* Interior */
+        .img-2 {
+            width: 55%;
+            height: 45%;
+            top: 15%;
+            left: 0;
+            border-radius: 2rem 0.5rem 2rem 2rem;
+            z-index: 3;
+        }
+
+        /* Plot/Land */
+        .img-3 {
+            width: 60%;
+            height: 50%;
+            bottom: 5%;
+            left: 15%;
+            border-radius: 1.5rem 2rem 2rem 2rem;
+            z-index: 4;
+        }
+
+        /* Gold Gradient Text Utility */
+        .text-gradient-gold {
+            background: linear-gradient(to bottom right, #F8DF8B, #E6C15D, #B3913B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .bg-gradient-gold {
+            background: linear-gradient(to right, #E6C15D, #B3913B);
+        }
+    </style>
+</head>
+<body class="bg-dark text-white font-body antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 px-6 lg:px-12 backdrop-blur-md bg-dark/80 border-b border-white/10">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <!-- Logo Icon -->
+                <div class="text-gold text-3xl">
+                    <i class="fa-solid fa-city"></i>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-display font-bold text-xl tracking-wider text-gradient-gold leading-tight">AL RAEES</span>
+                    <span class="text-[0.6rem] tracking-[0.2em] text-gray-300 uppercase">Property</span>
+                </div>
+            </div>
+            
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex gap-8 items-center text-sm font-semibold tracking-wide">
+                <a href="#home" class="hover:text-gold transition-colors">HOME</a>
+                <a href="#about" class="hover:text-gold transition-colors">ABOUT</a>
+                <a href="#services" class="hover:text-gold transition-colors">SERVICES</a>
+                <a href="#contact" class="px-5 py-2 rounded-full border border-gold text-gold hover:bg-gold hover:text-dark transition-all duration-300">
+                    CONTACT US
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-2xl text-gold focus:outline-none" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-dark border-b border-white/10 flex-col py-4 px-6 gap-4 shadow-xl">
+            <a href="#home" class="hover:text-gold" onclick="toggleMenu()">Home</a>
+            <a href="#about" class="hover:text-gold" onclick="toggleMenu()">About</a>
+            <a href="#services" class="hover:text-gold" onclick="toggleMenu()">Services</a>
+            <a href="#contact" class="hover:text-gold" onclick="toggleMenu()">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center pt-24 pb-12 px-6 lg:px-12 bg-gradient-to-br from-dark-lighter to-darker overflow-hidden">
+        
+        <!-- Background decorative elements -->
+        <div class="absolute top-20 left-10 w-64 h-64 bg-gold opacity-5 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-10 right-10 w-96 h-96 bg-gold opacity-5 rounded-full blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+            
+            <!-- Left Content: Text & Info -->
+            <div class="flex flex-col gap-6 text-center lg:text-left order-2 lg:order-1">
+                
+                <div class="space-y-2">
+                    <h1 class="font-display font-bold text-6xl lg:text-8xl tracking-tight text-gradient-gold leading-none">
+                        AL RAEES
+                    </h1>
+                    <h2 class="font-display font-bold text-2xl lg:text-4xl tracking-[0.15em] text-white uppercase mt-2">
+                        Property and Builders
+                    </h2>
+                </div>
+                
+                <div class="bg-gradient-gold text-dark font-bold px-6 py-2 rounded-lg inline-block self-center lg:self-start shadow-lg transform -skew-x-6 mt-4">
+                    <p class="skew-x-6 uppercase tracking-wider text-sm lg:text-base">Real Estate Expertise</p>
+                </div>
+
+                <p class="text-xl lg:text-2xl text-gray-300 font-light mt-2 max-w-xl mx-auto lg:mx-0">
+                    Unlock the Door to Your Dreams with Our Premium Real Estate Services!
+                </p>
+
+                <!-- Contact Info Pills -->
+                <div class="flex flex-col gap-4 mt-6 max-w-md mx-auto lg:mx-0 text-sm lg:text-base">
+                    <div class="flex items-center gap-4 bg-dark-lighter/50 p-4 rounded-xl border border-white/10 hover:border-gold/50 transition-colors group">
+                        <div class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-dark transition-colors">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <a href="mailto:au957541@gmail.com" class="text-gray-200 hover:text-white">au957541@gmail.com</a>
+                    </div>
+                    
+                    <div class="flex items-center gap-4 bg-dark-lighter/50 p-4 rounded-xl border border-white/10 hover:border-gold/50 transition-colors group">
+                        <div class="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-dark transition-colors">
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <a href="tel:03131998166" class="text-gray-200 hover:text-white">0313-1998166</a>
+                    </div>
+
+                    <div class="flex items-center gap-4 bg-dark-lighter/50 p-4 rounded-xl border border-white/10 hover:border-gold/50 transition-colors group">
+                        <div class="w-10 h-10 min-w-[2.5rem] rounded-full bg-gold/10 flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-dark transition-colors">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <span class="text-gray-200 text-left">Zia plaza, chaman road, kuchlak, Quetta.</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Right Content: Images (Replicating Banner Style) -->
+            <div class="order-1 lg:order-2 w-full flex justify-center py-10 lg:py-0">
+                <div class="image-cluster">
+                    <!-- Image 1: Modern Villa Exterior -->
+                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Modern Villa" class="cluster-img img-1">
+                    
+                    <!-- Image 2: Interior Design -->
+                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Luxury Interior" class="cluster-img img-2">
+                    
+                    <!-- Image 3: Land/Plot -->
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Agricultural Land/Plot" class="cluster-img img-3">
+                         
+                    <!-- Decorative graphics mimicking the clouds/nodes in original -->
+                    <div class="absolute bottom-[20%] left-[20%] w-32 h-32 opacity-80 pointer-events-none z-5" style="background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%); border-radius: 50%; filter: blur(10px);"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview Section -->
+    <section id="services" class="py-20 px-6 lg:px-12 bg-dark">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h3 class="text-gold font-bold tracking-widest text-sm uppercase mb-2">What We Do</h3>
+                <h2 class="font-display text-4xl lg:text-5xl font-bold">Our Expertise</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mt-6 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-dark-lighter rounded-2xl p-8 border border-white/5 hover:border-gold/30 transition-all duration-300 group">
+                    <div class="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center text-gold text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-house-chimney-window"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 font-display tracking-wide">Modern Construction</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        We build dream homes and commercial spaces with cutting-edge architecture and uncompromising quality.
+                    </p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-dark-lighter rounded-2xl p-8 border border-white/5 hover:border-gold/30 transition-all duration-300 group">
+                    <div class="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center text-gold text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-couch"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 font-display tracking-wide">Luxury Interiors</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Transform your spaces with our premium interior design services tailored to your aesthetic and comfort.
+                    </p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-dark-lighter rounded-2xl p-8 border border-white/5 hover:border-gold/30 transition-all duration-300 group">
+                    <div class="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center text-gold text-2xl mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 font-display tracking-wide">Prime Plots</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">
+                        Secure your future with strategically located land plots perfect for investment or building your next home.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="py-20 px-6 lg:px-12 bg-dark-lighter">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="relative">
+                <img src="https://images.unsplash.com/photo-1541885908-0136224346e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Construction team" class="rounded-2xl border border-white/10 shadow-2xl">
+                <div class="absolute -bottom-8 -right-8 bg-gradient-gold text-dark p-6 rounded-xl shadow-xl hidden md:block">
+                    <span class="font-display text-4xl font-bold">15+</span>
+                    <p class="font-semibold text-sm">Years Experience</p>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-gold font-bold tracking-widest text-sm uppercase mb-2">About Us</h3>
+                <h2 class="font-display text-4xl lg:text-5xl font-bold mb-6">Building Your Dreams Into Reality</h2>
+                <p class="text-gray-400 mb-6 leading-relaxed">
+                    At Al Raees Property and Builders, we pride ourselves on delivering exceptional real estate solutions in Quetta and beyond. With a steadfast commitment to quality, integrity, and innovation, we have established ourselves as industry leaders in property development and construction.
+                </p>
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center gap-3 text-gray-300"><i class="fa-solid fa-check text-gold"></i> Premium Quality Construction</li>
+                    <li class="flex items-center gap-3 text-gray-300"><i class="fa-solid fa-check text-gold"></i> Transparent Deals & Documentation</li>
+                    <li class="flex items-center gap-3 text-gray-300"><i class="fa-solid fa-check text-gold"></i> Timely Project Delivery</li>
+                </ul>
+                <a href="#contact" class="inline-block px-8 py-3 rounded-full bg-transparent border-2 border-gold text-gold hover:bg-gold hover:text-dark font-semibold transition-all duration-300">Contact Our Team</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 px-6 lg:px-12 bg-dark border-y border-white/5 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gold/5 blur-3xl rounded-full w-1/2 left-1/4 h-full pointer-events-none"></div>
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 relative z-10 text-center">
+            <div>
+                <i class="fa-solid fa-building text-3xl text-gold mb-3"></i>
+                <h3 class="font-display text-4xl font-bold text-white mb-1">120+</h3>
+                <p class="text-gray-400 text-sm uppercase tracking-wider">Projects Completed</p>
+            </div>
+            <div>
+                <i class="fa-solid fa-users text-3xl text-gold mb-3"></i>
+                <h3 class="font-display text-4xl font-bold text-white mb-1">500+</h3>
+                <p class="text-gray-400 text-sm uppercase tracking-wider">Happy Clients</p>
+            </div>
+            <div>
+                <i class="fa-solid fa-trophy text-3xl text-gold mb-3"></i>
+                <h3 class="font-display text-4xl font-bold text-white mb-1">15+</h3>
+                <p class="text-gray-400 text-sm uppercase tracking-wider">Awards Won</p>
+            </div>
+            <div>
+                <i class="fa-solid fa-helmet-safety text-3xl text-gold mb-3"></i>
+                <h3 class="font-display text-4xl font-bold text-white mb-1">50+</h3>
+                <p class="text-gray-400 text-sm uppercase tracking-wider">Expert Builders</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section id="projects" class="py-20 px-6 lg:px-12 bg-dark">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+                <div>
+                    <h3 class="text-gold font-bold tracking-widest text-sm uppercase mb-2">Our Portfolio</h3>
+                    <h2 class="font-display text-4xl lg:text-5xl font-bold">Featured Properties</h2>
+                </div>
+                <a href="#contact" class="text-gold hover:text-white transition-colors border-b border-gold hover:border-white pb-1 font-semibold">View All Properties</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="group rounded-2xl overflow-hidden bg-dark-lighter border border-white/5 hover:border-gold/30 transition-all duration-300">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Luxury Villa" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 bg-gold text-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">For Sale</div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-display text-2xl font-bold mb-2">Royal Oasis Villas</h4>
+                        <p class="text-gray-400 text-sm mb-4"><i class="fa-solid fa-location-dot text-gold mr-2"></i>Chaman Road, Quetta</p>
+                        <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-4 text-sm text-gray-300">
+                            <span><i class="fa-solid fa-bed text-gold mr-2"></i> 4 Beds</span>
+                            <span><i class="fa-solid fa-bath text-gold mr-2"></i> 3 Baths</span>
+                            <span><i class="fa-solid fa-vector-square text-gold mr-2"></i> 4500 Sqft</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 2 -->
+                <div class="group rounded-2xl overflow-hidden bg-dark-lighter border border-white/5 hover:border-gold/30 transition-all duration-300">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Apartment" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 bg-white text-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Sold Out</div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-display text-2xl font-bold mb-2">Skyline Heights</h4>
+                        <p class="text-gray-400 text-sm mb-4"><i class="fa-solid fa-location-dot text-gold mr-2"></i>Zargoon Road, Quetta</p>
+                        <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-4 text-sm text-gray-300">
+                            <span><i class="fa-solid fa-bed text-gold mr-2"></i> 3 Beds</span>
+                            <span><i class="fa-solid fa-bath text-gold mr-2"></i> 2 Baths</span>
+                            <span><i class="fa-solid fa-vector-square text-gold mr-2"></i> 2200 Sqft</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 3 -->
+                <div class="group rounded-2xl overflow-hidden bg-dark-lighter border border-white/5 hover:border-gold/30 transition-all duration-300">
+                    <div class="relative overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Commercial Plaza" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute top-4 left-4 bg-gold text-dark text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Leasing</div>
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-display text-2xl font-bold mb-2">Al Raees Plaza</h4>
+                        <p class="text-gray-400 text-sm mb-4"><i class="fa-solid fa-location-dot text-gold mr-2"></i>Airport Road, Quetta</p>
+                        <div class="flex justify-between items-center border-t border-white/10 pt-4 mt-4 text-sm text-gray-300">
+                            <span><i class="fa-solid fa-store text-gold mr-2"></i> 25 Shops</span>
+                            <span><i class="fa-solid fa-car text-gold mr-2"></i> Parking</span>
+                            <span><i class="fa-solid fa-vector-square text-gold mr-2"></i> 10k Sqft</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-20 px-6 lg:px-12 bg-dark-lighter border-t border-white/5">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h3 class="text-gold font-bold tracking-widest text-sm uppercase mb-2">Client Reviews</h3>
+                <h2 class="font-display text-4xl lg:text-5xl font-bold">What People Say</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mt-6 rounded-full"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="bg-dark p-8 rounded-2xl relative shadow-lg">
+                    <i class="fa-solid fa-quote-left text-4xl text-white/5 absolute top-6 left-6"></i>
+                    <div class="flex text-gold mb-4 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 italic mb-6 relative z-10">"Al Raees Builders turned our dream home into reality. Their attention to detail, professionalism, and timely delivery exceeded our expectations."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-gold flex items-center justify-center text-dark font-bold text-xl">A</div>
+                        <div>
+                            <h5 class="font-bold">Ahmed Khan</h5>
+                            <p class="text-xs text-gray-500">Homeowner</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 2 -->
+                <div class="bg-dark p-8 rounded-2xl relative shadow-lg">
+                    <i class="fa-solid fa-quote-left text-4xl text-white/5 absolute top-6 left-6"></i>
+                    <div class="flex text-gold mb-4 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-300 italic mb-6 relative z-10">"The commercial plot I bought through them was in a prime location just as promised. Their transparency in documentation is highly commendable."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-gold flex items-center justify-center text-dark font-bold text-xl">S</div>
+                        <div>
+                            <h5 class="font-bold">Sana Baloch</h5>
+                            <p class="text-xs text-gray-500">Investor</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Review 3 -->
+                <div class="bg-dark p-8 rounded-2xl relative shadow-lg md:col-span-2 lg:col-span-1">
+                    <i class="fa-solid fa-quote-left text-4xl text-white/5 absolute top-6 left-6"></i>
+                    <div class="flex text-gold mb-4 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="text-gray-300 italic mb-6 relative z-10">"Excellent interior design services. They utilized every inch of the space perfectly. Highly recommend Al Raees for construction and interiors!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-gold flex items-center justify-center text-dark font-bold text-xl">T</div>
+                        <div>
+                            <h5 class="font-bold">Tariq Ali</h5>
+                            <p class="text-xs text-gray-500">Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="py-16 px-6 lg:px-12 bg-gradient-gold relative overflow-hidden">
+        <!-- decorative bg -->
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, #000 1px, transparent 1px); background-size: 20px 20px;"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10 text-dark">
+            <h2 class="font-display text-4xl lg:text-5xl font-bold mb-4">Ready to Start Your Next Project?</h2>
+            <p class="text-dark/80 font-medium text-lg mb-8 max-w-2xl mx-auto">Contact us today to schedule a consultation with our real estate experts and builders. Let's create something extraordinary together.</p>
+            <a href="#contact" class="inline-flex items-center justify-center gap-3 px-8 py-4 bg-dark text-white rounded-full font-bold hover:bg-dark-lighter hover:-translate-y-1 transition-all duration-300 shadow-xl">
+                Get in Touch Now <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-darker border-t border-white/10 pt-16 pb-8 px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+            
+            <!-- Brand -->
+            <div class="lg:col-span-2">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="text-gold text-2xl">
+                        <i class="fa-solid fa-city"></i>
+                    </div>
+                    <span class="font-display font-bold text-2xl tracking-wider text-gradient-gold">AL RAEES</span>
+                </div>
+                <p class="text-gray-400 text-sm max-w-sm mb-6 leading-relaxed">
+                    Unlocking the door to your dreams. Your trusted partner in real estate, construction, and property development in Quetta.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-gold hover:text-dark transition-all">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-gold hover:text-dark transition-all">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-gold hover:text-dark transition-all">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-white font-bold mb-6 font-display tracking-wider">QUICK LINKS</h4>
+                <ul class="space-y-3 text-gray-400 text-sm">
+                    <li><a href="#home" class="hover:text-gold transition-colors">Home</a></li>
+                    <li><a href="#about" class="hover:text-gold transition-colors">About Us</a></li>
+                    <li><a href="#services" class="hover:text-gold transition-colors">Services</a></li>
+                    <li><a href="#contact" class="hover:text-gold transition-colors">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div>
+                <h4 class="text-white font-bold mb-6 font-display tracking-wider">CONTACT US</h4>
+                <ul class="space-y-4 text-gray-400 text-sm">
+                    <li class="flex items-start gap-3">
+                        <i class="fa-solid fa-location-dot mt-1 text-gold"></i>
+                        <span>Zia plaza, chaman road,<br>kuchlak, Quetta.</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-phone text-gold"></i>
+                        <a href="tel:03131998166" class="hover:text-white transition-colors">0313-1998166</a>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <i class="fa-solid fa-envelope text-gold"></i>
+                        <a href="mailto:au957541@gmail.com" class="hover:text-white transition-colors">au957541@gmail.com</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+            <p>&copy; <span id="year"></span> Al Raees Property and Builders. All rights reserved.</p>
+            <p>Designed for Excellence</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        }
+
+        // Navbar blur on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg');
+                nav.classList.replace('py-4', 'py-2');
+            } else {
+                nav.classList.remove('shadow-lg');
+                nav.classList.replace('py-2', 'py-4');
+            }
+        });
+    </script>
+</body>
+</html>

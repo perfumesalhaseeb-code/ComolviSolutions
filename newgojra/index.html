@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Gojra City | DHA Style Housing Project</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        postRed: '#e11d48',    // Bright red from flyer 1
+                        postBlue: '#1e3a8a',   // Navy blue from logo
+                        postGold: '#facc15',   // Bright yellow/gold from flyer 2
+                        postDarkGold: '#b45309'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .leaf-corner-tr {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 180px;
+            pointer-events: none;
+            z-index: 30;
+        }
+
+        .leaf-corner-tl {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 180px;
+            pointer-events: none;
+            z-index: 30;
+        }
+
+        /* Image Fallback Background */
+        .img-fallback {
+            background-color: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans text-gray-900 antialiased">
+
+    <!-- Top Header / Logos (Flyer 1 Style) -->
+    <header class="bg-white border-b py-6 px-6 relative overflow-hidden">
+        <!-- Leaves decoration from Flyer 2 - Using reliable SVG-based icons for better loading -->
+        <img src="https://www.svgrepo.com/show/475143/leaf-1.svg" class="leaf-corner-tl opacity-20 -rotate-45" alt="decoration" onerror="this.style.display='none'">
+        <img src="https://www.svgrepo.com/show/475143/leaf-1.svg" class="leaf-corner-tr opacity-20 rotate-45" alt="decoration" onerror="this.style.display='none'">
+
+        <div class="max-w-7xl mx-auto flex justify-between items-center relative z-40">
+            <!-- New Gojra City Logo -->
+            <div class="flex flex-col items-center">
+                <div class="w-12 h-12 text-postBlue flex items-center justify-center">
+                    <i class="fa-solid fa-droplet text-3xl"></i>
+                </div>
+                <div class="text-center">
+                    <p class="text-xs font-bold text-postBlue leading-tight tracking-tighter">NEW</p>
+                    <p class="text-sm font-black text-postBlue leading-tight tracking-tighter">GOJRA CITY</p>
+                </div>
+            </div>
+
+            <!-- Main Title (Flyer 1 Text Style) -->
+            <div class="text-center hidden sm:block">
+                <h1 class="text-5xl md:text-6xl font-black text-postRed italic tracking-tighter uppercase mb-1">New Gojra City</h1>
+                <p class="text-postBlue font-bold text-xl uppercase tracking-widest">Premium Housing Project</p>
+            </div>
+
+            <!-- Etihad Marketing Logo -->
+            <div class="bg-black text-white p-2 rounded-lg flex flex-col items-center border-2 border-postGold w-20 h-20 sm:w-24 sm:h-24 justify-center shadow-lg">
+                <i class="fa-solid fa-building-shield text-postGold text-2xl sm:text-3xl mb-1"></i>
+                <p class="text-[9px] sm:text-[11px] font-bold text-center leading-tight">ETIHAD<br>MARKETING</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Title -->
+    <div class="sm:hidden text-center py-6 bg-white border-b">
+        <h1 class="text-4xl font-black text-postRed italic">New Gojra City</h1>
+    </div>
+
+    <!-- Hero Section with Red Roof Chevron (Flyer 1) -->
+    <section class="relative">
+        <!-- 60 Month Banner (Blue bar from flyer) -->
+        <div class="bg-blue-600 text-white py-4 text-center shadow-inner">
+            <p class="text-2xl md:text-5xl font-black tracking-tight text-shadow uppercase italic">60 Months Easy Installments</p>
+        </div>
+
+        <!-- The Red Chevron Roof Structure -->
+        <div class="relative bg-postRed h-28 md:h-40 flex items-center justify-center overflow-visible" style="clip-path: polygon(0 100%, 50% 0, 100% 100%);">
+            <div class="text-center pb-4">
+                <p class="text-white font-black text-xl md:text-4xl px-4 md:px-12 text-shadow uppercase italic tracking-wider">DHA Style Housing Project</p>
+            </div>
+        </div>
+
+        <!-- Main Gate Image Container (Matches Flyer Shape) -->
+        <div class="relative -mt-1 w-full max-w-5xl mx-auto border-x-[12px] border-b-[12px] border-postRed bg-white shadow-2xl overflow-hidden">
+            <!-- Using a high-quality, reliable gated community image -->
+            <div class="relative h-[350px] md:h-[550px] bg-slate-200">
+                <img 
+                    src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&q=80&w=1600" 
+                    alt="New Gojra City Grand Entrance" 
+                    class="w-full h-full object-cover"
+                    onerror="this.src='https://images.unsplash.com/photo-1591136423547-b86a8775f564?auto=format&fit=crop&q=80&w=1500'; this.onerror=null;"
+                >
+                
+                <!-- Red Slanted Labels from Flyer 1 -->
+                <div class="absolute top-12 left-[-50px] rotate-[-35deg] bg-postRed text-white px-12 py-3 font-black text-lg md:text-2xl shadow-xl border-y-4 border-white z-20">
+                    IMMEDIATE POSSESSION
+                </div>
+                <div class="absolute top-12 right-[-50px] rotate-[35deg] bg-postRed text-white px-12 py-3 font-black text-lg md:text-2xl shadow-xl border-y-4 border-white z-20">
+                    IMMEDIATE CONSTRUCTION
+                </div>
+
+                <!-- Entrance Signage Banner -->
+                <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black/80 to-transparent flex items-end justify-center pb-6">
+                    <div class="bg-white px-8 py-2 border-t-4 border-postRed shadow-2xl">
+                        <p class="text-postRed font-black text-2xl md:text-4xl tracking-[0.2em] uppercase">New Gojra City</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Yellow Payment Ribbon (Flyer 2 Style) -->
+    <section class="py-16 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row gap-6 items-center justify-center">
+                <!-- Commercial Ribbon -->
+                <div class="relative bg-postGold border-y-8 border-postDarkGold px-10 py-6 w-full md:w-auto shadow-2xl flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="absolute -left-2 top-0 bottom-0 w-6 bg-white/20 skew-x-[-20deg]"></div>
+                    <p class="text-postBlue font-black text-2xl md:text-3xl italic">COMMERCIAL PLOTS</p>
+                    <p class="text-black font-extrabold text-xl md:text-2xl mt-1 uppercase">72 Easy Installments</p>
+                </div>
+                
+                <!-- Residential Ribbon -->
+                <div class="relative bg-postGold border-y-8 border-postDarkGold px-10 py-6 w-full md:w-auto shadow-2xl flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
+                    <div class="absolute -right-2 top-0 bottom-0 w-6 bg-black/5 skew-x-[20deg]"></div>
+                    <p class="text-postBlue font-black text-2xl md:text-3xl italic">RESIDENTIAL PLOTS</p>
+                    <p class="text-black font-extrabold text-xl md:text-2xl mt-1 uppercase">60 Easy Installments</p>
+                </div>
+            </div>
+
+            <!-- Plot Sizes (Big Bold Text from Flyer 2) -->
+            <div class="mt-12 text-center">
+                <p class="text-4xl md:text-8xl font-black text-gray-900 tracking-tighter">
+                    4 - 5 - 7 - 10 - 15 <span class="text-postBlue italic">MARLA</span>
+                </p>
+                <div class="h-2 w-48 bg-postRed mx-auto mt-4 rounded-full"></div>
+                <p class="text-2xl font-black text-gray-400 uppercase tracking-[0.3em] mt-4">Premium Plots Available</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Grid (Flyer 1 Detail Box Style) -->
+    <section class="py-20 bg-slate-50 border-t-[12px] border-postRed">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-6xl font-black text-postRed italic uppercase text-shadow">Our World-Class Amenities</h2>
+                <p class="text-postBlue font-bold text-lg md:text-xl mt-2">Everything You Need for a Modern Lifestyle</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Facility Cards -->
+                <div class="bg-white border-4 border-postRed p-6 rounded-2xl flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                    <div class="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-postRed transition-colors">
+                        <i class="fa-solid fa-shield-halved text-postRed group-hover:text-white text-4xl"></i>
+                    </div>
+                    <p class="font-black uppercase text-base md:text-lg text-postBlue">24/7 Security</p>
+                </div>
+                <div class="bg-white border-4 border-postRed p-6 rounded-2xl flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                    <div class="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-postRed transition-colors">
+                        <i class="fa-solid fa-water text-postRed group-hover:text-white text-4xl"></i>
+                    </div>
+                    <p class="font-black uppercase text-base md:text-lg text-postBlue">Sewerage System</p>
+                </div>
+                <div class="bg-white border-4 border-postRed p-6 rounded-2xl flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                    <div class="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-postRed transition-colors">
+                        <i class="fa-solid fa-mosque text-postRed group-hover:text-white text-4xl"></i>
+                    </div>
+                    <p class="font-black uppercase text-base md:text-lg text-postBlue">Jamia Mosque</p>
+                </div>
+                <div class="bg-white border-4 border-postRed p-6 rounded-2xl flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                    <div class="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-postRed transition-colors">
+                        <i class="fa-solid fa-bolt text-postRed group-hover:text-white text-4xl"></i>
+                    </div>
+                    <p class="font-black uppercase text-base md:text-lg text-postBlue">Underground Electricity</p>
+                </div>
+                <div class="bg-white border-4 border-postRed p-6 rounded-2xl flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                    <div class="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-postRed transition-colors">
+                        <i class="fa-solid fa-tree text-postRed group-hover:text-white text-4xl"></i>
+                    </div>
+                    <p class="font-black uppercase text-base md:text-lg text-postBlue">Parks & Playland</p>
+                </div>
+                <div class="bg-white border-4 border-postRed p-6 rounded-2xl flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                    <div class="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-postRed transition-colors">
+                        <i class="fa-solid fa-border-none text-postRed group-hover:text-white text-4xl"></i>
+                    </div>
+                    <p class="font-black uppercase text-base md:text-lg text-postBlue">Boundary Wall</p>
+                </div>
+                <div class="bg-white border-4 border-postRed p-6 rounded-2xl flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                    <div class="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-postRed transition-colors">
+                        <i class="fa-solid fa-faucet-drip text-postRed group-hover:text-white text-4xl"></i>
+                    </div>
+                    <p class="font-black uppercase text-base md:text-lg text-postBlue">Water Plant</p>
+                </div>
+                <div class="bg-white border-4 border-postRed p-6 rounded-2xl flex flex-col items-center text-center shadow-lg hover:shadow-2xl transition-all duration-300 group">
+                    <div class="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mb-4 group-hover:bg-postRed transition-colors">
+                        <i class="fa-solid fa-id-card-clip text-postRed group-hover:text-white text-4xl"></i>
+                    </div>
+                    <p class="font-black uppercase text-base md:text-lg text-postBlue">E-Tag Entrance</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Action Footer (Flyer 1 Design) -->
+    <section class="bg-postRed text-white py-16 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-12">
+                <!-- Large Contact Section -->
+                <div class="text-center md:text-left flex-shrink-0">
+                    <p class="text-2xl font-bold uppercase tracking-widest mb-2">Book Your Plot Today</p>
+                    <p class="text-6xl md:text-8xl font-black text-shadow tracking-tighter mb-6">0322-8697589</p>
+                    <button onclick="document.getElementById('booking-form').scrollIntoView({behavior: 'smooth'})" class="bg-black text-postGold font-black text-3xl py-4 px-16 rounded-lg uppercase shadow-2xl hover:scale-110 transition-transform active:scale-95 border-b-4 border-postDarkGold">
+                        BOOK NOW
+                    </button>
+                </div>
+
+                <!-- Addresses (Stylized as Flyer 1) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-sm border-l-8 border-postGold">
+                        <h4 class="font-black text-2xl mb-4 uppercase text-postGold italic underline">Head Office</h4>
+                        <p class="text-xl font-bold leading-tight">Opp. Land Record Office</p>
+                        <p class="text-lg opacity-90">Tehsil Office Road, Gojra</p>
+                    </div>
+                    <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-sm border-l-8 border-postGold">
+                        <h4 class="font-black text-2xl mb-4 uppercase text-postGold italic underline">Site Office</h4>
+                        <p class="text-xl font-bold leading-tight">1-Km Main Painsra Road</p>
+                        <p class="text-lg opacity-90">Near Tayyab Marriage Hall, Gojra</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="booking-form" class="py-24 bg-gray-950 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white p-10 rounded-[40px] shadow-[0_0_50px_rgba(225,29,72,0.3)] border-t-[15px] border-postRed">
+                <div class="text-center mb-10">
+                    <h3 class="text-4xl font-black text-postBlue italic uppercase">Secure Your Future</h3>
+                    <p class="text-gray-500 font-bold mt-2">Fill the form below and our team will call you within 24 hours.</p>
+                </div>
+                
+                <form onsubmit="event.preventDefault(); alert('Success! One of our representatives will call you shortly at the provided number.'); this.reset();">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                        <div>
+                            <label class="block font-black text-postBlue uppercase text-sm mb-3">Applicant Name</label>
+                            <input type="text" class="w-full bg-slate-50 border-2 border-slate-200 p-4 rounded-xl focus:border-postRed focus:ring-4 focus:ring-postRed/10 outline-none transition-all font-bold" placeholder="Your Full Name" required>
+                        </div>
+                        <div>
+                            <label class="block font-black text-postBlue uppercase text-sm mb-3">Mobile Number</label>
+                            <input type="tel" class="w-full bg-slate-50 border-2 border-slate-200 p-4 rounded-xl focus:border-postRed focus:ring-4 focus:ring-postRed/10 outline-none transition-all font-bold" placeholder="03XX-XXXXXXX" required>
+                        </div>
+                    </div>
+                    <div class="mb-10">
+                        <label class="block font-black text-postBlue uppercase text-sm mb-3">Interested Plot Size</label>
+                        <select class="w-full bg-slate-50 border-2 border-slate-200 p-4 rounded-xl focus:border-postRed outline-none font-bold text-lg appearance-none cursor-pointer">
+                            <option>5 Marla Residential</option>
+                            <option>7 Marla Residential</option>
+                            <option>10 Marla Residential</option>
+                            <option>15 Marla Residential</option>
+                            <option>Commercial - High Street</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full bg-postBlue text-white font-black text-2xl py-5 rounded-2xl shadow-xl hover:bg-blue-900 transition-all hover:shadow-blue-900/40 uppercase tracking-widest italic">
+                        Send Booking Request
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Site Footer -->
+    <footer class="bg-black py-12 border-t-4 border-postGold">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex flex-col items-center mb-8">
+                <p class="text-postGold font-black uppercase tracking-[0.5em] text-sm mb-4">Official Marketing Partner</p>
+                <div class="flex items-center gap-6">
+                    <i class="fa-solid fa-building-shield text-postGold text-5xl"></i>
+                    <h2 class="text-white text-4xl md:text-5xl font-black tracking-tighter">ETIHAD MARKETING</h2>
+                </div>
+            </div>
+            <div class="w-24 h-1 bg-white/10 mx-auto mb-8"></div>
+            <p class="text-gray-500 text-sm font-bold">&copy; 2024 New Gojra City & Etihad Marketing. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

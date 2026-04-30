@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-Kareem Associates & Developers | Trusted Real Estate Sahiwal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gold: #D4AF37;
+            --deep-green: #0a1f1c; /* Derived from the Al-Kareem poster background */
+            --accent-red: #cc2b2b; /* Derived from the Jinnah Orchard logo */
+        }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: #fff;
+        }
+
+        .heading-font { font-family: 'Marcellus', serif; }
+
+        .bg-luxury { background-color: var(--deep-green); }
+        .text-gold { color: var(--primary-gold); }
+        .bg-gold { background-color: var(--primary-gold); }
+        .border-gold { border-color: var(--primary-gold); }
+        
+        .hero-pattern {
+            background: linear-gradient(rgba(10, 31, 28, 0.85), rgba(10, 31, 28, 0.95)), 
+                        url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .section-dark {
+            background: linear-gradient(135deg, #0a1f1c 0%, #051210 100%);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .urdu-font {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            direction: rtl;
+        }
+
+        @keyframes gold-shine {
+            from { background-position: -200%; }
+            to { background-position: 200%; }
+        }
+
+        .shine-button {
+            background: linear-gradient(90deg, #D4AF37, #f3cf65, #D4AF37);
+            background-size: 200% auto;
+            transition: 0.5s;
+        }
+        .shine-button:hover {
+            background-position: right center;
+        }
+
+        .map-frame {
+            border: 8px solid #fff;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="smooth-scroll">
+
+    <!-- Premium Top Bar -->
+    <div class="bg-luxury border-b border-gold/20 py-2 px-6 md:px-12 flex justify-between items-center text-[10px] md:text-xs text-gray-300 uppercase tracking-widest">
+        <div class="flex gap-6">
+            <span><i class="fas fa-phone-alt text-gold mr-2"></i> 0305 2033 226</span>
+            <span class="hidden md:inline"><i class="fas fa-map-marker-alt text-gold mr-2"></i> Main Madhali Road, Sahiwal</span>
+        </div>
+        <div class="flex gap-4">
+            <span class="text-white font-bold">Trusted Agency at <span class="text-green-500">zameen.com</span></span>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav id="navbar" class="sticky top-0 w-full z-50 bg-luxury/95 backdrop-blur-md py-4 px-6 md:px-12 flex justify-between items-center border-b border-gold/10">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 border-2 border-gold flex items-center justify-center rounded-sm rotate-45 group">
+                <span class="text-gold font-bold -rotate-45 text-xl">AK</span>
+            </div>
+            <div>
+                <h1 class="text-white font-bold text-lg md:text-xl tracking-tighter leading-none">AL-KAREEM</h1>
+                <p class="text-gold text-[10px] tracking-[0.2em] font-light">ASSOCIATES & DEVELOPERS</p>
+            </div>
+        </div>
+        
+        <div class="hidden lg:flex gap-10 font-semibold text-xs tracking-widest uppercase text-gray-300">
+            <a href="#home" class="hover:text-gold transition-colors">Home</a>
+            <a href="#projects" class="hover:text-gold transition-colors">Developments</a>
+            <a href="#services" class="hover:text-gold transition-colors">Services</a>
+            <a href="#about" class="hover:text-gold transition-colors">The Agency</a>
+            <a href="#contact" class="hover:text-gold transition-colors">Contact</a>
+        </div>
+
+        <button class="bg-gold text-black px-6 py-2 text-xs font-bold uppercase tracking-tighter hover:bg-white transition-all shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+            Enquire Now
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero-pattern min-h-[90vh] flex items-center px-6 md:px-24">
+        <div class="max-w-4xl">
+            <div class="inline-block border-l-4 border-gold pl-4 mb-6">
+                <span class="text-gold uppercase tracking-[0.4em] text-sm font-bold">Welcome to Luxury Living</span>
+            </div>
+            <h2 class="heading-font text-white text-5xl md:text-8xl mb-8 leading-[1.1]">
+                Truly Urban <br> <span class="text-gold italic">Life Style</span>
+            </h2>
+            <p class="text-gray-300 text-lg md:text-xl mb-12 max-w-xl font-light leading-relaxed border-b border-white/10 pb-8">
+                We serve all facilities about Properties. From town development to architectural engineering, we build the future of Sahiwal.
+            </p>
+            <div class="flex flex-wrap gap-6">
+                <a href="#projects" class="shine-button text-black px-10 py-5 font-bold uppercase text-xs tracking-widest">
+                    View Master Plans
+                </a>
+                <div class="flex items-center gap-4 text-white">
+                    <div class="w-12 h-12 rounded-full border border-gold/30 flex items-center justify-center">
+                        <i class="fas fa-play text-gold text-xs"></i>
+                    </div>
+                    <span class="text-xs font-bold uppercase tracking-widest">Watch Presentation</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Featured: Jinnah Orchard -->
+    <section id="projects" class="py-24 bg-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2">
+                    <div class="relative">
+                        <div class="bg-luxury absolute -top-4 -left-4 w-24 h-24 z-0"></div>
+                        <img src="https://images.unsplash.com/photo-1524813686514-a57563d77965?auto=format&fit=crop&w=1200" alt="Jinnah Orchard" class="relative z-10 w-full shadow-2xl rounded-none grayscale hover:grayscale-0 transition-all duration-700">
+                        <div class="absolute -bottom-10 -right-10 hidden md:block z-20">
+                            <div class="bg-white p-6 shadow-2xl border-t-4 border-gold">
+                                <p class="text-4xl font-bold text-luxury">4, 5, 6, 7</p>
+                                <p class="text-xs text-gray-500 font-bold uppercase tracking-widest">Marla Plots Available</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3209/3209265.png" class="w-16 mb-6 opacity-20" alt="">
+                    <h3 class="text-xs font-bold text-gold uppercase tracking-[0.3em] mb-4">Mubeen Brothers Presents</h3>
+                    <h2 class="heading-font text-5xl text-luxury mb-6">Jinnah Orchard</h2>
+                    <p class="text-gray-600 mb-8 leading-loose">
+                        A project by Mubeen Brothers & Makan Manager. Featuring meticulously designed residential grids, grand masjids, and lush green parks. Located strategically for a truly urban lifestyle.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6 mb-10">
+                        <div class="border-l-2 border-gold/30 pl-4">
+                            <p class="font-bold text-luxury">60' Wide</p>
+                            <p class="text-xs text-gray-500 uppercase">Main Boulevard</p>
+                        </div>
+                        <div class="border-l-2 border-gold/30 pl-4">
+                            <p class="font-bold text-luxury">Modern</p>
+                            <p class="text-xs text-gray-500 uppercase">Sewerage System</p>
+                        </div>
+                    </div>
+                    <button class="border-2 border-luxury px-8 py-3 font-bold text-xs uppercase tracking-widest hover:bg-luxury hover:text-white transition">
+                        Explore Master Plan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Al-Asr Business Center (Urdu Elements) -->
+    <section class="py-24 bg-luxury text-white">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="heading-font text-4xl md:text-6xl mb-4">Al-Asr Business Center</h2>
+            <p class="text-gold font-bold tracking-[0.5em] uppercase text-sm mb-12">Pakpattan Sharif</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="glass-card p-10 group hover:bg-gold transition-all duration-500">
+                    <h4 class="text-3xl font-bold mb-4 group-hover:text-black italic">فوری رجسٹری</h4>
+                    <p class="text-gray-400 group-hover:text-black/70">Immediate registry and transfer of ownership for your peace of mind.</p>
+                </div>
+                <div class="glass-card p-10 group hover:bg-gold transition-all duration-500">
+                    <h4 class="text-3xl font-bold mb-4 group-hover:text-black italic">فوری قبضہ</h4>
+                    <p class="text-gray-400 group-hover:text-black/70">Start your construction immediately with instant possession of plots/shops.</p>
+                </div>
+                <div class="glass-card p-10 group hover:bg-gold transition-all duration-500">
+                    <h4 class="text-3xl font-bold mb-4 group-hover:text-black italic">آسان اقساط</h4>
+                    <p class="text-gray-400 group-hover:text-black/70">Flexible and easy monthly installment plans available for investors.</p>
+                </div>
+            </div>
+
+            <div class="mt-20 border border-gold/20 p-8 md:p-16 relative">
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-luxury px-6 text-gold font-bold">LEGENDS</div>
+                <div class="flex flex-wrap justify-center gap-10">
+                    <div class="flex items-center gap-3"><span class="w-4 h-4 bg-green-600 rounded-full"></span> 1-Marla</div>
+                    <div class="flex items-center gap-3"><span class="w-4 h-4 bg-blue-600 rounded-full"></span> 2-Marla</div>
+                    <div class="flex items-center gap-3"><span class="w-4 h-4 bg-yellow-600 rounded-full"></span> 3-Marla</div>
+                    <div class="flex items-center gap-3"><span class="w-4 h-4 bg-orange-600 rounded-full"></span> 5-Marla</div>
+                    <div class="flex items-center gap-3"><span class="w-4 h-4 bg-red-600 rounded-full"></span> 8-Marla</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Services (Exactly from the poster) -->
+    <section id="services" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <h6 class="text-gold font-bold uppercase tracking-[0.3em] text-xs mb-4">Comprehensive Solutions</h6>
+                <h2 class="heading-font text-4xl md:text-5xl text-luxury">Professional Services</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
+                <!-- Service 1 -->
+                <div class="bg-white p-12 hover:bg-luxury hover:text-white transition-all duration-500 group">
+                    <i class="fas fa-hand-holding-dollar text-4xl text-gold mb-8"></i>
+                    <h4 class="text-xl font-bold mb-4">Sale & Purchase</h4>
+                    <p class="text-gray-500 group-hover:text-gray-300 text-sm leading-relaxed">Expert brokering for residential and commercial assets in Sahiwal and Pakpattan.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-white p-12 hover:bg-luxury hover:text-white transition-all duration-500 group">
+                    <i class="fas fa-building-circle-check text-4xl text-gold mb-8"></i>
+                    <h4 class="text-xl font-bold mb-4">Town Development</h4>
+                    <p class="text-gray-500 group-hover:text-gray-300 text-sm leading-relaxed">Transforming vast landscapes into planned, modern urban societies.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-white p-12 hover:bg-luxury hover:text-white transition-all duration-500 group">
+                    <i class="fas fa-bullhorn text-4xl text-gold mb-8"></i>
+                    <h4 class="text-xl font-bold mb-4">Marketing</h4>
+                    <p class="text-gray-500 group-hover:text-gray-300 text-sm leading-relaxed">Strategic marketing solutions for real estate projects to reach the right investors.</p>
+                </div>
+                <!-- Service 4 -->
+                <div class="bg-white p-12 hover:bg-luxury hover:text-white transition-all duration-500 group">
+                    <i class="fas fa-drafting-compass text-4xl text-gold mb-8"></i>
+                    <h4 class="text-xl font-bold mb-4">Architect & Engineers</h4>
+                    <p class="text-gray-500 group-hover:text-gray-300 text-sm leading-relaxed">Precision-led design and engineering for commercial and domestic structures.</p>
+                </div>
+                <!-- Service 5 -->
+                <div class="bg-white p-12 hover:bg-luxury hover:text-white transition-all duration-500 group">
+                    <i class="fas fa-trowel-bricks text-4xl text-gold mb-8"></i>
+                    <h4 class="text-xl font-bold mb-4">Building Construction</h4>
+                    <p class="text-gray-500 group-hover:text-gray-300 text-sm leading-relaxed">High-quality construction using premium materials and skilled labor.</p>
+                </div>
+                <!-- Service 6 -->
+                <div class="bg-white p-12 hover:bg-luxury hover:text-white transition-all duration-500 group">
+                    <i class="fas fa-key text-4xl text-gold mb-8"></i>
+                    <h4 class="text-xl font-bold mb-4">Property Renting</h4>
+                    <p class="text-gray-500 group-hover:text-gray-300 text-sm leading-relaxed">Connecting tenants with the best commercial and residential rental options.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section (Zameen.com) -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <div class="flex justify-center mb-8">
+                <img src="https://images.zameen.com/zameen/desktop/header-logo.png" alt="Zameen.com Logo" class="h-16 grayscale opacity-40">
+            </div>
+            <h3 class="heading-font text-3xl mb-4 italic">"Har Pata, Humain"</h3>
+            <p class="text-gray-500 text-lg leading-relaxed">
+                As a <span class="text-luxury font-bold">Trusted Agency at Zameen.com</span>, Al-Kareem Associates & Developers stands at the pinnacle of real estate reliability in the region. We bring transparency, legality, and excellence to every deal.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact & Location -->
+    <section id="contact" class="py-24 section-dark text-white">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <div>
+                <h6 class="text-gold font-bold uppercase tracking-[0.3em] text-xs mb-4">Contact Us</h6>
+                <h2 class="heading-font text-5xl mb-10">Start Your Investment</h2>
+                
+                <div class="space-y-10">
+                    <div class="flex items-start gap-6">
+                        <div class="bg-gold/10 p-4 rounded-full"><i class="fas fa-phone-alt text-gold"></i></div>
+                        <div>
+                            <p class="text-xs uppercase text-gray-500 font-bold mb-1 tracking-widest">Call Center</p>
+                            <p class="text-2xl font-bold">0305 2033 226</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-6">
+                        <div class="bg-gold/10 p-4 rounded-full"><i class="fas fa-map-marker-alt text-gold"></i></div>
+                        <div>
+                            <p class="text-xs uppercase text-gray-500 font-bold mb-1 tracking-widest">Sahiwal Office</p>
+                            <p class="text-xl">Main Madhali Road, Opposite Palm View Society, Sahiwal</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-16 flex gap-6">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="w-12 h-12 grayscale hover:grayscale-0 transition cursor-pointer" alt="">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png" class="w-12 h-12 grayscale hover:grayscale-0 transition cursor-pointer" alt="">
+                </div>
+            </div>
+
+            <div class="glass-card p-10">
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="text" placeholder="Your Name" class="bg-transparent border-b border-white/20 py-4 outline-none focus:border-gold transition">
+                        <input type="tel" placeholder="Phone Number" class="bg-transparent border-b border-white/20 py-4 outline-none focus:border-gold transition">
+                    </div>
+                    <select class="w-full bg-transparent border-b border-white/20 py-4 outline-none focus:border-gold transition text-gray-400">
+                        <option class="text-black">Interested in Jinnah Orchard</option>
+                        <option class="text-black">Interested in Al-Asr Center</option>
+                        <option class="text-black">General Inquiry</option>
+                    </select>
+                    <textarea rows="4" placeholder="Your Message" class="w-full bg-transparent border-b border-white/20 py-4 outline-none focus:border-gold transition"></textarea>
+                    <button class="shine-button w-full text-black font-bold py-5 uppercase tracking-widest text-xs">
+                        Request a Call Back
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-10 px-6 border-t border-gold/10 text-center">
+        <p class="text-gray-500 text-[10px] uppercase tracking-[0.5em]">&copy; 2024 Al-Kareem Associates & Developers | Designed for Excellence</p>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/923052033226" class="fixed bottom-10 right-10 bg-[#25D366] p-5 rounded-full shadow-2xl z-50 hover:scale-110 transition-transform">
+        <i class="fab fa-whatsapp text-white text-3xl"></i>
+    </a>
+
+    <script>
+        // Smooth scroll implementation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple scroll reveal
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                nav.classList.add('shadow-2xl');
+            } else {
+                nav.classList.remove('shadow-2xl');
+            }
+        });
+    </script>
+</body>
+</html>
