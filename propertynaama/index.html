@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Naama | Consultants & Marketers</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            DEFAULT: '#dfac38',
+                            light: '#f2c55e',
+                            dark: '#b88a24'
+                        },
+                        dark: {
+                            DEFAULT: '#0a0a0a',
+                            card: '#141414',
+                            border: '#2a2a2a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        heading: ['Oswald', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: #dfac38; }
+        ::-webkit-scrollbar-thumb:hover { background: #b88a24; }
+
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Hero Background with overlay */
+        .hero-bg {
+            background: linear-gradient(to right, rgba(10, 10, 10, 0.95) 0%, rgba(10, 10, 10, 0.7) 100%), 
+                        url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            position: relative;
+        }
+
+        /* Floating Objects Animations */
+        @keyframes float1 {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
+            50% { transform: translateY(-50px) rotate(10deg); opacity: 0.3; }
+            100% { transform: translateY(0) rotate(0deg); opacity: 0.1; }
+        }
+        @keyframes float2 {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.1; }
+            50% { transform: translate(-30px, -40px) rotate(-15deg); opacity: 0.2; }
+            100% { transform: translate(0, 0) rotate(0deg); opacity: 0.1; }
+        }
+        
+        .floating-shape {
+            position: absolute;
+            border: 2px solid #dfac38;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .shape-1 { width: 100px; height: 100px; top: 20%; left: 10%; animation: float1 8s infinite ease-in-out; }
+        .shape-2 { width: 150px; height: 150px; border-radius: 50%; bottom: 15%; right: 15%; animation: float2 10s infinite ease-in-out; }
+        .shape-3 { width: 70px; height: 70px; top: 40%; right: 25%; animation: float1 6s infinite ease-in-out reverse; border: 2px dashed #dfac38; }
+
+        /* Infinite Marquee */
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            background: #dfac38;
+            color: #0a0a0a;
+            padding: 12px 0;
+            display: flex;
+            white-space: nowrap;
+        }
+        
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 2px;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Slider Transitions */
+        .slider-wrapper {
+            transition: transform 0.5s ease-in-out;
+        }
+
+        /* Service Cards Hover */
+        .service-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: #dfac38;
+            box-shadow: 0 10px 30px -10px rgba(223, 172, 56, 0.3);
+        }
+        .service-card:hover .service-icon {
+            transform: scale(1.1);
+            color: #ffffff;
+            background-color: #dfac38;
+        }
+
+        /* Image Zoom on Hover */
+        .img-zoom {
+            transition: transform 0.6s ease;
+        }
+        .group:hover .img-zoom {
+            transform: scale(1.08);
+        }
+    </style>
+</head>
+<body class="antialiased font-sans">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-dark/95 backdrop-blur-sm border-b border-dark-border transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                <!-- Logo -->
+                <div class="flex items-center space-x-2 cursor-pointer">
+                    <div class="flex flex-col items-center">
+                        <!-- Custom SVG to simulate logo roof -->
+                        <svg width="60" height="24" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-1">
+                            <polygon points="10,40 40,15 50,25 60,25 60,15 65,15 65,30 90,40" fill="#dfac38"/>
+                            <rect x="30" y="25" width="6" height="8" fill="#0a0a0a"/>
+                            <rect x="40" y="25" width="6" height="8" fill="#0a0a0a"/>
+                            <rect x="68" y="28" width="5" height="6" fill="#0a0a0a"/>
+                            <rect x="76" y="28" width="5" height="6" fill="#0a0a0a"/>
+                        </svg>
+                        <div class="text-2xl font-heading font-bold tracking-wider leading-none">
+                            <span class="text-gold">PROPERTY</span><span class="text-white">NAAMA</span>
+                        </div>
+                        <div class="text-[0.5rem] tracking-widest text-gray-400 mt-1">PROPERTY CONSULTANTS & MARKETERS</div>
+                        <div class="mt-1 bg-white px-2 py-0.5 rounded-sm">
+                            <span class="text-gold font-bold text-xs">PN</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-sm font-semibold hover:text-gold transition-colors">HOME</a>
+                    <a href="#about" class="text-sm font-semibold hover:text-gold transition-colors">ABOUT</a>
+                    <a href="#properties" class="text-sm font-semibold hover:text-gold transition-colors">PROPERTIES</a>
+                    <a href="#services" class="text-sm font-semibold hover:text-gold transition-colors">SERVICES</a>
+                    <a href="#contact" class="px-6 py-2 border-2 border-gold text-gold font-bold hover:bg-gold hover:text-dark transition-all duration-300 rounded">GET A QUOTE</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-card border-b border-dark-border">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#home" class="block px-3 py-2 text-base font-medium hover:text-gold">HOME</a>
+                <a href="#about" class="block px-3 py-2 text-base font-medium hover:text-gold">ABOUT</a>
+                <a href="#properties" class="block px-3 py-2 text-base font-medium hover:text-gold">PROPERTIES</a>
+                <a href="#services" class="block px-3 py-2 text-base font-medium hover:text-gold">SERVICES</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-gold">GET A QUOTE</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg min-h-screen flex items-center pt-20">
+        <!-- Moving Background Objects -->
+        <div class="shape-1 floating-shape"></div>
+        <div class="shape-2 floating-shape"></div>
+        <div class="shape-3 floating-shape"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center lg:text-left flex flex-col lg:flex-row items-center">
+            <div class="lg:w-2/3">
+                <p class="text-gold font-bold tracking-widest mb-4 uppercase text-sm md:text-base"><i class="fas fa-gem mr-2"></i> Premium Real Estate Consultancy</p>
+                <h1 class="text-5xl md:text-7xl font-heading font-bold leading-tight mb-6">
+                    INVEST IN YOUR <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold via-gold-light to-gold">FUTURE TODAY</span>
+                </h1>
+                <p class="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto lg:mx-0">
+                    Property Naama brings you unparalleled expertise in real estate marketing and consultancy. Discover premium properties, secure investments, and exclusive commercial spaces.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#properties" class="bg-gold text-dark font-bold px-8 py-4 rounded hover:bg-gold-light transition-colors text-center shadow-[0_0_15px_rgba(223,172,56,0.5)]">
+                        Explore Properties
+                    </a>
+                    <a href="#contact" class="border border-gray-500 hover:border-gold hover:text-gold font-bold px-8 py-4 rounded transition-colors text-center">
+                        Consult an Expert
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Hero Stats Box -->
+            <div class="hidden lg:block lg:w-1/3 pl-10 mt-16 lg:mt-0">
+                <div class="bg-dark-card/80 backdrop-blur-md p-8 border-l-4 border-gold rounded-r-lg shadow-2xl">
+                    <div class="mb-6">
+                        <h3 class="text-4xl font-heading font-bold text-white mb-1">15+</h3>
+                        <p class="text-gray-400 text-sm">Years of Trust</p>
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-4xl font-heading font-bold text-white mb-1">5K+</h3>
+                        <p class="text-gray-400 text-sm">Properties Sold</p>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl font-heading font-bold text-white mb-1">100%</h3>
+                        <p class="text-gray-400 text-sm">Client Satisfaction</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Moving Ticker -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            BUY PROPERTY <span class="mx-4 text-dark opacity-50">✦</span> 
+            SELL PROPERTY <span class="mx-4 text-dark opacity-50">✦</span> 
+            SMART INVESTMENTS <span class="mx-4 text-dark opacity-50">✦</span> 
+            REAL ESTATE CONSULTANCY <span class="mx-4 text-dark opacity-50">✦</span> 
+            COMMERCIAL PLOTS <span class="mx-4 text-dark opacity-50">✦</span>
+            RESIDENTIAL HOMES <span class="mx-4 text-dark opacity-50">✦</span>
+            BUY PROPERTY <span class="mx-4 text-dark opacity-50">✦</span> 
+            SELL PROPERTY <span class="mx-4 text-dark opacity-50">✦</span> 
+            SMART INVESTMENTS <span class="mx-4 text-dark opacity-50">✦</span> 
+            REAL ESTATE CONSULTANCY <span class="mx-4 text-dark opacity-50">✦</span> 
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-dark relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 relative">
+                    <!-- Decor -->
+                    <div class="absolute -top-4 -left-4 w-24 h-24 border-t-4 border-l-4 border-gold"></div>
+                    <div class="absolute -bottom-4 -right-4 w-24 h-24 border-b-4 border-r-4 border-gold"></div>
+                    
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="Corporate Building" class="w-full h-[500px] object-cover grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl">
+                    
+                    <div class="absolute bottom-10 -right-10 bg-dark-card p-6 border-b-2 border-gold shadow-xl hidden md:block">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-gold flex items-center justify-center rounded-full text-dark">
+                                <i class="fas fa-award text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-xl">Award Winning</h4>
+                                <p class="text-xs text-gray-400">Agency 2025</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <h4 class="text-gold font-bold tracking-widest mb-2 uppercase text-sm">About Property Naama</h4>
+                    <h2 class="text-3xl md:text-5xl font-heading font-bold mb-6">WE BUILD YOUR DREAMS INTO REALITY</h2>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        At Property Naama, we are not just consultants; we are your strategic partners in the real estate market. With a deep understanding of market trends and a commitment to transparency, we help our clients make highly profitable decisions.
+                    </p>
+                    <p class="text-gray-400 mb-8 leading-relaxed">
+                        Whether you are looking to purchase your dream home, invest in high-yield commercial projects, or manage your property portfolio, our elite team of marketers ensures you get the best value.
+                    </p>
+                    
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check-circle text-gold mr-3"></i> Verified & Secure Projects
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check-circle text-gold mr-3"></i> High Return on Investment
+                        </li>
+                        <li class="flex items-center text-gray-300">
+                            <i class="fas fa-check-circle text-gold mr-3"></i> 24/7 Expert Consultation
+                        </li>
+                    </ul>
+                    
+                    <a href="#contact" class="inline-flex items-center bg-transparent border border-gold text-gold px-6 py-3 rounded hover:bg-gold hover:text-dark transition-all duration-300">
+                        Know More <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Services Section -->
+    <section id="services" class="py-20 bg-dark-card relative overflow-hidden">
+        <!-- Background grid pattern -->
+        <div class="absolute inset-0 opacity-[0.03]" style="background-image: radial-gradient(#dfac38 1px, transparent 1px); background-size: 30px 30px;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h4 class="text-gold font-bold tracking-widest mb-2 uppercase text-sm">What We Do</h4>
+                <h2 class="text-3xl md:text-5xl font-heading font-bold mb-6">OUR PREMIUM SERVICES</h2>
+                <div class="h-1 w-20 bg-gold mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card bg-dark p-8 border border-dark-border rounded-lg group cursor-pointer relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-dark-border to-transparent opacity-50 group-hover:from-gold transition-colors duration-300"></div>
+                    <div class="service-icon w-16 h-16 bg-dark-card border border-dark-border text-gold rounded-full flex items-center justify-center text-2xl mb-6 transition-all duration-300">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 font-heading group-hover:text-gold transition-colors">Property Buying</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">Find residential and commercial properties in prime locations that match your exact requirements and budget.</p>
+                    <a href="#" class="text-gold text-sm font-semibold flex items-center opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
+                        Learn More <i class="fas fa-chevron-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card bg-dark p-8 border border-dark-border rounded-lg group cursor-pointer relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-dark-border to-transparent opacity-50 group-hover:from-gold transition-colors duration-300"></div>
+                    <div class="service-icon w-16 h-16 bg-dark-card border border-dark-border text-gold rounded-full flex items-center justify-center text-2xl mb-6 transition-all duration-300">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 font-heading group-hover:text-gold transition-colors">Property Selling</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">Get maximum value for your assets with our strategic marketing campaigns and vast network of potential buyers.</p>
+                    <a href="#" class="text-gold text-sm font-semibold flex items-center opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
+                        Learn More <i class="fas fa-chevron-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card bg-dark p-8 border border-dark-border rounded-lg group cursor-pointer relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-dark-border to-transparent opacity-50 group-hover:from-gold transition-colors duration-300"></div>
+                    <div class="service-icon w-16 h-16 bg-dark-card border border-dark-border text-gold rounded-full flex items-center justify-center text-2xl mb-6 transition-all duration-300">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 font-heading group-hover:text-gold transition-colors">Investment Plans</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">Secure your capital with our curated portfolio of high-ROI projects designed for short-term and long-term gains.</p>
+                    <a href="#" class="text-gold text-sm font-semibold flex items-center opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
+                        Learn More <i class="fas fa-chevron-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card bg-dark p-8 border border-dark-border rounded-lg group cursor-pointer relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-dark-border to-transparent opacity-50 group-hover:from-gold transition-colors duration-300"></div>
+                    <div class="service-icon w-16 h-16 bg-dark-card border border-dark-border text-gold rounded-full flex items-center justify-center text-2xl mb-6 transition-all duration-300">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 font-heading group-hover:text-gold transition-colors">Legal Consultancy</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">Navigate complex property laws effortlessly with our expert legal team ensuring safe and transparent transactions.</p>
+                    <a href="#" class="text-gold text-sm font-semibold flex items-center opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
+                        Learn More <i class="fas fa-chevron-right ml-2 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Custom Property Slider Section -->
+    <section id="properties" class="py-24 bg-dark">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-end mb-12">
+                <div>
+                    <h4 class="text-gold font-bold tracking-widest mb-2 uppercase text-sm">Exclusive Listings</h4>
+                    <h2 class="text-3xl md:text-5xl font-heading font-bold">FEATURED PROPERTIES</h2>
+                </div>
+                
+                <!-- Slider Controls -->
+                <div class="hidden md:flex gap-4">
+                    <button id="prevBtn" class="w-12 h-12 rounded-full border border-dark-border flex items-center justify-center hover:bg-gold hover:text-dark hover:border-gold transition-all">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <button id="nextBtn" class="w-12 h-12 rounded-full border border-dark-border flex items-center justify-center hover:bg-gold hover:text-dark hover:border-gold transition-all">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Slider Container -->
+            <div class="overflow-hidden relative w-full pb-10">
+                <div id="sliderTrack" class="flex slider-wrapper gap-6 w-full">
+                    
+                    <!-- Property 1 -->
+                    <div class="min-w-[100%] md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] bg-dark-card border border-dark-border rounded-lg overflow-hidden group">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Modern Villa" class="w-full h-full object-cover img-zoom">
+                            <div class="absolute top-4 left-4 bg-gold text-dark font-bold px-3 py-1 text-xs rounded">FOR SALE</div>
+                            <div class="absolute bottom-4 right-4 bg-dark/80 text-white px-3 py-1 text-lg font-bold rounded backdrop-blur-sm">Rs. 4.5 Crore</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold font-heading mb-2 hover:text-gold transition-colors cursor-pointer">Bahria Town Luxury Villa</h3>
+                            <p class="text-gray-400 text-sm mb-4"><i class="fas fa-map-marker-alt text-gold mr-2"></i> Bahria Town Phase 8, Rawalpindi</p>
+                            
+                            <div class="flex justify-between border-t border-dark-border pt-4 text-sm text-gray-300">
+                                <span><i class="fas fa-bed text-gold mr-1"></i> 5 Beds</span>
+                                <span><i class="fas fa-bath text-gold mr-1"></i> 4 Baths</span>
+                                <span><i class="fas fa-vector-square text-gold mr-1"></i> 10 Marla</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Property 2 -->
+                    <div class="min-w-[100%] md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] bg-dark-card border border-dark-border rounded-lg overflow-hidden group">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Commercial Tower" class="w-full h-full object-cover img-zoom">
+                            <div class="absolute top-4 left-4 bg-blue-600 text-white font-bold px-3 py-1 text-xs rounded">INVESTMENT</div>
+                            <div class="absolute bottom-4 right-4 bg-dark/80 text-white px-3 py-1 text-lg font-bold rounded backdrop-blur-sm">Rs. 15 Crore</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold font-heading mb-2 hover:text-gold transition-colors cursor-pointer">Blue Area Commercial Hub</h3>
+                            <p class="text-gray-400 text-sm mb-4"><i class="fas fa-map-marker-alt text-gold mr-2"></i> Blue Area, Islamabad</p>
+                            
+                            <div class="flex justify-between border-t border-dark-border pt-4 text-sm text-gray-300">
+                                <span><i class="fas fa-building text-gold mr-1"></i> 15 Floors</span>
+                                <span><i class="fas fa-car text-gold mr-1"></i> 50 Parking</span>
+                                <span><i class="fas fa-vector-square text-gold mr-1"></i> 2 Kanal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Property 3 -->
+                    <div class="min-w-[100%] md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] bg-dark-card border border-dark-border rounded-lg overflow-hidden group">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09be1587?auto=format&fit=crop&w=800&q=80" alt="Luxury Apartment" class="w-full h-full object-cover img-zoom">
+                            <div class="absolute top-4 left-4 bg-gold text-dark font-bold px-3 py-1 text-xs rounded">FOR RENT</div>
+                            <div class="absolute bottom-4 right-4 bg-dark/80 text-white px-3 py-1 text-lg font-bold rounded backdrop-blur-sm">Rs. 2.5 Lac / mo</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold font-heading mb-2 hover:text-gold transition-colors cursor-pointer">DHA Premium Apartment</h3>
+                            <p class="text-gray-400 text-sm mb-4"><i class="fas fa-map-marker-alt text-gold mr-2"></i> DHA Phase 2, Islamabad</p>
+                            
+                            <div class="flex justify-between border-t border-dark-border pt-4 text-sm text-gray-300">
+                                <span><i class="fas fa-bed text-gold mr-1"></i> 3 Beds</span>
+                                <span><i class="fas fa-bath text-gold mr-1"></i> 3 Baths</span>
+                                <span><i class="fas fa-vector-square text-gold mr-1"></i> 2200 sqft</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Property 4 -->
+                    <div class="min-w-[100%] md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] bg-dark-card border border-dark-border rounded-lg overflow-hidden group">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1600566753086-00f18efc2291?auto=format&fit=crop&w=800&q=80" alt="Suburban Home" class="w-full h-full object-cover img-zoom">
+                            <div class="absolute top-4 left-4 bg-gold text-dark font-bold px-3 py-1 text-xs rounded">FOR SALE</div>
+                            <div class="absolute bottom-4 right-4 bg-dark/80 text-white px-3 py-1 text-lg font-bold rounded backdrop-blur-sm">Rs. 6.8 Crore</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold font-heading mb-2 hover:text-gold transition-colors cursor-pointer">Gulberg Greens Mansion</h3>
+                            <p class="text-gray-400 text-sm mb-4"><i class="fas fa-map-marker-alt text-gold mr-2"></i> Gulberg Greens, Islamabad</p>
+                            
+                            <div class="flex justify-between border-t border-dark-border pt-4 text-sm text-gray-300">
+                                <span><i class="fas fa-bed text-gold mr-1"></i> 4 Beds</span>
+                                <span><i class="fas fa-bath text-gold mr-1"></i> 4 Baths</span>
+                                <span><i class="fas fa-vector-square text-gold mr-1"></i> 1 Kanal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!-- Property 5 -->
+                     <div class="min-w-[100%] md:min-w-[calc(50%-12px)] lg:min-w-[calc(33.333%-16px)] bg-dark-card border border-dark-border rounded-lg overflow-hidden group">
+                        <div class="relative overflow-hidden h-64">
+                            <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=800&q=80" alt="Country Estate" class="w-full h-full object-cover img-zoom">
+                            <div class="absolute top-4 left-4 bg-gold text-dark font-bold px-3 py-1 text-xs rounded">HOT DEAL</div>
+                            <div class="absolute bottom-4 right-4 bg-dark/80 text-white px-3 py-1 text-lg font-bold rounded backdrop-blur-sm">Rs. 3.2 Crore</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold font-heading mb-2 hover:text-gold transition-colors cursor-pointer">Park View City Plot</h3>
+                            <p class="text-gray-400 text-sm mb-4"><i class="fas fa-map-marker-alt text-gold mr-2"></i> Park View City, Islamabad</p>
+                            
+                            <div class="flex justify-between border-t border-dark-border pt-4 text-sm text-gray-300">
+                                <span><i class="fas fa-expand-arrows-alt text-gold mr-1"></i> Plot</span>
+                                <span><i class="fas fa-check-circle text-gold mr-1"></i> CDA Appr.</span>
+                                <span><i class="fas fa-vector-square text-gold mr-1"></i> 5 Marla</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <!-- Mobile Controls -->
+            <div class="flex md:hidden justify-center gap-4 mt-6">
+                <button id="prevBtnMob" class="w-12 h-12 rounded-full border border-dark-border flex items-center justify-center hover:bg-gold hover:text-dark hover:border-gold transition-all">
+                    <i class="fas fa-arrow-left"></i>
+                </button>
+                <button id="nextBtnMob" class="w-12 h-12 rounded-full border border-dark-border flex items-center justify-center hover:bg-gold hover:text-dark hover:border-gold transition-all">
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call To Action -->
+    <section class="py-20 relative bg-gold">
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80')] mix-blend-overlay opacity-20 object-cover w-full h-full bg-center"></div>
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10 text-dark">
+            <h2 class="text-4xl md:text-5xl font-heading font-bold mb-6">READY TO FIND YOUR PERFECT PROPERTY?</h2>
+            <p class="text-lg mb-10 font-medium">Join thousands of satisfied clients who have secured their future through Property Naama.</p>
+            <a href="#contact" class="bg-dark text-white font-bold px-10 py-4 rounded hover:bg-black transition-colors shadow-xl text-lg inline-block hover:-translate-y-1 transform duration-300">
+                Contact Us Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-dark-card pt-20 border-t border-dark-border">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                
+                <!-- Brand -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-6">
+                        <svg width="45" height="18" viewBox="0 0 100 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <polygon points="10,40 40,15 50,25 60,25 60,15 65,15 65,30 90,40" fill="#dfac38"/>
+                            <rect x="30" y="25" width="6" height="8" fill="#0a0a0a"/>
+                            <rect x="40" y="25" width="6" height="8" fill="#0a0a0a"/>
+                        </svg>
+                        <div class="text-xl font-heading font-bold tracking-wider leading-none">
+                            <span class="text-gold">PROPERTY</span><span class="text-white">NAAMA</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">
+                        Leading property consultants and marketers providing trusted real estate solutions, investment plans, and portfolio management.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded bg-dark flex items-center justify-center text-gray-400 hover:text-gold hover:border-gold border border-dark-border transition-all"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded bg-dark flex items-center justify-center text-gray-400 hover:text-gold hover:border-gold border border-dark-border transition-all"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded bg-dark flex items-center justify-center text-gray-400 hover:text-gold hover:border-gold border border-dark-border transition-all"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded bg-dark flex items-center justify-center text-gray-400 hover:text-gold hover:border-gold border border-dark-border transition-all"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-white font-bold font-heading text-lg mb-6">QUICK LINKS</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-gold text-sm transition-colors"><i class="fas fa-angle-right text-gold mr-2 text-xs"></i> Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-gold text-sm transition-colors"><i class="fas fa-angle-right text-gold mr-2 text-xs"></i> About Us</a></li>
+                        <li><a href="#properties" class="text-gray-400 hover:text-gold text-sm transition-colors"><i class="fas fa-angle-right text-gold mr-2 text-xs"></i> Properties</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-gold text-sm transition-colors"><i class="fas fa-angle-right text-gold mr-2 text-xs"></i> Services</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-gold text-sm transition-colors"><i class="fas fa-angle-right text-gold mr-2 text-xs"></i> Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-white font-bold font-heading text-lg mb-6">CONTACT US</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-gold mt-1 mr-3"></i>
+                            <span class="text-gray-400 text-sm">Head Office, Civic Center, Bahria Town Phase 4, Rawalpindi, Pakistan. <br><br>Branch Office: Blue Area, Islamabad.</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone text-gold mr-3"></i>
+                            <span class="text-gray-400 text-sm">+92 51 123 4567</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope text-gold mr-3"></i>
+                            <span class="text-gray-400 text-sm">info@propertynaama.com.pk</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h4 class="text-white font-bold font-heading text-lg mb-6">NEWSLETTER</h4>
+                    <p class="text-gray-400 text-sm mb-4">Subscribe to our newsletter to receive the latest updates and exclusive property offers.</p>
+                    <form class="flex" onsubmit="event.preventDefault();">
+                        <input type="email" placeholder="Your Email" class="w-full bg-dark border border-dark-border text-white px-4 py-2 focus:outline-none focus:border-gold rounded-l text-sm">
+                        <button type="submit" class="bg-gold text-dark px-4 py-2 rounded-r font-bold hover:bg-gold-light transition-colors">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom bar -->
+        <div class="bg-dark py-6 text-center border-t border-dark-border">
+            <p class="text-gray-500 text-sm">&copy; 2026 Property Naama - Consultants & Marketers. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // --- Mobile Menu Toggle ---
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // --- Navbar Scroll Effect ---
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg', 'bg-dark/95');
+                nav.classList.remove('bg-transparent');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+
+        // --- Custom Vanilla JS Slider Logic ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const track = document.getElementById('sliderTrack');
+            const slides = Array.from(track.children);
+            
+            // Collect both desktop and mobile buttons
+            const nextBtns = [document.getElementById('nextBtn'), document.getElementById('nextBtnMob')];
+            const prevBtns = [document.getElementById('prevBtn'), document.getElementById('prevBtnMob')];
+            
+            let currentIndex = 0;
+
+            function updateSlider() {
+                // Calculate how many items are visible based on screen width
+                let visibleItems = 1;
+                if (window.innerWidth >= 1024) visibleItems = 3; // lg
+                else if (window.innerWidth >= 768) visibleItems = 2; // md
+
+                const maxIndex = slides.length - visibleItems;
+                
+                // Keep index within bounds
+                if (currentIndex > maxIndex) currentIndex = maxIndex;
+                if (currentIndex < 0) currentIndex = 0;
+
+                // Calculate width of one slide + gap
+                const slideWidth = slides[0].getBoundingClientRect().width;
+                const gap = 24; // 1.5rem (gap-6 in tailwind)
+                const moveAmount = (slideWidth + gap) * currentIndex;
+                
+                track.style.transform = `translateX(-${moveAmount}px)`;
+            }
+
+            function moveNext() {
+                let visibleItems = 1;
+                if (window.innerWidth >= 1024) visibleItems = 3;
+                else if (window.innerWidth >= 768) visibleItems = 2;
+
+                const maxIndex = slides.length - visibleItems;
+                if (currentIndex < maxIndex) {
+                    currentIndex++;
+                    updateSlider();
+                } else {
+                    // Loop back to start
+                    currentIndex = 0;
+                    updateSlider();
+                }
+            }
+
+            function movePrev() {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSlider();
+                } else {
+                    // Go to end
+                    let visibleItems = 1;
+                    if (window.innerWidth >= 1024) visibleItems = 3;
+                    else if (window.innerWidth >= 768) visibleItems = 2;
+                    currentIndex = slides.length - visibleItems;
+                    updateSlider();
+                }
+            }
+
+            // Bind events
+            nextBtns.forEach(btn => btn?.addEventListener('click', moveNext));
+            prevBtns.forEach(btn => btn?.addEventListener('click', movePrev));
+
+            // Adjust on window resize
+            window.addEventListener('resize', updateSlider);
+
+            // Auto slide (optional)
+            setInterval(moveNext, 5000);
+        });
+
+        // Smooth Scrolling for Anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                menu.classList.add('hidden'); // Close mobile menu on click
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

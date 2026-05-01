@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insite Real Estate - The Palm Village</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        insiteDark: '#0A252D',
+                        insiteYellow: '#FBBF24',
+                        insiteGreen: '#4CAF50',
+                        insiteLight: '#F3F4F6'
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        sindhi: ['"Noto Nastaliq Urdu"', 'serif'] // Fallback for beautiful Sindhi/Urdu rendering
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth Scrolling */
+        html { scroll-behavior: smooth; }
+        
+        /* Slider Animations */
+        .slide {
+            transition: opacity 1s ease-in-out, transform 1.5s ease-in-out;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            transform: scale(1.05);
+        }
+        .slide.active {
+            opacity: 1;
+            z-index: 10;
+            transform: scale(1);
+        }
+
+        /* Scroll Animations (Moving Objects) */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating-element {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Gradient Overlay for Hero */
+        .hero-overlay {
+            background: linear-gradient(to right, rgba(10, 37, 45, 0.9), rgba(10, 37, 45, 0.4));
+        }
+    </style>
+</head>
+<body class="font-sans bg-insiteLight text-gray-800 antialiased overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav class="bg-insiteDark text-white fixed w-full z-50 shadow-lg transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="relative w-12 h-12 flex items-center justify-center">
+                        <!-- Custom SVG Logo mimicking Insite -->
+                        <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                        </svg>
+                        <svg class="w-6 h-6 text-insiteGreen absolute bottom-0 right-0 transform translate-x-2 translate-y-1" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold tracking-wider text-insiteYellow leading-tight">INSITE</h1>
+                        <p class="text-[0.6rem] uppercase tracking-widest text-white">Construction & Real Estate</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="hover:text-insiteYellow transition">Home</a>
+                    <a href="#about" class="hover:text-insiteYellow transition">About</a>
+                    <a href="#amenities" class="hover:text-insiteYellow transition">Amenities</a>
+                    <a href="#contact" class="hover:text-insiteYellow transition">Contact</a>
+                    <a href="tel:03337021456" class="bg-insiteYellow text-insiteDark px-5 py-2 rounded-full font-semibold hover:bg-yellow-500 transition shadow-lg hover:shadow-yellow-500/30">
+                        📞 0333-7021456
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-insiteYellow focus:outline-none">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-insiteDark border-t border-gray-700">
+            <a href="#home" class="block py-3 px-4 text-sm hover:bg-gray-800">Home</a>
+            <a href="#about" class="block py-3 px-4 text-sm hover:bg-gray-800">About</a>
+            <a href="#amenities" class="block py-3 px-4 text-sm hover:bg-gray-800">Amenities</a>
+            <a href="#contact" class="block py-3 px-4 text-sm hover:bg-gray-800">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Moving Marquee / Ticker -->
+    <div class="pt-20 bg-insiteYellow text-insiteDark py-2 overflow-hidden border-b-4 border-insiteGreen relative z-40">
+        <div class="whitespace-nowrap inline-block animate-[marquee_20s_linear_infinite]">
+            <span class="mx-8 font-bold text-lg">✨ پام وليج حيدرآباد - شاندار بنگلا آسان قسطن تي ✨</span>
+            <span class="mx-8 font-semibold">| The Palm Village | 150/200 Sq Yards Bungalows |</span>
+            <span class="mx-8 font-bold text-lg">✨ اڄ ئي بڪنگ ڪرايو! ✨</span>
+            <span class="mx-8 font-semibold">| Prime Location | Gated Community |</span>
+            <span class="mx-8 font-bold text-lg">✨ پام وليج حيدرآباد - شاندار بنگلا آسان قسطن تي ✨</span>
+            <span class="mx-8 font-semibold">| The Palm Village | 150/200 Sq Yards Bungalows |</span>
+        </div>
+    </div>
+
+    <!-- Hero Slider Section -->
+    <section id="home" class="relative w-full h-[85vh] overflow-hidden bg-gray-900">
+        <!-- Slides Container -->
+        <div id="slider">
+            <!-- Slide 1 -->
+            <div class="slide active">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=80" alt="Modern Bungalow Exterior" class="w-full h-full object-cover">
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80" alt="Luxury Home Front" class="w-full h-full object-cover">
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide">
+                <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1920&q=80" alt="Community Park Area" class="w-full h-full object-cover">
+            </div>
+        </div>
+
+        <!-- Overlay & Content -->
+        <div class="absolute inset-0 z-20 hero-overlay flex items-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+                <div class="max-w-2xl reveal-left">
+                    <span class="inline-block py-1 px-3 rounded-md bg-insiteGreen text-white text-sm font-bold uppercase tracking-wider mb-4">
+                        Premium Living
+                    </span>
+                    <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-2 font-sindhi" dir="rtl">
+                        پام وليج حيدرآباد
+                    </h2>
+                    <h1 class="text-3xl md:text-5xl font-bold text-insiteYellow mb-6 uppercase tracking-wide">
+                        The Palm Village
+                    </h1>
+                    <p class="text-xl text-gray-200 mb-8 font-light">
+                        Experience luxury living with 150 & 200 Sq Yards modern bungalows in a secure, prime location.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#contact" class="bg-insiteYellow text-insiteDark text-center px-8 py-3 rounded-md font-bold text-lg hover:bg-yellow-500 transition duration-300 transform hover:-translate-y-1 shadow-lg">
+                            Book Now (اڄ بڪنگ ڪرايو)
+                        </a>
+                        <a href="#about" class="border-2 border-white text-white text-center px-8 py-3 rounded-md font-bold text-lg hover:bg-white hover:text-insiteDark transition duration-300">
+                            View Plans
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider Controls -->
+        <div class="absolute bottom-10 right-10 z-30 flex space-x-3">
+            <button onclick="prevSlide()" class="w-12 h-12 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-insiteYellow hover:text-insiteDark transition backdrop-blur-sm">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+            <button onclick="nextSlide()" class="w-12 h-12 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-insiteYellow hover:text-insiteDark transition backdrop-blur-sm">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </button>
+        </div>
+    </section>
+
+    <!-- Information / About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <!-- Text Area -->
+                <div class="w-full lg:w-1/2 reveal-left">
+                    <h3 class="text-insiteGreen font-bold tracking-widest uppercase mb-2">About The Project</h3>
+                    <h2 class="text-4xl font-extrabold text-insiteDark mb-6">Bungalows for <span class="text-insiteYellow">SALE</span></h2>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <svg class="w-6 h-6 text-insiteGreen" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold text-gray-900">Prime Location</h4>
+                                <p class="text-gray-600">Situated in the heart of Hyderabad with corner bungalow options available.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <svg class="w-6 h-6 text-insiteGreen" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold text-gray-900 font-sindhi" dir="rtl">150 / 200 گزن بنگلا</h4>
+                                <p class="text-gray-600">Spacious architectural designs providing ultimate comfort and luxury.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mt-1">
+                                <svg class="w-6 h-6 text-insiteGreen" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-xl font-bold text-gray-900 font-sindhi" dir="rtl">آسان قسطن تي</h4>
+                                <p class="text-gray-600">Easy 8 to 18 months installment plans tailored to your budget.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Image Area -->
+                <div class="w-full lg:w-1/2 relative reveal-right">
+                    <div class="absolute -inset-4 bg-insiteYellow transform rotate-3 rounded-2xl z-0"></div>
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Beautiful Bungalow" class="relative z-10 rounded-2xl shadow-2xl floating-element w-full object-cover h-[450px]">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section (Moving Cards) -->
+    <section id="amenities" class="py-20 bg-insiteLight border-y border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal-up">
+                <h3 class="text-insiteGreen font-bold tracking-widest uppercase mb-2">World Class Living</h3>
+                <h2 class="text-4xl font-extrabold text-insiteDark mb-4">Project Features</h2>
+                <p class="text-gray-600 text-lg">Everything you need for a comfortable, secure, and modern lifestyle.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 border-b-4 border-insiteYellow reveal-up" style="transition-delay: 100ms;">
+                    <div class="w-16 h-16 bg-insiteDark text-insiteYellow rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-center text-gray-900 mb-2">Gated Community</h3>
+                    <p class="text-center text-insiteGreen font-bold font-sindhi text-lg" dir="rtl">گيٽيڊ ڪميونٽي</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 border-b-4 border-insiteDark reveal-up" style="transition-delay: 200ms;">
+                    <div class="w-16 h-16 bg-insiteYellow text-insiteDark rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-center text-gray-900 mb-2">Club House</h3>
+                    <p class="text-center text-insiteGreen font-bold font-sindhi text-lg" dir="rtl">ڪلب هائوس</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 border-b-4 border-insiteGreen reveal-up" style="transition-delay: 300ms;">
+                    <div class="w-16 h-16 bg-insiteDark text-insiteGreen rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-center text-gray-900 mb-2">Lush Parks</h3>
+                    <p class="text-center text-insiteYellow font-bold font-sindhi text-lg" dir="rtl">پارڪ</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-2 border-b-4 border-insiteYellow reveal-up" style="transition-delay: 400ms;">
+                    <div class="w-16 h-16 bg-insiteYellow text-insiteDark rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-center text-gray-900 mb-2">24/7 Security</h3>
+                    <p class="text-center text-insiteGreen font-bold font-sindhi text-lg" dir="rtl">سيڪيورٽي</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <section class="relative py-20 bg-insiteDark overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        <div class="max-w-4xl mx-auto px-4 text-center relative z-10 reveal-up">
+            <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Start Your Journey To A Dream Home</h2>
+            <p class="text-xl text-gray-300 mb-8 font-sindhi" dir="rtl">اڄ ئي پنهنجو بنگلو بڪ ڪرايو ۽ آسان قسطن جو فائدو وٺو.</p>
+            <a href="tel:03337021456" class="inline-block bg-insiteYellow text-insiteDark px-10 py-4 rounded-full font-bold text-xl hover:bg-yellow-400 transition transform hover:scale-105 shadow-xl">
+                Call: 0333-7021456
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact & Footer -->
+    <footer id="contact" class="bg-gray-900 text-white pt-16 pb-8 border-t-8 border-insiteGreen">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-12">
+                
+                <!-- Company Info -->
+                <div class="reveal-up">
+                    <div class="flex items-center space-x-2 mb-6">
+                        <svg class="w-8 h-8 text-insiteYellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                        <h2 class="text-2xl font-bold text-white tracking-wider">INSITE</h2>
+                    </div>
+                    <p class="text-gray-400 mb-2 font-semibold text-sm">CONSTRUCTION COMPANY | REAL ESTATE</p>
+                    <p class="text-gray-500 mb-6">Bringing you the finest residential communities in Hyderabad. Your trusted real estate partner.</p>
+                    <p class="text-insiteYellow font-bold mb-2">Engr: Muhammad Alim Memon</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="reveal-up" style="transition-delay: 100ms;">
+                    <h3 class="text-xl font-bold mb-6 text-white border-b-2 border-insiteGreen inline-block pb-1">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-insiteYellow transition flex items-center"><span class="mr-2">›</span> Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-insiteYellow transition flex items-center"><span class="mr-2">›</span> About Project</a></li>
+                        <li><a href="#amenities" class="text-gray-400 hover:text-insiteYellow transition flex items-center"><span class="mr-2">›</span> Amenities</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-insiteYellow transition flex items-center"><span class="mr-2">›</span> Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Detail -->
+                <div class="reveal-up" style="transition-delay: 200ms;">
+                    <h3 class="text-xl font-bold mb-6 text-white border-b-2 border-insiteYellow inline-block pb-1">Get In Touch</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-insiteGreen mr-3 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                            <span class="text-gray-400">Shop No 3 Tajj Mahal Near Jeejal Maa Hospital, Wadhu Wah Road, Qasimabad, Hyderabad</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-6 h-6 text-insiteGreen mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                            <div>
+                                <a href="tel:03337021456" class="block text-gray-400 hover:text-white transition">0333-7021456</a>
+                                <a href="tel:03042308993" class="block text-gray-400 hover:text-white transition">0304-2308993</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2026 Insite Construction Company Real Estate. All rights reserved.</p>
+                <p class="mt-2 md:mt-0 font-sindhi text-lg" dir="rtl">پام وليج حيدرآباد</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/923337021456" target="_blank" class="fixed bottom-6 right-6 bg-green-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:bg-green-600 hover:scale-110 transition-transform z-50 floating-element">
+        <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.373-.043c.098-.115.427-.497.539-.667.112-.17.225-.142.382-.083.159.058 1.002.473 1.175.56.173.087.289.13.332.202.043.073.043.423-.101.827z" fill-rule="evenodd" clip-rule="evenodd"/>
+            <path d="M12.031 2C6.495 2 2 6.494 2 12.031c0 1.768.46 3.486 1.336 5.005L2 22l5.121-1.343A9.972 9.972 0 0012.031 22c5.536 0 10.031-4.495 10.031-10.031C22.062 6.494 17.567 2 12.031 2zM12.031 20.082a8.043 8.043 0 01-4.084-1.111l-.292-.173-3.036.796.811-2.959-.19-.302A8.04 8.04 0 013.918 12.031c0-4.475 3.64-8.115 8.113-8.115 4.474 0 8.113 3.64 8.113 8.115 0 4.474-3.64 8.115-8.113 8.115z" fill-rule="evenodd" clip-rule="evenodd"/>
+        </svg>
+    </a>
+
+    <!-- Scripts for Interactivity -->
+    <script>
+        // --- Mobile Menu Toggle ---
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // --- Navbar Scroll Effect ---
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-1', 'bg-opacity-95', 'backdrop-blur-sm');
+            } else {
+                navbar.classList.remove('py-1', 'bg-opacity-95', 'backdrop-blur-sm');
+            }
+        });
+
+        // --- Image Slider Logic ---
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+        let slideInterval;
+
+        function showSlide(index) {
+            slides.forEach((slide) => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+            resetInterval();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+            resetInterval();
+        }
+
+        function startInterval() {
+            slideInterval = setInterval(nextSlide, 5000); // Change image every 5 seconds
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startInterval();
+        }
+        
+        startInterval(); // Initialize auto-slide
+
+        // --- Scroll Reveal Animations (Intersection Observer) ---
+        const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
+
+        const revealOptions = {
+            threshold: 0.2, // Trigger when 20% of element is visible
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); // Stop observing once revealed
+                }
+            });
+        }, revealOptions);
+
+        revealElements.forEach(el => {
+            revealOnScroll.observe(el);
+        });
+    </script>
+</body>
+</html>

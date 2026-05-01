@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rohaan Faraz Villas | Live The Lifestyle You Deserve</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#166534', /* Deep Emerald from Logo */
+                            lightgreen: '#22c55e',
+                            gold: '#d4af37', /* Gold/Beige accent */
+                            dark: '#1f2937', /* Charcoal text */
+                            light: '#f9fafb'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['"Playfair Display"', 'serif'],
+                        sans: ['"Poppins"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles & Animations */
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .font-heading {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Floating Objects Animation */
+        .floating-element {
+            position: absolute;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.6;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .delay-1 { animation-delay: 2s; }
+        .delay-2 { animation-delay: 4s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* Continuous Ticker */
+        .ticker-wrap {
+            width: 100%;
+            overflow: hidden;
+            background-color: #d4af37; /* Gold */
+            color: #166534; /* Green */
+            padding-left: 100%;
+            box-sizing: content-box;
+            white-space: nowrap;
+        }
+
+        .ticker {
+            display: inline-block;
+            padding-right: 2rem;
+            animation: ticker 25s linear infinite;
+            font-weight: 600;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+        }
+
+        @keyframes ticker {
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
+        }
+
+        /* Image Slider Transitions */
+        .slide {
+            transition: opacity 0.8s ease-in-out;
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .slide.active {
+            opacity: 1;
+            position: relative;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #166534;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+
+        /* Glassmorphism card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-brand-light text-brand-dark antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-white shadow-md" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo Area -->
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-house-chimney text-3xl text-brand-green"></i>
+                    <i class="fa-solid fa-leaf text-xl text-brand-lightgreen -ml-4 -mt-4"></i>
+                    <div class="flex flex-col ml-2 leading-tight">
+                        <span class="text-2xl font-heading font-bold text-brand-gold tracking-widest">ROHAAN</span>
+                        <span class="text-sm font-bold text-brand-dark tracking-widest">FARAZ VILLAS</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-brand-dark hover:text-brand-green font-medium transition">Home</a>
+                    <a href="#villas" class="text-brand-dark hover:text-brand-green font-medium transition">Categories</a>
+                    <a href="#gallery" class="text-brand-dark hover:text-brand-green font-medium transition">Gallery</a>
+                    <a href="#payment" class="text-brand-dark hover:text-brand-green font-medium transition">Payment Plan</a>
+                    <a href="#contact" class="bg-brand-green text-white px-6 py-2 rounded-full font-medium hover:bg-brand-gold transition shadow-lg">Contact Us</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-brand-dark hover:text-brand-green focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 text-center">
+                <a href="#home" class="block px-3 py-2 text-brand-dark hover:text-brand-green font-medium">Home</a>
+                <a href="#villas" class="block px-3 py-2 text-brand-dark hover:text-brand-green font-medium">Categories</a>
+                <a href="#gallery" class="block px-3 py-2 text-brand-dark hover:text-brand-green font-medium">Gallery</a>
+                <a href="#payment" class="block px-3 py-2 text-brand-dark hover:text-brand-green font-medium">Payment Plan</a>
+                <a href="#contact" class="block px-3 py-2 text-brand-green font-bold">Contact Us</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Ticker Section -->
+    <div class="pt-20">
+        <div class="ticker-wrap py-2 border-b-4 border-brand-green">
+            <div class="ticker">
+                <i class="fa-solid fa-star text-white mx-4"></i>
+                UNDER PM PROGRAM - Ghar Ho Tu Apna 
+                <i class="fa-solid fa-star text-white mx-4"></i>
+                LIMITED VILLAS AVAILABLE
+                <i class="fa-solid fa-star text-white mx-4"></i>
+                ON EASY BANK LOAN 
+                <i class="fa-solid fa-star text-white mx-4"></i>
+                15 MONTHS EASY INSTALLMENTS
+                <i class="fa-solid fa-star text-white mx-4"></i>
+                UNDER PM PROGRAM - Ghar Ho Tu Apna 
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-brand-light py-20 lg:py-32 overflow-hidden min-h-[80vh] flex items-center">
+        <!-- Abstract Animated Background Elements -->
+        <div class="floating-element text-brand-gold opacity-20 text-9xl top-10 left-10 delay-1">
+            <i class="fa-solid fa-leaf"></i>
+        </div>
+        <div class="floating-element text-brand-green opacity-10 text-9xl bottom-20 right-10 delay-2">
+            <i class="fa-solid fa-house"></i>
+        </div>
+        <div class="floating-element w-64 h-64 border-[10px] border-brand-gold rounded-full opacity-10 top-1/2 left-1/3 -translate-y-1/2"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="text-center lg:text-left">
+                    <p class="text-brand-gold font-bold tracking-widest uppercase mb-2">A Smart Investment For A Better Future</p>
+                    <h1 class="text-5xl lg:text-7xl font-heading font-bold text-brand-dark leading-tight mb-6">
+                        Live the <span class="text-brand-green">Lifestyle</span><br> You Deserve!
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 max-w-lg mx-auto lg:mx-0">
+                        Modern double story villas situated near Hyderabad Bypass. Brought to you by Faraz Brothers Builders & Developers.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#villas" class="px-8 py-4 bg-brand-gold text-white font-bold rounded shadow-lg hover:bg-yellow-600 transition duration-300 transform hover:-translate-y-1">
+                            Explore Villas
+                        </a>
+                        <a href="#payment" class="px-8 py-4 bg-transparent border-2 border-brand-green text-brand-green font-bold rounded hover:bg-brand-green hover:text-white transition duration-300 transform hover:-translate-y-1">
+                            Installment Plan
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Image Card -->
+                <div class="relative w-full max-w-lg mx-auto lg:mr-0 mt-10 lg:mt-0">
+                    <div class="absolute inset-0 bg-brand-gold transform rotate-3 rounded-xl shadow-2xl"></div>
+                    <div class="absolute inset-0 bg-brand-green transform -rotate-3 rounded-xl shadow-2xl"></div>
+                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Modern Villa Exterior" class="relative rounded-xl shadow-2xl border-4 border-white object-cover h-[500px] w-full">
+                    
+                    <!-- Floating Badge -->
+                    <div class="absolute -right-6 -top-6 bg-brand-gold text-white p-4 rounded-full shadow-xl flex flex-col items-center justify-center h-28 w-28 border-4 border-white floating-element">
+                        <span class="text-xs font-bold uppercase text-center leading-tight">Under PM</span>
+                        <span class="text-xl font-heading font-bold">Program</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="villas" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-heading font-bold text-brand-dark mb-4">Villa Categories</h2>
+                <div class="w-24 h-1 bg-brand-gold mx-auto mb-4"></div>
+                <p class="text-gray-600 max-w-2xl mx-auto">Choose the perfect size and style that fits your family's needs. We offer a variety of modern layouts.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Category 1 -->
+                <div class="group bg-brand-light rounded-xl p-8 text-center border-b-4 border-brand-green shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner text-brand-green group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-house-user text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-dark mb-2">120 Sq Yard</h3>
+                    <p class="text-brand-gold font-semibold text-lg uppercase tracking-wide">Single Story</p>
+                </div>
+
+                <!-- Category 2 -->
+                <div class="group bg-brand-light rounded-xl p-8 text-center border-b-4 border-brand-gold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner text-brand-gold group-hover:bg-brand-gold group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-house text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-dark mb-2">120 Sq Yard</h3>
+                    <p class="text-brand-green font-semibold text-lg uppercase tracking-wide">Double Story</p>
+                </div>
+
+                <!-- Category 3 -->
+                <div class="group bg-brand-light rounded-xl p-8 text-center border-b-4 border-brand-green shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 relative overflow-hidden">
+                    <!-- Corner Ribbon -->
+                    <div class="absolute top-4 -right-8 bg-brand-gold text-white text-xs font-bold px-10 py-1 rotate-45 shadow-md">POPULAR</div>
+                    
+                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner text-brand-green group-hover:bg-brand-green group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-house-flag text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-dark mb-2">165 Sq Yard</h3>
+                    <p class="text-brand-gold font-semibold text-lg uppercase tracking-wide">Double Corner</p>
+                </div>
+
+                <!-- Category 4 -->
+                <div class="group bg-brand-light rounded-xl p-8 text-center border-b-4 border-brand-gold shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2">
+                    <div class="w-20 h-20 bg-white rounded-full flex items-center justify-center mx-auto mb-6 shadow-inner text-brand-gold group-hover:bg-brand-gold group-hover:text-white transition-colors duration-300">
+                        <i class="fa-solid fa-building text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-dark mb-2">200 Sq Yard</h3>
+                    <p class="text-brand-green font-semibold text-lg uppercase tracking-wide">Double Story</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slider / Image Gallery Section -->
+    <section id="gallery" class="py-20 bg-brand-dark text-white relative">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 relative z-10">
+                <h2 class="text-4xl font-heading font-bold mb-4 text-brand-gold">Project Views</h2>
+                <p class="text-gray-300 max-w-2xl mx-auto">Experience the luxurious exterior and well-planned community structure of Rohaan Faraz Villas.</p>
+            </div>
+
+            <!-- Custom JS Slider -->
+            <div class="relative h-[400px] md:h-[600px] w-full rounded-2xl overflow-hidden shadow-2xl border-4 border-brand-green">
+                
+                <!-- Slide 1 -->
+                <div class="slide active">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Modern Villa 1" class="w-full h-full object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-8">
+                        <h3 class="text-3xl font-heading font-bold text-white mb-2">Modern Architecture</h3>
+                        <p class="text-brand-gold font-medium">Premium Finishes & Materials</p>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Modern Villa 2" class="w-full h-full object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-8">
+                        <h3 class="text-3xl font-heading font-bold text-white mb-2">Spacious Exteriors</h3>
+                        <p class="text-brand-gold font-medium">Lush Green Surroundings</p>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="slide">
+                    <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" alt="Community Street" class="w-full h-full object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-8">
+                        <h3 class="text-3xl font-heading font-bold text-white mb-2">Gated Community</h3>
+                        <p class="text-brand-gold font-medium">Secure & Peaceful Environment</p>
+                    </div>
+                </div>
+
+                <!-- Slider Controls -->
+                <button onclick="changeSlide(-1)" class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black/50 text-white w-12 h-12 rounded-full hover:bg-brand-gold transition flex items-center justify-center backdrop-blur-sm z-20">
+                    <i class="fa-solid fa-chevron-left text-xl"></i>
+                </button>
+                <button onclick="changeSlide(1)" class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black/50 text-white w-12 h-12 rounded-full hover:bg-brand-gold transition flex items-center justify-center backdrop-blur-sm z-20">
+                    <i class="fa-solid fa-chevron-right text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment & Maintenance Section -->
+    <section id="payment" class="py-20 bg-brand-light relative overflow-hidden">
+        <!-- Floating shape -->
+        <div class="absolute -right-20 top-20 w-96 h-96 bg-brand-green opacity-5 rounded-full filter blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <!-- Installment Banner -->
+            <div class="bg-gradient-to-r from-brand-green to-[#0f4423] rounded-3xl p-8 md:p-12 text-center text-white shadow-2xl mb-20 relative overflow-hidden">
+                <i class="fa-solid fa-calendar-check absolute text-9xl opacity-10 right-10 top-10"></i>
+                <h2 class="text-3xl md:text-5xl font-heading font-bold mb-4">Easy Installment Plan</h2>
+                <div class="flex items-center justify-center gap-4 text-brand-gold mb-6 text-xl md:text-2xl font-semibold">
+                    <i class="fa-solid fa-clock"></i>
+                    <span>Pay in Easy Installments over 15 MONTHS</span>
+                </div>
+                <p class="max-w-2xl mx-auto text-gray-200 text-lg">Acquire your dream home easily. We offer bank loan facilities to make the process smoother and faster under the PM Program.</p>
+            </div>
+
+            <!-- Maintenance Table -->
+            <div class="text-center mb-10">
+                <h2 class="text-4xl font-heading font-bold text-brand-dark mb-2">Maintenance Charges</h2>
+                <p class="text-brand-green font-semibold">Effective from 1st May 2026</p>
+                <p class="text-gray-600 mt-2 text-sm max-w-xl mx-auto">The following maintenance charges are applicable to all bungalows & plots of Rohaan Faraz Villas.</p>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-100 max-w-5xl mx-auto">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="text-white text-center">
+                                <th class="bg-brand-dark py-4 px-6 font-semibold uppercase text-sm border-r border-gray-700">Plots & Bungalows Size</th>
+                                <th class="bg-brand-green py-4 px-6 font-semibold uppercase text-sm border-r border-green-800">Utilized Plots / Bungalows</th>
+                                <th class="bg-orange-600 py-4 px-6 font-semibold uppercase text-sm">Non-Utilized Plots / Bungalows</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700 text-center font-medium">
+                            <tr class="bg-[#f0f7f9] border-b border-gray-200 hover:bg-gray-50 transition">
+                                <td class="py-4 px-6 border-r border-gray-200">80 Sq.Yd to 120 Sq.Yd</td>
+                                <td class="py-4 px-6 bg-[#e6f4ea] border-r border-gray-200">Rs. 3600-00</td>
+                                <td class="py-4 px-6 bg-[#fdf2e9]">Rs. 2400-00</td>
+                            </tr>
+                            <tr class="bg-[#f0f7f9] border-b border-gray-200 hover:bg-gray-50 transition">
+                                <td class="py-4 px-6 border-r border-gray-200">150 Sq.Yd to 165 Sq.Yd</td>
+                                <td class="py-4 px-6 bg-[#e6f4ea] border-r border-gray-200">Rs. 5000-00</td>
+                                <td class="py-4 px-6 bg-[#fdf2e9]">Rs. 3500-00</td>
+                            </tr>
+                            <tr class="bg-[#f0f7f9] border-b border-gray-200 hover:bg-gray-50 transition">
+                                <td class="py-4 px-6 border-r border-gray-200">200 Sq.Yd to 240 Sq.Yd</td>
+                                <td class="py-4 px-6 bg-[#e6f4ea] border-r border-gray-200">Rs. 6000-00</td>
+                                <td class="py-4 px-6 bg-[#fdf2e9]">Rs. 4000-00</td>
+                            </tr>
+                            <tr class="bg-[#f0f7f9] border-b border-gray-200 hover:bg-gray-50 transition">
+                                <td class="py-4 px-6 border-r border-gray-200">300 Sq.Yd</td>
+                                <td class="py-4 px-6 bg-[#e6f4ea] border-r border-gray-200">Rs. 9000-00</td>
+                                <td class="py-4 px-6 bg-[#fdf2e9]">Rs. 6000-00</td>
+                            </tr>
+                            <tr class="bg-[#f0f7f9] border-b border-gray-200 hover:bg-gray-50 transition">
+                                <td class="py-4 px-6 border-r border-gray-200">400 Sq.Yd</td>
+                                <td class="py-4 px-6 bg-[#e6f4ea] border-r border-gray-200">Rs. 12000-00</td>
+                                <td class="py-4 px-6 bg-[#fdf2e9]">Rs. 8000-00</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Table Notes -->
+                <div class="bg-gray-50 p-6 border-t border-gray-200">
+                    <h4 class="font-bold text-brand-dark mb-3 bg-brand-dark text-white inline-block px-3 py-1 rounded">Note:-</h4>
+                    <ul class="space-y-3 text-sm text-gray-700">
+                        <li class="flex items-start">
+                            <span class="bg-brand-dark text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">1</span>
+                            <p>If a plot exceeds this size of its category, the maintenance charges shall be adjusted accordingly.</p>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="bg-brand-dark text-white rounded-full w-6 h-6 flex items-center justify-center mr-3 flex-shrink-0">2</span>
+                            <p>Every year 10% Maintenance charges shall be increased.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-brand-dark text-white py-20 border-t-8 border-brand-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                
+                <!-- Brand Column -->
+                <div>
+                    <div class="flex items-center gap-2 mb-6 text-white">
+                        <i class="fa-solid fa-house-chimney text-4xl text-brand-gold"></i>
+                        <div class="flex flex-col ml-2 leading-tight bg-white px-3 py-1 rounded shadow-lg">
+                            <span class="text-xl font-heading font-bold text-brand-green tracking-widest">ROHAAN</span>
+                            <span class="text-xs font-bold text-brand-dark tracking-widest">FARAZ VILLAS</span>
+                        </div>
+                    </div>
+                    <p class="text-gray-400 mb-6 text-sm leading-relaxed">
+                        A project by <strong>Faraz Brothers Builders & Developers</strong>. Bringing you premium lifestyle solutions and modern housing on easy installment plans.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-gold transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-gold transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-gold transition"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <!-- Contact Info Column -->
+                <div>
+                    <h3 class="text-2xl font-heading font-bold text-brand-gold mb-6 border-b border-gray-700 pb-2">Contact Us</h3>
+                    <ul class="space-y-6">
+                        <li class="flex items-start group">
+                            <div class="w-12 h-12 rounded bg-gray-800 group-hover:bg-brand-green flex items-center justify-center mr-4 transition flex-shrink-0">
+                                <i class="fa-solid fa-phone text-brand-gold group-hover:text-white transition"></i>
+                            </div>
+                            <div class="pt-1">
+                                <p class="font-bold text-lg">Call Today</p>
+                                <p class="text-gray-400 text-sm">0300-8377741</p>
+                                <p class="text-gray-400 text-sm">0317-2248895</p>
+                                <p class="text-gray-400 text-sm">0341-1100092</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start group">
+                            <div class="w-12 h-12 rounded bg-gray-800 group-hover:bg-brand-green flex items-center justify-center mr-4 transition flex-shrink-0">
+                                <i class="fa-solid fa-location-dot text-brand-gold group-hover:text-white transition"></i>
+                            </div>
+                            <div class="pt-1">
+                                <p class="font-bold text-lg">Site Office</p>
+                                <p class="text-gray-400 text-sm leading-relaxed">
+                                    Near Hashim Medical Hospital,<br>
+                                    Hyderabad Byepass.<br>
+                                    R.S No 144 Deh Mirzapur,<br>
+                                    Taluka Qasimabad, Hyderabad
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Quick Inquiry Form -->
+                <div class="glass-card p-6 rounded-xl border border-gray-700 bg-gray-900/50">
+                    <h3 class="text-xl font-heading font-bold text-white mb-4">Quick Inquiry</h3>
+                    <form onsubmit="event.preventDefault(); showMessage();" class="space-y-4">
+                        <div>
+                            <input type="text" placeholder="Your Name" required class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded text-white focus:outline-none focus:border-brand-gold transition">
+                        </div>
+                        <div>
+                            <input type="tel" placeholder="Phone Number" required class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded text-white focus:outline-none focus:border-brand-gold transition">
+                        </div>
+                        <div>
+                            <select class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded text-white focus:outline-none focus:border-brand-gold transition appearance-none">
+                                <option value="" disabled selected>Interested In...</option>
+                                <option value="120s">120 Sq Yard Single</option>
+                                <option value="120d">120 Sq Yard Double</option>
+                                <option value="165d">165 Sq Yard Double Corner</option>
+                                <option value="200d">200 Sq Yard Double</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full py-3 bg-brand-gold hover:bg-yellow-600 text-white font-bold rounded transition shadow-lg mt-2">
+                            Send Request <i class="fa-solid fa-paper-plane ml-2"></i>
+                        </button>
+                        <div id="form-msg" class="hidden text-brand-lightgreen text-sm text-center mt-2 font-medium">Thank you! We will contact you soon.</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer Bottom -->
+        <div class="border-t border-gray-800 mt-16 pt-8 text-center px-4">
+            <p class="text-gray-500 text-sm">&copy; 2026 Faraz Brothers Builders & Developers. All Rights Reserved.</p>
+        </div>
+    </section>
+
+    <!-- JavaScript logic -->
+    <script>
+        // Form Success Message (Replaces Alert)
+        function showMessage() {
+            const msg = document.getElementById('form-msg');
+            msg.classList.remove('hidden');
+            setTimeout(() => {
+                msg.classList.add('hidden');
+            }, 4000);
+        }
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Slider Logic
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function showSlide(index) {
+            slides.forEach((slide) => {
+                slide.classList.remove('active');
+            });
+            
+            if (index >= slides.length) {
+                currentSlide = 0;
+            } else if (index < 0) {
+                currentSlide = slides.length - 1;
+            } else {
+                currentSlide = index;
+            }
+            
+            slides[currentSlide].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        // Auto slide every 5 seconds
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2', 'shadow-lg');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-2', 'shadow-lg');
+            }
+        });
+        
+        // Initial setup
+        document.getElementById('navbar').classList.add('py-4');
+    </script>
+</body>
+</html>

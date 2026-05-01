@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sigma Associates | Real Estate Agency</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Configuration & Custom CSS -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            DEFAULT: '#0b1d3a', // Primary Dark Blue from image
+                            dark: '#061124',
+                            light: '#16325c'
+                        },
+                        gold: {
+                            DEFAULT: '#fbb03b', // Primary Yellow/Gold from image
+                            dark: '#e09b2e',
+                            light: '#fcc46b'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Animations */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes float-delay {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(251, 176, 59, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(251, 176, 59, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(251, 176, 59, 0); }
+        }
+
+        .animate-float { animation: float 6s ease-in-out infinite; }
+        .animate-float-delayed { animation: float-delay 5s ease-in-out infinite 2s; }
+        .animate-marquee { animation: marquee 20s linear infinite; display: inline-block; white-space: nowrap; }
+        .pulse-btn { animation: pulse-glow 2s infinite; }
+
+        /* Slider Transitions */
+        .slide { transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out; }
+        .slide.active { opacity: 1; transform: scale(1); z-index: 10; }
+        .slide.inactive { opacity: 0; transform: scale(1.05); z-index: 0; }
+
+        /* Reveal on Scroll */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Moving geometric background pattern */
+        .bg-pattern {
+            background-image: radial-gradient(rgba(251, 176, 59, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 overflow-x-hidden">
+
+    <!-- Top Bar -->
+    <div class="bg-navy-dark text-white py-2 px-4 md:px-8 text-sm flex flex-col md:flex-row justify-between items-center z-50 relative">
+        <div class="flex items-center space-x-4 mb-2 md:mb-0">
+            <span class="flex items-center text-gold"><i class="fas fa-phone-alt mr-2"></i> 0302-786-6100</span>
+            <span class="hidden md:flex items-center text-gray-300"><i class="fas fa-envelope mr-2"></i> info@sigmaassociates.com</span>
+        </div>
+        <div class="flex items-center space-x-3 text-gold">
+            <a href="#" class="hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="hover:text-white transition"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="hover:text-white transition"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <!-- Logo Area -->
+                    <div class="flex-shrink-0 flex items-center gap-3">
+                        <div class="w-12 h-12 bg-navy rounded-lg flex items-center justify-center text-gold text-2xl font-bold border-2 border-gold relative overflow-hidden">
+                            <!-- Moving shine effect on logo -->
+                            <div class="absolute inset-0 bg-white opacity-20 transform -skew-x-12 -translate-x-full hover:animate-[slide_1s_ease-in-out]"></div>
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-2xl font-bold text-navy leading-tight uppercase tracking-wide">Sigma <span class="text-gold">Associates</span></span>
+                            <span class="text-xs text-gray-500 font-semibold uppercase tracking-widest">Real Estate Agency</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-navy font-semibold hover:text-gold transition border-b-2 border-transparent hover:border-gold pb-1">Home</a>
+                    <a href="#about" class="text-navy font-semibold hover:text-gold transition border-b-2 border-transparent hover:border-gold pb-1">About Us</a>
+                    <a href="#projects" class="text-navy font-semibold hover:text-gold transition border-b-2 border-transparent hover:border-gold pb-1">Projects</a>
+                    <a href="#services" class="text-navy font-semibold hover:text-gold transition border-b-2 border-transparent hover:border-gold pb-1">Services</a>
+                    <a href="#contact" class="bg-gold text-navy font-bold px-6 py-2 rounded-full hover:bg-navy hover:text-gold transition shadow-md pulse-btn">Contact Junaid</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="flex items-center md:hidden">
+                    <button id="mobile-menu-btn" class="text-navy hover:text-gold focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-navy text-white px-4 pt-2 pb-4 space-y-2">
+            <a href="#home" class="block px-3 py-2 rounded-md font-medium hover:bg-gold hover:text-navy">Home</a>
+            <a href="#about" class="block px-3 py-2 rounded-md font-medium hover:bg-gold hover:text-navy">About Us</a>
+            <a href="#projects" class="block px-3 py-2 rounded-md font-medium hover:bg-gold hover:text-navy">Projects</a>
+            <a href="#services" class="block px-3 py-2 rounded-md font-medium hover:bg-gold hover:text-navy">Services</a>
+            <a href="#contact" class="block px-3 py-2 mt-4 bg-gold text-navy rounded-md font-bold text-center">Contact Us</a>
+        </div>
+    </nav>
+
+    <!-- Moving Ticker Tape -->
+    <div class="bg-gold text-navy font-bold py-2 overflow-hidden whitespace-nowrap relative border-b-4 border-navy">
+        <div class="animate-marquee inline-block">
+            <span class="mx-4"><i class="fas fa-star mr-1"></i> Authorized Sales Partner DHA Bahawalpur</span>
+            <span class="mx-4"><i class="fas fa-bullhorn mr-1"></i> Defence Gardenia: 6 Marla Park Facing Villas - Booking from 10 Lacs!</span>
+            <span class="mx-4"><i class="fas fa-building mr-1"></i> Premium Commercial & Residential Options Available</span>
+            <span class="mx-4"><i class="fas fa-phone mr-1"></i> Call Junaid Malik: 0302-786-6100</span>
+        </div>
+    </div>
+
+    <!-- Hero Slider Section -->
+    <section id="home" class="relative h-[600px] md:h-[700px] bg-navy overflow-hidden">
+        
+        <!-- Floating Decor Objects (Moving elements) -->
+        <div class="absolute top-20 left-10 text-gold opacity-20 text-6xl animate-float z-10">
+            <i class="fas fa-city"></i>
+        </div>
+        <div class="absolute bottom-32 right-10 text-gold opacity-20 text-7xl animate-float-delayed z-10">
+            <i class="fas fa-home"></i>
+        </div>
+        <div class="absolute top-40 right-1/4 w-32 h-32 border-4 border-gold rounded-full opacity-10 animate-ping z-10" style="animation-duration: 4s;"></div>
+
+        <!-- Slider Container -->
+        <div id="slider" class="relative w-full h-full">
+            
+            <!-- Slide 1 -->
+            <div class="slide active absolute inset-0 w-full h-full">
+                <div class="absolute inset-0 bg-black opacity-50 z-10"></div> <!-- Overlay -->
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Premium Real Estate" class="w-full h-full object-cover object-center">
+                <div class="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-4">
+                    <div class="bg-white/10 backdrop-blur-md p-8 rounded-2xl border border-white/20 shadow-2xl max-w-4xl transform transition-transform hover:scale-105 duration-500">
+                        <div class="flex justify-center mb-4">
+                            <span class="bg-gold text-navy font-bold px-4 py-1 rounded-full text-sm uppercase tracking-wider mb-2">DHA Bahawalpur</span>
+                        </div>
+                        <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-4 drop-shadow-lg leading-tight">
+                            We are offering a variety of <br><span class="text-gold">Premium Real Estate</span> Options
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto drop-shadow-md">
+                            Build Your Dream Home with us. Specializing in Residential Plots, Commercial Properties, and Homes for Sale.
+                        </p>
+                        <div class="flex flex-col sm:flex-row justify-center gap-4">
+                            <a href="#contact" class="bg-gold text-navy font-bold py-3 px-8 rounded-full hover:bg-white transition shadow-lg flex items-center justify-center">
+                                <i class="fas fa-phone-alt mr-2"></i> Contact Us Now
+                            </a>
+                            <a href="#services" class="border-2 border-gold text-gold font-bold py-3 px-8 rounded-full hover:bg-gold hover:text-navy transition shadow-lg">
+                                Explore Services
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="slide inactive absolute inset-0 w-full h-full">
+                <div class="absolute inset-0 bg-navy opacity-70 z-10"></div> <!-- Overlay -->
+                <img src="https://images.unsplash.com/photo-1613490908676-565cb234604e?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Defence Gardenia" class="w-full h-full object-cover object-center">
+                <div class="absolute inset-0 z-20 flex flex-col justify-center items-center text-center px-4">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Defence_Housing_Authority_logo.svg/512px-Defence_Housing_Authority_logo.svg.png" class="h-20 mb-6 bg-white p-2 rounded-lg opacity-90" alt="DHA Logo" onerror="this.style.display='none'">
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-2 drop-shadow-lg uppercase tracking-wider">
+                        Defence <span class="text-gold">Gardenia</span>
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold text-gold mb-6 drop-shadow-md">
+                        6 Marla Park Facing Villas
+                    </h2>
+                    <div class="bg-navy-dark border-l-4 border-gold p-6 rounded-r-lg max-w-2xl mx-auto mb-8 shadow-2xl">
+                        <p class="text-xl md:text-2xl text-white font-bold mb-2">Booking Only From <span class="text-gold text-3xl">10 Lacs</span></p>
+                        <p class="text-gray-300">A Project by DHA Bahawalpur. Exclusive Sales Partner: Sigma Associates.</p>
+                    </div>
+                    <a href="#contact" class="bg-white text-navy font-bold py-3 px-8 rounded-full hover:bg-gold transition shadow-lg text-lg">
+                        Book Your Villa Today
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Slider Controls -->
+        <button id="prevSlide" class="absolute left-4 top-1/2 transform -translate-y-1/2 z-30 bg-navy/50 hover:bg-gold text-white hover:text-navy w-12 h-12 rounded-full flex items-center justify-center transition backdrop-blur-sm border border-white/20">
+            <i class="fas fa-chevron-left text-xl"></i>
+        </button>
+        <button id="nextSlide" class="absolute right-4 top-1/2 transform -translate-y-1/2 z-30 bg-navy/50 hover:bg-gold text-white hover:text-navy w-12 h-12 rounded-full flex items-center justify-center transition backdrop-blur-sm border border-white/20">
+            <i class="fas fa-chevron-right text-xl"></i>
+        </button>
+        
+        <!-- Slider Indicators -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 flex space-x-3">
+            <button class="slider-dot w-3 h-3 rounded-full bg-gold transition-all duration-300 transform scale-125"></button>
+            <button class="slider-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-all duration-300"></button>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="reveal">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="w-12 h-1 bg-gold"></div>
+                        <h3 class="text-gold font-bold uppercase tracking-widest">About Us</h3>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-navy mb-6 leading-tight">Your Trusted Exclusive <br>Sales Partner</h2>
+                    <p class="text-gray-600 mb-6 text-lg leading-relaxed">
+                        At <strong class="text-navy">Sigma Associates</strong>, we don't just sell properties; we help you build your dream home and secure your financial future. As the authorized and exclusive sales partner for elite projects like DHA Bahawalpur and Defence Gardenia, we guarantee transparency, professionalism, and premium options.
+                    </p>
+                    
+                    <div class="bg-gray-50 border-l-4 border-gold p-6 rounded-r-lg shadow-sm mb-6 flex items-start gap-4">
+                        <div class="bg-navy text-gold w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-user-tie text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-navy">Junaid Malik</h4>
+                            <p class="text-gray-500 font-medium mb-1">Chief Real Estate Advisor</p>
+                            <p class="text-gold font-bold text-lg"><i class="fas fa-phone-alt mr-2 text-sm"></i> 0302-786-6100</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 text-center mt-8">
+                        <div class="bg-white p-4 shadow-lg rounded-xl border-b-4 border-navy transform hover:-translate-y-2 transition duration-300">
+                            <i class="fas fa-handshake text-4xl text-gold mb-3 animate-float"></i>
+                            <h5 class="font-bold text-navy">Trusted Agency</h5>
+                        </div>
+                        <div class="bg-white p-4 shadow-lg rounded-xl border-b-4 border-gold transform hover:-translate-y-2 transition duration-300">
+                            <i class="fas fa-shield-alt text-4xl text-navy mb-3 animate-float-delayed"></i>
+                            <h5 class="font-bold text-navy">Secure Investments</h5>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Moving Grid Images -->
+                <div class="relative h-[500px] reveal">
+                    <div class="absolute top-0 right-0 w-3/4 h-3/4 bg-navy rounded-2xl transform rotate-3"></div>
+                    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern House Exterior" class="absolute top-4 right-4 w-3/4 h-3/4 object-cover rounded-2xl shadow-2xl z-10 transform -rotate-2 hover:rotate-0 transition duration-500">
+                    <img src="https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Villa" class="absolute bottom-0 left-0 w-2/3 h-2/3 object-cover rounded-2xl shadow-2xl z-20 border-8 border-white animate-float">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-gray-100 bg-pattern relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 reveal">
+                <h3 class="text-gold font-bold uppercase tracking-widest mb-2">What We Offer</h3>
+                <h2 class="text-3xl md:text-5xl font-bold text-navy mb-4">Premium Real Estate Options</h2>
+                <div class="w-24 h-1 bg-gold mx-auto mb-6"></div>
+                <p class="text-gray-600 text-lg">We provide a comprehensive range of properties tailored to meet your residential and commercial needs in prime locations.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transform hover:-translate-y-3 transition duration-500 group reveal">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-navy/40 group-hover:bg-transparent transition duration-500 z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Residential Plots" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                        <div class="absolute top-4 right-4 bg-gold text-navy w-12 h-12 rounded-full flex items-center justify-center z-20 shadow-lg text-xl">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                    </div>
+                    <div class="p-8 border-b-4 border-navy group-hover:border-gold transition">
+                        <h3 class="text-2xl font-bold text-navy mb-3">Residential Plots</h3>
+                        <p class="text-gray-600 mb-4">Prime location plots in DHA Bahawalpur. Perfect for building your customized dream home from the ground up.</p>
+                        <a href="#contact" class="text-navy font-bold hover:text-gold flex items-center transition">
+                            Inquire Now <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transform hover:-translate-y-3 transition duration-500 group reveal" style="transition-delay: 100ms;">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-navy/40 group-hover:bg-transparent transition duration-500 z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Commercial Properties" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                        <div class="absolute top-4 right-4 bg-gold text-navy w-12 h-12 rounded-full flex items-center justify-center z-20 shadow-lg text-xl">
+                            <i class="fas fa-city"></i>
+                        </div>
+                    </div>
+                    <div class="p-8 border-b-4 border-navy group-hover:border-gold transition">
+                        <h3 class="text-2xl font-bold text-navy mb-3">Commercial Properties</h3>
+                        <p class="text-gray-600 mb-4">High-yield commercial plots and plazas designed to maximize your business visibility and investment returns.</p>
+                        <a href="#contact" class="text-navy font-bold hover:text-gold flex items-center transition">
+                            Inquire Now <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transform hover:-translate-y-3 transition duration-500 group reveal" style="transition-delay: 200ms;">
+                    <div class="h-48 overflow-hidden relative">
+                        <div class="absolute inset-0 bg-navy/40 group-hover:bg-transparent transition duration-500 z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Homes for Sale" class="w-full h-full object-cover transform group-hover:scale-110 transition duration-700">
+                        <div class="absolute top-4 right-4 bg-gold text-navy w-12 h-12 rounded-full flex items-center justify-center z-20 shadow-lg text-xl">
+                            <i class="fas fa-home"></i>
+                        </div>
+                    </div>
+                    <div class="p-8 border-b-4 border-navy group-hover:border-gold transition">
+                        <h3 class="text-2xl font-bold text-navy mb-3">Homes for Sale</h3>
+                        <p class="text-gray-600 mb-4">Ready-to-move luxurious homes and villas, including the exclusive 6 Marla Defence Gardenia park-facing villas.</p>
+                        <a href="#contact" class="text-navy font-bold hover:text-gold flex items-center transition">
+                            Inquire Now <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlighted Project Section -->
+    <section id="projects" class="py-20 bg-navy text-white relative overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none opacity-10">
+            <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-gold blur-3xl"></div>
+            <div class="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black to-transparent"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="w-full lg:w-1/2 reveal">
+                    <div class="inline-block bg-white text-navy font-black px-4 py-1 rounded mb-6 transform -skew-x-12">
+                        <span class="skew-x-12 block uppercase tracking-widest text-sm">Featured Project</span>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-extrabold text-gold mb-2 tracking-wide uppercase">Defence Gardenia</h2>
+                    <h3 class="text-2xl text-white mb-6 font-light">6 Marla Park Facing Villas</h3>
+                    
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center text-gray-300">
+                            <i class="fas fa-check-circle text-gold mr-3 text-xl"></i>
+                            <span class="text-lg">A prestigious project by DHA Bahawalpur</span>
+                        </div>
+                        <div class="flex items-center text-gray-300">
+                            <i class="fas fa-check-circle text-gold mr-3 text-xl"></i>
+                            <span class="text-lg">Lush green park facing views</span>
+                        </div>
+                        <div class="flex items-center text-gray-300">
+                            <i class="fas fa-check-circle text-gold mr-3 text-xl"></i>
+                            <span class="text-lg">Modern architectural design & amenities</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white/10 backdrop-blur-sm border border-gold/30 rounded-xl p-6 mb-8 inline-block">
+                        <p class="text-sm text-gray-300 uppercase tracking-widest mb-1">Starting Price</p>
+                        <p class="text-3xl font-bold">Booking from <span class="text-gold text-5xl">10 Lacs</span></p>
+                    </div>
+                    
+                    <div>
+                        <a href="#contact" class="bg-gold text-navy font-bold py-4 px-10 rounded-full hover:bg-white transition shadow-[0_0_20px_rgba(251,176,59,0.4)] hover:shadow-[0_0_30px_rgba(255,255,255,0.6)] text-lg pulse-btn inline-block">
+                            Secure Your Villa Today
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="w-full lg:w-1/2 reveal relative">
+                    <!-- Decorative Frame -->
+                    <div class="absolute -inset-4 border-2 border-gold/50 rounded-2xl transform rotate-3 z-0 transition duration-500 hover:rotate-6"></div>
+                    <img src="https://images.unsplash.com/photo-1613545325278-f24b0cae1224?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Defence Gardenia Villas" class="rounded-2xl shadow-2xl relative z-10 w-full object-cover h-[450px]">
+                    <!-- Floating badge -->
+                    <div class="absolute -bottom-6 -left-6 bg-gold text-navy p-4 rounded-xl shadow-xl z-20 animate-float font-bold flex items-center gap-3 border-4 border-white">
+                        <i class="fas fa-star text-2xl"></i>
+                        <div>
+                            <p class="text-sm leading-tight">Exclusive</p>
+                            <p class="text-lg leading-tight uppercase">Sales Partner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-navy rounded-3xl overflow-hidden shadow-2xl flex flex-col md:flex-row reveal">
+                <!-- Contact Info Panel -->
+                <div class="bg-navy text-white p-10 md:p-14 md:w-2/5 relative overflow-hidden">
+                    <!-- Moving bg element -->
+                    <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-gold rounded-full opacity-10 animate-pulse" style="animation-duration: 3s;"></div>
+                    
+                    <h3 class="text-3xl font-bold mb-6 text-gold relative z-10">Get In Touch</h3>
+                    <p class="text-gray-300 mb-10 relative z-10 text-lg">Ready to find your dream property in DHA Bahawalpur? Contact Junaid Malik directly.</p>
+                    
+                    <div class="space-y-6 relative z-10">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-gold text-xl mr-4 flex-shrink-0">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400">Agent</p>
+                                <p class="text-xl font-bold">Junaid Malik</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-gold text-xl mr-4 flex-shrink-0">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400">Call Us</p>
+                                <p class="text-xl font-bold text-gold">0302-786-6100</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-gold text-xl mr-4 flex-shrink-0">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-400">Website</p>
+                                <p class="text-lg font-bold">www.sigmaassociates.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="bg-gray-50 p-10 md:p-14 md:w-3/5">
+                    <h3 class="text-2xl font-bold text-navy mb-6">Send a Message</h3>
+                    <form class="space-y-6" onsubmit="event.preventDefault(); alert('Thank you for contacting Sigma Associates. Junaid Malik will get back to you shortly!');">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-navy focus:border-navy outline-none transition bg-white" placeholder="John Doe">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                                <input type="tel" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-navy focus:border-navy outline-none transition bg-white" placeholder="03XX-XXXXXXX">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Interest</label>
+                            <select class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-navy focus:border-navy outline-none transition bg-white">
+                                <option>Defence Gardenia Villas (10 Lacs)</option>
+                                <option>DHA Bahawalpur Residential Plot</option>
+                                <option>Commercial Property</option>
+                                <option>Other Inquiry</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea rows="4" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-navy focus:border-navy outline-none transition bg-white resize-none" placeholder="I am interested in..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-navy text-white font-bold py-4 rounded-lg hover:bg-gold hover:text-navy transition duration-300 shadow-lg text-lg">
+                            Send Inquiry
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy-dark text-gray-300 pt-16 pb-8 border-t-4 border-gold">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 bg-white rounded flex items-center justify-center text-navy text-xl">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <span class="text-2xl font-bold text-white uppercase tracking-wider">Sigma <span class="text-gold">Associates</span></span>
+                    </div>
+                    <p class="mb-6 leading-relaxed">Your exclusive real estate partner for DHA Bahawalpur and Defence Gardenia. Building dreams and securing investments with integrity.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold hover:text-navy transition"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold hover:text-navy transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-gold hover:text-navy transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-6 uppercase tracking-wider border-b-2 border-gold inline-block pb-1">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="hover:text-gold transition flex items-center"><i class="fas fa-angle-right mr-2 text-gold"></i> Home</a></li>
+                        <li><a href="#about" class="hover:text-gold transition flex items-center"><i class="fas fa-angle-right mr-2 text-gold"></i> About Us</a></li>
+                        <li><a href="#projects" class="hover:text-gold transition flex items-center"><i class="fas fa-angle-right mr-2 text-gold"></i> Defence Gardenia</a></li>
+                        <li><a href="#services" class="hover:text-gold transition flex items-center"><i class="fas fa-angle-right mr-2 text-gold"></i> Property Services</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-white text-lg font-bold mb-6 uppercase tracking-wider border-b-2 border-gold inline-block pb-1">Contact Details</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-user mt-1 text-gold mr-3"></i>
+                            <div>
+                                <strong class="block text-white">Junaid Malik</strong>
+                                <span>Real Estate Agency</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-phone-alt mt-1 text-gold mr-3"></i>
+                            <span class="text-gold font-bold text-lg">0302-786-6100</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 text-gold mr-3"></i>
+                            <span>DHA Bahawalpur, Punjab, Pakistan</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center text-sm">
+                <p>&copy; 2023 Sigma Associates. All Rights Reserved.</p>
+                <p class="mt-2 md:mt-0">Designed for Real Estate Excellence</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Hero Slider Logic
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slider-dot');
+        const prevBtn = document.getElementById('prevSlide');
+        const nextBtn = document.getElementById('nextSlide');
+        let currentSlide = 0;
+        let slideInterval;
+
+        function showSlide(index) {
+            // Remove active classes
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+                slide.classList.add('inactive');
+            });
+            dots.forEach(dot => {
+                dot.classList.remove('bg-gold', 'scale-125');
+                dot.classList.add('bg-white/50');
+            });
+
+            // Add active to current
+            slides[index].classList.remove('inactive');
+            slides[index].classList.add('active');
+            dots[index].classList.remove('bg-white/50');
+            dots[index].classList.add('bg-gold', 'scale-125');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // Event Listeners for controls
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetInterval();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetInterval();
+        });
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                showSlide(currentSlide);
+                resetInterval();
+            });
+        });
+
+        function startInterval() {
+            slideInterval = setInterval(nextSlide, 6000); // Change slide every 6 seconds
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            startInterval();
+        }
+
+        // Start auto slide
+        startInterval();
+
+        // Scroll Reveal Animation Setup using Intersection Observer
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100; // when to trigger
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+    </script>
+</body>
+</html>

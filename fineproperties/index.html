@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fine Properties | Luxury Real Estate Islamabad</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        
+        :root {
+            --brand-red: #e11d48;
+            --brand-dark: #0a0a0a;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+            background-color: var(--brand-dark);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .text-brand-red { color: var(--brand-red); }
+        .bg-brand-red { background-color: var(--brand-red); }
+        .border-brand-red { border-color: var(--brand-red); }
+
+        .hero-gradient {
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .glass-card:hover {
+            border-color: var(--brand-red);
+            transform: translateY(-8px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Floating Objects Animation */
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -50px) rotate(5deg); }
+            66% { transform: translate(-20px, 20px) rotate(-5deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        .floating-obj {
+            position: absolute;
+            pointer-events: none;
+            opacity: 0.15;
+            z-index: 1;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        /* Slider Styles */
+        .slider-container {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slider-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            padding: 0 10px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--brand-red);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-zinc-950">
+
+    <!-- Floating Background Elements -->
+    <div class="floating-obj top-20 left-[10%] w-64 h-64 border-4 border-brand-red rounded-full" style="animation-delay: 0s;"></div>
+    <div class="floating-obj bottom-40 right-[5%] w-96 h-96 border-2 border-white rounded-3xl" style="animation-delay: -5s;"></div>
+    <div class="floating-obj top-1/2 left-1/3 w-32 h-32 bg-brand-red blur-3xl opacity-10" style="animation-delay: -2s;"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 flex items-center justify-center relative">
+                        <svg viewBox="0 0 100 100" class="w-full h-full">
+                            <circle cx="50" cy="50" r="45" fill="none" stroke="#e11d48" stroke-width="4" />
+                            <path d="M30 70 L50 30 L70 70 M40 55 L60 55" fill="none" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
+                            <rect x="45" y="48" width="10" height="10" fill="#e11d48" opacity="0.8" />
+                        </svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-xl font-extrabold tracking-tighter uppercase leading-none">Fine Properties</span>
+                        <span class="text-[10px] tracking-[0.2em] uppercase text-brand-red font-bold">Real Estate Group</span>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-xs font-bold uppercase tracking-widest">Home</a>
+                    <a href="#portfolio" class="nav-link text-xs font-bold uppercase tracking-widest">Portfolio</a>
+                    <a href="#about" class="nav-link text-xs font-bold uppercase tracking-widest">About</a>
+                    <a href="#services" class="nav-link text-xs font-bold uppercase tracking-widest">Services</a>
+                    <a href="#contact" class="nav-link text-xs font-bold uppercase tracking-widest">Contact</a>
+                </div>
+
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="p-2"><i data-lucide="menu"></i></button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient h-screen flex items-center relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+            <div class="max-w-3xl">
+                <div class="inline-flex items-center gap-2 px-4 py-2 bg-brand-red/10 border border-brand-red/30 text-brand-red text-xs font-black uppercase tracking-[0.3em] mb-8 rounded-full">
+                    <span class="w-2 h-2 bg-brand-red rounded-full animate-pulse"></span>
+                    Premium Islamabad Properties
+                </div>
+                <h1 class="text-6xl md:text-8xl font-black mb-8 leading-tight uppercase">
+                    Defining <br/>
+                    <span class="text-brand-red">Excellence</span>
+                </h1>
+                <p class="text-gray-300 text-xl mb-12 max-w-xl leading-relaxed font-light">
+                    Elevating the standard of living with exclusive residential and commercial holdings in Islamabad's most prestigious sectors.
+                </p>
+                <div class="flex flex-wrap gap-6">
+                    <a href="#portfolio" class="bg-brand-red hover:bg-red-700 text-white px-10 py-5 rounded-full font-black uppercase tracking-widest transition-all hover:scale-105 flex items-center gap-3">
+                        View Portfolio <i data-lucide="layout-grid" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#contact" class="bg-white hover:bg-zinc-200 text-black px-10 py-5 rounded-full font-black uppercase tracking-widest transition-all hover:scale-105">
+                        Consult Now
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Property Slider Section -->
+    <section id="portfolio" class="py-32 bg-black relative z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+                <div>
+                    <h2 class="text-brand-red font-black uppercase tracking-[0.4em] text-xs mb-4">Featured Listings</h2>
+                    <h3 class="text-4xl md:text-5xl font-black uppercase">Elite Real Estate Portfolio</h3>
+                </div>
+                <div class="flex gap-4">
+                    <button id="prevSlide" class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center hover:bg-brand-red hover:border-brand-red transition-all">
+                        <i data-lucide="chevron-left"></i>
+                    </button>
+                    <button id="nextSlide" class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center hover:bg-brand-red hover:border-brand-red transition-all">
+                        <i data-lucide="chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="slider-container">
+                <div id="sliderTrack" class="slider-track">
+                    <!-- Slide 1 -->
+                    <div class="slide">
+                        <div class="grid md:grid-cols-2 gap-10 items-center bg-zinc-900/50 p-6 rounded-[2.5rem] border border-white/5">
+                            <div class="aspect-video rounded-3xl overflow-hidden group">
+                                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Luxury Villa" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                            </div>
+                            <div class="p-4">
+                                <span class="text-brand-red font-bold text-xs uppercase tracking-widest">DHA Phase 1, Islamabad</span>
+                                <h4 class="text-3xl font-black mt-2 mb-4 uppercase">Modern Executive Villa</h4>
+                                <p class="text-gray-400 mb-8">State-of-the-art architecture featuring smart home integration, private pool, and designer interiors in the heart of Sector F.</p>
+                                <div class="flex gap-10 border-t border-white/10 pt-6">
+                                    <div><p class="text-xs text-gray-500 uppercase font-bold">Bedrooms</p><p class="text-xl font-bold">06</p></div>
+                                    <div><p class="text-xs text-gray-500 uppercase font-bold">Area</p><p class="text-xl font-bold">2 Kanal</p></div>
+                                    <div><p class="text-xs text-gray-500 uppercase font-bold">Status</p><p class="text-xl font-bold text-brand-red">Ready</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="slide">
+                        <div class="grid md:grid-cols-2 gap-10 items-center bg-zinc-900/50 p-6 rounded-[2.5rem] border border-white/5">
+                            <div class="aspect-video rounded-3xl overflow-hidden group">
+                                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Business Hub" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                            </div>
+                            <div class="p-4">
+                                <span class="text-brand-red font-bold text-xs uppercase tracking-widest">Business Bay, DHA</span>
+                                <h4 class="text-3xl font-black mt-2 mb-4 uppercase">Corporate Plaza Suites</h4>
+                                <p class="text-gray-400 mb-8">High-visibility commercial units designed for multinational offices and luxury retail outlets.</p>
+                                <div class="flex gap-10 border-t border-white/10 pt-6">
+                                    <div><p class="text-xs text-gray-500 uppercase font-bold">Units</p><p class="text-xl font-bold">12 Available</p></div>
+                                    <div><p class="text-xs text-gray-500 uppercase font-bold">Parking</p><p class="text-xl font-bold">3 Levels</p></div>
+                                    <div><p class="text-xs text-gray-500 uppercase font-bold">Yield</p><p class="text-xl font-bold text-brand-red">8% Annually</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section (No Person Image) -->
+    <section id="about" class="py-32 bg-zinc-950 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-2 gap-20 items-center">
+                <div class="relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="aspect-square rounded-3xl overflow-hidden bg-zinc-900 border border-white/10">
+                            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover opacity-60">
+                        </div>
+                        <div class="aspect-square rounded-3xl overflow-hidden bg-zinc-900 border border-white/10 mt-8">
+                            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover opacity-60">
+                        </div>
+                    </div>
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div class="bg-brand-red text-white p-10 rounded-full font-black text-center shadow-2xl animate-pulse">
+                            <span class="text-4xl">10+</span><br/>
+                            <span class="text-xs uppercase">Years</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-brand-red font-black uppercase tracking-[0.4em] text-xs mb-4">Corporate Vision</h2>
+                    <h3 class="text-4xl md:text-5xl font-black mb-8 leading-tight">THE FINE PROPERTIES STANDARD</h3>
+                    <p class="text-gray-400 text-lg mb-8 leading-relaxed">
+                        Fine Properties stands at the pinnacle of Islamabad's real estate market. We specialize in sourcing, managing, and developing premium real estate assets with a focus on DHA and elite sectors.
+                    </p>
+                    <div class="grid sm:grid-cols-2 gap-8">
+                        <div class="p-6 bg-white/5 rounded-2xl border border-white/10">
+                            <i data-lucide="shield-check" class="text-brand-red w-8 h-8 mb-4"></i>
+                            <h5 class="font-bold mb-2">Transparency</h5>
+                            <p class="text-sm text-gray-500">Legal verification and clear documentation for every deal.</p>
+                        </div>
+                        <div class="p-6 bg-white/5 rounded-2xl border border-white/10">
+                            <i data-lucide="target" class="text-brand-red w-8 h-8 mb-4"></i>
+                            <h5 class="font-bold mb-2">Exclusivity</h5>
+                            <p class="text-sm text-gray-500">Access to off-market properties and priority pre-launches.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-32 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-brand-red font-black uppercase tracking-[0.4em] text-xs mb-4">What We Do</h2>
+            <h3 class="text-4xl md:text-5xl font-black mb-20">INTEGRATED REAL ESTATE</h3>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-12 rounded-[3rem] text-left group">
+                    <div class="w-16 h-16 bg-brand-red/10 text-brand-red flex items-center justify-center rounded-2xl mb-8 group-hover:bg-brand-red group-hover:text-white transition-all">
+                        <i data-lucide="home"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 uppercase">Residential Sales</h4>
+                    <p class="text-gray-500">Curated collection of luxury houses and designer apartments in DHA Islamabad.</p>
+                </div>
+                <div class="glass-card p-12 rounded-[3rem] text-left group">
+                    <div class="w-16 h-16 bg-brand-red/10 text-brand-red flex items-center justify-center rounded-2xl mb-8 group-hover:bg-brand-red group-hover:text-white transition-all">
+                        <i data-lucide="building"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 uppercase">Commercial Hubs</h4>
+                    <p class="text-gray-500">Strategic investment in business plazas, plots, and retail spaces across the twin cities.</p>
+                </div>
+                <div class="glass-card p-12 rounded-[3rem] text-left group">
+                    <div class="w-16 h-16 bg-brand-red/10 text-brand-red flex items-center justify-center rounded-2xl mb-8 group-hover:bg-brand-red group-hover:text-white transition-all">
+                        <i data-lucide="line-chart"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-4 uppercase">Wealth Advisory</h4>
+                    <p class="text-gray-500">Data-driven real estate portfolio growth and investment risk management.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-32 bg-zinc-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-[4rem] overflow-hidden shadow-2xl flex flex-col lg:flex-row">
+                <div class="lg:w-1/2 p-12 lg:p-20 bg-brand-red text-white">
+                    <h3 class="text-4xl font-black uppercase mb-12">Connect With <br/> The Experts</h3>
+                    <div class="space-y-10">
+                        <div class="flex items-start gap-6">
+                            <div class="w-12 h-12 bg-black/10 rounded-xl flex items-center justify-center">
+                                <i data-lucide="phone"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-black uppercase opacity-60 mb-1">Direct Line</p>
+                                <p class="text-2xl font-bold">0370-5912910</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6">
+                            <div class="w-12 h-12 bg-black/10 rounded-xl flex items-center justify-center">
+                                <i data-lucide="mail"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-black uppercase opacity-60 mb-1">Email</p>
+                                <p class="text-2xl font-bold break-all">finepropertiesgroup@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-6">
+                            <div class="w-12 h-12 bg-black/10 rounded-xl flex items-center justify-center">
+                                <i data-lucide="map-pin"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-black uppercase opacity-60 mb-1">Office</p>
+                                <p class="text-2xl font-bold">DHA 1 Sector F Business Bay, Islamabad.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 p-12 lg:p-20 bg-white">
+                    <form class="space-y-6">
+                        <div class="grid sm:grid-cols-2 gap-6">
+                            <input type="text" placeholder="FULL NAME" class="w-full border-b-2 border-zinc-200 py-4 outline-none focus:border-brand-red transition text-black font-bold uppercase tracking-widest text-xs">
+                            <input type="text" placeholder="PHONE" class="w-full border-b-2 border-zinc-200 py-4 outline-none focus:border-brand-red transition text-black font-bold uppercase tracking-widest text-xs">
+                        </div>
+                        <input type="email" placeholder="EMAIL ADDRESS" class="w-full border-b-2 border-zinc-200 py-4 outline-none focus:border-brand-red transition text-black font-bold uppercase tracking-widest text-xs">
+                        <textarea rows="4" placeholder="HOW CAN WE HELP YOU?" class="w-full border-b-2 border-zinc-200 py-4 outline-none focus:border-brand-red transition text-black font-bold uppercase tracking-widest text-xs resize-none"></textarea>
+                        <button class="bg-black text-white px-12 py-6 rounded-full font-black uppercase tracking-widest hover:bg-brand-red transition-all w-full md:w-auto">Submit Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5 text-center bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl font-black uppercase tracking-tighter">Fine Properties</span>
+            </div>
+            <p class="text-zinc-600 text-sm font-bold uppercase tracking-widest italic">© 2024 - Elite Luxury Real Estate Group</p>
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center hover:bg-brand-red transition-all"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                <a href="#" class="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center hover:bg-brand-red transition-all"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                <a href="#" class="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center hover:bg-brand-red transition-all"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Mobile Menu
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        mobileMenuBtn.onclick = () => {
+            // Placeholder for menu toggle logic if needed
+        };
+
+        // Slider Logic
+        const track = document.getElementById('sliderTrack');
+        const slides = document.querySelectorAll('.slide');
+        const nextBtn = document.getElementById('nextSlide');
+        const prevBtn = document.getElementById('prevSlide');
+        let currentIdx = 0;
+
+        function updateSlider() {
+            track.style.transform = `translateX(-${currentIdx * 100}%)`;
+        }
+
+        nextBtn.onclick = () => {
+            currentIdx = (currentIdx + 1) % slides.length;
+            updateSlider();
+        };
+
+        prevBtn.onclick = () => {
+            currentIdx = (currentIdx - 1 + slides.length) % slides.length;
+            updateSlider();
+        };
+
+        // Auto play slider
+        setInterval(() => {
+            currentIdx = (currentIdx + 1) % slides.length;
+            updateSlider();
+        }, 6000);
+
+        // Simple mouse move parallax for floating objects
+        document.addEventListener('mousemove', (e) => {
+            const objs = document.querySelectorAll('.floating-obj');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            objs.forEach((obj, i) => {
+                const speed = (i + 1) * 20;
+                obj.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
