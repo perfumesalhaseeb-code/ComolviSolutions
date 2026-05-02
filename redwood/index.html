@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redwood Properties | DHA Bahawalpur Updates</title>
+
+    <!-- Google Fonts: Poppins for UI, Playfair Display for Headings, Noto Nastaliq for Urdu -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Noto+Nastaliq+Urdu:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Swiper CSS for Slider -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <!-- AOS CSS for Scroll Animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rwGreen: '#2a871b', 
+                        rwGreenDark: '#1d6311',
+                        rwOrange: '#ff4a1c', 
+                        bgBase: '#F7F6F2', // Minimal off-white base
+                        textDark: '#1C1C1C',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                        urdu: ['"Noto Nastaliq Urdu"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Minimalist Styles & Animations */
+        body {
+            overflow-x: hidden;
+            background-color: var(--tw-colors-bgBase, #F7F6F2);
+            color: var(--tw-colors-textDark, #1C1C1C);
+        }
+
+        /* Marquee Styles - Sleek Version */
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            background: transparent;
+            padding: 15px 0;
+            white-space: nowrap;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+            padding-left: 100%;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+
+        /* Swiper Customization - Minimal */
+        .swiper-slide {
+            height: auto; 
+            align-self: stretch;
+        }
+        .swiper-pagination-bullet {
+            background-color: #ccc !important;
+            opacity: 1;
+        }
+        .swiper-pagination-bullet-active {
+            background-color: #1C1C1C !important;
+        }
+        
+        /* Custom UI details */
+        .thin-border {
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+        
+        .urdu-text {
+            font-family: 'Noto Nastaliq Urdu', serif;
+            direction: rtl;
+            line-height: 2.4;
+        }
+
+        /* Reveal Image Animation */
+        .img-reveal {
+            clip-path: inset(0 100% 0 0);
+            transition: clip-path 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .img-reveal.aos-animate {
+            clip-path: inset(0 0 0 0);
+        }
+    </style>
+</head>
+<body class="font-sans text-textDark antialiased bg-bgBase selection:bg-rwOrange selection:text-white">
+
+    <!-- Minimal Navbar -->
+    <nav class="w-full z-50 bg-bgBase py-6 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex justify-between items-center">
+            <!-- Logo area -->
+            <div class="flex items-center gap-3">
+                <div class="relative w-10 h-10 flex items-center justify-center">
+                    <i class="fa-solid fa-house text-textDark text-2xl"></i>
+                    <i class="fa-solid fa-tree text-rwGreen text-sm absolute -right-2 bottom-0"></i>
+                </div>
+                <div class="flex flex-col leading-none">
+                    <span class="text-xl font-bold tracking-widest text-textDark">REDWOOD</span>
+                    <span class="text-[0.65rem] font-semibold tracking-[0.2em] text-rwOrange uppercase mt-1">Properties</span>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="flex items-center">
+                <a href="tel:03009688320" class="group flex items-center gap-3 bg-textDark hover:bg-black text-white px-6 py-3 rounded-full transition-all duration-300">
+                    <span class="text-sm font-medium tracking-wide">Contact Us</span>
+                    <i class="fa-solid fa-arrow-right -rotate-45 group-hover:rotate-0 transition-transform duration-300"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- News Marquee (Moving Object) -->
+    <div class="marquee-container">
+        <div class="marquee-content font-medium tracking-widest uppercase text-xs md:text-sm flex gap-12 items-center opacity-80">
+            <span><span class="w-2 h-2 rounded-full bg-rwOrange inline-block mr-2 mb-0.5"></span> New Milestone Achieved by DHA Bahawalpur</span>
+            <span class="urdu-text text-base lowercase tracking-normal">ڈی ایچ اے بھاولپور کی ترقی کی نئی منزل!</span>
+            <span><span class="w-2 h-2 rounded-full bg-rwGreen inline-block mr-2 mb-0.5"></span> 1,000 houses livability target achieved</span>
+            <span class="urdu-text text-base lowercase tracking-normal">1000 گھروں کا لیویبلیٹی ٹارگٹ کامیابی سے حاصل کر لیا گیا</span>
+            <span><span class="w-2 h-2 rounded-full bg-rwOrange inline-block mr-2 mb-0.5"></span> New Milestone Achieved by DHA Bahawalpur</span>
+        </div>
+    </div>
+
+    <!-- Editorial Hero Section -->
+    <section class="relative pt-16 pb-32 overflow-hidden bg-[#0F2914]">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            
+            <!-- Logo in Hero -->
+            <div class="mb-10 flex justify-start" data-aos="fade-up" data-aos-duration="1000">
+                <div class="bg-white p-4 rounded-3xl shadow-2xl inline-block">
+                    <!-- Custom Inline SVG Logo mimicking the original -->
+                    <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg" class="h-20 md:h-24 w-auto">
+                        <!-- Ground Line -->
+                        <path d="M 30 185 Q 200 205 370 175" fill="none" stroke="#2a871b" stroke-width="6" stroke-linecap="round"/>
+                        <!-- House Outline -->
+                        <path d="M 45 175 L 45 100 L 20 100 L 120 20 L 220 100 L 195 100 L 195 175" fill="none" stroke="#2a871b" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+                        <!-- Chimney -->
+                        <path d="M 65 65 L 65 30 L 85 30 L 85 45" fill="none" stroke="#2a871b" stroke-width="8" stroke-linejoin="round" stroke-linecap="round"/>
+                        <!-- House Windows -->
+                        <rect x="95" y="90" width="18" height="18" fill="#2a871b" rx="3"/>
+                        <rect x="125" y="90" width="18" height="18" fill="#2a871b" rx="3"/>
+                        <rect x="95" y="120" width="18" height="18" fill="#2a871b" rx="3"/>
+                        <rect x="125" y="120" width="18" height="18" fill="#2a871b" rx="3"/>
+                        <!-- Text -->
+                        <text x="120" y="165" font-family="'Poppins', sans-serif" font-weight="700" font-size="13.5" fill="#ff4a1c" text-anchor="middle" letter-spacing="0.5">REDWOOD PROPERTIES</text>
+                        <!-- Tree Swirl -->
+                        <path d="M 230 130 C 190 70, 240 10, 310 20 C 370 30, 390 100, 340 150 C 310 170, 260 160, 240 130" fill="none" stroke="#7ac142" stroke-width="5" stroke-linecap="round"/>
+                        <!-- Tree Trunk & Branches -->
+                        <path d="M 310 175 L 310 40 M 310 120 L 280 80 M 310 100 L 335 60 M 310 70 L 295 40 M 310 80 L 340 40 M 295 95 L 285 70" fill="none" stroke="#2a871b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- Headline -->
+            <div class="mb-12" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="100">
+                <p class="text-rwOrange font-medium tracking-widest text-sm mb-4 uppercase">Project Update</p>
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif text-white leading-[1.1] tracking-tight">
+                    A New Era of <br>
+                    <span class="italic text-gray-400">Living in</span> DHA.
+                </h1>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                <!-- Left: Text content -->
+                <div class="lg:col-span-4 flex flex-col gap-8 order-2 lg:order-1" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                    <div class="border border-white/10 p-8 rounded-2xl bg-white/5 backdrop-blur-sm">
+                        <h3 class="text-4xl font-light mb-4 text-white">1,000+</h3>
+                        <p class="text-sm text-gray-300 leading-relaxed">
+                            Houses have successfully achieved their livability target in DHA Bahawalpur, with an additional <strong class="text-white">500 houses</strong> under construction to be completed by the end of this year.
+                        </p>
+                        <div class="mt-6 pt-6 border-t border-white/10">
+                            <p class="urdu-text text-gray-200 text-sm">
+                                ڈی ایچ اے بھاولپور نے 1000 گھروں کے لیویبلیٹی ٹارگٹ کو کامیابی سے حاصل کر لیا ہے، جبکہ مزید 500 گھر زیرِ تعمیر ہیں جو رواں سال کے آخر تک مکمل ہونے جا رہے ہیں۔
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <a href="#updates" class="text-sm font-bold tracking-widest uppercase border-b border-white pb-1 self-start text-white hover:text-rwOrange hover:border-rwOrange transition-colors">
+                        Explore Developments
+                    </a>
+                </div>
+
+                <!-- Right: Large Minimal Image -->
+                <div class="lg:col-span-8 order-1 lg:order-2">
+                    <div class="w-full h-[60vh] lg:h-[75vh] overflow-hidden rounded-2xl relative shadow-2xl" data-aos="fade-left" data-aos-duration="1200">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Modern Architecture DHA Bahawalpur" class="w-full h-full object-cover">
+                        <!-- Floating minimal label -->
+                        <div class="absolute bottom-6 right-6 bg-[#0F2914] text-white px-5 py-3 rounded-full shadow-lg border border-white/10 flex items-center gap-3">
+                            <span class="w-2 h-2 rounded-full bg-rwOrange animate-pulse"></span>
+                            <span class="text-xs font-semibold tracking-widest uppercase">Target Achieved</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sleek Slider Section -->
+    <section id="updates" class="py-24 bg-white thin-border rounded-t-[3rem] lg:rounded-t-[5rem] -mt-10 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16" data-aos="fade-up">
+                <div class="max-w-2xl">
+                    <h2 class="text-4xl md:text-5xl font-serif text-textDark mb-6">Latest Developments</h2>
+                    <p class="text-gray-500 font-light text-lg">Following key facilities have also been completed or are nearing completion in DHA Bahawalpur.</p>
+                </div>
+                <div class="text-right md:max-w-sm border-l md:border-l-0 md:border-r border-rwOrange pl-4 md:pl-0 md:pr-4">
+                    <p class="urdu-text text-gray-800">اس کے ساتھ ساتھ درج ذیل سہولیات بھی فراہم کر دی گئی ہیں یا تکمیل کے قریب ہیں:</p>
+                </div>
+            </div>
+
+            <!-- Swiper Slider Container -->
+            <div class="swiper mySwiper pb-16" data-aos="fade-up" data-aos-delay="100">
+                <div class="swiper-wrapper">
+                    
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <div class="group cursor-pointer">
+                            <div class="w-full h-80 overflow-hidden rounded-xl mb-6 relative">
+                                <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sectors D, F & N" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                <div class="absolute top-4 left-4 bg-white/90 backdrop-blur text-textDark px-3 py-1.5 rounded-md text-[0.65rem] font-bold tracking-widest uppercase">
+                                    Possession Open
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <h3 class="text-2xl font-serif text-textDark">Sectors D, F & N</h3>
+                                <p class="text-sm text-gray-500">Possession opened for Sectors D, F & N.</p>
+                                <p class="urdu-text text-gray-800 text-sm mt-2">تین سیکٹرز (D، F، N) کا قبضہ بھی کھول دیا گیا ہے۔</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <div class="group cursor-pointer">
+                            <div class="w-full h-80 overflow-hidden rounded-xl mb-6 relative">
+                                <img src="https://images.unsplash.com/photo-1592595896616-c37162298647?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Orchard Enclave" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <h3 class="text-2xl font-serif text-textDark">Orchard Enclave</h3>
+                                <p class="text-sm text-gray-500">Possession opened for Orchard Enclave.</p>
+                                <p class="urdu-text text-gray-800 text-sm mt-2">آرچرڈ انکلیو میں قبضہ کھول دیا گیا ہے۔</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide">
+                        <div class="group cursor-pointer">
+                            <div class="w-full h-80 overflow-hidden rounded-xl mb-6 relative">
+                                <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Gas Connections" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                                <div class="absolute top-4 left-4 bg-rwOrange text-white px-3 py-1.5 rounded-md text-[0.65rem] font-bold tracking-widest uppercase">
+                                    Utility Update
+                                </div>
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <h3 class="text-2xl font-serif text-textDark">Gas Connections</h3>
+                                <p class="text-sm text-gray-500">Provision of Gas Connections for residents.</p>
+                                <p class="urdu-text text-gray-800 text-sm mt-2">رہائشیوں کے لیے گیس کنکشنز کی فراہمی جاری ہے۔</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="swiper-slide">
+                        <div class="group cursor-pointer">
+                            <div class="w-full h-80 overflow-hidden rounded-xl mb-6 relative">
+                                <img src="https://images.unsplash.com/photo-1534078362425-3870dc4bc0eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Clubs & Amenities" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <h3 class="text-2xl font-serif text-textDark">Clubs & Amenities</h3>
+                                <p class="text-sm text-gray-500">Establishment of Shooting Range & Riding Club.</p>
+                                <p class="urdu-text text-gray-800 text-sm mt-2">شوٹنگ رینج اور رائیڈنگ کلب کا قیام۔</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5 -->
+                    <div class="swiper-slide">
+                        <div class="group cursor-pointer">
+                            <div class="w-full h-80 overflow-hidden rounded-xl mb-6 relative">
+                                <img src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="132 KV Grid Station" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            </div>
+                            <div class="flex flex-col gap-2">
+                                <h3 class="text-2xl font-serif text-textDark">132 KV Grid Station</h3>
+                                <p class="text-sm text-gray-500">132 KV Grid Station is near completion.</p>
+                                <p class="urdu-text text-gray-800 text-sm mt-2">132 کے وی گرڈ اسٹیشن تکمیل کے قریب۔</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- Add Pagination -->
+                <div class="swiper-pagination mt-12 relative bottom-0"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Minimal Final Call to Action -->
+    <section class="py-24 bg-textDark text-white relative">
+        <div class="max-w-5xl mx-auto px-6 text-center" data-aos="fade-up">
+            <p class="font-serif text-3xl md:text-5xl leading-tight mb-8 font-light text-white/90">
+                "Several other commercial and key developments are also approaching completion, enhancing livability and property value."
+            </p>
+            <p class="urdu-text text-xl md:text-3xl font-medium leading-loose mb-16 text-gray-300 max-w-4xl mx-auto">
+                مزید کئی کمرشل و ترقیاتی منصوبے بھی جلد مکمل ہو رہے ہیں جو ڈی ایچ اے بھاولپور کی ویلیو اور رہائش کے معیار کو مزید بلند کریں گے۔
+            </p>
+            
+            <div class="inline-flex flex-col items-center">
+                <span class="text-rwOrange text-xs font-bold tracking-[0.3em] uppercase mb-4">Get in Touch</span>
+                <div class="flex items-center gap-4 text-4xl md:text-6xl font-serif mb-2">
+                    <a href="tel:03009688320" class="hover:text-rwGreen transition-colors duration-300">0300-9688320</a>
+                </div>
+                <p class="text-gray-400 mt-2 font-medium tracking-wide">Redwood Properties</p>
+                <p class="urdu-text text-gray-400 mt-1">ریڈ ووڈ پراپرٹیز بھاولپور</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Minimal Footer -->
+    <footer class="bg-[#111] text-gray-500 py-8 text-sm border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-house"></i>
+                <span class="font-bold tracking-widest text-gray-400">REDWOOD</span>
+            </div>
+            <div class="flex gap-6 uppercase tracking-widest text-[0.65rem]">
+                <span>#DHABahawalpur</span>
+                <span>#RealEstate</span>
+                <span>#LuxuryLiving</span>
+            </div>
+            <p>&copy; 2026 Redwood Properties.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <!-- AOS JS for animations -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+        // Initialize Scroll Animations
+        AOS.init({
+            once: true,
+            offset: 50,
+            duration: 800,
+            easing: 'ease-out-cubic',
+        });
+
+        // Initialize Minimal Swiper Slider
+        var swiper = new Swiper(".mySwiper", {
+            slidesPerView: 1.1,
+            spaceBetween: 24,
+            loop: true,
+            centeredSlides: false,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                640: { slidesPerView: 2.2, spaceBetween: 24 },
+                1024: { slidesPerView: 3.2, spaceBetween: 32 }
+            }
+        });
+    </script>
+</body>
+</html>
