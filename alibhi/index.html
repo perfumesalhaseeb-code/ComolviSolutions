@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ali Bhai Real Estate and Builders | Central Park Lahore</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Tailwind Config for Custom Brand Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#1e2428',    /* Logo Background */
+                            darker: '#151a1d',  /* Slightly darker for sections */
+                            orange: '#f38b2b',  /* Logo Sun/Accent */
+                            cream: '#f2e8c9',   /* Logo Primary Text */
+                            gray: '#8a959d'     /* Muted text */
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Montserrat', 'sans-serif'],
+                        body: ['Open Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Utilities */
+        body { background-color: #1e2428; }
+        .text-glow { text-shadow: 0 0 15px rgba(243, 139, 43, 0.4); }
+        .sun-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(243,139,43,0.3) 0%, rgba(30,36,40,0) 70%);
+            border-radius: 50%;
+            z-index: 0;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .fade-bottom {
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 95%);
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 95%);
+        }
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(30,36,40,0.8) 0%, rgba(21,26,29,0.9) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(243, 139, 43, 0.15);
+        }
+    </style>
+</head>
+<body class="font-body text-gray antialiased overflow-x-hidden selection:bg-brand-orange selection:text-brand-dark">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-brand-dark/95 backdrop-blur-sm border-b border-brand-orange/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <i data-lucide="building-2" class="text-brand-orange w-8 h-8"></i>
+                    <div class="flex flex-col">
+                        <span class="font-heading font-black text-2xl tracking-widest text-brand-cream leading-none uppercase">Ali Bhai</span>
+                        <span class="font-heading font-semibold text-[0.65rem] tracking-[0.2em] text-brand-orange uppercase mt-1">Real Estate & Builders</span>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#services" class="text-brand-cream hover:text-brand-orange transition-colors font-semibold text-sm tracking-wide">Services</a>
+                    <a href="#about" class="text-brand-cream hover:text-brand-orange transition-colors font-semibold text-sm tracking-wide">About</a>
+                    <a href="#contact" class="text-brand-cream hover:text-brand-orange transition-colors font-semibold text-sm tracking-wide">Contact</a>
+                    <a href="tel:03009189185" class="bg-brand-orange text-brand-dark hover:bg-brand-cream transition-all duration-300 font-bold px-5 py-2.5 rounded shadow-[0_0_15px_rgba(243,139,43,0.3)] flex items-center gap-2">
+                        <i data-lucide="phone" class="w-4 h-4"></i> 0300 9189185
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-10 lg:pt-40 lg:pb-0 overflow-hidden bg-brand-dark border-b border-brand-orange/10">
+        <!-- Logo Illustration Background -->
+        <div class="absolute bottom-0 left-0 w-full h-[70%] lg:h-[85%] z-0 flex items-end justify-center pointer-events-none opacity-40 lg:opacity-80">
+            <svg viewBox="0 0 1200 450" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax slice" class="w-full h-full max-w-7xl mx-auto drop-shadow-2xl">
+                <!-- Sun Rays -->
+                <g stroke="#f38b2b" stroke-width="2" opacity="0.4">
+                    <line x1="600" y1="200" x2="600" y2="40" stroke-dasharray="6 8"/>
+                    <line x1="600" y1="200" x2="480" y2="60" stroke-dasharray="6 8"/>
+                    <line x1="600" y1="200" x2="720" y2="60" stroke-dasharray="6 8"/>
+                    <line x1="600" y1="200" x2="380" y2="120" stroke-dasharray="6 8"/>
+                    <line x1="600" y1="200" x2="820" y2="120" stroke-dasharray="6 8"/>
+                </g>
+                <!-- Sun -->
+                <circle cx="600" cy="280" r="170" fill="#f38b2b" />
+                
+                <!-- Buildings matching logo style -->
+                <g stroke="#f2e8c9" stroke-width="2.5" fill="#1e2428" stroke-linejoin="round">
+                    <!-- Base horizontal line -->
+                    <line x1="200" y1="420" x2="1000" y2="420" stroke="#f38b2b" stroke-width="4"/>
+                    
+                    <!-- Center Tower -->
+                    <rect x="550" y="150" width="100" height="270"/>
+                    <rect x="565" y="100" width="70" height="50"/>
+                    <path d="M580,100 Q600,60 620,100 Z" fill="#1e2428"/>
+                    <circle cx="600" cy="55" r="6" fill="#f2e8c9"/>
+                    <!-- Center Tower Windows -->
+                    <rect x="565" y="170" width="15" height="25" fill="#f38b2b" stroke="none"/>
+                    <rect x="592.5" y="170" width="15" height="25" fill="#f38b2b" stroke="none"/>
+                    <rect x="620" y="170" width="15" height="25" fill="#f38b2b" stroke="none"/>
+                    <rect x="565" y="220" width="15" height="25" fill="#f38b2b" stroke="none"/>
+                    <rect x="592.5" y="220" width="15" height="25" fill="#f38b2b" stroke="none"/>
+                    <rect x="620" y="220" width="15" height="25" fill="#f38b2b" stroke="none"/>
+                    <rect x="565" y="270" width="15" height="25" fill="#f38b2b" stroke="none"/>
+                    <rect x="592.5" y="270" width="15" height="25" fill="#f38b2b" stroke="none"/>
+                    <rect x="620" y="270" width="15" height="25" fill="#f38b2b" stroke="none"/>
+                    <rect x="565" y="320" width="15" height="25" fill="#f38b2b" stroke="none"/>
+                    <rect x="592.5" y="320" width="15" height="25" fill="#f38b2b" stroke="none"/>
+                    <rect x="620" y="320" width="15" height="25" fill="#f38b2b" stroke="none"/>
+                    <!-- Arches at bottom -->
+                    <path d="M565,420 L565,390 A10,10 0 0,1 585,390 L585,420 M590,420 L590,390 A10,10 0 0,1 610,390 L610,420 M615,420 L615,390 A10,10 0 0,1 635,390 L635,420" fill="none"/>
+
+                    <!-- Left Building 1 -->
+                    <polygon points="480,240 550,200 550,420 480,420" fill="#1e2428"/>
+                    <!-- Left Building 2 -->
+                    <rect x="380" y="280" width="100" height="140"/>
+                    <path d="M380,310 L480,310 M380,340 L480,340 M380,370 L480,370 M410,280 L410,420 M440,280 L440,420" stroke="#f2e8c9" stroke-width="1.5"/>
+
+                    <!-- Right Building 1 -->
+                    <polygon points="650,220 720,180 720,420 650,420" fill="#1e2428"/>
+                    <!-- Right Building 2 -->
+                    <rect x="720" y="260" width="90" height="160"/>
+                    <path d="M720,290 L810,290 M720,320 L810,320 M720,350 L810,350 M720,380 L810,380 M750,260 L750,420 M780,260 L780,420" stroke="#f2e8c9" stroke-width="1.5"/>
+                    <polygon points="720,260 765,230 810,260" fill="#1e2428"/>
+                </g>
+            </svg>
+        </div>
+
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col items-center justify-center text-center min-h-[500px] lg:min-h-[600px] pb-16 pt-10">
+                <div class="inline-flex items-center gap-3 border border-brand-orange/40 bg-[#151a1d]/80 px-6 py-2.5 rounded-full mb-8 backdrop-blur-md shadow-lg">
+                    <span class="w-2.5 h-2.5 rounded-full bg-brand-orange animate-pulse"></span>
+                    <p class="text-brand-orange font-bold text-xs tracking-[0.15em] uppercase">Premier Real Estate Agency</p>
+                </div>
+                <h1 class="font-heading font-black text-4xl sm:text-6xl lg:text-[5rem] text-brand-cream leading-[1.1] mb-6 uppercase tracking-tight">
+                    Building Your <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-orange to-[#ffb067] drop-shadow-sm">Legacy</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-brand-cream/80 mb-10 max-w-2xl mx-auto font-body leading-relaxed">
+                    Backed by a professional team of developers and consultants. We deliver premium properties, secure investments, and world-class construction in Central Park Lahore.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-5 justify-center w-full sm:w-auto">
+                    <a href="#contact" class="bg-brand-orange text-brand-dark font-black text-sm tracking-widest uppercase px-8 py-4 rounded hover:bg-brand-cream hover:shadow-[0_0_30px_rgba(243,139,43,0.4)] transition-all duration-300 flex items-center justify-center gap-3">
+                        Consult Our Experts <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#services" class="glass-panel text-brand-cream font-bold text-sm tracking-widest uppercase px-8 py-4 rounded hover:bg-brand-orange/20 transition-all duration-300 flex items-center justify-center">
+                        View Portfolio
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Professional Stats / Trust Bar -->
+    <section class="relative z-30 -mt-12 sm:-mt-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="glass-panel rounded-2xl shadow-2xl p-8 lg:p-10 border border-brand-orange/20">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-4 divide-x-0 md:divide-x divide-brand-orange/20 text-center">
+                <div class="flex flex-col items-center justify-center px-4">
+                    <span class="text-4xl lg:text-5xl font-heading font-black text-brand-orange mb-2">15+</span>
+                    <span class="text-xs font-bold text-brand-cream/60 uppercase tracking-widest">Years Experience</span>
+                </div>
+                <div class="flex flex-col items-center justify-center px-4">
+                    <span class="text-4xl lg:text-5xl font-heading font-black text-brand-orange mb-2">500+</span>
+                    <span class="text-xs font-bold text-brand-cream/60 uppercase tracking-widest">Properties Sold</span>
+                </div>
+                <div class="flex flex-col items-center justify-center px-4">
+                    <span class="text-4xl lg:text-5xl font-heading font-black text-brand-orange mb-2">100%</span>
+                    <span class="text-xs font-bold text-brand-cream/60 uppercase tracking-widest">Client Trust</span>
+                </div>
+                <div class="flex flex-col items-center justify-center px-4">
+                    <span class="text-4xl lg:text-5xl font-heading font-black text-brand-orange mb-2">24/7</span>
+                    <span class="text-xs font-bold text-brand-cream/60 uppercase tracking-widest">Expert Support</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="pt-32 pb-24 bg-brand-darker relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <p class="text-brand-orange font-bold text-sm tracking-widest uppercase mb-3">Professional Services</p>
+                <h2 class="font-heading font-black text-4xl sm:text-5xl text-brand-cream uppercase tracking-tight mb-6">Our Core Expertise</h2>
+                <div class="w-24 h-1.5 bg-gradient-to-r from-brand-orange to-transparent mx-auto rounded-full"></div>
+                <p class="mt-6 text-brand-cream/70 max-w-2xl mx-auto text-lg leading-relaxed">Delivering unparalleled real estate solutions through our dedicated team of market analysts, brokers, and master builders.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+                <!-- Service 1 -->
+                <div class="glass-panel p-10 rounded-2xl hover:-translate-y-2 transition-transform duration-500 group relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-brand-orange/20 group-hover:bg-brand-orange transition-colors duration-500"></div>
+                    <div class="w-16 h-16 bg-brand-orange/10 rounded-xl flex items-center justify-center mb-8 border border-brand-orange/20 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="building" class="w-8 h-8 text-brand-orange"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-2xl text-brand-cream mb-4 uppercase tracking-wide">Property Portfolio</h3>
+                    <p class="text-brand-cream/60 leading-relaxed font-medium">Access exclusive listings in Central Park Lahore. Our team handles negotiations, ensuring you acquire premium assets at optimum market value.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass-panel p-10 rounded-2xl hover:-translate-y-2 transition-transform duration-500 group relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-brand-orange/20 group-hover:bg-brand-orange transition-colors duration-500"></div>
+                    <div class="w-16 h-16 bg-brand-orange/10 rounded-xl flex items-center justify-center mb-8 border border-brand-orange/20 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="bar-chart-3" class="w-8 h-8 text-brand-orange"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-2xl text-brand-cream mb-4 uppercase tracking-wide">Investment Strategy</h3>
+                    <p class="text-brand-cream/60 leading-relaxed font-medium">Data-driven investment consulting. We analyze market trends to build high-yield portfolios that secure your financial future.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass-panel p-10 rounded-2xl hover:-translate-y-2 transition-transform duration-500 group relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-brand-orange/20 group-hover:bg-brand-orange transition-colors duration-500"></div>
+                    <div class="w-16 h-16 bg-brand-orange/10 rounded-xl flex items-center justify-center mb-8 border border-brand-orange/20 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="hard-hat" class="w-8 h-8 text-brand-orange"></i>
+                    </div>
+                    <h3 class="font-heading font-black text-2xl text-brand-cream mb-4 uppercase tracking-wide">Master Construction</h3>
+                    <p class="text-brand-cream/60 leading-relaxed font-medium">From blueprint to reality. Our professional builders construct state-of-the-art homes with an unwavering commitment to quality and design.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet The Owner Section -->
+    <section id="about" class="py-24 bg-brand-dark relative border-t border-brand-orange/10 overflow-hidden">
+        <!-- Abstract Background element -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-brand-orange/5 blur-[120px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/4"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <!-- Owner Image -->
+                <div class="relative flex justify-center order-2 lg:order-1">
+                    <!-- Decorative backdrops -->
+                    <div class="absolute inset-0 bg-gradient-to-tr from-brand-orange/10 to-brand-orange/5 rounded-3xl transform rotate-6 scale-105 border border-brand-orange/20 transition-transform duration-700 hover:rotate-3"></div>
+                    <div class="absolute inset-0 bg-brand-darker rounded-3xl transform -rotate-2 scale-105 border border-brand-orange/10"></div>
+                    
+                    <!-- Image Container -->
+                    <div class="relative w-full max-w-sm pt-8 px-8 bg-gradient-to-b from-brand-darker to-transparent rounded-3xl overflow-hidden flex justify-center items-end h-[450px]">
+                        <img src="alibhi.png" alt="Ghulam Ali - Owner" class="relative z-10 w-full object-contain fade-bottom object-bottom drop-shadow-2xl max-h-[110%]">
+                    </div>
+                </div>
+                
+                <!-- Owner Content -->
+                <div class="text-center lg:text-left order-1 lg:order-2">
+                    <p class="text-brand-orange font-bold text-sm tracking-widest uppercase mb-3 flex items-center justify-center lg:justify-start gap-2">
+                        <i data-lucide="user-circle" class="w-5 h-5"></i> Meet Our Founder
+                    </p>
+                    <h2 class="font-heading font-black text-4xl sm:text-5xl lg:text-6xl text-brand-cream uppercase tracking-tight mb-6">Ghulam Ali</h2>
+                    <div class="w-24 h-1.5 bg-gradient-to-r from-brand-orange to-transparent mx-auto lg:mx-0 rounded-full mb-8"></div>
+                    
+                    <p class="text-lg text-brand-cream/80 mb-6 font-body leading-relaxed">
+                        With over 15 years of unmatched expertise in the real estate sector, Ghulam Ali has established <span class="text-brand-orange font-semibold">Ali Bhai Real Estate and Builders</span> as a pillar of trust and excellence in Central Park Lahore.
+                    </p>
+                    <p class="text-lg text-brand-cream/80 mb-10 font-body leading-relaxed">
+                        His vision is built on complete transparency, client satisfaction, and delivering premium properties that serve as beautiful homes and highly profitable investments. Under his guidance, our team ensures professional integrity at every step of your real estate journey.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row items-center gap-8 justify-center lg:justify-start bg-brand-darker/50 p-6 rounded-2xl border border-brand-orange/10 inline-flex">
+                        <div class="flex items-center gap-4">
+                            <div class="w-14 h-14 rounded-full bg-brand-orange/10 flex items-center justify-center border border-brand-orange/30 shadow-[0_0_15px_rgba(243,139,43,0.15)]">
+                                <i data-lucide="phone-call" class="w-6 h-6 text-brand-orange"></i>
+                            </div>
+                            <div class="text-left">
+                                <span class="block text-xs text-brand-cream/60 uppercase tracking-wider font-bold mb-1">Direct Contact</span>
+                                <a href="tel:03009189185" class="text-brand-cream font-heading font-black text-xl hover:text-brand-orange transition-colors">0300 9189185</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Banner -->
+    <section class="bg-brand-orange py-16 relative overflow-hidden">
+        <!-- Logo motif faint background -->
+        <i data-lucide="sun" class="absolute -right-20 -top-20 w-96 h-96 text-brand-cream opacity-20 animate-pulse"></i>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <h2 class="font-heading font-black text-3xl sm:text-4xl text-brand-dark mb-6">Looking to buy or sell in Central Park?</h2>
+            <p class="text-brand-dark/80 font-bold text-lg mb-8 max-w-2xl mx-auto">Let's discuss your requirements. We ensure transparent deals and absolute client satisfaction.</p>
+            <a href="tel:03009189185" class="inline-flex items-center gap-3 bg-brand-dark text-brand-orange font-bold text-xl px-10 py-5 rounded-md hover:bg-brand-cream hover:text-brand-dark transition-all duration-300 shadow-xl">
+                <i data-lucide="phone-call" class="w-6 h-6"></i> Call 0300 9189185
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact & Footer -->
+    <footer id="contact" class="bg-brand-dark pt-20 pb-10 border-t border-brand-orange/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                
+                <!-- Brand Info -->
+                <div class="lg:col-span-2">
+                    <div class="flex items-center gap-2 mb-6">
+                        <i data-lucide="building-2" class="text-brand-orange w-8 h-8"></i>
+                        <div class="flex flex-col">
+                            <span class="font-heading font-black text-2xl tracking-widest text-brand-cream leading-none uppercase">Ali Bhai</span>
+                            <span class="font-heading font-semibold text-[0.65rem] tracking-[0.2em] text-brand-orange uppercase mt-1">Real Estate & Builders</span>
+                        </div>
+                    </div>
+                    <p class="text-gray text-sm leading-relaxed max-w-md mb-6">
+                        Dedicated to providing the most reliable and profitable real estate services in Lahore. Honesty, integrity, and client success are the foundations of our business.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded bg-brand-darker border border-brand-orange/20 flex items-center justify-center text-brand-cream hover:bg-brand-orange hover:text-brand-dark transition-all">
+                            <i data-lucide="facebook" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded bg-brand-darker border border-brand-orange/20 flex items-center justify-center text-brand-cream hover:bg-brand-orange hover:text-brand-dark transition-all">
+                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                        </a>
+                        <a href="https://wa.me/923009189185" class="w-10 h-10 rounded bg-brand-darker border border-brand-orange/20 flex items-center justify-center text-brand-cream hover:bg-[#25D366] hover:text-white hover:border-[#25D366] transition-all">
+                            <i data-lucide="message-circle" class="w-5 h-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-heading font-bold text-brand-cream text-lg mb-6 uppercase tracking-wider">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#" class="text-gray hover:text-brand-orange transition-colors text-sm">Home</a></li>
+                        <li><a href="#services" class="text-gray hover:text-brand-orange transition-colors text-sm">Our Services</a></li>
+                        <li><a href="#about" class="text-gray hover:text-brand-orange transition-colors text-sm">Meet The Owner</a></li>
+                        <li><a href="#contact" class="text-gray hover:text-brand-orange transition-colors text-sm">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Details -->
+                <div>
+                    <h4 class="font-heading font-bold text-brand-cream text-lg mb-6 uppercase tracking-wider">Contact Info</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="user" class="w-5 h-5 text-brand-orange shrink-0 mt-0.5"></i>
+                            <div>
+                                <span class="block text-brand-cream font-semibold text-sm">Owner</span>
+                                <span class="text-gray text-sm">Ghulam Ali</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="phone" class="w-5 h-5 text-brand-orange shrink-0 mt-0.5"></i>
+                            <div>
+                                <span class="block text-brand-cream font-semibold text-sm">Phone</span>
+                                <a href="tel:03009189185" class="text-gray text-sm hover:text-brand-orange transition-colors">0300 9189185</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="mail" class="w-5 h-5 text-brand-orange shrink-0 mt-0.5"></i>
+                            <div>
+                                <span class="block text-brand-cream font-semibold text-sm">Email</span>
+                                <a href="mailto:alibhairealestatebuilders786@gmail.com" class="text-gray text-sm hover:text-brand-orange transition-colors break-all">alibhairealestatebuilders786@gmail.com</a>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-5 h-5 text-brand-orange shrink-0 mt-0.5"></i>
+                            <div>
+                                <span class="block text-brand-cream font-semibold text-sm">Location</span>
+                                <span class="text-gray text-sm">Central Park, Lahore, Pakistan</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-brand-orange/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray/60 text-sm">
+                    &copy; <span id="year"></span> Ali Bhai Real Estate and Builders. All rights reserved.
+                </p>
+                <p class="text-gray/60 text-sm flex items-center gap-1">
+                    Built with <i data-lucide="heart" class="w-4 h-4 text-brand-orange"></i> for Central Park
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Scripts -->
+    <script>
+        // Initialize Icons
+        lucide.createIcons();
+
+        // Set Copyright Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Navbar blur effect on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 10) {
+                nav.classList.add('shadow-lg', 'shadow-brand-darker/50');
+            } else {
+                nav.classList.remove('shadow-lg', 'shadow-brand-darker/50');
+            }
+        });
+    </script>
+</body>
+</html>

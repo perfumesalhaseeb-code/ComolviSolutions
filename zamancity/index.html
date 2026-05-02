@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zaman Associates | Central Park Housing Scheme</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        zablue: {
+                            DEFAULT: '#05117B', // Primary deep blue
+                            dark: '#030A4A',
+                            light: '#1A29A6'
+                        },
+                        zayellow: {
+                            DEFAULT: '#FFD100', // Primary bright yellow
+                            hover: '#E5BC00'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Styles for Polish */
+        .glass-nav {
+            background: rgba(5, 17, 123, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .hero-overlay {
+            background: linear-gradient(to right, rgba(5, 17, 123, 0.9) 0%, rgba(5, 17, 123, 0.6) 100%);
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #05117B; 
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #030A4A; 
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-gray-800 antialiased selection:bg-zayellow selection:text-zablue">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <div class="flex items-center flex-shrink-0 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="flex flex-col items-center">
+                        <svg width="60" height="40" viewBox="0 0 100 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Roof -->
+                            <path d="M10 40 L50 15 L90 40 L85 45 L50 23 L15 45 Z" fill="#FFD100"/>
+                            <path d="M70 27 V15 H80 V33 Z" fill="#FFD100"/>
+                            <rect x="45" y="30" width="4" height="4" fill="#FFD100"/>
+                            <rect x="51" y="30" width="4" height="4" fill="#FFD100"/>
+                            <rect x="45" y="36" width="4" height="4" fill="#FFD100"/>
+                            <rect x="51" y="36" width="4" height="4" fill="#FFD100"/>
+                            <!-- Letters ZA -->
+                            <path d="M15 65 L40 65 L20 85 L45 85 L45 95 L10 95 L30 75 L15 75 Z" fill="#FFD100" transform="translate(0,-15)"/>
+                            <path d="M55 95 L70 65 L85 95 L75 95 L72 88 L68 88 L65 95 Z M70 82 L71 85 L69 85 Z" fill="#FFD100" transform="translate(0,-15)"/>
+                        </svg>
+                        <span class="text-zayellow font-heading font-bold text-xs tracking-wider uppercase mt-1">Zaman Associates</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-white hover:text-zayellow font-medium transition-colors">Home</a>
+                    <a href="#listings" class="text-white hover:text-zayellow font-medium transition-colors">Featured Plots</a>
+                    <a href="#about" class="text-white hover:text-zayellow font-medium transition-colors">About Us</a>
+                    <a href="#contact" class="text-white hover:text-zayellow font-medium transition-colors">Contact</a>
+                    <a href="tel:03009189185" class="bg-zayellow text-zablue font-bold px-6 py-2 rounded-full hover:bg-yellow-400 transition-colors shadow-lg flex items-center gap-2">
+                        <i class="fa-solid fa-phone"></i> 0300 9189185
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-zayellow focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-zablue-dark absolute w-full left-0 top-full shadow-xl">
+            <div class="px-4 pt-2 pb-6 space-y-1 text-center border-t border-zablue-light">
+                <a href="#home" class="block px-3 py-3 text-white hover:bg-zablue hover:text-zayellow font-medium rounded-md">Home</a>
+                <a href="#listings" class="block px-3 py-3 text-white hover:bg-zablue hover:text-zayellow font-medium rounded-md">Featured Plots</a>
+                <a href="#about" class="block px-3 py-3 text-white hover:bg-zablue hover:text-zayellow font-medium rounded-md">About Us</a>
+                <a href="#contact" class="block px-3 py-3 text-white hover:bg-zablue hover:text-zayellow font-medium rounded-md">Contact</a>
+                <a href="tel:03009189185" class="block mt-4 bg-zayellow text-zablue font-bold px-3 py-3 rounded-md mx-4">Call Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center pt-20">
+        <!-- Background Image (Aerial view representation) -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" alt="Central Park Lahore Aerial" class="w-full h-full object-cover" />
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <div class="inline-block bg-white/20 backdrop-blur-sm border border-white/30 text-white px-4 py-1 rounded-full text-sm font-semibold mb-6 uppercase tracking-wider">
+                <i class="fa-solid fa-check-circle text-zayellow mr-2"></i> LDA Approved Housing Scheme
+            </div>
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-heading font-extrabold text-white leading-tight mb-6 drop-shadow-lg">
+                Secure Your Future in <br>
+                <span class="text-zayellow">Central Park Lahore</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl mx-auto font-light">
+                Premium Residential and Commercial plots available. Experience luxury living with world-class amenities at walking distance.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#listings" class="bg-zayellow text-zablue px-8 py-4 rounded-md font-bold text-lg hover:bg-yellow-400 transition-all shadow-xl hover:shadow-zayellow/20">
+                    View Featured Plots
+                </a>
+                <a href="#contact" class="bg-transparent border-2 border-zayellow text-zayellow px-8 py-4 rounded-md font-bold text-lg hover:bg-zayellow hover:text-zablue transition-all shadow-xl">
+                    Contact Us
+                </a>
+            </div>
+            <div class="mt-12 text-white/80 font-medium text-sm md:text-base flex justify-center gap-6">
+                <span><i class="fa-solid fa-house-circle-check text-zayellow mr-2"></i>BUY</span>
+                <span><i class="fa-solid fa-handshake text-zayellow mr-2"></i>SELL</span>
+                <span><i class="fa-solid fa-key text-zayellow mr-2"></i>RENT</span>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-10">
+            <a href="#listings" class="text-white/70 hover:text-zayellow transition-colors">
+                <i class="fa-solid fa-chevron-down text-3xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Hot Listings Section -->
+    <section id="listings" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-zablue font-bold text-sm tracking-widest uppercase mb-2">Prime Opportunities</h2>
+                <h3 class="text-3xl md:text-4xl font-heading font-extrabold text-gray-900">Featured Plots For Sale</h3>
+                <div class="w-24 h-1 bg-zayellow mx-auto mt-4 rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <!-- Listing 1: 10 Marla -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 card-hover group flex flex-col">
+                    <div class="relative h-64 bg-zablue overflow-hidden">
+                        <!-- Abstract pattern background to replace actual aerial photo -->
+                        <div class="absolute inset-0 opacity-40" style="background-image: radial-gradient(#FFD100 1px, transparent 1px); background-size: 20px 20px;"></div>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-white z-10">
+                            <span class="font-heading text-7xl font-black drop-shadow-md">10<span class="text-3xl">Marla</span></span>
+                            <span class="text-xl font-medium mt-2 bg-zayellow text-zablue px-4 py-1 rounded-sm uppercase tracking-wider">Residential</span>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-white text-zablue font-bold px-3 py-1 rounded-full text-sm shadow-md">
+                            D Block
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-2xl font-bold text-gray-900 mb-1">D Block Plot</h4>
+                                <p class="text-gray-500 text-sm"><i class="fa-solid fa-location-dot text-zablue mr-1"></i> Central Park, Lahore</p>
+                            </div>
+                            <div class="bg-zablue text-zayellow font-bold text-xl px-3 py-2 rounded shadow-sm">
+                                95 Lacs
+                            </div>
+                        </div>
+                        
+                        <ul class="space-y-3 mb-6 flex-grow border-t border-gray-100 pt-4">
+                            <li class="flex items-center text-gray-600 text-sm">
+                                <i class="fa-solid fa-vector-square w-6 text-zablue"></i> 
+                                <span><strong>Dimension:</strong> 35x65</span>
+                            </li>
+                            <li class="flex items-center text-gray-600 text-sm">
+                                <i class="fa-solid fa-file-invoice-dollar w-6 text-zablue"></i> 
+                                <span>All Dues Paid</span>
+                            </li>
+                            <li class="flex items-start text-gray-600 text-sm">
+                                <i class="fa-solid fa-person-walking w-6 text-zablue mt-1"></i> 
+                                <span>Walking distance from Jamia Masajid, Community Park & Commercial Hub</span>
+                            </li>
+                        </ul>
+                        <button onclick="openModal('10 Marla Residential Plot in D Block')" class="w-full bg-gray-100 text-zablue font-semibold py-3 rounded-md border border-gray-200 hover:bg-zablue hover:text-white transition-colors duration-300">
+                            Inquire Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Listing 2: 5 Marla -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 card-hover group flex flex-col">
+                    <div class="relative h-64 bg-zablue overflow-hidden">
+                        <div class="absolute inset-0 opacity-40" style="background-image: repeating-linear-gradient(45deg, #FFD100 25%, transparent 25%, transparent 75%, #FFD100 75%, #FFD100), repeating-linear-gradient(45deg, #FFD100 25%, #05117B 25%, #05117B 75%, #FFD100 75%, #FFD100); background-position: 0 0, 10px 10px; background-size: 20px 20px;"></div>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-white z-10">
+                            <span class="font-heading text-7xl font-black drop-shadow-md">5<span class="text-3xl">Marla</span></span>
+                            <span class="text-xl font-medium mt-2 bg-zayellow text-zablue px-4 py-1 rounded-sm uppercase tracking-wider">Residential</span>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-white text-zablue font-bold px-3 py-1 rounded-full text-sm shadow-md">
+                            B Block
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-2xl font-bold text-gray-900 mb-1">B Block Plot</h4>
+                                <p class="text-gray-500 text-sm"><i class="fa-solid fa-location-dot text-zablue mr-1"></i> Central Park, Lahore</p>
+                            </div>
+                            <div class="bg-zablue text-zayellow font-bold text-xl px-3 py-2 rounded shadow-sm">
+                                70 Lacs
+                            </div>
+                        </div>
+                        
+                        <ul class="space-y-3 mb-6 flex-grow border-t border-gray-100 pt-4">
+                            <li class="flex items-center text-gray-600 text-sm">
+                                <i class="fa-solid fa-vector-square w-6 text-zablue"></i> 
+                                <span><strong>Dimension:</strong> 25x45</span>
+                            </li>
+                            <li class="flex items-center text-gray-600 text-sm">
+                                <i class="fa-solid fa-file-invoice-dollar w-6 text-zablue"></i> 
+                                <span>All Dues Paid</span>
+                            </li>
+                            <li class="flex items-start text-gray-600 text-sm">
+                                <i class="fa-solid fa-person-walking w-6 text-zablue mt-1"></i> 
+                                <span>Walking distance from Jamia Masajid, Community Park & Commercial Hub</span>
+                            </li>
+                        </ul>
+                        <button onclick="openModal('5 Marla Residential Plot in B Block')" class="w-full bg-gray-100 text-zablue font-semibold py-3 rounded-md border border-gray-200 hover:bg-zablue hover:text-white transition-colors duration-300">
+                            Inquire Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Listing 3: Commercial Pair -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-100 card-hover group flex flex-col relative">
+                    <!-- Featured Badge -->
+                    <div class="absolute top-0 left-0 bg-zayellow text-zablue text-xs font-bold px-3 py-1 rounded-br-lg z-20 shadow-md">
+                        Premium Investment
+                    </div>
+                    <div class="relative h-64 bg-zablue overflow-hidden">
+                        <div class="absolute inset-0 opacity-40 bg-gradient-to-br from-zablue to-blue-900"></div>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-white z-10 text-center px-4">
+                            <span class="font-heading text-6xl font-black drop-shadow-md">8.67<span class="text-2xl">Marla</span></span>
+                            <span class="text-lg font-medium mt-2 bg-zayellow text-zablue px-4 py-1 rounded-sm uppercase tracking-wider">Commercial Pair</span>
+                        </div>
+                        <div class="absolute top-4 right-4 bg-white text-zablue font-bold px-3 py-1 rounded-full text-sm shadow-md">
+                            A Block
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-xl font-bold text-gray-900 mb-1 leading-tight">A Block Commercial</h4>
+                                <p class="text-gray-500 text-sm"><i class="fa-solid fa-location-dot text-zablue mr-1"></i> Central Park, Lahore</p>
+                            </div>
+                            <div class="bg-zablue text-zayellow font-bold text-xl px-3 py-2 rounded shadow-sm">
+                                550 Lacs
+                            </div>
+                        </div>
+                        
+                        <ul class="space-y-3 mb-6 flex-grow border-t border-gray-100 pt-4">
+                            <li class="flex items-start text-gray-600 text-sm">
+                                <i class="fa-solid fa-map-location-dot w-6 text-zablue mt-1"></i> 
+                                <span>Just beside Main Ferozpur Road</span>
+                            </li>
+                            <li class="flex items-start text-gray-600 text-sm">
+                                <i class="fa-solid fa-person-walking w-6 text-zablue mt-1"></i> 
+                                <span>Walking distance from Jamia Masjid & Hospital</span>
+                            </li>
+                            <li class="flex items-start text-gray-600 text-sm">
+                                <i class="fa-solid fa-chart-line w-6 text-zablue mt-1"></i> 
+                                <span class="font-semibold text-zablue">High ROI Potential</span>
+                            </li>
+                        </ul>
+                        <button onclick="openModal('8.67 Marla Commercial Pair Plots in A Block')" class="w-full bg-zayellow text-zablue font-bold py-3 rounded-md shadow-md hover:bg-yellow-400 transition-colors duration-300">
+                            Inquire Now
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                
+                <div class="lg:w-1/2 relative">
+                    <div class="absolute -inset-4 bg-zayellow rounded-xl transform rotate-3 opacity-20"></div>
+                    <div class="bg-zablue rounded-xl p-10 text-white relative shadow-2xl overflow-hidden">
+                        <div class="absolute top-0 right-0 opacity-10">
+                            <i class="fa-solid fa-city text-9xl transform translate-x-4 -translate-y-4"></i>
+                        </div>
+                        <h3 class="text-3xl font-heading font-bold mb-6">Why Choose Central Park?</h3>
+                        <ul class="space-y-4 font-light">
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check-circle text-zayellow mt-1 mr-3"></i>
+                                <span><strong>LDA Approved:</strong> Secure investment with complete legal backing.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check-circle text-zayellow mt-1 mr-3"></i>
+                                <span><strong>Prime Location:</strong> Connected to Main Ferozpur Road for easy city access.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check-circle text-zayellow mt-1 mr-3"></i>
+                                <span><strong>Modern Amenities:</strong> Hospitals, Jamia Masajid, Community Parks, and Commercial Hubs.</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa-solid fa-check-circle text-zayellow mt-1 mr-3"></i>
+                                <span><strong>Gated Community:</strong> 24/7 security ensuring peace of mind for your family.</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="lg:w-1/2">
+                    <h2 class="text-zablue font-bold text-sm tracking-widest uppercase mb-2">About Zaman Associates</h2>
+                    <h3 class="text-3xl md:text-4xl font-heading font-extrabold text-gray-900 mb-6">Your Trusted Real Estate Partners</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        At Zaman Associates, we specialize in offering the best residential and commercial opportunities in Central Park Housing Scheme, Lahore. Whether you are looking to build your dream home or make a lucrative commercial investment, our expert team is here to guide you every step of the way.
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        We pride ourselves on transparency, integrity, and securing properties where <strong>All Dues Are Paid</strong>, ensuring a hassle-free transfer for our clients.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="border-l-4 border-zayellow pl-4">
+                            <h4 class="text-2xl font-bold text-zablue">10+</h4>
+                            <p class="text-sm text-gray-500 uppercase tracking-wide">Years Experience</p>
+                        </div>
+                        <div class="border-l-4 border-zayellow pl-4">
+                            <h4 class="text-2xl font-bold text-zablue">100%</h4>
+                            <p class="text-sm text-gray-500 uppercase tracking-wide">Client Satisfaction</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-16 bg-zablue text-center px-4 relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div class="relative z-10 max-w-3xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-heading font-bold text-white mb-6">Ready to make your move?</h2>
+            <p class="text-gray-300 mb-8 text-lg">Contact our experts today to schedule a site visit or discuss your investment goals.</p>
+            <a href="tel:03009189185" class="inline-block bg-zayellow text-zablue font-bold text-xl px-10 py-4 rounded-full hover:bg-white hover:text-zablue transition-colors duration-300 shadow-[0_0_20px_rgba(255,209,0,0.4)]">
+                <i class="fa-solid fa-phone mr-2"></i> Call 0300 9189185
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-zablue font-bold text-sm tracking-widest uppercase mb-2">Get in Touch</h2>
+                <h3 class="text-3xl md:text-4xl font-heading font-extrabold text-gray-900">Contact Zaman Associates</h3>
+                <div class="w-24 h-1 bg-zayellow mx-auto mt-4 rounded"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-10 bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+                
+                <!-- Contact Info -->
+                <div class="lg:col-span-2 bg-zablue text-white p-10 flex flex-col justify-between relative overflow-hidden">
+                    <div class="absolute -bottom-20 -right-20 w-64 h-64 bg-zablue-light rounded-full opacity-50 blur-3xl"></div>
+                    <div class="relative z-10">
+                        <h4 class="text-2xl font-bold mb-6 text-zayellow">Contact Information</h4>
+                        <p class="text-gray-300 mb-10 font-light leading-relaxed">Fill up the form and our team will get back to you within 24 hours.</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-phone text-zayellow mt-1 text-xl w-8"></i>
+                                <div>
+                                    <p class="font-semibold">Phone numbers</p>
+                                    <a href="tel:03009189185" class="block text-gray-300 hover:text-white transition">0300 9189185</a>
+                                    <a href="tel:03274324528" class="block text-gray-300 hover:text-white transition">0327 4324528</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <i class="fa-solid fa-location-dot text-zayellow mt-1 text-xl w-8"></i>
+                                <div>
+                                    <p class="font-semibold">Office Address</p>
+                                    <p class="text-gray-300 leading-relaxed mt-1">
+                                        205 A & 109 B Commercial,<br>
+                                        Central Park Housing Scheme,<br>
+                                        Lahore
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center pt-8 space-x-4">
+                                <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-zayellow hover:text-zablue transition duration-300"><i class="fa-brands fa-facebook-f"></i></a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-zayellow hover:text-zablue transition duration-300"><i class="fa-brands fa-instagram"></i></a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-zayellow hover:text-zablue transition duration-300"><i class="fa-brands fa-whatsapp"></i></a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-zayellow hover:text-zablue transition duration-300"><i class="fa-brands fa-linkedin-in"></i></a>
+                                <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-zayellow hover:text-zablue transition duration-300"><i class="fa-brands fa-tiktok"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-3 p-10">
+                    <form id="contactForm" class="space-y-6" onsubmit="handleFormSubmit(event)">
+                        <input type="hidden" id="interestedProperty" name="interestedProperty" value="">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-zablue focus:border-transparent transition" placeholder="John">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                                <input type="text" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-zablue focus:border-transparent transition" placeholder="Doe">
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                            <input type="email" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-zablue focus:border-transparent transition" placeholder="john@example.com">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                            <input type="tel" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-zablue focus:border-transparent transition" placeholder="03XX XXXXXXX">
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea id="messageBox" rows="4" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-zablue focus:border-transparent transition" placeholder="I am interested in..."></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-zablue text-white font-bold py-4 rounded-md hover:bg-zablue-dark transition-colors duration-300 shadow-lg hover:shadow-xl flex justify-center items-center gap-2">
+                            <span>Send Message</span> <i class="fa-solid fa-paper-plane text-zayellow"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-zablue-dark pt-16 pb-8 border-t border-zablue text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                
+                <div class="col-span-1">
+                    <div class="flex items-center gap-2 mb-6">
+                        <svg width="45" height="30" viewBox="0 0 100 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 40 L50 15 L90 40 L85 45 L50 23 L15 45 Z" fill="#FFD100"/>
+                            <path d="M70 27 V15 H80 V33 Z" fill="#FFD100"/>
+                            <rect x="45" y="30" width="4" height="4" fill="#FFD100"/>
+                            <rect x="51" y="30" width="4" height="4" fill="#FFD100"/>
+                            <rect x="45" y="36" width="4" height="4" fill="#FFD100"/>
+                            <rect x="51" y="36" width="4" height="4" fill="#FFD100"/>
+                            <path d="M15 65 L40 65 L20 85 L45 85 L45 95 L10 95 L30 75 L15 75 Z" fill="#FFD100" transform="translate(0,-15)"/>
+                            <path d="M55 95 L70 65 L85 95 L75 95 L72 88 L68 88 L65 95 Z M70 82 L71 85 L69 85 Z" fill="#FFD100" transform="translate(0,-15)"/>
+                        </svg>
+                        <span class="text-zayellow font-heading font-bold tracking-wider uppercase text-lg">Zaman Associates</span>
+                    </div>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Your reliable partner for premium real estate in Central Park Housing Scheme, Lahore. We make buying, selling, and renting properties effortless and secure.
+                    </p>
+                    <div class="flex items-center gap-2 bg-white/5 inline-block px-3 py-1 rounded border border-white/10">
+                        <i class="fa-solid fa-shield-halved text-zayellow"></i>
+                        <span class="text-xs font-semibold tracking-wider">LDA APPROVED</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-6 border-b border-white/10 pb-2 inline-block">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-zayellow transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-zayellow"></i> Home</a></li>
+                        <li><a href="#listings" class="text-gray-400 hover:text-zayellow transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-zayellow"></i> Properties for Sale</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-zayellow transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-zayellow"></i> About Us</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-zayellow transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-zayellow"></i> Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-bold mb-6 border-b border-white/10 pb-2 inline-block">Contact Info</h4>
+                    <ul class="space-y-4 text-sm text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-location-dot mt-1 mr-3 text-zayellow"></i>
+                            <span>205 A & 109 B Commercial,<br>Central Park Lahore</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fa-solid fa-phone mr-3 text-zayellow"></i>
+                            <span>0300 9189185<br>0327 4324528</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-500 text-sm">
+                    &copy; 2026 Zaman Associates. All rights reserved.
+                </p>
+                <div class="text-gray-500 text-sm flex gap-4">
+                    <span>Buy</span> | <span>Sell</span> | <span>Rent</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Success Message Box (Modal) -->
+    <div id="successModal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-white rounded-xl shadow-2xl p-8 max-w-sm w-full mx-4 transform scale-95 transition-transform duration-300 text-center relative border-t-4 border-zayellow">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-800 focus:outline-none">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fa-solid fa-check text-3xl text-green-500"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
+            <p class="text-gray-600 mb-6">Thank you for reaching out to Zaman Associates. Our agent will contact you shortly.</p>
+            <button onclick="closeModal()" class="w-full bg-zablue text-white font-bold py-3 rounded-md hover:bg-zablue-dark transition-colors">
+                Done
+            </button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass-nav', 'shadow-md');
+                navbar.classList.remove('py-4');
+                navbar.classList.add('py-2');
+            } else {
+                navbar.classList.remove('glass-nav', 'shadow-md');
+                navbar.classList.remove('py-2');
+                navbar.classList.add('py-4');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on click
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Pre-fill form from Property Buttons
+        function openModal(propertyTitle) {
+            const messageBox = document.getElementById('messageBox');
+            messageBox.value = `I am interested in the ${propertyTitle}. Please provide more details.`;
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            
+            // Highlight the form slightly
+            const formContainer = document.querySelector('#contact form');
+            formContainer.classList.add('ring-4', 'ring-zayellow', 'rounded-lg', 'transition', 'duration-500');
+            setTimeout(() => {
+                formContainer.classList.remove('ring-4', 'ring-zayellow');
+            }, 1500);
+        }
+
+        // Form Submit Handler
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            // Show custom modal instead of alert()
+            const modal = document.getElementById('successModal');
+            modal.classList.remove('hidden');
+            // Small delay to allow display:block to apply before animating opacity
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('div').classList.remove('scale-95');
+            }, 10);
+            
+            // Reset form
+            document.getElementById('contactForm').reset();
+        }
+
+        // Close Modal
+        function closeModal() {
+            const modal = document.getElementById('successModal');
+            modal.classList.add('opacity-0');
+            modal.querySelector('div').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+    </script>
+</body>
+</html>

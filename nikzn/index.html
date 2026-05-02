@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIKZN Real Estate & Developer | Exclusive Property Deals</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            50: '#fbf8f1',
+                            100: '#f5eadc',
+                            200: '#ebd3b9',
+                            300: '#dfb58c',
+                            400: '#d3935e',
+                            500: '#c5783b',
+                            600: '#b86130',
+                            DEFAULT: '#B48A36', /* NIKZN Gold */
+                            800: '#844227',
+                            900: '#6a3723',
+                        },
+                        dark: {
+                            DEFAULT: '#1A1A1A', /* Premium Dark Charcoal */
+                            light: '#2A2A2A'
+                        },
+                        smartgreen: '#15803d', /* Capital Smart City Green */
+                        citi: '#a38153' /* Citi Housing muted gold */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(to right bottom, rgba(26, 26, 26, 0.9), rgba(26, 26, 26, 0.7)), url('https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80')",
+                        'citi-pattern': "linear-gradient(to right bottom, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1613490908592-a5b8f88837e4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80')",
+                        'smart-pattern': "linear-gradient(to right bottom, rgba(21, 128, 61, 0.85), rgba(26, 26, 26, 0.9)), url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80')"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Utilities */
+        .glass-panel {
+            background: rgba(42, 42, 42, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(180, 138, 54, 0.2);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #DFB58C, #B48A36);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .badge-pulse {
+            animation: pulse-red 2s infinite;
+        }
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(225, 29, 72, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(225, 29, 72, 0); }
+        }
+        /* Hide scrollbar for clean look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1A1A1A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #B48A36;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-dark text-gray-200 font-sans antialiased overflow-x-hidden">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 px-6 md:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 relative flex items-end justify-center">
+                    <!-- SVG approximating NIKZN logo building shapes -->
+                    <svg viewBox="0 0 100 100" class="w-full h-full fill-gold drop-shadow-md group-hover:scale-105 transition-transform">
+                        <rect x="20" y="45" width="12" height="55" />
+                        <polygon points="20,45 26,38 32,45" />
+                        
+                        <rect x="36" y="30" width="14" height="70" />
+                        <circle cx="43" cy="20" r="6" />
+                        
+                        <rect x="54" y="25" width="26" height="75" />
+                        <polygon points="54,25 80,10 80,25" />
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-gold font-serif text-2xl font-bold tracking-widest leading-none">NIKZN</span>
+                    <span class="text-[0.6rem] text-gray-400 tracking-[0.2em] uppercase mt-1">Real Estate & Developer</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="text-sm uppercase tracking-wider hover:text-gold transition-colors font-medium">Home</a>
+                <a href="#exclusive" class="text-sm uppercase tracking-wider hover:text-gold transition-colors font-medium">Citi Housing</a>
+                <a href="#smartcity" class="text-sm uppercase tracking-wider hover:text-gold transition-colors font-medium">Smart City</a>
+                <a href="#contact" class="px-6 py-2 border border-gold text-gold hover:bg-gold hover:text-dark transition-all rounded-sm uppercase tracking-wider text-sm font-medium">Contact Us</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gold focus:outline-none" id="mobile-menu-btn">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-dark-light border-t border-gray-800 flex flex-col shadow-xl">
+            <a href="#home" class="p-4 border-b border-gray-800 text-center uppercase tracking-widest text-sm hover:text-gold">Home</a>
+            <a href="#exclusive" class="p-4 border-b border-gray-800 text-center uppercase tracking-widest text-sm hover:text-gold">Citi Housing</a>
+            <a href="#smartcity" class="p-4 border-b border-gray-800 text-center uppercase tracking-widest text-sm hover:text-gold">Smart City</a>
+            <a href="#contact" class="p-4 text-center text-gold uppercase tracking-widest text-sm font-bold">Contact Us</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="relative h-screen min-h-[600px] flex items-center justify-center bg-hero-pattern bg-cover bg-center bg-no-repeat bg-fixed">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-dark"></div>
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-16">
+            <div class="inline-block mb-4 px-4 py-1 rounded-full border border-gold/50 bg-gold/10 text-gold text-sm tracking-widest uppercase font-medium backdrop-blur-sm">
+                Exclusive Deal Holders
+            </div>
+            <h1 class="text-5xl md:text-7xl font-serif font-bold text-white mb-6 leading-tight">
+                Build Your Legacy With <br/>
+                <span class="text-gradient">NIKZN Developers</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-3xl mx-auto font-light">
+                Securing premium residential plots in Gujranwala and Capital Smart City. Smart ownership begins with the right investment.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#exclusive" class="bg-gold text-dark font-semibold px-8 py-4 rounded-sm hover:bg-gold-400 transition-all uppercase tracking-wider text-sm flex items-center justify-center gap-2">
+                    View 1 Kanal Deals <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#contact" class="bg-transparent border border-gray-400 text-white font-semibold px-8 py-4 rounded-sm hover:border-gold hover:text-gold transition-all uppercase tracking-wider text-sm">
+                    Book Consultation
+                </a>
+            </div>
+        </div>
+        <!-- Scroll Down Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#exclusive" class="text-gray-400 hover:text-gold transition-colors">
+                <i class="fas fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Featured: Citi Housing Gujranwala -->
+    <section id="exclusive" class="py-24 bg-dark relative border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                
+                <!-- Image Side -->
+                <div class="w-full lg:w-1/2 relative">
+                    <!-- Red Limited Badge -->
+                    <div class="absolute -top-6 -right-6 z-20 bg-rose-600 text-white font-serif font-bold w-24 h-24 rounded-full flex items-center justify-center rotate-12 shadow-lg badge-pulse text-center leading-tight">
+                        Limited<br>Plots!
+                    </div>
+                    
+                    <div class="relative rounded-lg overflow-hidden shadow-2xl shadow-gold/10 group">
+                        <div class="absolute inset-0 bg-citi-pattern bg-cover bg-center transition-transform duration-700 group-hover:scale-105"></div>
+                        <div class="relative z-10 p-10 h-[500px] flex flex-col justify-end glass-panel rounded-lg m-4">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Citi_Housing_Logo.png/600px-Citi_Housing_Logo.png" alt="Citi Housing Logo" class="w-20 mb-auto opacity-80 filter grayscale brightness-200" onerror="this.style.display='none'">
+                            <h3 class="text-4xl font-serif text-white mb-2">Prime Phase</h3>
+                            <p class="text-gold tracking-widest uppercase text-sm mb-4">Main Boulevard Developed Plots</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content Side -->
+                <div class="w-full lg:w-1/2">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="h-[1px] w-12 bg-gold"></div>
+                        <span class="text-gold tracking-widest uppercase text-sm font-semibold">Gujranwala Chapter</span>
+                    </div>
+                    <h2 class="text-5xl md:text-6xl font-serif font-bold text-white mb-4 leading-tight">
+                        <span class="text-gold text-7xl">1 KANAL</span><br>
+                        Exclusive Plots
+                    </h2>
+                    <p class="text-gray-400 mb-8 text-lg font-light">
+                        Secure your future in Gujranwala's most prestigious society. Main G.T Road access with state-of-the-art amenities. We are the exclusive deal holders for 1 Kanal plots.
+                    </p>
+                    
+                    <div class="bg-dark-light p-6 rounded-sm border-l-4 border-gold mb-8">
+                        <p class="text-sm text-gray-400 uppercase tracking-wider mb-1">Full Amount</p>
+                        <p class="text-4xl font-bold text-white font-serif">Rs. 26,000,000<span class="text-gold">/-</span></p>
+                    </div>
+
+                    <ul class="space-y-4 mb-10 text-gray-300">
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-gold"></i> Prime Phase Location</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-gold"></i> Main Boulevard Facing Available</li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check-circle text-gold"></i> Fully Developed & Ready for Possession</li>
+                    </ul>
+
+                    <a href="#contact" class="inline-block bg-white text-dark font-bold px-8 py-4 rounded-sm hover:bg-gray-200 transition-all uppercase tracking-wider text-sm shadow-lg shadow-white/10">
+                        Reserve Your Plot
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured: Capital Smart City -->
+    <section id="smartcity" class="py-24 bg-smart-pattern bg-cover bg-fixed relative">
+        <div class="absolute inset-0 bg-dark/80 backdrop-blur-sm"></div>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12">
+            
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-serif font-bold text-white mb-4">Capital Smart City</h2>
+                <p class="text-gray-300 max-w-2xl mx-auto">Exclusive possession opportunities and pre-launch offers in Pakistan's first smart city.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                
+                <!-- Overseas Central Box -->
+                <div class="glass-panel p-8 rounded-lg border-t-4 border-t-smartgreen transform hover:-translate-y-2 transition-all duration-300">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h3 class="text-3xl font-serif text-gold mb-1">Overseas Central</h3>
+                            <p class="text-sm uppercase tracking-widest text-gray-400">Exclusive Possession</p>
+                        </div>
+                        <i class="fas fa-globe-asia text-4xl text-smartgreen opacity-50"></i>
+                    </div>
+                    
+                    <h4 class="text-4xl font-bold text-white mb-6">3.5 <span class="text-2xl font-light text-gray-400">|</span> 5 MARLA</h4>
+                    
+                    <div class="space-y-6 mb-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-smartgreen/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-key text-smartgreen"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-white font-bold uppercase tracking-wider text-sm mb-1">Just 20% Downpayment</h5>
+                                <p class="text-sm text-gray-400">Book your own possessionable plot today.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-smartgreen/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-hard-hat text-smartgreen"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-white font-bold uppercase tracking-wider text-sm mb-1">Start Construction in 3 Months</h5>
+                                <p class="text-sm text-gray-400">Get possession rapidly and begin building.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-full bg-smartgreen/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                <i class="fas fa-home text-smartgreen"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-white font-bold uppercase tracking-wider text-sm mb-1">Pay After Completion</h5>
+                                <p class="text-sm text-gray-400">Complete home in 18 months, pay over next 18 months.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-smartgreen text-white text-center py-3 font-bold tracking-widest uppercase text-sm rounded-sm">
+                        Smart Ownership Starts Here
+                    </div>
+                </div>
+
+                <!-- Phase 3 Pre-launch Box -->
+                <div class="glass-panel p-8 rounded-lg border-t-4 border-t-gold transform hover:-translate-y-2 transition-all duration-300 flex flex-col">
+                    <div class="flex justify-between items-start mb-6">
+                        <div>
+                            <h3 class="text-3xl font-serif text-white mb-1">Phase 3 Residential</h3>
+                            <p class="text-sm uppercase tracking-widest text-gold">Pre-Launch Offer</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="block text-4xl font-bold text-smartgreen">4.5 YEAR</span>
+                            <span class="text-xs uppercase tracking-widest text-gray-400">18 Quarterly Installments</span>
+                        </div>
+                    </div>
+
+                    <div class="flex-grow">
+                        <!-- Discount Tables -->
+                        <div class="mb-6">
+                            <div class="bg-smartgreen/90 text-white text-center py-2 font-bold tracking-widest uppercase text-sm rounded-t-sm">
+                                17% Discount Plan
+                            </div>
+                            <div class="bg-dark-light/50 p-4 rounded-b-sm border border-gray-700/50 text-sm">
+                                <div class="flex justify-between text-gray-400 mb-2 pb-2 border-b border-gray-700/50">
+                                    <span>Size</span>
+                                    <span>Base Price</span>
+                                    <span>Downpayment (10%)</span>
+                                </div>
+                                <div class="flex justify-between text-white mb-2">
+                                    <span class="font-bold">05 Marla</span>
+                                    <span>2,900,000</span>
+                                    <span class="text-gold">239,500</span>
+                                </div>
+                                <div class="flex justify-between text-white mb-2">
+                                    <span class="font-bold">10 Marla</span>
+                                    <span>5,750,000</span>
+                                    <span class="text-gold">477,000</span>
+                                </div>
+                                <div class="flex justify-between text-white">
+                                    <span class="font-bold">01 Kanal</span>
+                                    <span>9,800,000</span>
+                                    <span class="text-gold">810,000</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="bg-gold/90 text-dark text-center py-2 font-bold tracking-widest uppercase text-sm rounded-t-sm">
+                                22% Discount Plan
+                            </div>
+                            <div class="bg-dark-light/50 p-4 rounded-b-sm border border-gray-700/50 text-sm">
+                                <div class="flex justify-between text-gray-400 mb-2 pb-2 border-b border-gray-700/50">
+                                    <span>Size</span>
+                                    <span>Disc. Price</span>
+                                    <span>Downpayment (15%)</span>
+                                </div>
+                                <div class="flex justify-between text-white mb-2">
+                                    <span class="font-bold">05 Marla</span>
+                                    <span>2,260,000</span>
+                                    <span class="text-smartgreen font-bold">339,500</span>
+                                </div>
+                                <div class="flex justify-between text-white mb-2">
+                                    <span class="font-bold">10 Marla</span>
+                                    <span>4,480,000</span>
+                                    <span class="text-smartgreen font-bold">672,000</span>
+                                </div>
+                                <div class="flex justify-between text-white">
+                                    <span class="font-bold">01 Kanal</span>
+                                    <span>7,650,000</span>
+                                    <span class="text-smartgreen font-bold">1,147,000</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-xs text-gray-500 mt-4 text-center">*Subject to prime location charges. Prices exclusive of dev charges.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 bg-dark-light relative">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16">
+            
+            <!-- Contact Info -->
+            <div>
+                <h2 class="text-4xl font-serif font-bold text-white mb-6">Get In Touch</h2>
+                <p class="text-gray-400 mb-10 font-light text-lg">
+                    Ready to make a premium investment? Contact our dedicated agents today for exclusive details on Citi Housing and Capital Smart City.
+                </p>
+                
+                <div class="space-y-8">
+                    <div class="flex items-start gap-5">
+                        <div class="w-12 h-12 rounded-full bg-dark flex items-center justify-center border border-gray-700 text-gold text-xl">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold tracking-wider uppercase text-sm mb-2">Location</h4>
+                            <p class="text-gray-400 leading-relaxed">
+                                Main G.T Road, Citi-housing Society,<br>
+                                Commercial Area, Phase-II, Plot No.41,<br>
+                                Gujranwala, Pakistan
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start gap-5">
+                        <div class="w-12 h-12 rounded-full bg-dark flex items-center justify-center border border-gray-700 text-gold text-xl">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold tracking-wider uppercase text-sm mb-2">Contact Numbers</h4>
+                            <a href="tel:03333133000" class="block text-gray-400 hover:text-gold transition-colors text-lg mb-1">0333 3133000</a>
+                            <a href="tel:03007428774" class="block text-gray-400 hover:text-gold transition-colors text-lg">0300 7428774</a>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-5">
+                        <div class="w-12 h-12 rounded-full bg-dark flex items-center justify-center border border-gray-700 text-gold text-xl">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-bold tracking-wider uppercase text-sm mb-2">WhatsApp</h4>
+                            <p class="text-gray-400">Available 24/7 for quick queries.</p>
+                            <a href="https://wa.me/923333133000" target="_blank" class="inline-block mt-2 text-gold font-bold hover:underline">Chat Now <i class="fas fa-arrow-right text-xs ml-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="bg-dark p-8 rounded-lg border border-gray-800 shadow-2xl">
+                <h3 class="text-2xl font-serif text-white mb-6">Request Callback</h3>
+                <form id="contact-form" class="space-y-5">
+                    <div>
+                        <label for="name" class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Full Name</label>
+                        <input type="text" id="name" required class="w-full bg-dark-light border border-gray-700 rounded-sm px-4 py-3 text-white focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors" placeholder="John Doe">
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Phone Number</label>
+                        <input type="tel" id="phone" required class="w-full bg-dark-light border border-gray-700 rounded-sm px-4 py-3 text-white focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors" placeholder="03XX XXXXXXX">
+                    </div>
+                    <div>
+                        <label for="interest" class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Interested In</label>
+                        <select id="interest" class="w-full bg-dark-light border border-gray-700 rounded-sm px-4 py-3 text-white focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors appearance-none">
+                            <option>Citi Housing 1 Kanal</option>
+                            <option>Capital Smart City Overseas</option>
+                            <option>Capital Smart City Phase 3</option>
+                            <option>General Inquiry</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-xs uppercase tracking-wider text-gray-400 mb-2">Message (Optional)</label>
+                        <textarea id="message" rows="3" class="w-full bg-dark-light border border-gray-700 rounded-sm px-4 py-3 text-white focus:outline-none focus:border-gold focus:ring-1 focus:ring-gold transition-colors" placeholder="Any specific requirements?"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-gold text-dark font-bold uppercase tracking-wider py-4 rounded-sm hover:bg-white transition-colors mt-4">
+                        Submit Inquiry
+                    </button>
+                </form>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#111] py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 relative flex items-end justify-center">
+                    <svg viewBox="0 0 100 100" class="w-full h-full fill-gray-500">
+                        <rect x="20" y="45" width="12" height="55" />
+                        <polygon points="20,45 26,38 32,45" />
+                        <rect x="36" y="30" width="14" height="70" />
+                        <circle cx="43" cy="20" r="6" />
+                        <rect x="54" y="25" width="26" height="75" />
+                        <polygon points="54,25 80,10 80,25" />
+                    </svg>
+                </div>
+                <span class="text-gray-500 font-serif text-xl font-bold tracking-widest">NIKZN</span>
+            </div>
+            
+            <p class="text-gray-600 text-sm text-center md:text-left">
+                &copy; <span id="year"></span> NIKZN Real Estate & Developer. All rights reserved.
+            </p>
+            
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 rounded-full bg-dark flex items-center justify-center text-gray-500 hover:text-gold hover:bg-gray-800 transition-all"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-dark flex items-center justify-center text-gray-500 hover:text-gold hover:bg-gray-800 transition-all"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="w-10 h-10 rounded-full bg-dark flex items-center justify-center text-gray-500 hover:text-gold hover:bg-gray-800 transition-all"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Alert Box (Hidden by default) -->
+    <div id="success-modal" class="fixed inset-0 bg-black/80 z-[100] hidden items-center justify-center backdrop-blur-sm">
+        <div class="bg-dark-light border border-gold p-8 rounded-lg text-center max-w-sm mx-4 transform scale-95 opacity-0 transition-all duration-300" id="modal-content">
+            <div class="w-16 h-16 rounded-full bg-gold/20 flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check text-3xl text-gold"></i>
+            </div>
+            <h3 class="text-2xl font-serif text-white mb-2">Request Received</h3>
+            <p class="text-gray-400 mb-6">Thank you for reaching out. Our representative will contact you shortly.</p>
+            <button onclick="closeModal()" class="bg-gold text-dark font-bold px-8 py-2 rounded-sm uppercase tracking-wider text-sm w-full hover:bg-white transition-colors">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/923333133000" target="_blank" class="fixed bottom-6 right-6 w-14 h-14 bg-green-500 text-white rounded-full flex items-center justify-center text-3xl shadow-lg hover:scale-110 transition-transform z-40 animate-bounce" style="animation-duration: 3s;">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Logic -->
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-dark/95', 'backdrop-blur-md', 'shadow-lg', 'py-3');
+                navbar.classList.remove('py-4');
+            } else {
+                navbar.classList.remove('bg-dark/95', 'backdrop-blur-md', 'shadow-lg', 'py-3');
+                navbar.classList.add('py-4');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = menuBtn.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // Close mobile menu on click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuBtn.querySelector('i').classList.replace('fa-times', 'fa-bars');
+            });
+        });
+
+        // Form submission handling
+        const form = document.getElementById('contact-form');
+        const modal = document.getElementById('success-modal');
+        const modalContent = document.getElementById('modal-content');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Show modal
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            // Trigger animation
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+            
+            form.reset();
+        });
+
+        function closeModal() {
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+    </script>
+</body>
+</html>

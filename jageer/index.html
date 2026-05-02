@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jageer Real Estate & Constructors</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            DEFAULT: '#d4af37',
+                            light: '#f3e5ab',
+                            dark: '#aa8c2c',
+                            gradient: 'linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c)'
+                        },
+                        dark: {
+                            DEFAULT: '#121212',
+                            card: '#1e1e1e'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles & Animations */
+        body {
+            background-color: #121212;
+            color: #f4f4f4;
+            overflow-x: hidden;
+        }
+
+        .text-gold-gradient {
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .bg-gold-gradient {
+            background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+        }
+
+        /* Marquee Animation */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 25s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Slider Styles */
+        .slider-wrapper {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            border-radius: 0.5rem;
+        }
+        .slides-container {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            height: 60vh;
+            min-height: 400px;
+        }
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .slide-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(18,18,18,0.9) 0%, rgba(18,18,18,0.2) 100%);
+        }
+
+        /* Decorative Background element */
+        .glow-circle {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, rgba(18,18,18,0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Table Styles for Kharian Section */
+        .gold-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 8px;
+        }
+        .gold-table th {
+            background-color: rgba(212, 175, 55, 0.1);
+            color: #d4af37;
+            padding: 1rem;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .gold-table td {
+            background-color: #1e1e1e;
+            padding: 1rem;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .gold-table td:first-child {
+            background-color: rgba(212, 175, 55, 0.15);
+            color: #d4af37;
+            font-weight: bold;
+            border-left: 1px solid rgba(212, 175, 55, 0.3);
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        .gold-table td:last-child {
+            border-right: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        /* Mobile Table fallback */
+        @media (max-width: 768px) {
+            .gold-table, .gold-table tbody, .gold-table tr, .gold-table td {
+                display: block;
+                width: 100%;
+            }
+            .gold-table thead { display: none; }
+            .gold-table tr { margin-bottom: 1.5rem; border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 8px; overflow: hidden; }
+            .gold-table td { 
+                text-align: right; 
+                padding-left: 50%; 
+                position: relative;
+                border: none;
+                border-bottom: 1px solid rgba(255,255,255,0.05);
+            }
+            .gold-table td:first-child { text-align: center; padding: 1rem; background-color: rgba(212, 175, 55, 0.2); }
+            .gold-table td:last-child { border-bottom: none; }
+            .gold-table td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 1rem;
+                width: 45%;
+                text-align: left;
+                font-weight: 600;
+                color: rgba(255,255,255,0.5);
+            }
+            .gold-table td:first-child::before { content: none; }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-gold selection:text-black">
+
+    <!-- Navigation -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-4 px-6 md:px-12 backdrop-blur-md bg-dark/80 border-b border-white/5">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Simulated Logo based on image 3 -->
+            <a href="#" class="flex flex-col items-center group">
+                <svg class="w-10 h-10 text-gold mb-1 group-hover:scale-105 transition-transform" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 3L2 12h3v8h14v-8h3L12 3zm0 2.7l6 5.4v6.9h-4v-4H10v4H6v-6.9l6-5.4z"/>
+                </svg>
+                <div class="text-center">
+                    <span class="block font-serif text-xl tracking-widest text-gold leading-none">JAGEER</span>
+                    <span class="block text-[0.5rem] tracking-widest text-gray-400 uppercase mt-1">Real Estate & Constructors</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8 items-center font-medium text-sm tracking-wide">
+                <a href="#home" class="hover:text-gold transition-colors">Home</a>
+                <a href="#services" class="hover:text-gold transition-colors">Services</a>
+                <a href="#projects" class="hover:text-gold transition-colors">Projects</a>
+                <a href="#contact" class="px-6 py-2 border border-gold text-gold hover:bg-gold hover:text-black transition-all duration-300 rounded-sm">Contact Us</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gold focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Based on Image 2) -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <!-- Background Image (Placeholder reflecting modern house) -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2075&q=80" alt="Modern House" class="w-full h-full object-cover opacity-40">
+            <div class="absolute inset-0 bg-gradient-to-r from-dark via-dark/80 to-transparent"></div>
+        </div>
+
+        <div class="glow-circle top-0 left-0"></div>
+
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
+            <h2 class="text-gold tracking-widest uppercase text-sm mb-4 font-semibold flex items-center justify-center gap-4">
+                <span class="w-12 h-[1px] bg-gold"></span>
+                Welcome to Jageer
+                <span class="w-12 h-[1px] bg-gold"></span>
+            </h2>
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-gold-gradient leading-tight">
+                BUY & SELL <br/> WITH TRUST
+            </h1>
+            <p class="text-xl md:text-2xl font-light text-gray-300 mb-10 italic font-serif">
+                "We help you build your dreams!"
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#projects" class="bg-gold text-black font-semibold px-8 py-4 uppercase tracking-wider hover:bg-gold-light transition-colors text-sm">Explore Projects</a>
+                <a href="#contact" class="border border-white/30 text-white font-semibold px-8 py-4 uppercase tracking-wider hover:border-gold hover:text-gold transition-colors text-sm backdrop-blur-sm">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Moving Marquee Section -->
+    <div class="bg-gold py-3 border-y border-gold-dark z-20 relative">
+        <div class="marquee-container text-black font-bold tracking-widest text-sm uppercase">
+            <!-- Duplicated content for seamless loop -->
+            <div class="marquee-content">
+                PREMIUM REAL ESTATE <span class="mx-8">•</span> LUXURY CONSTRUCTION <span class="mx-8">•</span> TRUSTED ADVISORS <span class="mx-8">•</span> PROPERTY MANAGEMENT <span class="mx-8">•</span> CITI HOUSING PARTNERS <span class="mx-8">•</span> 
+                PREMIUM REAL ESTATE <span class="mx-8">•</span> LUXURY CONSTRUCTION <span class="mx-8">•</span> TRUSTED ADVISORS <span class="mx-8">•</span> PROPERTY MANAGEMENT <span class="mx-8">•</span> CITI HOUSING PARTNERS <span class="mx-8">•</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 px-6 md:px-12 relative">
+        <div class="glow-circle bottom-0 right-0"></div>
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-white mb-4">Our Expertise</h2>
+                <div class="w-24 h-1 bg-gold mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-dark-card p-10 rounded-sm border border-white/5 hover:border-gold/50 transition-all duration-300 group hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-gold group-hover:text-black text-gold transition-colors">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-serif font-semibold text-white mb-3">Buy & Sell</h3>
+                    <p class="text-gray-400 font-light leading-relaxed">Navigate the real estate market with our trusted advisors. We connect buyers with their dream homes and ensure sellers get top value.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-dark-card p-10 rounded-sm border border-white/5 hover:border-gold/50 transition-all duration-300 group hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-gold group-hover:text-black text-gold transition-colors">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-serif font-semibold text-white mb-3">Construction</h3>
+                    <p class="text-gray-400 font-light leading-relaxed">From foundation to finishing, our construction team builds with precision, quality materials, and a commitment to your vision.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-dark-card p-10 rounded-sm border border-white/5 hover:border-gold/50 transition-all duration-300 group hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-gold/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-gold group-hover:text-black text-gold transition-colors">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4Vm6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-serif font-semibold text-white mb-3">Investment</h3>
+                    <p class="text-gray-400 font-light leading-relaxed">Secure your future with high-yield property investments. We analyze the market to bring you the best commercial and residential opportunities.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Project: Kharian (Based on Image 1) -->
+    <section id="projects" class="py-24 relative bg-zinc-900 border-y border-white/5">
+        <div class="max-w-6xl mx-auto px-6">
+            
+            <!-- Header matching Image 1 vibe -->
+            <div class="text-center mb-12">
+                <div class="inline-flex flex-col items-center justify-center mb-6">
+                    <div class="w-16 h-16 rounded-full border-2 border-gold flex items-center justify-center mb-2 bg-dark">
+                         <svg class="w-8 h-8 text-gold" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 12h3v8h14v-8h3L12 2zm0 3.8l6 6V20H6v-8.2l6-6z"/></svg>
+                    </div>
+                    <h4 class="text-gold tracking-widest text-sm uppercase">Citi Housing (Pvt) Ltd</h4>
+                </div>
+                <h2 class="font-serif text-5xl md:text-6xl font-bold text-white mb-2 tracking-wide">KHARIAN</h2>
+                <h3 class="text-xl md:text-2xl font-light text-gray-300 tracking-widest uppercase border-b border-gold/30 pb-4 inline-block">Fully Developed Residential Plots</h3>
+            </div>
+
+            <!-- Pricing Table Data -->
+            <div class="overflow-x-auto mt-10">
+                <table class="gold-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Plot Price</th>
+                            <th>Adjustment</th>
+                            <th>Cash Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Category">5 MARLA</td>
+                            <td data-label="Plot Price">2,970,000/-</td>
+                            <td data-label="Adjustment">900,000/-</td>
+                            <td data-label="Cash Price" class="text-gold font-semibold">2,070,000/-</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Category">8 MARLA</td>
+                            <td data-label="Plot Price">4,500,000/-</td>
+                            <td data-label="Adjustment">1,350,000/-</td>
+                            <td data-label="Cash Price" class="text-gold font-semibold">3,150,000/-</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Category">10 MARLA</td>
+                            <td data-label="Plot Price">5,450,000/-</td>
+                            <td data-label="Adjustment">1,800,000/-</td>
+                            <td data-label="Cash Price" class="text-gold font-semibold">3,650,000/-</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Category">14 MARLA</td>
+                            <td data-label="Plot Price">7,200,000/-</td>
+                            <td data-label="Adjustment">2,250,000/-</td>
+                            <td data-label="Cash Price" class="text-gold font-semibold">4,950,000/-</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Category">1 KANAL</td>
+                            <td data-label="Plot Price">9,950,000/-</td>
+                            <td data-label="Adjustment">2,500,000/-</td>
+                            <td data-label="Cash Price" class="text-gold font-semibold">7,450,000/-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#contact" class="inline-block bg-gold text-black font-serif font-bold text-xl px-12 py-4 shadow-[0_0_20px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)] hover:scale-105 transition-all duration-300">
+                    BOOK NOW
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Property Image Slider Section -->
+    <section class="py-24 px-6 md:px-12 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-end mb-10">
+                <div>
+                    <h2 class="font-serif text-4xl font-bold text-white mb-2">Featured Properties</h2>
+                    <p class="text-gray-400 font-light">Explore our recent developments and premium listings.</p>
+                </div>
+                <!-- Slider Controls -->
+                <div class="hidden md:flex gap-4">
+                    <button id="prevBtn" class="w-12 h-12 rounded-full border border-gold text-gold flex items-center justify-center hover:bg-gold hover:text-black transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button id="nextBtn" class="w-12 h-12 rounded-full border border-gold text-gold flex items-center justify-center hover:bg-gold hover:text-black transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="slider-wrapper border border-white/10 shadow-2xl">
+                <div class="slides-container" id="slider">
+                    <!-- Slide 1 -->
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1613490908588-46cb51b43831?auto=format&fit=crop&w=1600&q=80" alt="Modern Villa">
+                        <div class="slide-overlay"></div>
+                        <div class="absolute bottom-10 left-10 z-10">
+                            <span class="bg-gold text-black text-xs font-bold px-3 py-1 uppercase tracking-wider mb-2 inline-block">For Sale</span>
+                            <h3 class="text-3xl font-serif text-white mb-1">Luxury Modern Villa</h3>
+                            <p class="text-gray-300">Phase 1, Citi Housing</p>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1600&q=80" alt="Residential Plot">
+                        <div class="slide-overlay"></div>
+                        <div class="absolute bottom-10 left-10 z-10">
+                            <span class="bg-dark text-gold border border-gold text-xs font-bold px-3 py-1 uppercase tracking-wider mb-2 inline-block">Developed</span>
+                            <h3 class="text-3xl font-serif text-white mb-1">1 Kanal Prime Plot</h3>
+                            <p class="text-gray-300">Kharian Block</p>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="slide">
+                        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=80" alt="Construction">
+                        <div class="slide-overlay"></div>
+                        <div class="absolute bottom-10 left-10 z-10">
+                            <span class="bg-white text-black text-xs font-bold px-3 py-1 uppercase tracking-wider mb-2 inline-block">Construction</span>
+                            <h3 class="text-3xl font-serif text-white mb-1">Custom Built Homes</h3>
+                            <p class="text-gray-300">Tailored to your dreams</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer & Contact (Based on Image 1 contacts) -->
+    <footer id="contact" class="bg-black pt-20 pb-10 border-t border-white/10 relative">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+            
+            <!-- Brand -->
+            <div class="col-span-1 md:col-span-2 lg:col-span-1">
+                <a href="#" class="flex flex-col items-start mb-6">
+                    <svg class="w-12 h-12 text-gold mb-2" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 3L2 12h3v8h14v-8h3L12 3zm0 2.7l6 5.4v6.9h-4v-4H10v4H6v-6.9l6-5.4z"/>
+                    </svg>
+                    <div>
+                        <span class="block font-serif text-2xl tracking-widest text-gold leading-none">JAGEER</span>
+                        <span class="block text-xs tracking-widest text-gray-400 uppercase mt-1">Real Estate & Constructors</span>
+                    </div>
+                </a>
+                <p class="text-gray-500 font-light text-sm mb-6">We help you build your dreams with trust, transparency, and top-tier real estate services.</p>
+                <div class="flex space-x-4">
+                    <!-- Social Icons placeholders -->
+                    <a href="#" class="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-gray-400 hover:text-gold hover:bg-zinc-800 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+                    <a href="#" class="w-8 h-8 rounded-full bg-zinc-900 flex items-center justify-center text-gray-400 hover:text-gold hover:bg-zinc-800 transition-all"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg></a>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div>
+                <h4 class="text-white font-serif font-semibold text-lg mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-gray-400 text-sm">
+                    <li><a href="#home" class="hover:text-gold transition-colors">Home</a></li>
+                    <li><a href="#services" class="hover:text-gold transition-colors">Our Services</a></li>
+                    <li><a href="#projects" class="hover:text-gold transition-colors">Citi Housing Kharian</a></li>
+                    <li><a href="#" class="hover:text-gold transition-colors">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Box (Highlighted) -->
+            <div class="col-span-1 lg:col-span-2 bg-zinc-900 border border-gold/20 p-8 rounded-sm">
+                <h4 class="text-gold font-serif text-2xl mb-2">Inquiries & Bookings</h4>
+                <p class="text-gray-400 text-sm mb-6">Contact our dedicated team to start building your dreams today.</p>
+                
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center text-gold">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-gray-500 uppercase">Call Us</span>
+                            <a href="tel:03006442976" class="text-white font-semibold text-lg hover:text-gold transition-colors">0300-6442976</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 bg-gold/10 rounded-full flex items-center justify-center text-gold">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        </div>
+                        <div>
+                            <span class="block text-xs text-gray-500 uppercase">Alternate</span>
+                            <a href="tel:03215080370" class="text-white font-semibold text-lg hover:text-gold transition-colors">0321-5080370</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center py-6 border-t border-white/5 text-gray-600 text-sm">
+            <p>&copy; 2026 Jageer Real Estate & Constructors. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-dark/95', 'shadow-lg');
+                nav.classList.remove('bg-dark/80');
+            } else {
+                nav.classList.add('bg-dark/80');
+                nav.classList.remove('bg-dark/95', 'shadow-lg');
+            }
+        });
+
+        // Simple Image Slider Logic
+        const slider = document.getElementById('slider');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        let currentSlide = 0;
+        const totalSlides = document.querySelectorAll('.slide').length;
+
+        function updateSlider() {
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
+        if(nextBtn && prevBtn) {
+            nextBtn.addEventListener('click', nextSlide);
+            prevBtn.addEventListener('click', prevSlide);
+        }
+
+        // Auto slide every 5 seconds
+        setInterval(nextSlide, 5000);
+    </script>
+</body>
+</html>
