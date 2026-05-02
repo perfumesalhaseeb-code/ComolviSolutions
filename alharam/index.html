@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Al-Haram Real Estate</title>
+    <title>Al-Haram Real Estate | Led by Ahmad Manj</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Using Oswald for the bold "Pop" look and Playfair for editorial elegance -->
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Playfair+Display:ital,wght@0,600;1,600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Using Oswald for the bold Pop UI and Outfit for clean modern text -->
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <script>
@@ -16,354 +16,330 @@
             theme: {
                 extend: {
                     colors: {
-                        dark: '#2A2A2A', // From the business card
-                        light: '#F8F8F5', // Editorial off-white
-                        accent: '#E5E5E5',
+                        navy: '#0F172A',     // Deep premium navy
+                        amber: '#D97706',    // Rich gold/amber accent
+                        light: '#F8FAFC',    // Cool off-white
+                        card: '#FFFFFF',
                     },
                     fontFamily: {
                         display: ['Oswald', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                        sans: ['Inter', 'sans-serif'],
+                        sans: ['Outfit', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Custom Styles & Animations */
         body {
-            background-color: #F8F8F5;
-            color: #2A2A2A;
+            background-color: #F8FAFC;
+            color: #0F172A;
             overflow-x: hidden;
         }
 
-        /* Hide scrollbar for sliders but keep functionality */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
         /* Marquee Animation */
         .marquee-container {
             display: flex;
             width: 200%;
-            animation: marquee 20s linear infinite;
+            animation: marquee 25s linear infinite;
         }
         @keyframes marquee {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
-        /* Floating Animation */
-        .float-anim {
-            animation: floating 6s ease-in-out infinite;
-        }
+        /* Floating Animation for UI elements */
+        .float-anim { animation: floating 5s ease-in-out infinite; }
+        .float-anim-delayed { animation: floating 6s ease-in-out 2s infinite; }
         @keyframes floating {
             0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-12px); }
             100% { transform: translateY(0px); }
         }
 
         /* Image Reveal Effect */
         .reveal-img {
             clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            transition: clip-path 1.5s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        /* Draggable Slider Cursor */
-        .grab-cursor {
-            cursor: grab;
-        }
-        .grab-cursor:active {
-            cursor: grabbing;
-        }
+        /* Draggable Cursor */
+        .grab-cursor { cursor: grab; }
+        .grab-cursor:active { cursor: grabbing; }
 
-        /* Text Stroke Effect for that Pop look */
-        .text-stroke {
+        /* Text Stroke Effect */
+        .text-stroke-amber {
             color: transparent;
-            -webkit-text-stroke: 1px #2A2A2A;
+            -webkit-text-stroke: 1.5px #D97706;
+        }
+        .text-stroke-light {
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(255,255,255,0.2);
         }
     </style>
 </head>
-<body class="font-sans antialiased selection:bg-dark selection:text-light">
+<body class="font-sans antialiased selection:bg-amber selection:text-white">
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 mix-blend-difference text-white p-6 flex justify-between items-center transition-all duration-300">
-        <div class="text-2xl font-display font-bold tracking-wider uppercase">Al-Haram</div>
-        <div class="hidden md:flex gap-8 font-sans text-sm tracking-widest uppercase">
-            <a href="#about" class="hover:opacity-70 transition">About</a>
-            <a href="#properties" class="hover:opacity-70 transition">Properties</a>
-            <a href="#contact" class="hover:opacity-70 transition">Contact</a>
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-md shadow-sm text-navy p-5 px-6 md:px-12 flex justify-between items-center transition-all duration-300">
+        <div class="flex items-center gap-2">
+            <div class="w-8 h-8 bg-navy rounded flex items-center justify-center text-white font-display font-bold">AH</div>
+            <div class="text-xl font-display font-bold tracking-wide uppercase">Al-Haram Estate</div>
         </div>
-        <button class="md:hidden block">
+        <div class="hidden md:flex gap-8 font-sans text-sm font-semibold tracking-wider uppercase">
+            <a href="#ceo" class="hover:text-amber transition">Leadership</a>
+            <a href="#properties" class="hover:text-amber transition">Properties</a>
+            <a href="#contact" class="hover:text-amber transition">Contact</a>
+        </div>
+        <a href="tel:+923347998371" class="hidden md:flex items-center gap-2 bg-navy text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-amber transition-colors">
+            <i data-lucide="phone" class="w-4 h-4"></i> Call Now
+        </a>
+        <button class="md:hidden block text-navy">
             <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
     </nav>
 
-    <!-- Hero Section (Editorial + Pop UI) -->
-    <header class="relative min-h-screen flex flex-col justify-center pt-20 pb-10 px-6 md:px-12 overflow-hidden">
+    <!-- Executive Hero Section -->
+    <header id="ceo" class="relative min-h-screen flex flex-col justify-center pt-28 pb-10 px-6 md:px-12 overflow-hidden bg-light">
         
-        <!-- Massive Background Text -->
-        <div class="absolute top-1/4 left-[-5%] w-[110%] z-0 pointer-events-none opacity-10">
-            <h1 class="text-[15vw] leading-none font-display font-bold text-dark whitespace-nowrap">REAL ESTATE</h1>
+        <!-- Big Background Text -->
+        <div class="absolute top-32 left-0 w-full z-0 pointer-events-none opacity-5 overflow-hidden">
+            <h1 class="text-[20vw] leading-none font-display font-bold text-navy whitespace-nowrap">VISIONARY</h1>
         </div>
 
-        <div class="relative z-10 flex flex-col md:flex-row items-end justify-between gap-10 mt-10">
+        <div class="relative z-10 flex flex-col-reverse md:flex-row items-center justify-between gap-12 mt-10 max-w-7xl mx-auto w-full">
             
-            <!-- Left Side: Typography -->
-            <div class="w-full md:w-1/2 flex flex-col">
-                <p class="font-serif italic text-xl md:text-3xl mb-4 text-dark/70">at your service,</p>
-                <h1 class="text-[12vw] md:text-[8vw] leading-[0.85] font-display font-bold uppercase tracking-tighter text-dark mb-6 relative">
-                    Al-Haram<br>
-                    <span class="text-stroke">Estate.</span>
-                    <div class="absolute -right-4 top-0 w-8 h-8 rounded-full bg-orange-600 mix-blend-multiply float-anim"></div>
+            <!-- Left Side: Typography & CEO Intro -->
+            <div class="w-full md:w-1/2 flex flex-col relative z-20">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="h-[2px] w-12 bg-amber"></div>
+                    <span class="font-sans font-bold text-amber tracking-widest uppercase text-sm">Led by the Best</span>
+                </div>
+                
+                <h1 class="text-[12vw] md:text-[6vw] leading-[0.9] font-display font-bold uppercase text-navy mb-2 relative">
+                    Ahmad <br>
+                    <span class="text-stroke-amber">Manj.</span>
                 </h1>
-                <p class="max-w-md text-sm md:text-base font-sans text-dark/80 leading-relaxed">
-                    Premium property consultants specializing in DHA Gujranwala, Citi Housing Scheme, and elite locations. We don't just sell properties, we secure your legacy.
-                </p>
-                <a href="#contact" class="mt-8 group flex items-center gap-3 w-max bg-dark text-light px-6 py-3 rounded-full uppercase tracking-wider text-xs font-bold hover:bg-black transition-all">
-                    Consult Ahmed Manj
-                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-                </a>
+                
+                <div class="mt-4 bg-white p-6 border-l-4 border-navy shadow-lg rounded-r-xl max-w-md relative">
+                    <div class="absolute -right-3 -top-3 w-8 h-8 bg-amber text-white rounded-full flex items-center justify-center shadow-md">
+                        <i data-lucide="star" class="w-4 h-4"></i>
+                    </div>
+                    <h2 class="font-display text-2xl font-bold text-navy uppercase mb-1">Chief Executive Officer</h2>
+                    <p class="font-sans text-gray-600 text-sm leading-relaxed">
+                        Driving real estate excellence across Gujranwala. Authorized dealer for DHA Gujranwala, Citi Housing, Master City, and Garden Town. Transforming investments into legacy.
+                    </p>
+                </div>
+
+                <div class="mt-8 flex items-center gap-6">
+                    <a href="#contact" class="group flex items-center gap-3 bg-navy text-white px-8 py-4 rounded-full uppercase tracking-wider text-sm font-bold hover:bg-amber transition-all shadow-xl hover:-translate-y-1">
+                        Meet the CEO
+                        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
             </div>
 
-            <!-- Right Side: Main Image & Overlapping Slider (Like the furniture UI) -->
-            <div class="w-full md:w-1/2 relative h-[50vh] md:h-[75vh]">
-                <!-- Main Featured Image -->
-                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80" alt="Modern Architecture" class="w-full h-full object-cover rounded-xl shadow-2xl reveal-img">
+            <!-- Right Side: CEO Image & Pop UI Elements -->
+            <div class="w-full md:w-1/2 relative flex justify-center md:justify-end mt-10 md:mt-0">
                 
-                <!-- Overlapping Floating Slider (UI request) -->
-                <div class="absolute -bottom-10 -left-10 md:-left-20 w-[90%] md:w-[350px] bg-white p-4 shadow-xl border border-gray-100 rounded-lg z-20 hidden sm:block">
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Featured Deals</span>
-                        <div class="flex gap-1">
-                            <button id="prev-mini" class="p-1 bg-gray-100 hover:bg-gray-200 rounded"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
-                            <button id="next-mini" class="p-1 bg-gray-100 hover:bg-gray-200 rounded"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
-                        </div>
+                <!-- Decorative Background Shapes -->
+                <div class="absolute inset-0 bg-navy rounded-full blur-3xl opacity-10 translate-x-10 translate-y-10"></div>
+                <div class="absolute bottom-0 right-0 w-64 h-64 bg-amber rounded-full mix-blend-multiply opacity-20 blur-2xl"></div>
+
+                <!-- MAIN CEO IMAGE -->
+                <div class="relative z-10 w-[90%] md:w-[80%] max-w-[500px]">
+                    <img 
+                        src="ahmadmanj.png" 
+                        alt="Ahmad Manj - CEO" 
+                        class="w-full h-auto object-contain drop-shadow-[0_25px_35px_rgba(0,0,0,0.25)]"
+                    >
+                </div>
+                
+                <!-- Floating Authorized Dealer Badge -->
+                <div class="absolute -left-4 md:-left-12 top-1/4 bg-white p-4 shadow-xl border border-gray-100 rounded-2xl z-20 float-anim flex items-center gap-4">
+                    <div class="w-12 h-12 bg-navy text-amber rounded-full flex items-center justify-center">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
                     </div>
-                    
-                    <div class="overflow-hidden">
-                        <div id="mini-slider-track" class="flex transition-transform duration-500 ease-in-out gap-4">
-                            <!-- Slide 1 -->
-                            <div class="min-w-full flex gap-3 items-center">
-                                <img src="https://images.unsplash.com/photo-1600607687931-cebf108bc5c0?auto=format&fit=crop&w=200&q=80" class="w-16 h-16 object-cover rounded" alt="Plot">
-                                <div>
-                                    <h4 class="font-display font-bold text-sm">DHA Phase 1</h4>
-                                    <p class="text-xs text-gray-500">10 Marla Plot</p>
-                                </div>
-                            </div>
-                            <!-- Slide 2 -->
-                            <div class="min-w-full flex gap-3 items-center">
-                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=200&q=80" class="w-16 h-16 object-cover rounded" alt="House">
-                                <div>
-                                    <h4 class="font-display font-bold text-sm">Citi Housing</h4>
-                                    <p class="text-xs text-gray-500">Luxury Villa</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div>
+                        <p class="text-xs text-gray-500 uppercase tracking-wider font-bold">Authorized</p>
+                        <p class="font-display font-bold text-navy text-lg leading-none">DHA Dealer</p>
+                    </div>
+                </div>
+
+                <!-- Overlapping Stats Box (Pop UI Style) -->
+                <div class="absolute -bottom-8 -right-4 md:right-10 bg-navy text-white p-5 shadow-2xl rounded-xl z-20 float-anim-delayed">
+                    <div class="flex items-end gap-2">
+                        <span class="font-display font-bold text-4xl text-amber">10+</span>
+                        <span class="font-sans text-sm uppercase tracking-wider pb-1 text-gray-300">Years<br>Trust</span>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Scrolling Marquee Section -->
-    <div class="bg-dark text-light py-4 overflow-hidden border-y border-gray-700">
-        <div class="marquee-container font-display text-xl md:text-3xl uppercase tracking-widest flex items-center">
+    <!-- Navy & Amber Scrolling Marquee -->
+    <div class="bg-navy text-amber py-5 overflow-hidden shadow-inner">
+        <div class="marquee-container font-display text-2xl md:text-4xl uppercase tracking-widest flex items-center">
             <div class="flex-shrink-0 flex items-center whitespace-nowrap">
-                <span class="mx-6">AUTHORIZED DEALERS</span> <span class="text-orange-500 mx-2">✦</span>
-                <span class="mx-6">DHA GUJRANWALA</span> <span class="text-orange-500 mx-2">✦</span>
-                <span class="mx-6">CITI HOUSING SCHEME</span> <span class="text-orange-500 mx-2">✦</span>
-                <span class="mx-6">MASTER CITY</span> <span class="text-orange-500 mx-2">✦</span>
-                <span class="mx-6">GARDEN TOWN</span> <span class="text-orange-500 mx-2">✦</span>
+                <span class="mx-6 text-white text-stroke-light">AUTHORIZED DEALERS</span> <span class="mx-2">✦</span>
+                <span class="mx-6">DHA GUJRANWALA</span> <span class="mx-2">✦</span>
+                <span class="mx-6">CITI HOUSING SCHEME</span> <span class="mx-2">✦</span>
+                <span class="mx-6">MASTER CITY</span> <span class="mx-2">✦</span>
+                <span class="mx-6">GARDEN TOWN</span> <span class="mx-2">✦</span>
             </div>
             <div class="flex-shrink-0 flex items-center whitespace-nowrap">
-                <span class="mx-6">AUTHORIZED DEALERS</span> <span class="text-orange-500 mx-2">✦</span>
-                <span class="mx-6">DHA GUJRANWALA</span> <span class="text-orange-500 mx-2">✦</span>
-                <span class="mx-6">CITI HOUSING SCHEME</span> <span class="text-orange-500 mx-2">✦</span>
-                <span class="mx-6">MASTER CITY</span> <span class="text-orange-500 mx-2">✦</span>
-                <span class="mx-6">GARDEN TOWN</span> <span class="text-orange-500 mx-2">✦</span>
+                <span class="mx-6 text-white text-stroke-light">AUTHORIZED DEALERS</span> <span class="mx-2">✦</span>
+                <span class="mx-6">DHA GUJRANWALA</span> <span class="mx-2">✦</span>
+                <span class="mx-6">CITI HOUSING SCHEME</span> <span class="mx-2">✦</span>
+                <span class="mx-6">MASTER CITY</span> <span class="mx-2">✦</span>
+                <span class="mx-6">GARDEN TOWN</span> <span class="mx-2">✦</span>
             </div>
         </div>
     </div>
 
-    <!-- Editorial "About" Section -->
-    <section id="about" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-            <div class="md:col-span-4 flex flex-col items-start">
-                <span class="text-6xl font-serif text-gray-300 font-bold mb-2">01</span>
-                <h2 class="text-3xl md:text-5xl font-display font-bold uppercase leading-tight">Beyond<br>Transactions</h2>
-            </div>
-            <div class="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="font-bold text-lg mb-3">Our Core Philosophy</h3>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-6">
-                        At Al-Haram Real Estate, we believe in building long-term relationships rather than just closing deals. Under the visionary leadership of Ahmed Manj, we provide transparent, highly profitable investment opportunities across Gujranwala's top societies.
-                    </p>
-                    <div class="w-16 h-[2px] bg-dark"></div>
-                </div>
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" alt="Business Architecture" class="w-full h-64 object-cover rounded-lg">
-                    <!-- Floating abstract shape -->
-                    <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-dark text-light rounded-full flex items-center justify-center p-4 text-center text-xs font-bold uppercase float-anim">
-                        Verified<br>Plots
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Draggable Properties Slider Section -->
-    <section id="properties" class="py-20 bg-dark text-light overflow-hidden relative">
-        <!-- Background decorative text -->
-        <div class="absolute top-10 right-[-10%] text-[10vw] font-display font-bold text-white/5 pointer-events-none select-none uppercase">Investments</div>
-        
-        <div class="px-6 md:px-12 mb-10 flex justify-between items-end relative z-10">
+    <section id="properties" class="py-24 bg-light overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 mb-12 flex flex-col md:flex-row justify-between items-end relative z-10 gap-6">
             <div>
-                <span class="text-accent uppercase tracking-widest text-sm font-bold block mb-2">Premium Listings</span>
-                <h2 class="text-4xl md:text-6xl font-display font-bold uppercase">Explore Properties</h2>
+                <span class="text-amber uppercase tracking-widest text-sm font-bold block mb-2">Curated Portfolio</span>
+                <h2 class="text-4xl md:text-6xl font-display font-bold uppercase text-navy">Exclusive <br>Properties</h2>
             </div>
-            <div class="hidden md:flex gap-4">
-                <p class="text-sm max-w-xs text-gray-400">Drag to explore our highly curated portfolio of residential and commercial spaces.</p>
+            <div class="flex items-center gap-4 bg-white px-6 py-3 rounded-full shadow-sm border border-gray-100">
+                <i data-lucide="mouse-pointer-2" class="w-5 h-5 text-amber"></i>
+                <p class="text-sm font-semibold text-navy uppercase tracking-wider">Drag to explore</p>
             </div>
         </div>
 
         <!-- Slider Container -->
-        <div class="px-6 md:px-12">
-            <div id="main-slider" class="flex gap-6 overflow-x-auto no-scrollbar pb-10 grab-cursor snap-x snap-mandatory">
+        <div class="px-6 md:px-12 max-w-[100vw]">
+            <div id="main-slider" class="flex gap-8 overflow-x-auto no-scrollbar pb-10 grab-cursor snap-x snap-mandatory px-4 md:px-0">
                 
                 <!-- Card 1 -->
-                <div class="min-w-[85vw] md:min-w-[400px] bg-white text-dark rounded-xl overflow-hidden snap-center group relative">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1613490908592-156eb14acfa3?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Property">
-                        <div class="absolute top-4 left-4 bg-dark text-light text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">DHA Gujranwala</div>
+                <div class="min-w-[85vw] md:min-w-[420px] bg-white rounded-2xl overflow-hidden snap-center group relative shadow-lg border border-gray-100">
+                    <div class="h-72 overflow-hidden relative p-3">
+                        <img src="https://images.unsplash.com/photo-1613490908592-156eb14acfa3?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-700" alt="DHA Property">
+                        <div class="absolute top-6 left-6 bg-navy text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider shadow-md">DHA Gujranwala</div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="font-display font-bold text-2xl uppercase mb-2">1 Kanal Prime Plot</h3>
-                        <p class="text-gray-500 text-sm mb-4">Phase 1, Block A. Perfect location for a luxury villa construction.</p>
-                        <div class="flex justify-between items-center border-t pt-4">
-                            <span class="font-bold text-lg">Contact for Price</span>
-                            <a href="#contact" class="p-2 bg-gray-100 rounded-full hover:bg-dark hover:text-white transition-colors"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></a>
+                    <div class="p-8">
+                        <h3 class="font-display font-bold text-3xl text-navy uppercase mb-2">1 Kanal Prime Plot</h3>
+                        <p class="text-gray-500 font-sans mb-6">Phase 1, Block A. Perfect location for a luxury villa construction with elite neighborhood amenities.</p>
+                        <div class="flex justify-between items-center border-t border-gray-100 pt-6">
+                            <span class="font-bold text-amber text-lg">Inquire Now</span>
+                            <a href="#contact" class="p-3 bg-light rounded-full hover:bg-navy hover:text-white transition-colors"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="min-w-[85vw] md:min-w-[400px] bg-white text-dark rounded-xl overflow-hidden snap-center group relative">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Property">
-                        <div class="absolute top-4 left-4 bg-dark text-light text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">Citi Housing</div>
+                <div class="min-w-[85vw] md:min-w-[420px] bg-white rounded-2xl overflow-hidden snap-center group relative shadow-lg border border-gray-100">
+                    <div class="h-72 overflow-hidden relative p-3">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-700" alt="Citi Housing Property">
+                        <div class="absolute top-6 left-6 bg-amber text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider shadow-md">Citi Housing</div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="font-display font-bold text-2xl uppercase mb-2">Modern Villa Design</h3>
-                        <p class="text-gray-500 text-sm mb-4">10 Marla ready-to-move architectural masterpiece with modern amenities.</p>
-                        <div class="flex justify-between items-center border-t pt-4">
-                            <span class="font-bold text-lg">Contact for Price</span>
-                            <a href="#contact" class="p-2 bg-gray-100 rounded-full hover:bg-dark hover:text-white transition-colors"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></a>
+                    <div class="p-8">
+                        <h3 class="font-display font-bold text-3xl text-navy uppercase mb-2">Modern Villa</h3>
+                        <p class="text-gray-500 font-sans mb-6">10 Marla ready-to-move architectural masterpiece featuring imported fixtures and modern design.</p>
+                        <div class="flex justify-between items-center border-t border-gray-100 pt-6">
+                            <span class="font-bold text-amber text-lg">Inquire Now</span>
+                            <a href="#contact" class="p-3 bg-light rounded-full hover:bg-navy hover:text-white transition-colors"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="min-w-[85vw] md:min-w-[400px] bg-white text-dark rounded-xl overflow-hidden snap-center group relative">
-                    <div class="h-64 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Property">
-                        <div class="absolute top-4 left-4 bg-dark text-light text-xs font-bold px-3 py-1 rounded uppercase tracking-wider">Master City</div>
+                <div class="min-w-[85vw] md:min-w-[420px] bg-white rounded-2xl overflow-hidden snap-center group relative shadow-lg border border-gray-100">
+                    <div class="h-72 overflow-hidden relative p-3">
+                        <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover rounded-xl group-hover:scale-105 transition-transform duration-700" alt="Master City Property">
+                        <div class="absolute top-6 left-6 bg-navy text-white text-xs font-bold px-4 py-2 rounded-full uppercase tracking-wider shadow-md">Master City</div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="font-display font-bold text-2xl uppercase mb-2">Commercial Plaza</h3>
-                        <p class="text-gray-500 text-sm mb-4">High ROI commercial opportunity in the heart of the developing sector.</p>
-                        <div class="flex justify-between items-center border-t pt-4">
-                            <span class="font-bold text-lg">Contact for Price</span>
-                            <a href="#contact" class="p-2 bg-gray-100 rounded-full hover:bg-dark hover:text-white transition-colors"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></a>
+                    <div class="p-8">
+                        <h3 class="font-display font-bold text-3xl text-navy uppercase mb-2">Commercial Hub</h3>
+                        <p class="text-gray-500 font-sans mb-6">High ROI commercial opportunity in the heart of the fastest developing sector of the city.</p>
+                        <div class="flex justify-between items-center border-t border-gray-100 pt-6">
+                            <span class="font-bold text-amber text-lg">Inquire Now</span>
+                            <a href="#contact" class="p-3 bg-light rounded-full hover:bg-navy hover:text-white transition-colors"><i data-lucide="arrow-up-right" class="w-5 h-5"></i></a>
                         </div>
                     </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="min-w-[85vw] md:min-w-[400px] bg-white text-dark rounded-xl overflow-hidden snap-center group flex flex-col justify-center items-center text-center p-8 border-2 border-dashed border-gray-300">
-                    <div class="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-                        <i data-lucide="plus" class="w-8 h-8 text-dark"></i>
-                    </div>
-                    <h3 class="font-display font-bold text-xl uppercase mb-2">View All Properties</h3>
-                    <p class="text-sm text-gray-500">Contact us to see our full unlisted portfolio.</p>
                 </div>
 
             </div>
         </div>
     </section>
 
-    <!-- Contact & Footer Section (Modeled directly from Business Card) -->
-    <footer id="contact" class="bg-[#2A2A2A] text-white pt-24 pb-12 px-6 md:px-12 relative overflow-hidden">
+    <!-- Executive Contact Section -->
+    <footer id="contact" class="bg-navy text-white pt-24 pb-12 relative overflow-hidden">
         
-        <!-- Big abstract background block mimicking the business card layout -->
-        <div class="absolute top-0 left-0 w-full md:w-1/3 h-full bg-white hidden md:block"></div>
-        <div class="absolute top-1/2 left-0 w-full h-[1px] bg-gray-700 md:hidden"></div>
+        <!-- Background Pattern -->
+        <div class="absolute top-0 right-0 w-1/2 h-full opacity-5 pointer-events-none" style="background-image: radial-gradient(#D97706 2px, transparent 2px); background-size: 30px 30px;"></div>
 
-        <div class="relative z-10 max-w-7xl mx-auto flex flex-col md:flex-row shadow-2xl">
+        <div class="relative z-10 max-w-6xl mx-auto px-6 md:px-12 flex flex-col md:flex-row gap-0 shadow-2xl rounded-2xl overflow-hidden">
             
-            <!-- Left White Box (Business Card Identity) -->
-            <div class="bg-white text-dark p-12 md:p-20 md:w-5/12 flex flex-col justify-center text-center md:text-left shadow-lg">
-                <h2 class="text-4xl md:text-5xl font-display font-bold uppercase leading-tight mb-4">
+            <!-- Left Brand Box -->
+            <div class="bg-amber p-12 md:p-20 md:w-5/12 flex flex-col justify-center text-center md:text-left relative">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-white/20 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2"></div>
+                <h2 class="text-4xl md:text-5xl font-display font-bold uppercase leading-tight mb-4 text-navy">
                     Al-Haram<br>Real Estate
                 </h2>
-                <p class="font-sans text-xl uppercase tracking-widest text-gray-500 font-light mb-8">At Your Service</p>
-                <div class="w-12 h-1 bg-dark mx-auto md:mx-0"></div>
+                <p class="font-sans text-lg uppercase tracking-widest text-navy/80 font-bold mb-8">At Your Service</p>
+                <div class="w-16 h-1 bg-navy mx-auto md:mx-0"></div>
             </div>
 
-            <!-- Right Dark Box (Contact Details) -->
-            <div class="bg-[#333333] p-12 md:p-20 md:w-7/12 flex flex-col justify-center text-light">
-                <h3 class="text-3xl font-display font-bold mb-8 uppercase tracking-wide">Ahmed Manj</h3>
+            <!-- Right Contact Details -->
+            <div class="bg-[#152238] p-12 md:p-20 md:w-7/12 flex flex-col justify-center">
+                <div class="flex items-center gap-4 mb-8">
+                    <img src="ahmadmaj.png" alt="Ahmad Manj" onerror="this.src='https://images.unsplash.com/photo-1556157382-97eda2d62296?auto=format&fit=crop&w=100&q=80'" class="w-16 h-16 rounded-full object-cover border-2 border-amber">
+                    <div>
+                        <h3 class="text-2xl font-display font-bold uppercase tracking-wide text-white">Ahmad Manj</h3>
+                        <p class="text-amber text-sm font-bold uppercase tracking-wider">CEO / Director</p>
+                    </div>
+                </div>
                 
                 <div class="space-y-6 font-sans text-sm md:text-base">
                     <!-- Office -->
-                    <div class="flex items-start gap-4">
-                        <i data-lucide="phone" class="w-5 h-5 text-gray-400 mt-1 flex-shrink-0"></i>
-                        <div>
+                    <div class="flex items-start gap-5 group">
+                        <div class="w-10 h-10 rounded-full bg-navy border border-gray-700 flex items-center justify-center flex-shrink-0 group-hover:border-amber transition-colors">
+                            <i data-lucide="phone" class="w-4 h-4 text-amber"></i>
+                        </div>
+                        <div class="pt-2">
                             <span class="block text-xs uppercase tracking-widest text-gray-400 mb-1">Office</span>
-                            <a href="tel:+92553835695" class="hover:text-white transition">+92-55-3835695</a>
+                            <a href="tel:+92553835695" class="hover:text-amber transition font-semibold">+92-55-3835695</a>
                         </div>
                     </div>
                     
                     <!-- Mobile -->
-                    <div class="flex items-start gap-4">
-                        <i data-lucide="smartphone" class="w-5 h-5 text-gray-400 mt-1 flex-shrink-0"></i>
-                        <div>
-                            <span class="block text-xs uppercase tracking-widest text-gray-400 mb-1">Mobile</span>
-                            <div class="flex flex-col">
-                                <a href="tel:+923347998371" class="hover:text-white transition">+92-334-7998371</a>
-                                <a href="tel:+923424381813" class="hover:text-white transition">+92-342-4381813</a>
+                    <div class="flex items-start gap-5 group">
+                        <div class="w-10 h-10 rounded-full bg-navy border border-gray-700 flex items-center justify-center flex-shrink-0 group-hover:border-amber transition-colors">
+                            <i data-lucide="smartphone" class="w-4 h-4 text-amber"></i>
+                        </div>
+                        <div class="pt-2">
+                            <span class="block text-xs uppercase tracking-widest text-gray-400 mb-1">Direct Lines</span>
+                            <div class="flex flex-col gap-1 font-semibold">
+                                <a href="tel:+923347998371" class="hover:text-amber transition">+92-334-7998371</a>
+                                <a href="tel:+923424381813" class="hover:text-amber transition">+92-342-4381813</a>
                             </div>
                         </div>
                     </div>
 
                     <!-- Email -->
-                    <div class="flex items-start gap-4">
-                        <i data-lucide="mail" class="w-5 h-5 text-gray-400 mt-1 flex-shrink-0"></i>
-                        <div>
-                            <span class="block text-xs uppercase tracking-widest text-gray-400 mb-1">E-mail</span>
-                            <a href="mailto:alharamrealestate15@gmail.com" class="hover:text-white transition">alharamrealestate15@gmail.com</a>
+                    <div class="flex items-start gap-5 group">
+                        <div class="w-10 h-10 rounded-full bg-navy border border-gray-700 flex items-center justify-center flex-shrink-0 group-hover:border-amber transition-colors">
+                            <i data-lucide="mail" class="w-4 h-4 text-amber"></i>
                         </div>
-                    </div>
-
-                    <!-- Web -->
-                    <div class="flex items-start gap-4">
-                        <i data-lucide="globe" class="w-5 h-5 text-gray-400 mt-1 flex-shrink-0"></i>
-                        <div>
-                            <span class="block text-xs uppercase tracking-widest text-gray-400 mb-1">Web</span>
-                            <a href="https://www.fb.com/alharamestate" target="_blank" class="hover:text-white transition">www.fb.com/alharamestate</a>
+                        <div class="pt-2">
+                            <span class="block text-xs uppercase tracking-widest text-gray-400 mb-1">E-mail</span>
+                            <a href="mailto:alharamrealestate15@gmail.com" class="hover:text-amber transition font-semibold">alharamrealestate15@gmail.com</a>
                         </div>
                     </div>
 
                     <!-- Address -->
-                    <div class="flex items-start gap-4">
-                        <i data-lucide="map-pin" class="w-5 h-5 text-gray-400 mt-1 flex-shrink-0"></i>
-                        <div>
-                            <span class="block text-xs uppercase tracking-widest text-gray-400 mb-1">Address</span>
-                            <p class="max-w-[250px] leading-relaxed">Office No.15, Phase.3, Garden Town, Gujranwala</p>
+                    <div class="flex items-start gap-5 group">
+                        <div class="w-10 h-10 rounded-full bg-navy border border-gray-700 flex items-center justify-center flex-shrink-0 group-hover:border-amber transition-colors">
+                            <i data-lucide="map-pin" class="w-4 h-4 text-amber"></i>
+                        </div>
+                        <div class="pt-2">
+                            <span class="block text-xs uppercase tracking-widest text-gray-400 mb-1">Head Office</span>
+                            <p class="max-w-[280px] leading-relaxed text-gray-300 font-semibold">Office No.15, Phase 3, Garden Town, Gujranwala</p>
                         </div>
                     </div>
                 </div>
@@ -371,11 +347,10 @@
 
         </div>
 
-        <div class="mt-20 text-center text-xs text-gray-500 font-sans tracking-wider uppercase flex flex-col md:flex-row justify-between items-center gap-4 relative z-10">
-            <p>&copy; 2026 Al-Haram Real Estate. All rights reserved.</p>
-            <div class="flex gap-4">
-                <a href="#" class="hover:text-white transition">Privacy</a>
-                <a href="#" class="hover:text-white transition">Terms</a>
+        <div class="mt-20 max-w-7xl mx-auto px-6 text-center text-xs text-gray-500 font-sans tracking-wider uppercase flex flex-col md:flex-row justify-between items-center gap-4 relative z-10 border-t border-gray-800 pt-8">
+            <p>&copy; 2026 Al-Haram Real Estate. Managed by Ahmad Manj.</p>
+            <div class="flex gap-6">
+                <a href="https://www.fb.com/alharamestate" target="_blank" class="hover:text-amber transition flex items-center gap-2"><i data-lucide="facebook" class="w-4 h-4"></i> Facebook</a>
             </div>
         </div>
     </footer>
@@ -384,42 +359,6 @@
     <script>
         // Initialize Lucide Icons
         lucide.createIcons();
-
-        // Navbar Scroll Effect
-        const nav = document.querySelector('nav');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('bg-dark', 'shadow-md');
-                nav.classList.remove('mix-blend-difference');
-            } else {
-                nav.classList.remove('bg-dark', 'shadow-md');
-                nav.classList.add('mix-blend-difference');
-            }
-        });
-
-        // Mini Slider Logic (Hero Section)
-        const track = document.getElementById('mini-slider-track');
-        const prevBtn = document.getElementById('prev-mini');
-        const nextBtn = document.getElementById('next-mini');
-        let currentSlide = 0;
-        
-        if(track && prevBtn && nextBtn) {
-            const totalSlides = track.children.length;
-
-            nextBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide + 1) % totalSlides;
-                updateSlider();
-            });
-
-            prevBtn.addEventListener('click', () => {
-                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-                updateSlider();
-            });
-
-            function updateSlider() {
-                track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            }
-        }
 
         // Draggable Main Properties Slider
         const slider = document.getElementById('main-slider');
@@ -432,7 +371,6 @@
             slider.classList.add('active');
             startX = e.pageX - slider.offsetLeft;
             scrollLeft = slider.scrollLeft;
-            // Disable snap while dragging
             slider.style.scrollSnapType = 'none';
         });
         
@@ -452,7 +390,7 @@
             if (!isDown) return;
             e.preventDefault();
             const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2; // Scroll-fast multiplier
+            const walk = (x - startX) * 2.5; // Scroll speed
             slider.scrollLeft = scrollLeft - walk;
         });
 
@@ -472,10 +410,9 @@
         slider.addEventListener('touchmove', (e) => {
             if (!isDown) return;
             const x = e.touches[0].pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2;
+            const walk = (x - startX) * 2.5;
             slider.scrollLeft = scrollLeft - walk;
         });
-
     </script>
 </body>
 </html>
