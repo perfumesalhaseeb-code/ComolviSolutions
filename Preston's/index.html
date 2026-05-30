@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preston's Restaurant | Est. 1997</title>
+    
+    <!-- Google Fonts: Libre Baskerville closely matches the logo's serif text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        logo: {
+                            blue: '#82A5D2',     /* Exact Sky Blue from logo */
+                            yellow: '#F6C744',   /* Exact Sun Yellow from logo */
+                            woodLight: '#D99460',/* Wood top gradient */
+                            woodDark: '#B86C3A', /* Wood bottom gradient */
+                            black: '#1A1818',    /* The thick black border color */
+                            bg: '#FDFBF7'        /* Clean off-white background */
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Libre Baskerville"', 'serif'],
+                        sans: ['"Lato"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Image Slider */
+        .slide {
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        .slide.active {
+            opacity: 1;
+        }
+        
+        /* Dark wash over slider so the central logo pops */
+        .bg-overlay {
+            background: rgba(26, 24, 24, 0.6);
+        }
+
+        /* Strict Logo Theme Elements */
+        .thick-border {
+            border: 6px solid #1A1818;
+        }
+
+        .medium-border {
+            border: 4px solid #1A1818;
+        }
+
+        /* Accurate Wood Planks matching the logo */
+        .wood-planks {
+            background-color: #B86C3A;
+            background-image: 
+                repeating-linear-gradient(
+                    to right, 
+                    transparent, 
+                    transparent 46px, 
+                    rgba(26, 24, 24, 0.4) 46px, 
+                    rgba(26, 24, 24, 0.4) 50px
+                ),
+                linear-gradient(to bottom, #D99460, #B86C3A);
+            color: #1A1818;
+        }
+
+        /* Navbar transitions */
+        #navbar {
+            transition: all 0.3s ease;
+        }
+        #navbar.scrolled {
+            background-color: #82A5D2; /* Logo Blue */
+            border-bottom: 6px solid #1A1818;
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="font-sans text-logo-black bg-logo-bg antialiased selection:bg-logo-yellow selection:text-logo-black">
+
+    <!-- Navigation (Logo Blue Theme) -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-3 px-6 lg:px-12 flex justify-between items-center bg-logo-blue/90 backdrop-blur-sm border-b-4 border-transparent thick-border border-x-0 border-t-0">
+        <!-- Logo Area -->
+        <a href="#" class="flex items-center gap-3 z-50 bg-white px-3 py-1 medium-border rounded-lg shadow-lg">
+            <span class="font-serif font-bold text-xl tracking-wider text-logo-black">
+                PRESTON'S
+            </span>
+        </a>
+
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center gap-8 font-bold tracking-wider uppercase text-sm text-logo-black">
+            <a href="#about" class="hover:text-white transition-colors">About</a>
+            <a href="#location" class="hover:text-white transition-colors">Location</a>
+            <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+            <!-- Call button styled like the wood part of the logo -->
+            <a href="tel:+19318524327" class="wood-planks medium-border px-6 py-2.5 hover:opacity-90 transition-opacity flex items-center gap-2 shadow-lg">
+                <i class="fa-solid fa-phone"></i> +1 (931) 852-4327
+            </a>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobile-menu-btn" class="md:hidden text-3xl text-logo-black z-50 p-2">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-logo-blue z-40 flex flex-col items-center justify-center gap-8 opacity-0 pointer-events-none transition-opacity duration-300">
+        <a href="#about" class="mobile-link text-logo-black text-3xl font-serif uppercase font-bold hover:text-white">About Us</a>
+        <a href="#location" class="mobile-link text-logo-black text-3xl font-serif uppercase font-bold hover:text-white">Find Us</a>
+        <a href="#contact" class="mobile-link text-logo-black text-3xl font-serif uppercase font-bold hover:text-white">Contact</a>
+        <a href="https://m.facebook.com/Prestons2Leoma" target="_blank" class="mobile-link bg-white text-[#1877F2] medium-border px-8 py-3 text-2xl font-bold mt-4 flex items-center gap-3"><i class="fa-brands fa-facebook"></i> Facebook</a>
+        <a href="tel:+19318524327" class="mt-4 wood-planks text-logo-black medium-border font-bold px-8 py-3 text-xl flex items-center gap-2">
+            <i class="fa-solid fa-phone"></i> Call Now
+        </a>
+    </div>
+
+    <!-- Hero Section with Slider -->
+    <header class="relative min-h-screen w-full overflow-hidden thick-border border-x-0 border-t-0 bg-logo-black flex flex-col justify-center">
+        <!-- Background Slider -->
+        <div id="slider" class="absolute inset-0 w-full h-full">
+            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1920&q=80" alt="Restaurant Interior" class="slide active absolute inset-0 w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1414235077428-338988a2e8c0?auto=format&fit=crop&w=1920&q=80" alt="Delicious Food" class="slide absolute inset-0 w-full h-full object-cover">
+            <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1920&q=80" alt="Dining Atmosphere" class="slide absolute inset-0 w-full h-full object-cover">
+        </div>
+        
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-overlay z-10"></div>
+
+        <!-- Central Logo Presentation -->
+        <div class="relative z-20 flex flex-col items-center justify-center text-center px-4 pt-32 pb-16 w-full">
+            <!-- Framing the uploaded logo perfectly -->
+            <div class="bg-white p-4 md:p-6 thick-border rounded-[2rem] shadow-2xl max-w-2xl w-full mx-auto transform transition-transform hover:scale-[1.02] duration-500">
+                <img src="293373182_103795852408686_6376859037995028077_n.jpg" 
+                     alt="Preston's Restaurant Logo" 
+                     class="w-full h-auto object-contain"
+                     onerror="this.style.display='none'; document.getElementById('hero-text-fallback').style.display='block';">
+                
+                <!-- Fallback if image fails to load -->
+                <div id="hero-text-fallback" class="hidden py-12 text-center">
+                    <h1 class="font-serif text-5xl md:text-7xl font-bold text-logo-black">PRESTON'S</h1>
+                    <h2 class="font-serif text-3xl md:text-5xl text-logo-black mt-2">RESTAURANT</h2>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-6 justify-center mt-12">
+                <!-- Sun Yellow Button -->
+                <a href="#location" class="bg-logo-yellow text-logo-black px-8 py-4 font-bold tracking-widest uppercase medium-border hover:bg-white transition-colors shadow-lg">
+                    Get Directions
+                </a>
+                <!-- Wood Button -->
+                <a href="#contact" class="wood-planks text-logo-black px-8 py-4 font-bold tracking-widest uppercase medium-border hover:opacity-90 transition-opacity shadow-lg">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section (Sun Yellow Accent) -->
+    <section id="about" class="py-24 px-6 lg:px-12 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <!-- Image with thick logo-style frame -->
+            <div class="order-2 md:order-1 relative">
+                <!-- Yellow accent behind image -->
+                <div class="absolute inset-0 bg-logo-yellow thick-border translate-x-4 translate-y-4"></div>
+                <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=800&q=80" alt="Cooking with passion" class="relative thick-border z-10 w-full h-[450px] object-cover bg-white">
+                
+                <!-- Wood Badge -->
+                <div class="absolute -bottom-6 -right-6 wood-planks medium-border p-6 z-20 text-center">
+                    <span class="block text-4xl font-serif font-bold">25+</span>
+                    <span class="block text-sm uppercase tracking-widest font-bold mt-1">Years</span>
+                </div>
+            </div>
+            
+            <div class="order-1 md:order-2">
+                <span class="inline-block bg-logo-blue text-logo-black px-4 py-1 font-bold tracking-widest uppercase mb-4 medium-border">Our Story</span>
+                <h3 class="font-serif text-4xl md:text-5xl mb-6 font-bold text-logo-black uppercase leading-tight">A Legacy of Great Taste</h3>
+                <div class="text-gray-800 font-medium leading-relaxed mb-6 text-lg space-y-6">
+                    <p class="border-l-4 border-logo-yellow pl-6">
+                        Since 1997, Preston's Restaurant has been a beloved cornerstone of the community. We pride ourselves on serving hearty, delicious meals made from scratch, paired with the kind of genuine hospitality that makes everyone feel like family.
+                    </p>
+                    <p class="border-l-4 border-logo-blue pl-6">
+                        Whether you're stopping by for a comforting family dinner, a quick lunch, or celebrating a special occasion, our doors are always open to provide you with an unforgettable dining experience.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Contact Section (Sky Blue Theme) -->
+    <section id="location" class="bg-logo-blue py-24 relative thick-border border-x-0 border-b-0">
+        
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
+            <div class="text-center mb-16">
+                <span class="bg-logo-yellow text-logo-black px-6 py-2 font-bold tracking-widest uppercase mb-6 inline-block medium-border shadow-lg">Visit Us</span>
+                <h3 class="font-serif font-bold text-4xl md:text-6xl uppercase text-logo-black">Location & Contact</h3>
+            </div>
+
+            <!-- Main Contact Block -->
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-0 thick-border bg-white shadow-2xl">
+                
+                <!-- Contact Info Panel (Wood Planks Theme) -->
+                <div class="lg:col-span-2 p-10 md:p-12 flex flex-col justify-center wood-planks">
+                    <h4 class="font-serif font-bold text-3xl mb-8 border-b-4 border-logo-black pb-4 text-logo-black">Get in Touch</h4>
+                    
+                    <ul class="space-y-8 font-sans">
+                        <!-- Address -->
+                        <li class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white text-logo-black flex items-center justify-center text-xl shrink-0 medium-border">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-sm text-logo-black uppercase tracking-widest bg-white inline-block px-2 border-2 border-logo-black mb-2">Address</h5>
+                                <p class="text-logo-black font-bold text-xl leading-snug">
+                                    Preston's Restaurant<br>
+                                    Leoma, TN
+                                </p>
+                            </div>
+                        </li>
+                        
+                        <!-- Phone -->
+                        <li class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white text-logo-black flex items-center justify-center text-xl shrink-0 medium-border">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-sm text-logo-black uppercase tracking-widest bg-white inline-block px-2 border-2 border-logo-black mb-2">Phone</h5>
+                                <a href="tel:+19318524327" class="block text-logo-black hover:text-white font-bold text-xl transition-colors">+1 (931) 852-4327</a>
+                            </div>
+                        </li>
+
+                        <!-- Email -->
+                        <li class="flex items-start gap-4">
+                            <div class="w-12 h-12 bg-white text-logo-black flex items-center justify-center text-xl shrink-0 medium-border">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h5 class="font-bold text-sm text-logo-black uppercase tracking-widest bg-white inline-block px-2 border-2 border-logo-black mb-2">Email</h5>
+                                <a href="mailto:melanie.preston68@yahoo.com" class="block text-logo-black hover:text-white font-bold text-lg transition-colors break-all">melanie.preston68@yahoo.com</a>
+                            </div>
+                        </li>
+
+                        <!-- Social -->
+                        <li id="contact" class="pt-6">
+                            <a href="https://m.facebook.com/Prestons2Leoma" target="_blank" class="w-full bg-[#1877F2] text-white py-4 px-6 font-bold uppercase tracking-wider flex items-center justify-center gap-3 transition-opacity hover:opacity-90 medium-border">
+                                <i class="fa-brands fa-facebook text-2xl"></i> Follow on Facebook
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Google Map Panel -->
+                <div class="lg:col-span-3 min-h-[400px] lg:min-h-full border-t-[6px] lg:border-t-0 lg:border-l-[6px] border-logo-black bg-gray-200">
+                    <iframe 
+                        src="https://maps.google.com/maps?q=Preston's%20Restaurant,%20Leoma,%20TN&t=&z=14&ie=UTF8&iwloc=&output=embed" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0; min-height: 400px;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Wood Theme) -->
+    <footer class="wood-planks py-12 text-center thick-border border-x-0 border-b-0">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <!-- Footer Logo Box -->
+                <div class="flex items-center gap-3 bg-white px-4 py-2 medium-border">
+                     <span class="font-serif font-bold text-xl text-logo-black tracking-widest uppercase">PRESTON'S</span>
+                </div>
+                
+                <p class="font-bold text-logo-black bg-white px-6 py-2 medium-border">&copy; <span id="year"></span> Preston's Restaurant.</p>
+                
+                <div class="flex gap-4">
+                    <a href="https://m.facebook.com/Prestons2Leoma" target="_blank" class="w-12 h-12 bg-[#1877F2] text-white flex items-center justify-center text-xl hover:bg-white hover:text-[#1877F2] transition-colors medium-border">
+                        <i class="fa-brands fa-facebook-f"></i>
+                    </a>
+                    <a href="mailto:melanie.preston68@yahoo.com" class="w-12 h-12 bg-logo-yellow text-logo-black flex items-center justify-center text-xl hover:bg-white transition-colors medium-border">
+                        <i class="fa-solid fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Set current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Image Slider Logic
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+        setInterval(nextSlide, 5000);
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+                navbar.classList.remove('bg-logo-blue/90', 'backdrop-blur-sm', 'border-transparent');
+            } else {
+                navbar.classList.remove('scrolled');
+                navbar.classList.add('bg-logo-blue/90', 'backdrop-blur-sm', 'border-transparent');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuBtnIcon = mobileMenuBtn.querySelector('i');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        let isMenuOpen = false;
+
+        function toggleMenu() {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.add('opacity-100', 'pointer-events-auto');
+                mobileMenuBtnIcon.classList.remove('fa-bars');
+                mobileMenuBtnIcon.classList.add('fa-xmark');
+            } else {
+                mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+                mobileMenu.classList.remove('opacity-100', 'pointer-events-auto');
+                mobileMenuBtnIcon.classList.remove('fa-xmark');
+                mobileMenuBtnIcon.classList.add('fa-bars');
+            }
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+
+        // Close mobile menu when clicking a link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if(isMenuOpen) toggleMenu();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wheelin' in the Country | Summertown, TN Off-Road Park</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Oswald:wght@500;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#d32f2f', // Matched to the banner's red
+                            dark: '#111111',
+                            gray: '#2a2a2a',
+                            light: '#f4f4f4'
+                        }
+                    },
+                    fontFamily: {
+                        'script': ['"Dancing Script"', 'cursive'],
+                        'display': ['"Oswald"', 'sans-serif'],
+                        'body': ['"Roboto"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "linear-gradient(rgba(17, 17, 17, 0.8), rgba(17, 17, 17, 0.8)), url('https://images.unsplash.com/photo-1533561797500-4bad47309c13?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80')",
+                        'dirt-pattern': "url('data:image/svg+xml,%3Csvg width=\\'20\\' height=\\'20\\' viewBox=\\'0 0 20 20\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'%23000000\\' fill-opacity=\\'0.05\\' fill-rule=\\'evenodd\\'%3E%3Ccircle cx=\\'3\\' cy=\\'3\\' r=\\'3\\'/%3E%3Ccircle cx=\\'13\\' cy=\\'13\\' r=\\'3\\'/%3E%3C/g%3E%3C/svg%3E')"
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles for Lightbox and specific effects */
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+        .text-shadow-red {
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.8), -1px -1px 0px white;
+        }
+        
+        /* Lightbox styling */
+        #lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+        }
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90vh;
+            border: 4px solid #d32f2f;
+            border-radius: 8px;
+        }
+        #lightbox .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        /* Image hover effect */
+        .gallery-img {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .gallery-img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="font-body bg-brand-light text-gray-800 antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <nav class="bg-brand-dark text-white fixed w-full z-50 border-b border-brand-red">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="#" class="flex-shrink-0 flex items-center flex-col items-start">
+                        <span class="font-script text-brand-red text-2xl -mb-2">Celebrating 26 Years</span>
+                        <span class="font-display text-2xl uppercase tracking-wider italic font-bold">Wheelin' in the Country</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="font-display uppercase hover:text-brand-red transition-colors">About</a>
+                    <a href="#info" class="font-display uppercase hover:text-brand-red transition-colors">Pricing & Rules</a>
+                    <a href="#gallery" class="font-display uppercase hover:text-brand-red transition-colors">Gallery</a>
+                    <a href="#contact" class="font-display uppercase hover:text-brand-red transition-colors">Contact</a>
+                    <a href="#contact" class="bg-brand-red hover:bg-red-700 text-white px-6 py-2 rounded font-display uppercase tracking-wide transition-colors">Plan Visit</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-brand-red focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-gray border-t border-gray-700">
+            <a href="#about" class="block px-4 py-3 font-display uppercase hover:bg-brand-dark hover:text-brand-red border-b border-gray-700">About</a>
+            <a href="#info" class="block px-4 py-3 font-display uppercase hover:bg-brand-dark hover:text-brand-red border-b border-gray-700">Pricing & Rules</a>
+            <a href="#gallery" class="block px-4 py-3 font-display uppercase hover:bg-brand-dark hover:text-brand-red border-b border-gray-700">Gallery</a>
+            <a href="#contact" class="block px-4 py-3 font-display uppercase hover:bg-brand-dark hover:text-brand-red">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="relative bg-hero-pattern bg-cover bg-center bg-no-repeat min-h-screen flex items-center justify-center pt-32 pb-20">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-brand-dark/90"></div>
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <h2 class="font-script text-brand-red text-5xl md:text-7xl mb-4 text-shadow-red transform -rotate-2">Celebrating 26 Years</h2>
+            <h1 class="font-display text-white text-6xl md:text-8xl lg:text-9xl font-bold italic tracking-tighter uppercase text-shadow mb-2">Wheelin'</h1>
+            <h1 class="font-display text-white text-5xl md:text-7xl lg:text-8xl font-bold italic tracking-tighter uppercase text-shadow mb-4">In The Country</h1>
+            <p class="font-display text-gray-300 text-xl md:text-3xl uppercase tracking-widest mb-8 text-shadow">Summertown, TN</p>
+            <p class="font-script text-white text-3xl md:text-4xl mb-10 text-shadow">Thank You for Your Support!</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#info" class="bg-brand-red hover:bg-red-700 text-white px-8 py-4 rounded font-display uppercase tracking-widest text-lg transition-transform hover:-translate-y-1 shadow-lg">Park Info</a>
+                <a href="#gallery" class="bg-transparent border-2 border-white hover:bg-white hover:text-brand-dark text-white px-8 py-4 rounded font-display uppercase tracking-widest text-lg transition-all hover:-translate-y-1 shadow-lg">View Gallery</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Quick Info Bar -->
+    <div class="bg-brand-red text-white py-6">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div class="flex flex-col items-center">
+                <i class="fas fa-map-marker-alt text-3xl mb-2"></i>
+                <h3 class="font-display uppercase text-lg">Location</h3>
+                <p class="font-light text-sm">128 Anderson Creek Rd, Summertown, TN 38483</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <i class="fas fa-clock text-3xl mb-2"></i>
+                <h3 class="font-display uppercase text-lg">Hours</h3>
+                <p class="font-light text-sm">Open select weekends<br>Fri 8 AM - Sun Evening</p>
+            </div>
+            <div class="flex flex-col items-center">
+                <i class="fas fa-phone text-3xl mb-2"></i>
+                <h3 class="font-display uppercase text-lg">Contact</h3>
+                <p class="font-light text-sm">931-964-3417<br>wheelininthecountry@gmail.com</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-brand-light bg-dirt-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-brand-dark uppercase italic">Welcome to the Mud</h2>
+                <div class="w-24 h-1 bg-brand-red mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h3 class="font-display text-2xl text-brand-red uppercase mb-4">700 Acres of Pure Adventure</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        Wheelin' in the Country is a premier off-road park located in beautiful Summertown, Tennessee. Spanning approximately 700 acres, our park offers diverse terrain guaranteed to thrill riders of all skill levels—from novice beginners to expert off-roaders.
+                    </p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                        Tackle our famous deep mud holes, navigate scenic ponds, conquer steep climbs, and explore winding valleys. We host epic weekend riding events designed for maximum fun and community spirit.
+                    </p>
+                    
+                    <h4 class="font-display text-xl uppercase mt-8 mb-4 border-b-2 border-brand-red inline-block">Allowed Vehicles</h4>
+                    <ul class="grid grid-cols-2 gap-3 text-gray-700">
+                        <li><i class="fas fa-check text-brand-red mr-2"></i> ATVs & UTVs</li>
+                        <li><i class="fas fa-check text-brand-red mr-2"></i> Jeeps</li>
+                        <li><i class="fas fa-check text-brand-red mr-2"></i> Dirt Bikes</li>
+                        <li><i class="fas fa-check text-brand-red mr-2"></i> Dune Buggies</li>
+                        <li class="col-span-2 text-sm italic text-gray-500 mt-2">* Note: No street-legal only vehicles allowed.</li>
+                    </ul>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-white p-6 rounded shadow-md border-t-4 border-brand-red text-center">
+                        <i class="fas fa-campground text-4xl text-brand-dark mb-4"></i>
+                        <h4 class="font-display uppercase text-lg mb-2">Camping</h4>
+                        <p class="text-gray-600 text-sm">Free primitive camping available for weekend riders.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded shadow-md border-t-4 border-brand-red text-center">
+                        <i class="fas fa-rv text-4xl text-brand-dark mb-4"></i>
+                        <h4 class="font-display uppercase text-lg mb-2">RV Sites</h4>
+                        <p class="text-gray-600 text-sm">RV hookup sites available for $25/night.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded shadow-md border-t-4 border-brand-red text-center">
+                        <i class="fas fa-home text-4xl text-brand-dark mb-4"></i>
+                        <h4 class="font-display uppercase text-lg mb-2">Lodging</h4>
+                        <p class="text-gray-600 text-sm">Cabins and bunkhouses available to rent.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded shadow-md border-t-4 border-brand-red text-center">
+                        <i class="fas fa-hot-tub text-4xl text-brand-dark mb-4"></i>
+                        <h4 class="font-display uppercase text-lg mb-2">Amenities</h4>
+                        <p class="text-gray-600 text-sm">Hot showers, restrooms, concession stand & repair shop.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing & Rules Section -->
+    <section id="info" class="py-20 bg-brand-dark text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                
+                <!-- Pricing -->
+                <div class="bg-brand-gray p-8 rounded-lg border border-gray-700">
+                    <h2 class="font-display text-3xl text-brand-red uppercase mb-6 flex items-center">
+                        <i class="fas fa-ticket-alt mr-3"></i> Admission & Pricing
+                    </h2>
+                    <ul class="space-y-4">
+                        <li class="flex justify-between items-center pb-4 border-b border-gray-700">
+                            <span class="text-lg">Weekend Pass (Ages 16+)</span>
+                            <span class="font-display text-2xl text-brand-red">$30</span>
+                        </li>
+                        <li class="flex justify-between items-center pb-4 border-b border-gray-700">
+                            <span class="text-lg">Daily Pass (Ages 16+)</span>
+                            <span class="font-display text-2xl text-brand-red">$20</span>
+                        </li>
+                        <li class="flex justify-between items-center pb-4 border-b border-gray-700">
+                            <span class="text-lg">Kids (15 & under)</span>
+                            <span class="font-display text-2xl text-green-500 uppercase">Free</span>
+                        </li>
+                        <li class="flex justify-between items-center pb-4 border-b border-gray-700">
+                            <span class="text-lg">RV Site</span>
+                            <span class="font-display text-2xl text-brand-red">$25<span class="text-sm text-gray-400">/night</span></span>
+                        </li>
+                        <li class="flex justify-between items-center pt-2">
+                            <span class="text-lg">Primitive Camping</span>
+                            <span class="font-display text-2xl text-green-500 uppercase">Free</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Rules -->
+                <div class="bg-brand-gray p-8 rounded-lg border border-gray-700">
+                    <h2 class="font-display text-3xl text-brand-red uppercase mb-6 flex items-center">
+                        <i class="fas fa-exclamation-triangle mr-3"></i> Park Rules
+                    </h2>
+                    <p class="text-gray-400 mb-6 italic text-sm">For the safety and enjoyment of all guests, the following rules are strictly enforced:</p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-motorcycle text-brand-red mt-1 mr-4 text-xl"></i>
+                            <div>
+                                <strong class="block text-lg">DOT Helmets Required</strong>
+                                <span class="text-gray-400 text-sm">Mandatory for all riders on ATVs, dirt bikes, and open-cab vehicles.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-ban text-brand-red mt-1 mr-4 text-xl"></i>
+                            <div>
+                                <strong class="block text-lg">No Alcohol</strong>
+                                <span class="text-gray-400 text-sm">Zero tolerance policy for alcohol consumption while riding or on the trails.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-volume-mute text-brand-red mt-1 mr-4 text-xl"></i>
+                            <div>
+                                <strong class="block text-lg">Sound Limit: 96db</strong>
+                                <span class="text-gray-400 text-sm">Vehicles must adhere to the 96 decibel sound restriction.</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-id-badge text-brand-red mt-1 mr-4 text-xl"></i>
+                            <div>
+                                <strong class="block text-lg">Armbands Mandatory</strong>
+                                <span class="text-gray-400 text-sm">Armbands must be worn and visible at all times while in the park.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Photo Gallery -->
+    <section id="gallery" class="py-20 bg-brand-light bg-dirt-pattern">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="font-display text-4xl md:text-5xl font-bold text-brand-dark uppercase italic">The Action</h2>
+                <div class="w-24 h-1 bg-brand-red mx-auto mt-4 mb-4"></div>
+                <p class="text-gray-600">Click any image to enlarge.</p>
+            </div>
+
+            <!-- CSS Grid for 8 Images -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Using onerror to load a placeholder so the page looks good until you add the actual 1.jpg, 2.jpg files -->
+                <img src="1.jpg" alt="Offroad Action 1" class="gallery-img w-full h-64 object-cover rounded shadow-md border-2 border-gray-200" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/600x600/111/d32f2f?text=Photo+1\n(Add+1.jpg)'">
+                
+                <img src="2.jpg" alt="Offroad Action 2" class="gallery-img w-full h-64 object-cover rounded shadow-md border-2 border-gray-200" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/600x600/111/d32f2f?text=Photo+2\n(Add+2.jpg)'">
+                
+                <img src="3.jpg" alt="Offroad Action 3" class="gallery-img w-full h-64 object-cover rounded shadow-md border-2 border-gray-200" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/600x600/111/d32f2f?text=Photo+3\n(Add+3.jpg)'">
+                
+                <img src="4.jpg" alt="Offroad Action 4" class="gallery-img w-full h-64 object-cover rounded shadow-md border-2 border-gray-200" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/600x600/111/d32f2f?text=Photo+4\n(Add+4.jpg)'">
+                
+                <img src="5.jpg" alt="Offroad Action 5" class="gallery-img w-full h-64 object-cover rounded shadow-md border-2 border-gray-200" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/600x600/111/d32f2f?text=Photo+5\n(Add+5.jpg)'">
+                
+                <img src="6.jpg" alt="Offroad Action 6" class="gallery-img w-full h-64 object-cover rounded shadow-md border-2 border-gray-200" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/600x600/111/d32f2f?text=Photo+6\n(Add+6.jpg)'">
+                
+                <img src="7.jpg" alt="Offroad Action 7" class="gallery-img w-full h-64 object-cover rounded shadow-md border-2 border-gray-200" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/600x600/111/d32f2f?text=Photo+7\n(Add+7.jpg)'">
+                
+                <img src="8.jpg" alt="Offroad Action 8" class="gallery-img w-full h-64 object-cover rounded shadow-md border-2 border-gray-200" 
+                     onerror="this.onerror=null;this.src='https://placehold.co/600x600/111/d32f2f?text=Photo+8\n(Add+8.jpg)'">
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Overlay -->
+    <div id="lightbox">
+        <span class="close">&times;</span>
+        <img id="lightbox-img" src="" alt="Enlarged Image">
+    </div>
+
+    <!-- Contact & Location Map -->
+    <section id="contact" class="py-0 relative">
+        <!-- Map container -->
+        <div class="w-full h-96 md:h-[500px] bg-gray-300">
+            <iframe 
+                src="https://maps.google.com/maps?q=128%20Anderson%20Creek%20Rd,%20Summertown,%20TN%2038483&t=&z=13&ie=UTF8&iwloc=&output=embed" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+        
+        <!-- Contact Card Overlaid -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative -mt-32 mb-20 z-10">
+            <div class="bg-white rounded-lg shadow-2xl p-8 border-t-4 border-brand-red md:w-2/3 lg:w-1/2 mx-auto">
+                <h2 class="font-display text-3xl font-bold text-brand-dark uppercase mb-6 text-center">Get In Touch</h2>
+                
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="bg-brand-red text-white p-3 rounded-full mr-4 shadow">
+                            <i class="fas fa-map-marker-alt w-5 h-5 flex justify-center items-center"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Address</h4>
+                            <p class="text-gray-600">128 Anderson Creek Rd<br>Summertown, TN 38483</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-brand-red text-white p-3 rounded-full mr-4 shadow">
+                            <i class="fas fa-phone w-5 h-5 flex justify-center items-center"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Phone</h4>
+                            <p class="text-gray-600">931-964-3417</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start">
+                        <div class="bg-brand-red text-white p-3 rounded-full mr-4 shadow">
+                            <i class="fas fa-envelope w-5 h-5 flex justify-center items-center"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Email</h4>
+                            <p class="text-gray-600">wheelininthecountry@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 text-center">
+                    <p class="text-sm text-gray-500 italic">Check our Facebook page for the latest 2025 riding schedule and events updates!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-white py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0 text-center md:text-left">
+                <span class="font-display text-xl uppercase tracking-wider italic font-bold">Wheelin' in the Country</span>
+                <p class="text-gray-400 text-sm mt-1">Celebrating 26 Years of Mudding & Adventure</p>
+            </div>
+            <div class="flex space-x-4">
+                <!-- Assuming they have facebook since it was mentioned -->
+                <a href="#" class="text-gray-400 hover:text-brand-red transition-colors text-2xl">
+                    <i class="fab fa-facebook-square"></i>
+                </a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 mt-6 text-center text-xs text-gray-600">
+            &copy; <script>document.write(new Date().getFullYear())</script> Wheelin' in the Country. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.querySelector('#lightbox .close');
+        const galleryImages = document.querySelectorAll('.gallery-img');
+
+        galleryImages.forEach(img => {
+            img.addEventListener('click', function() {
+                // If it's a fallback placeholder, show that. If it's the real image, show that.
+                lightboxImg.src = this.src;
+                lightbox.style.display = 'flex';
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            lightbox.style.display = 'none';
+        });
+
+        // Close lightbox when clicking outside the image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.style.display = 'none';
+            }
+        });
+        
+        // Escape key to close lightbox
+        document.addEventListener('keydown', (e) => {
+            if(e.key === "Escape" && lightbox.style.display === 'flex') {
+                lightbox.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

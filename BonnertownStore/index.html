@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bonnertown Store & Deli | Five Points, TN</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom Config & Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            red: '#B91C1C', // Deep attractive red for deli feel
+                            dark: '#1F2937',
+                            light: '#F9FAFB',
+                            accent: '#F59E0B' // Amber for highlights
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* * Hero Background Setup 
+         * Currently set to point to 'shop.jpg' as requested.
+         * A fallback background color is included until the image is placed in the same folder.
+         */
+        .hero-bg {
+            background-color: #2d3748; /* Fallback color */
+            background-image: linear-gradient(rgba(17, 24, 39, 0.75), rgba(17, 24, 39, 0.85)), url('shop.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        
+        /* Map Container to ensure responsiveness */
+        .map-container {
+            position: relative;
+            padding-bottom: 75%; /* Aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 0.75rem;
+        }
+        
+        @media (min-width: 768px) {
+            .map-container {
+                padding-bottom: 0;
+                height: 100%;
+                min-height: 400px;
+            }
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 antialiased selection:bg-brand-red selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-white font-serif font-bold text-2xl tracking-tight flex items-center gap-2 drop-shadow-md">
+                        <i class="fa-solid fa-store text-brand-red"></i>
+                        Bonnertown<span class="hidden sm:inline"> Store & Deli</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-100 hover:text-white hover:text-brand-red transition font-medium drop-shadow-md">About</a>
+                    <a href="#menu" class="text-gray-100 hover:text-white hover:text-brand-red transition font-medium drop-shadow-md">Deli & Menu</a>
+                    <a href="#services" class="text-gray-100 hover:text-white hover:text-brand-red transition font-medium drop-shadow-md">Services</a>
+                    <a href="#contact" class="bg-brand-red hover:bg-red-800 text-white px-5 py-2.5 rounded-full font-medium transition shadow-lg flex items-center gap-2">
+                        <i class="fa-solid fa-map-location-dot"></i> Visit Us
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white focus:outline-none p-2 drop-shadow-md">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white shadow-xl absolute w-full">
+            <div class="px-4 pt-2 pb-6 space-y-1 sm:px-3 flex flex-col border-t border-gray-100">
+                <a href="#about" class="mobile-link text-gray-800 hover:bg-gray-50 hover:text-brand-red block px-3 py-3 rounded-md text-base font-medium border-b border-gray-100">About</a>
+                <a href="#menu" class="mobile-link text-gray-800 hover:bg-gray-50 hover:text-brand-red block px-3 py-3 rounded-md text-base font-medium border-b border-gray-100">Deli & Menu</a>
+                <a href="#services" class="mobile-link text-gray-800 hover:bg-gray-50 hover:text-brand-red block px-3 py-3 rounded-md text-base font-medium border-b border-gray-100">Services</a>
+                <a href="#contact" class="mobile-link text-gray-800 hover:bg-gray-50 hover:text-brand-red block px-3 py-3 rounded-md text-base font-medium">Contact & Location</a>
+                <a href="tel:9315562097" class="mt-4 flex justify-center items-center gap-2 bg-brand-red text-white px-4 py-3 rounded-lg font-medium shadow-md">
+                    <i class="fa-solid fa-phone"></i> (931) 556-2097
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero-bg relative pt-32 pb-20 lg:pt-48 lg:pb-32 flex items-center min-h-[85vh]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full text-center md:text-left">
+            <div class="max-w-3xl">
+                <span class="inline-block py-1 px-3 rounded-full bg-brand-red/20 text-red-200 border border-brand-red/30 text-sm font-semibold tracking-wider mb-4 uppercase backdrop-blur-sm">
+                    Five Points, Tennessee
+                </span>
+                <h1 class="text-4xl md:text-5xl lg:text-7xl font-serif font-bold text-white leading-tight mb-6 drop-shadow-lg">
+                    Your Local Stop for <span class="text-brand-accent">Hot Food</span> & Essentials.
+                </h1>
+                <p class="mt-4 text-xl md:text-2xl text-gray-200 mb-10 drop-shadow max-w-2xl font-light">
+                    Serving groceries, daily deli specials, and everything you need for the road or home.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#menu" class="bg-brand-red hover:bg-red-700 text-white px-8 py-4 rounded-full font-bold text-lg transition duration-300 shadow-xl flex items-center justify-center gap-2 transform hover:-translate-y-1">
+                        <i class="fa-solid fa-utensils"></i> See Deli Specials
+                    </a>
+                    <a href="#contact" class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-full font-bold text-lg transition duration-300 shadow-xl flex items-center justify-center gap-2 transform hover:-translate-y-1">
+                        <i class="fa-solid fa-location-arrow"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Bottom Wave Decor -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+            <svg class="relative block w-full h-[50px] lg:h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C59.71,118,130.9,130.12,200.7,121.71,242.45,116.61,283.43,89.51,321.39,56.44Z" fill="#F9FAFB"></path>
+            </svg>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                <div class="lg:w-1/2 relative">
+                    <div class="absolute -inset-4 bg-brand-accent/20 rounded-3xl transform -rotate-3 z-0"></div>
+                    <img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Local store vibe" class="relative z-10 rounded-2xl shadow-2xl object-cover h-[400px] w-full border-4 border-white">
+                    
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -right-6 lg:-right-10 bg-white p-4 rounded-xl shadow-xl z-20 flex items-center gap-4">
+                        <div class="bg-green-100 p-3 rounded-full text-green-600">
+                            <i class="fa-solid fa-clock text-2xl"></i>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-500 font-bold uppercase">We are</p>
+                            <p class="text-xl font-bold text-gray-900">Open Daily</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <h2 class="text-brand-red font-bold tracking-widest uppercase text-sm mb-2">Welcome to the neighborhood</h2>
+                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-6">A Staple in Five Points for Locals & Travelers</h3>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Located just around the corner from the famous <strong>Wheelin' in the Country</strong> off-road park, Bonnertown Store & Deli is your premier local convenience hub. 
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Whether you're gearing up for a weekend trail ride, traveling through town, or you're a local neighbor grabbing daily essentials, we provide friendly service, fully stocked groceries, and the best hot deli food in the area.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i class="fa-solid fa-circle-check text-brand-red"></i> Quick access to off-road trails
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i class="fa-solid fa-circle-check text-brand-red"></i> Freshly prepared daily meals
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-700 font-medium">
+                            <i class="fa-solid fa-circle-check text-brand-red"></i> Your one-stop shop for everything
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu & Deli Section -->
+    <section id="menu" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-brand-red font-bold tracking-widest uppercase text-sm mb-2">Hot & Fresh</h2>
+                <h3 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">Daily Deli Specials</h3>
+                <p class="text-gray-600 text-lg">
+                    Skip the cooking tonight! Our deli serves up hot, delicious, homemade-style meals every single day. 
+                </p>
+                <div class="inline-flex items-center gap-2 mt-6 bg-red-50 border border-red-100 text-brand-red px-6 py-3 rounded-full font-semibold shadow-sm">
+                    <i class="fa-solid fa-fire-burner"></i> Kitchen closes at 7:30 PM Daily
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300 text-center group">
+                    <div class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center shadow-md mb-6 group-hover:-translate-y-2 transition-transform">
+                        <i class="fa-solid fa-burger text-3xl text-brand-accent"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Hot Meals</h4>
+                    <p class="text-gray-600">Freshly prepared sandwiches, burgers, and hearty plates to keep you fueled.</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300 text-center group">
+                    <div class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center shadow-md mb-6 group-hover:-translate-y-2 transition-transform">
+                        <i class="fa-solid fa-calendar-day text-3xl text-brand-red"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Daily Specials</h4>
+                    <p class="text-gray-600">Check our Facebook page or stop by to see what's cooking today. Always something new!</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-gray-50 rounded-2xl p-8 border border-gray-100 hover:shadow-xl transition-shadow duration-300 text-center group">
+                    <div class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center shadow-md mb-6 group-hover:-translate-y-2 transition-transform">
+                        <i class="fa-solid fa-mug-hot text-3xl text-orange-500"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-gray-900 mb-3">Quick Bites & Drinks</h4>
+                    <p class="text-gray-600">Grab a quick snack, hot coffee, or cold beverage for the road.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Other Services Section -->
+    <section id="services" class="py-20 bg-brand-dark text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-12">
+                <div class="max-w-2xl">
+                    <h2 class="text-brand-accent font-bold tracking-widest uppercase text-sm mb-2">More than a deli</h2>
+                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Everything You Need</h3>
+                    <p class="text-gray-400 text-lg">We stock a wide variety of essentials so you don't have to make a trip into the city.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Service -->
+                <div class="bg-gray-800/50 backdrop-blur border border-gray-700 p-6 rounded-2xl text-center hover:bg-gray-700 transition duration-300">
+                    <i class="fa-solid fa-basket-shopping text-4xl text-white mb-4"></i>
+                    <h4 class="font-bold text-lg">Groceries</h4>
+                </div>
+                <!-- Service -->
+                <div class="bg-gray-800/50 backdrop-blur border border-gray-700 p-6 rounded-2xl text-center hover:bg-gray-700 transition duration-300">
+                    <i class="fa-solid fa-gas-pump text-4xl text-white mb-4"></i>
+                    <h4 class="font-bold text-lg">Gas</h4>
+                </div>
+                <!-- Service -->
+                <div class="bg-gray-800/50 backdrop-blur border border-gray-700 p-6 rounded-2xl text-center hover:bg-gray-700 transition duration-300">
+                    <i class="fa-solid fa-ticket text-4xl text-white mb-4"></i>
+                    <h4 class="font-bold text-lg">Lottery Tickets</h4>
+                </div>
+                <!-- Service -->
+                <div class="bg-gray-800/50 backdrop-blur border border-gray-700 p-6 rounded-2xl text-center hover:bg-gray-700 transition duration-300">
+                    <i class="fa-solid fa-box-open text-4xl text-white mb-4"></i>
+                    <h4 class="font-bold text-lg">Daily Essentials</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location & Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+                <div class="flex flex-col lg:flex-row">
+                    
+                    <!-- Contact Info Card -->
+                    <div class="lg:w-1/3 p-10 lg:p-12 flex flex-col justify-center bg-white z-10">
+                        <h2 class="text-brand-red font-bold tracking-widest uppercase text-sm mb-2">Visit Us</h2>
+                        <h3 class="text-3xl font-serif font-bold text-gray-900 mb-8">Location & Hours</h3>
+                        
+                        <div class="space-y-8">
+                            <div class="flex items-start gap-4">
+                                <div class="bg-red-50 p-3 rounded-full text-brand-red mt-1">
+                                    <i class="fa-solid fa-location-dot text-xl w-6 text-center"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-lg">Address</h4>
+                                    <p class="text-gray-600 mt-1">1134 Rabbit Trail Rd<br>Five Points, TN 38457</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="bg-red-50 p-3 rounded-full text-brand-red mt-1">
+                                    <i class="fa-solid fa-phone text-xl w-6 text-center"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-lg">Phone</h4>
+                                    <a href="tel:9315562097" class="text-gray-600 mt-1 hover:text-brand-red transition inline-block text-lg">(931) 556-2097</a>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4">
+                                <div class="bg-red-50 p-3 rounded-full text-brand-red mt-1">
+                                    <i class="fa-solid fa-clock text-xl w-6 text-center"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-lg">Store Hours</h4>
+                                    <p class="text-gray-600 mt-1">Open Daily</p>
+                                    <p class="text-sm font-semibold text-brand-red mt-1">Kitchen Closes at 7:30 PM</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-10 pt-8 border-t border-gray-100">
+                            <p class="text-sm text-gray-500 mb-4">Follow us for daily specials and updates!</p>
+                            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-[#1877F2] hover:bg-[#166fe5] text-white px-6 py-3 rounded-lg font-bold transition shadow-md hover:shadow-lg">
+                                <i class="fa-brands fa-facebook-f text-xl"></i> Find us on Facebook
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Google Map iframe -->
+                    <div class="lg:w-2/3 bg-gray-200 map-container">
+                        <!-- Using the exact coordinates provided: 35.0062287, -87.2982582 -->
+                        <iframe 
+                            src="https://maps.google.com/maps?q=35.0062287,-87.2982582&t=m&z=15&output=embed&iwloc=near" 
+                            title="Bonnertown Store & Deli Location"
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-store text-brand-red text-2xl"></i>
+                <span class="text-white font-serif font-bold text-xl tracking-tight">Bonnertown Store & Deli</span>
+            </div>
+            
+            <div class="text-center md:text-left text-sm text-gray-500">
+                &copy; <span id="year"></span> Bonnertown Store & Deli. All rights reserved.
+            </div>
+            
+            <div class="flex gap-4">
+                <a href="https://facebook.com" target="_blank" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-brand-red hover:text-white transition duration-300">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for Interactions -->
+    <script>
+        // Update copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        const navLinks = navbar.querySelectorAll('a:not(.bg-brand-red)');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-white', 'shadow-md');
+                navbar.classList.remove('py-2');
+                
+                // Change text color for desktop links
+                navLinks.forEach(link => {
+                    link.classList.remove('text-gray-100', 'drop-shadow-md');
+                    link.classList.add('text-gray-800');
+                });
+                
+                // Keep logo and menu button visible
+                document.querySelector('.fa-store').classList.remove('text-white');
+                document.querySelector('.fa-store').classList.add('text-brand-red');
+                document.querySelector('.fa-store').nextSibling.textContent = ' Bonnertown';
+                navbar.querySelector('a').classList.remove('text-white');
+                navbar.querySelector('a').classList.add('text-gray-900');
+                
+                document.getElementById('mobile-menu-btn').classList.remove('text-white');
+                document.getElementById('mobile-menu-btn').classList.add('text-gray-900');
+                
+            } else {
+                navbar.classList.remove('bg-white', 'shadow-md');
+                navbar.classList.add('py-2');
+                
+                // Revert text color for desktop links
+                navLinks.forEach(link => {
+                    link.classList.add('text-gray-100', 'drop-shadow-md');
+                    link.classList.remove('text-gray-800');
+                });
+                
+                navbar.querySelector('a').classList.add('text-white');
+                navbar.querySelector('a').classList.remove('text-gray-900');
+                
+                document.getElementById('mobile-menu-btn').classList.add('text-white');
+                document.getElementById('mobile-menu-btn').classList.remove('text-gray-900');
+            }
+        });
+
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
