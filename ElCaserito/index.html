@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Caserito & Tapas Restobar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-dark': '#2c1e16',
+                        'brand-gold': '#c29b62',
+                        'brand-red': '#8b1c1c',
+                        'brand-cream': '#f9f6f0',
+                        'brand-gray': '#e0d8c8',
+                    },
+                    fontFamily: {
+                        'serif': ['"Playfair Display"', 'serif'],
+                        'sans': ['"Lora"', 'serif'],
+                    },
+                    backgroundImage: {
+                        'wood-pattern': "url('https://www.transparenttextures.com/patterns/wood-pattern.png')",
+                        'paper-texture': "url('https://www.transparenttextures.com/patterns/cream-paper.png')"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f9f6f0;
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+        }
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .menu-border {
+            border: 2px solid #c29b62;
+            border-radius: 10px;
+            position: relative;
+        }
+        .menu-border::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 1px dashed #c29b62;
+            border-radius: 6px;
+            pointer-events: none;
+        }
+        .hero-overlay {
+            background: linear-gradient(to bottom, rgba(44, 30, 22, 0.7), rgba(44, 30, 22, 0.9));
+        }
+        .brush-stroke {
+            position: relative;
+            display: inline-block;
+        }
+        .brush-stroke::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background-color: rgba(194, 155, 98, 0.3);
+            z-index: -1;
+            transform: rotate(-2deg);
+        }
+    </style>
+</head>
+<body class="font-sans text-brand-dark antialiased">
+
+    <nav class="bg-brand-dark text-brand-cream sticky top-0 z-50 shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <!-- Logos (Simulated) -->
+                <div class="flex items-center space-x-2">
+                    <div class="w-12 h-12 bg-brand-red rounded-full flex items-center justify-center border-2 border-brand-gold">
+                        <span class="font-serif font-bold text-xs text-center leading-none">TAPAS<br><span class="text-[8px] font-sans">RESTOBAR</span></span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif text-xl text-brand-gold leading-tight"><i class="fa-solid fa-house text-sm mr-1"></i>Caserito</span>
+                        <span class="text-[10px] tracking-widest text-gray-300">EL RESTAURANTE</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex space-x-8 font-serif">
+                <a href="#inicio" class="hover:text-brand-gold transition-colors duration-300">Inicio</a>
+                <a href="#menu" class="hover:text-brand-gold transition-colors duration-300">Menú</a>
+                <a href="#especiales" class="hover:text-brand-gold transition-colors duration-300">Especiales</a>
+                <a href="#ubicacion" class="hover:text-brand-gold transition-colors duration-300">Ubicación</a>
+            </div>
+
+            <div class="md:hidden">
+                <button class="text-brand-gold focus:outline-none" id="mobile-menu-button">
+                    <i class="fa-solid fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="hidden md:hidden bg-brand-dark pb-4 px-4" id="mobile-menu">
+            <a href="#inicio" class="block py-2 hover:text-brand-gold font-serif">Inicio</a>
+            <a href="#menu" class="block py-2 hover:text-brand-gold font-serif">Menú</a>
+            <a href="#especiales" class="block py-2 hover:text-brand-gold font-serif">Especiales</a>
+            <a href="#ubicacion" class="block py-2 hover:text-brand-gold font-serif">Ubicación</a>
+        </div>
+    </nav>
+
+    <section id="inicio" class="relative h-[80vh] flex items-center justify-center bg-brand-dark bg-wood-pattern">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <!-- Hero Image (Ribeye) -->
+        <img src="el.tato.rivas_1776562494_3878409713415526911_75812169931.webp" alt="Ribeye Steak" class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-60">
+        
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+            <div class="flex justify-center space-x-6 mb-6">
+                <div class="w-24 h-24 bg-brand-dark/80 rounded-full flex items-center justify-center border-2 border-brand-gold shadow-lg backdrop-blur-sm">
+                    <span class="font-serif font-bold text-lg text-brand-cream text-center leading-tight">TAPAS<br><span class="text-[10px] font-sans text-brand-gold">RESTOBAR</span></span>
+                </div>
+                <div class="bg-brand-dark/80 p-4 rounded-lg border-b-2 border-brand-gold flex flex-col justify-center shadow-lg backdrop-blur-sm">
+                    <span class="font-serif text-3xl text-brand-cream leading-tight"><i class="fa-solid fa-house text-brand-gold mr-2"></i>Caserito</span>
+                    <span class="text-xs tracking-[0.2em] text-brand-gold">EL RESTAURANTE</span>
+                </div>
+            </div>
+            
+            <h1 class="font-serif text-5xl md:text-7xl text-brand-cream mb-4 drop-shadow-lg">
+                <span class="text-brand-gold">Sabor Tradicional</span><br>Hecho con Pasión
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 mb-8 font-sans italic">Cocina Venezolana • Sitio de Encuentro</p>
+            
+            <a href="#menu" class="inline-block bg-brand-gold text-brand-dark font-serif font-bold py-3 px-8 rounded-full hover:bg-yellow-600 transition-colors duration-300 shadow-lg text-lg uppercase tracking-wide">Ver Nuestro Menú</a>
+        </div>
+    </section>
+
+    <section class="py-16 bg-brand-dark bg-wood-pattern relative">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2 relative">
+                    <img src="el.tato.rivas_1776562494_3878409713415526911_75812169931.webp" alt="Ribeye 300g" class="rounded-lg shadow-2xl w-full border-4 border-brand-gold/30">
+                    <div class="absolute -bottom-6 -right-6 bg-brand-dark text-brand-gold font-serif text-5xl font-bold py-4 px-6 rounded-lg shadow-xl border border-brand-gold">
+                        $17
+                    </div>
+                </div>
+                <div class="md:w-1/2 text-brand-cream">
+                    <h2 class="font-serif text-5xl mb-4 text-brand-gold">Ribeye 300g</h2>
+                    <p class="text-2xl font-serif italic mb-6">Con ensalada fresca, papas fritas y aderezo de ají dulce.</p>
+                    <p class="text-lg text-gray-300 mb-8 font-sans">Nuestros cortes de carne son seleccionados para ofrecerte la mejor calidad y sabor en cada bocado, preparados a la perfección a la parrilla.</p>
+                    <div class="flex items-center text-brand-gold space-x-4">
+                        <i class="fa-solid fa-fire text-3xl"></i>
+                        <span class="font-serif text-xl tracking-widest uppercase">Especial de la Casa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="py-20 relative">
+        <div class="container mx-auto px-4 max-w-4xl">
+            
+            <div class="text-center mb-12">
+                <h2 class="font-serif text-6xl text-brand-dark mb-4 brush-stroke">MENÚ</h2>
+                <div class="flex items-center justify-center gap-4 text-brand-gold">
+                    <span class="h-px w-16 bg-brand-gold"></span>
+                    <i class="fa-solid fa-leaf"></i>
+                    <span class="h-px w-16 bg-brand-gold"></span>
+                </div>
+            </div>
+
+            <div class="menu-border bg-white/80 backdrop-blur-sm p-8 md:p-12 shadow-xl">
+                
+                <!-- Category: Sopas -->
+                <div class="mb-10">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-brand-gray flex items-center justify-center text-brand-dark text-2xl">
+                            <i class="fa-solid fa-bowl-food"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-brand-dark uppercase tracking-widest">Sopas</h3>
+                    </div>
+                    <div class="flex justify-between items-end border-b border-gray-300 pb-2 mb-4">
+                        <div class="font-serif text-xl">Menestrón de El Caserito</div>
+                        <div class="font-serif text-xl font-bold text-brand-dark">$6</div>
+                    </div>
+                </div>
+
+                <!-- Category: Carnes -->
+                <div class="mb-10">
+                    <div class="flex items-center gap-4 mb-2">
+                        <div class="w-12 h-12 rounded-full bg-brand-gray flex items-center justify-center text-brand-dark text-2xl">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-brand-dark uppercase tracking-widest">Carnes</h3>
+                    </div>
+                    <p class="text-sm font-sans italic text-gray-600 mb-6 pl-16">Nuestros cortes incluyen ensalada César tradicional y papas bravas.</p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-end border-b border-gray-300 pb-2">
+                            <div class="font-serif text-xl">Churrasco <span class="text-sm text-gray-500">(280 g)</span></div>
+                            <div class="font-serif text-xl font-bold text-brand-dark">$15</div>
+                        </div>
+                        <div class="flex justify-between items-end border-b border-gray-300 pb-2">
+                            <div class="font-serif text-xl">Punta Trasera <span class="text-sm text-gray-500">(300 g)</span></div>
+                            <div class="font-serif text-xl font-bold text-brand-dark">$15</div>
+                        </div>
+                        <div class="flex justify-between items-end border-b border-gray-300 pb-2">
+                            <div class="font-serif text-xl">Tabla de Parrilla "El Caserito" <br><span class="text-sm text-gray-500">(2 personas)</span></div>
+                            <div class="font-serif text-xl font-bold text-brand-dark">$17</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category: Hamburguesas -->
+                <div class="mb-10">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-full bg-brand-gray flex items-center justify-center text-brand-dark text-2xl">
+                            <i class="fa-solid fa-burger"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-brand-dark uppercase tracking-widest">Hamburguesas</h3>
+                    </div>
+                    <div class="flex justify-between items-end border-b border-gray-300 pb-2">
+                        <div class="font-serif text-xl">Hamburguesas a la parrilla o de pollo crocante</div>
+                        <div class="font-serif text-xl font-bold text-brand-dark">$7</div>
+                    </div>
+                </div>
+
+                 <!-- Especial del Dia -->
+                 <div class="mb-10 bg-brand-cream border border-brand-gold p-6 rounded-lg relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-16 h-16 bg-brand-gold flex items-center justify-center rounded-bl-full shadow-md">
+                        <i class="fa-solid fa-star text-white text-xl ml-2 mb-2"></i>
+                    </div>
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="w-12 h-12 rounded-full bg-brand-dark flex items-center justify-center text-brand-gold text-2xl">
+                            <i class="fa-solid fa-hat-chef"></i> <!-- Placeholder if FA doesn't have hat-chef in free -->
+                             <i class="fa-solid fa-star"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-brand-dark uppercase tracking-widest">Especial del Día <span class="text-brand-gold">– $6</span></h3>
+                    </div>
+                    <ul class="list-disc list-inside font-serif text-lg space-y-2 pl-4 text-brand-dark">
+                        <li>Pasticho de berenjena</li>
+                        <li>Pasticho tradicional</li>
+                        <li>Canelones (rellenos de carne o pollo)</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="especiales" class="py-20 bg-brand-cream border-y-4 border-dashed border-brand-gray overflow-hidden">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12 relative z-10">
+                <h2 class="font-serif text-4xl md:text-5xl font-bold text-brand-red mb-2 transform -rotate-2 inline-block">¡Las pastas son!</h2>
+                <h3 class="font-serif text-6xl md:text-7xl font-bold text-brand-dark uppercase tracking-tighter shadow-sm mb-4">Irresistibles</h3>
+                <p class="font-sans italic text-xl text-gray-700">¿Cómo no enamorarse de una buena pasta?</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 max-w-5xl mx-auto">
+                <!-- Pasta 1 -->
+                <div class="text-center bg-white p-6 rounded-xl shadow-md border border-gray-200 transform transition hover:-translate-y-2">
+                    <div class="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4 border-4 border-brand-gold overflow-hidden flex items-center justify-center">
+                        <i class="fa-solid fa-bowl-food text-4xl text-brand-dark/50"></i>
+                    </div>
+                    <h4 class="font-serif text-2xl font-bold text-brand-red mb-2">Pesto</h4>
+                    <p class="font-sans text-sm text-gray-600">Albahaca fresca, piñones y un toque de parmesano.</p>
+                </div>
+                <!-- Pasta 2 -->
+                <div class="text-center bg-white p-6 rounded-xl shadow-md border border-gray-200 transform transition hover:-translate-y-2 md:-translate-y-4">
+                    <div class="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4 border-4 border-brand-gold overflow-hidden flex items-center justify-center">
+                        <i class="fa-solid fa-bowl-food text-4xl text-brand-dark/50"></i>
+                    </div>
+                    <h4 class="font-serif text-2xl font-bold text-brand-red mb-2">Napoli</h4>
+                    <p class="font-sans text-sm text-gray-600">Salsa de tomate natural, albahaca y especias.</p>
+                </div>
+                <!-- Pasta 3 -->
+                <div class="text-center bg-white p-6 rounded-xl shadow-md border border-gray-200 transform transition hover:-translate-y-2">
+                    <div class="w-32 h-32 mx-auto bg-gray-200 rounded-full mb-4 border-4 border-brand-gold overflow-hidden flex items-center justify-center">
+                        <i class="fa-solid fa-bowl-food text-4xl text-brand-dark/50"></i>
+                    </div>
+                    <h4 class="font-serif text-2xl font-bold text-brand-red mb-2">Boloñesa</h4>
+                    <p class="font-sans text-sm text-gray-600">Carne seleccionada, tomate y un toque de tradición.</p>
+                </div>
+            </div>
+
+            <div class="max-w-4xl mx-auto bg-brand-dark text-brand-cream rounded-2xl p-8 shadow-2xl relative">
+                <div class="absolute -top-6 -left-6 bg-brand-gold text-brand-dark font-bold font-serif px-6 py-4 rounded-lg transform -rotate-6 shadow-lg border-2 border-brand-dark">
+                    <div class="text-sm">A partir de:</div>
+                    <div class="text-2xl">Mañana viernes</div>
+                    <div class="text-4xl text-brand-red">15 <span class="text-xl text-brand-dark">de mayo</span></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 md:mt-0 pl-0 md:pl-32">
+                    <div class="text-center md:text-left border-b md:border-b-0 md:border-r border-gray-600 pb-6 md:pb-0 md:pr-6">
+                        <h4 class="font-serif text-2xl text-brand-gold mb-2">Disfruta de nuestro</h4>
+                        <h5 class="font-serif text-4xl font-bold mb-2">Especial del día</h5>
+                        <p class="font-sans italic mb-4">Escoge tu opción de pasta</p>
+                        <div class="text-center">
+                            <span class="text-sm block mb-1">Por solo</span>
+                            <span class="font-serif text-6xl font-bold text-brand-gold">$5</span>
+                        </div>
+                    </div>
+                    <div class="text-center md:text-left flex flex-col justify-center">
+                        <h4 class="font-serif text-3xl font-bold text-brand-gold mb-4">Festival de Pastas</h4>
+                        <p class="font-sans text-sm mb-4">Para llevar o comer en nuestros espacios de restaurant y de paso al bar.</p>
+                        <div class="bg-white text-brand-dark rounded-lg p-4 inline-block text-center border-2 border-brand-gold">
+                            <span class="text-sm block font-bold">Te lo llevamos a tu sitio por solo</span>
+                            <span class="font-serif text-5xl font-bold">$6 <i class="fa-solid fa-motorcycle text-2xl text-brand-red"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="ubicacion" class="bg-brand-dark bg-wood-pattern pt-16 pb-8 border-t-8 border-brand-gold">
+        <div class="container mx-auto px-4 max-w-5xl">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+                <!-- Tasa de Cambio -->
+                <div class="bg-brand-cream/10 backdrop-blur-sm border border-brand-gold/50 p-6 rounded-lg text-brand-cream flex items-center gap-6">
+                    <div class="w-16 h-16 rounded-full border-2 border-brand-gold flex items-center justify-center text-3xl text-brand-gold flex-shrink-0">
+                        <i class="fa-solid fa-euro-sign"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-serif text-2xl font-bold text-brand-gold uppercase tracking-widest mb-2">Tasa de Cambio</h4>
+                        <p class="font-sans text-lg">Tasa Euro BCV del día</p>
+                        <p class="font-sans text-xl font-bold mt-1">Cambio: 1 USD x 3600 COP</p>
+                    </div>
+                </div>
+
+                <!-- Contact & Delivery -->
+                <div class="bg-brand-cream/10 backdrop-blur-sm border border-brand-gold/50 p-6 rounded-lg text-brand-cream flex flex-col justify-center items-center text-center">
+                    <h4 class="font-serif text-2xl font-bold text-brand-gold mb-4">Reservas y Delivery</h4>
+                    <div class="flex flex-col space-y-2 text-xl font-sans tracking-wide">
+                        <span><i class="fa-solid fa-phone text-brand-gold mr-2"></i>0424-7191078</span>
+                        <span><i class="fa-brands fa-whatsapp text-green-400 mr-2"></i>0424-719-1029</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Location -->
+            <div class="text-center text-brand-cream mb-12">
+                <div class="flex items-center justify-center gap-4 text-brand-gold mb-6">
+                    <span class="h-px w-24 bg-brand-gold"></span>
+                    <i class="fa-solid fa-location-dot text-2xl"></i>
+                    <span class="h-px w-24 bg-brand-gold"></span>
+                </div>
+                <h3 class="font-serif text-3xl uppercase tracking-widest mb-4 text-brand-gold">Ubicación</h3>
+                <p class="font-sans text-2xl max-w-2xl mx-auto leading-relaxed">
+                    Avenida Ferrero Tamayo,<br>
+                    Diagonal a la iglesia <span class="font-bold text-white">Santísimo Salvador.</span><br>
+                    <span class="text-lg text-gray-400 mt-2 block">San Cristóbal, Táchira</span>
+                </p>
+            </div>
+
+            <div class="border-t border-brand-gold/30 pt-8 text-center flex flex-col md:flex-row justify-between items-center text-sm text-gray-400 font-sans">
+                <div class="mb-4 md:mb-0 flex items-center space-x-4">
+                    <div class="flex items-center">
+                         <div class="w-8 h-8 bg-brand-red rounded-full flex items-center justify-center mr-2">
+                             <span class="font-serif font-bold text-[8px] text-brand-cream leading-none">TAPAS</span>
+                         </div>
+                         <span>& Caserito</span>
+                    </div>
+                </div>
+                <p>&copy; 2026 El Caserito & Tapas Restobar. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Smooth Scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
