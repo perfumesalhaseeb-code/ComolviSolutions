@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مطعم المحترف - تجربة المذاق الأصيل</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Tajawal:wght@500;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                        heading: ['Tajawal', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            DEFAULT: '#e31e24', 
+                            hover: '#c4191f',   
+                            light: '#fce8e9',   
+                        },
+                        secondary: {
+                            DEFAULT: '#8a8d91', 
+                            dark: '#6b6e73',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
+                        'glow': '0 0 20px rgba(227, 30, 36, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #e31e24, #8a8d91);
+        }
+
+        /* Hero Image - High Quality Generic Restaurant Image */
+        .hero-bg {
+            background-color: #111827;
+            background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-blend-mode: overlay;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(227, 30, 36, 0.1);
+        }
+
+        /* CSS Logo Styles */
+        .css-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .css-dome {
+            width: 50px;
+            height: 35px;
+            border: 3px solid #8a8d91;
+            border-top-left-radius: 50px;
+            border-top-right-radius: 50px;
+            border-bottom: none;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            position: relative;
+            background-color: transparent;
+        }
+        .css-m {
+            font-size: 32px;
+            font-weight: bold;
+            color: #e31e24;
+            font-family: serif;
+            font-style: italic;
+            line-height: 0.8;
+            margin-bottom: -2px;
+        }
+        .css-base {
+            width: 70px;
+            height: 8px;
+            background-color: #8a8d91;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            margin-top: 0px;
+            z-index: 0;
+        }
+        .css-ribbon {
+            background-color: #e31e24;
+            color: white;
+            padding: 2px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-top: -6px;
+            z-index: 10;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            border-bottom: 2px solid #b3151b;
+        }
+        /* Scale classes for different logo sizes */
+        .logo-sm { transform: scale(0.8); transform-origin: center right; }
+        .logo-lg { transform: scale(1.8); }
+
+        /* Before/After Image Container */
+        .img-compare-card {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+            border: 2px solid rgba(255,255,255,0.1);
+            background: #1f2937;
+            aspect-ratio: 4/3;
+        }
+        .img-compare-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .img-compare-card:hover img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased overflow-x-hidden">
+
+    <!-- Header -->
+    <header class="glass-nav fixed w-full top-0 z-50 transition-all duration-300" id="navbar">
+        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+            
+            <!-- Pure CSS Logo (Auto-generated) -->
+            <a href="#" class="logo-sm group flex-shrink-0">
+                <div class="css-logo-container group-hover:scale-105 transition-transform duration-300">
+                    <i class="fas fa-star text-secondary absolute -top-3 text-[10px]"></i>
+                    <div class="css-dome"><span class="css-m">M</span></div>
+                    <div class="css-base"></div>
+                    <div class="css-ribbon">المحترف</div>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-8 space-x-reverse mr-8">
+                <a href="#hero" class="font-semibold text-gray-600 hover:text-primary transition-colors">الرئيسية</a>
+                <a href="#showcase" class="font-semibold text-gray-600 hover:text-primary transition-colors">مراحل التصميم</a>
+                <a href="#menu" class="font-semibold text-gray-600 hover:text-primary transition-colors">قائمة الطعام</a>
+                <a href="#gallery" class="font-semibold text-gray-600 hover:text-primary transition-colors">المعرض</a>
+            </nav>
+
+            <a href="#contact" class="hidden md:flex bg-primary hover:bg-primary-hover text-white px-6 py-2 rounded-full font-bold shadow-md hover:shadow-glow transition-all">اتصل بنا</a>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-secondary hover:text-primary focus:outline-none" id="mobile-menu-btn">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative pt-32 pb-20 lg:h-[80vh] flex items-center justify-center hero-bg overflow-hidden">
+        <div class="absolute inset-0 bg-gray-900 bg-opacity-70 z-0"></div>
+
+        <div class="container mx-auto px-4 relative z-10 text-center flex flex-col items-center">
+            <span class="inline-block py-1 px-4 rounded-full bg-primary/20 border border-primary/50 text-white text-sm font-semibold mb-6 backdrop-blur-sm">
+                <i class="fas fa-crown text-gold mr-1"></i> المذاق الأصلي في خيبر
+            </span>
+            
+            <h1 class="text-5xl md:text-7xl font-heading font-extrabold text-white mb-6 leading-tight drop-shadow-lg">
+                أهلاً بكم في <br>
+                <span class="text-gradient">مطعم المحترف</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl font-light">
+                نقدم لكم أشهى المأكولات العربية الأصيلة، من المندي والمدفون إلى المشويات، تجربة طعام لا تُنسى.
+            </p>
+            
+            <div class="flex gap-4 justify-center">
+                <a href="#showcase" class="bg-primary hover:bg-primary-hover text-white font-bold text-lg py-3 px-8 rounded-full transition-all shadow-glow">
+                    شاهد التصميم <i class="fas fa-arrow-down ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BEFORE & AFTER SHOWCASE SECTION (For m.jpg and n.jpg) -->
+    <section id="showcase" class="py-24 bg-gray-900 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-5 pointer-events-none" style="background-image: radial-gradient(#e31e24 1px, transparent 1px); background-size: 20px 20px;"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-bold text-primary tracking-widest uppercase mb-2">نظرة عن قرب</h2>
+                <h3 class="text-4xl font-heading font-extrabold text-white">مراحل التصميم والإخراج</h3>
+                <div class="w-24 h-1 bg-secondary mx-auto mt-4 rounded-full"></div>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">شاهد الفرق بين الصورة الأصلية والتخطيط (الآوت لاين) الخاص بها.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 max-w-6xl mx-auto">
+                
+                <!-- Image M (Before/Original) -->
+                <div class="flex flex-col">
+                    <div class="img-compare-card mb-4 group">
+                        <!-- Fallback background color if image is missing -->
+                        <div class="absolute inset-0 flex items-center justify-center bg-gray-800 text-gray-500 flex-col -z-10">
+                            <i class="fas fa-image text-4xl mb-2"></i>
+                            <span>صورة M.jpg</span>
+                        </div>
+                        <!-- Actual Image -->
+                        <img src="m.jpg" alt="التصميم الأصلي" onerror="this.style.opacity='0'">
+                        
+                        <!-- Overlay Label -->
+                        <div class="absolute top-4 right-4 bg-black/70 backdrop-blur text-white px-4 py-1 rounded-full text-sm font-bold border border-white/20">
+                            <i class="fas fa-camera mr-1 text-secondary"></i> 
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image N (After/Outline) -->
+                <div class="flex flex-col">
+                    <div class="img-compare-card mb-4 group border-primary/50 shadow-glow">
+                        <!-- Fallback background color if image is missing -->
+                        <div class="absolute inset-0 flex items-center justify-center bg-gray-800 text-gray-500 flex-col -z-10">
+                            <i class="fas fa-pen-nib text-4xl mb-2"></i>
+                            <span>صورة N.jpg</span>
+                        </div>
+                        <!-- Actual Image -->
+                        <img src="n.jpg" alt="المخطط أو الآوت لاين" onerror="this.style.opacity='0'">
+                        
+                        <!-- Overlay Label -->
+                        <div class="absolute top-4 right-4 bg-primary text-white px-4 py-1 rounded-full text-sm font-bold shadow-lg">
+                            <i class="fas fa-layer-group mr-1"></i> 
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- New Items Section (Using Generic Unsplash Image) -->
+    <section id="new-items" class="py-20 bg-white relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-bold text-secondary tracking-widest uppercase mb-2">إضافات مميزة</h2>
+                <h3 class="text-4xl font-heading font-extrabold text-gray-900">جديدنا في المحترف</h3>
+                <div class="w-24 h-1 bg-primary mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Generic High Quality Banner -->
+            <div class="mb-16 rounded-2xl overflow-hidden shadow-2xl max-w-5xl mx-auto relative h-64 md:h-80">
+                 <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=1200&q=80" alt="أطباق جديدة" class="w-full h-full object-cover">
+                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end justify-center pb-8">
+                     <h4 class="text-3xl md:text-4xl font-bold text-white text-center"><i class="fas fa-fire text-primary ml-2"></i> أطباق جديدة بانتظارك!</h4>
+                 </div>
+            </div>
+
+            <!-- Feature Cards (Same as before) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                <div class="bg-gray-50 rounded-2xl p-6 text-center hover:-translate-y-2 transition-transform shadow-sm border border-gray-100">
+                    <i class="fas fa-drumstick-bite text-4xl text-primary mb-4"></i>
+                    <h4 class="text-xl font-bold mb-2">مضغوط حاشي</h4>
+                    <p class="text-gray-600 text-sm">طعم يذوب في الفم مع بهاراتنا الخاصة.</p>
+                </div>
+                <div class="bg-gray-50 rounded-2xl p-6 text-center hover:-translate-y-2 transition-transform shadow-sm border border-gray-100">
+                    <i class="fas fa-chicken text-4xl text-primary mb-4"></i>
+                    <h4 class="text-xl font-bold mb-2">مضغوط دجاج</h4>
+                    <p class="text-gray-600 text-sm">دجاج محضر بطريقة المضغوط التقليدية.</p>
+                </div>
+                <div class="bg-gray-50 rounded-2xl p-6 text-center hover:-translate-y-2 transition-transform shadow-sm border border-gray-100">
+                    <i class="fas fa-bone text-4xl text-primary mb-4"></i>
+                    <h4 class="text-xl font-bold mb-2">لحم مظبي</h4>
+                    <p class="text-gray-600 text-sm">مبطوخ على الحجر بالطريقة الحضرمية.</p>
+                </div>
+                <div class="bg-gray-50 rounded-2xl p-6 text-center hover:-translate-y-2 transition-transform shadow-sm border border-gray-100">
+                    <i class="fas fa-fire-burner text-4xl text-primary mb-4"></i>
+                    <h4 class="text-xl font-bold mb-2">دجاج مظبي</h4>
+                    <p class="text-gray-600 text-sm">متبل ومشوي على الأحجار الساخنة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="py-20 bg-gray-50 border-t border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-bold text-secondary tracking-widest uppercase mb-2">استكشف النكهات</h2>
+                <h3 class="text-4xl font-heading font-extrabold text-gray-900">قائمة الطعام</h3>
+                <div class="w-24 h-1 bg-primary mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Chicken Section -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center border-b pb-4"><i class="fas fa-drumstick-bite text-primary ml-3"></i>قسم الدجاج</h3>
+                    <ul class="space-y-4">
+                        <li class="flex justify-between items-center"><span class="font-semibold text-gray-800">حبة دجاج مندي</span><span class="text-primary font-bold">42 S.R</span></li>
+                        <li class="flex justify-between items-center"><span class="font-semibold text-gray-800">حبة دجاج مدفون</span><span class="text-primary font-bold">42 S.R</span></li>
+                        <li class="flex justify-between items-center"><span class="font-semibold text-gray-800">حبة دجاج حنيذ</span><span class="text-primary font-bold">42 S.R</span></li>
+                        <li class="flex justify-between items-center"><span class="font-semibold text-gray-800">حبة دجاج شواية</span><span class="text-primary font-bold">42 S.R</span></li>
+                    </ul>
+                </div>
+
+                <!-- Meat Section -->
+                <div class="bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center border-b pb-4"><i class="fas fa-bone text-primary ml-3"></i>قسم اللحوم</h3>
+                    <ul class="space-y-4">
+                        <li class="flex justify-between items-center"><span class="font-semibold text-gray-800">نفر لحم مضغوط حاشي</span><span class="text-primary font-bold">60 S.R</span></li>
+                        <li class="flex justify-between items-center"><span class="font-semibold text-gray-800">نفر لحم مندي / حنيذ</span><span class="text-primary font-bold">60 S.R</span></li>
+                        <li class="flex justify-between items-center"><span class="font-semibold text-gray-800">نفر لحم مقلقل</span><span class="text-primary font-bold">60 S.R</span></li>
+                        <li class="flex justify-between items-center bg-gray-50 p-2 rounded"><span class="font-bold text-gray-900">نفر لحم حاشي كامل</span><span class="text-white bg-primary px-2 py-1 rounded text-sm font-bold">140 S.R</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-white border-t border-gray-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-sm font-bold text-secondary tracking-widest uppercase mb-2">أجواء المطعم</h2>
+                <h3 class="text-4xl font-heading font-extrabold text-gray-900">معرض الصور</h3>
+                <div class="w-24 h-1 bg-primary mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Generic High Quality Restaurant Interior -->
+                <div class="rounded-2xl overflow-hidden shadow-lg group relative h-80">
+                    <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80" alt="المطعم من الداخل" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                    <div class="absolute bottom-0 w-full p-4 bg-gradient-to-t from-gray-900 to-transparent text-white text-center">
+                        <p class="font-semibold text-lg">جلسات عائلية مريحة</p>
+                    </div>
+                </div>
+                
+                <!-- CSS Logo Showcase instead of image -->
+                <div class="rounded-2xl overflow-hidden shadow-lg flex flex-col items-center justify-center bg-gray-50 border border-gray-200 h-80 relative">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full"></div>
+                    <div class="absolute bottom-0 left-0 w-32 h-32 bg-secondary/10 rounded-tr-full"></div>
+                    
+                    <div class="z-10 logo-lg mb-8 mt-4">
+                        <div class="css-logo-container drop-shadow-xl">
+                            <i class="fas fa-star text-secondary absolute -top-4 text-xs"></i>
+                            <div class="css-dome bg-white"><span class="css-m">M</span></div>
+                            <div class="css-base"></div>
+                            <div class="css-ribbon">المحترف</div>
+                        </div>
+                    </div>
+                    
+                    <div class="w-full p-4 bg-gray-900 text-white text-center border-t-4 border-secondary absolute bottom-0">
+                        <p class="font-semibold">شعارنا يعكس هويتنا الأصيلة</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 bg-gray-800 rounded-3xl overflow-hidden shadow-2xl border border-gray-700">
+                <!-- Contact Info -->
+                <div class="lg:col-span-5 p-10 flex flex-col justify-center">
+                    <h4 class="text-3xl font-heading font-bold mb-8 text-white">معلومات التواصل</h4>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-primary text-2xl ml-4 mt-1"></i>
+                            <div>
+                                <h5 class="text-xl font-semibold mb-1">العنوان</h5>
+                                <p class="text-gray-400 text-sm">طريق المدينة المنورة، خيبر، السعودية</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i class="fas fa-phone-alt text-primary text-2xl ml-4 mt-1"></i>
+                            <div>
+                                <h5 class="text-xl font-semibold mb-1">رقم الهاتف</h5>
+                                <a href="tel:+966503579800" class="text-xl font-bold hover:text-primary transition-colors block" dir="ltr">+966 50 357 9800</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Maps -->
+                <div class="lg:col-span-7 min-h-[400px]">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3619.130004690677!2d39.29351131500458!3d25.68410008367426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15bdbe5199d0c07b%3A0x6e021891040200e7!2z2K7Zitiv2LEg2KfZhNiz2LnZiNiv2YrYqQ!5e0!3m2!1sen!2s!4v1678901234567!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-gray-400 py-12 text-center border-t-4 border-primary">
+        <div class="container mx-auto px-4 flex flex-col items-center">
+            <!-- CSS Logo in Footer -->
+            <div class="bg-gray-900 p-6 rounded-2xl inline-block shadow-lg mb-6 border border-gray-800">
+                <div class="css-logo-container">
+                    <div class="css-dome bg-black border-gray-600"><span class="css-m">M</span></div>
+                    <div class="css-base bg-gray-600"></div>
+                    <div class="css-ribbon">المحترف</div>
+                </div>
+            </div>
+            
+            <p class="mb-4 max-w-md mx-auto text-sm">وجهتكم الأولى لأشهى المأكولات العربية والذبائح في خيبر.</p>
+            <p class="text-sm border-t border-gray-800 pt-6 w-full">&copy; 2026 مطعم المحترف. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+</body>
+</html>
