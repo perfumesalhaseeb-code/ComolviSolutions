@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوب مطعم ومقهى | Loop Restaurant & Cafe</title>
+    
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Load Google Fonts for Arabic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&family=Tajawal:wght@400;500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <!-- Load FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#EBE5D9', // Matches the cream background
+                            bgLight: '#F5F0E6',
+                            textDark: '#1A1A1A', // Dark charcoal/black for text and logo
+                            accent: '#2A2A2A',
+                            gold: '#B89A65' // A subtle gold accent if needed
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Tajawal', 'sans-serif'],
+                        heading: ['Cairo', 'sans-serif'],
+                        cursive: ['Great Vibes', 'cursive'] // For "Restaurant & cafe" text
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #EBE5D9;
+            color: #1A1A1A;
+            /* Subtle texture gradient inspired by the image background */
+            background-image: radial-gradient(circle at center, #F5F0E6 0%, #EBE5D9 100%);
+        }
+        
+        .glass-nav {
+            background: rgba(235, 229, 217, 0.9);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(26, 26, 26, 0.05);
+        }
+
+        /* Geometric Logo Construction CSS */
+        .logo-container {
+            position: relative;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .logo-geometric {
+            font-family: monospace; /* Fallback */
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background-color: #1A1A1A;
+            padding: 4px;
+            width: 60px;
+            height: 60px;
+        }
+        
+        /* A simplified CSS representation of the complex geometric logo */
+        .logo-box {
+            border: 3px solid #1A1A1A;
+            width: 45px;
+            height: 55px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        
+        /* Just using SVG for accurate representation of the provided image logo */
+        .custom-logo svg {
+            fill: #1A1A1A;
+            width: auto;
+            height: 100%;
+        }
+
+        .menu-card:hover .menu-img {
+            transform: scale(1.05);
+        }
+
+        /* Hide scrollbar for cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #EBE5D9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1A1A1A;
+            border-radius: 4px;
+        }
+
+        .text-cursive {
+            font-family: 'Great Vibes', cursive;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased selection:bg-brand-textDark selection:text-brand-bgLight">
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                
+                <!-- Logo Custom SVG based on reference -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="h-16 flex flex-col items-center justify-center">
+                        <!-- SVG recreation of the geometric LOOP logo -->
+                        <svg viewBox="0 0 100 120" class="h-12 w-auto fill-current text-brand-textDark">
+                            <!-- Outer Frame -->
+                            <path d="M10,10 L90,10 L90,110 L10,110 Z" fill="none" stroke="currentColor" stroke-width="6"/>
+                            <!-- LOOP Top Part -->
+                            <!-- L -->
+                            <path d="M20,20 L35,20 L35,50 L20,50 Z" fill="none" stroke="currentColor" stroke-width="6"/>
+                            <!-- O -->
+                            <path d="M45,20 L60,20 L60,50 L45,50 Z" fill="none" stroke="currentColor" stroke-width="6"/>
+                            <!-- P (simplified) -->
+                            <path d="M70,20 L80,20 L80,40 L70,40 Z" fill="none" stroke="currentColor" stroke-width="6"/>
+                            <rect x="70" y="20" width="6" height="30" />
+                            
+                            <!-- Middle horizontal divider line -->
+                            <line x1="10" y1="55" x2="90" y2="55" stroke="currentColor" stroke-width="4"/>
+                            
+                            <!-- Arabic Bottom Part لووب -->
+                            <!-- ل -->
+                            <path d="M20,60 L20,95 L40,95 L40,85 L26,85 L26,60 Z" />
+                            <!-- و -->
+                            <path d="M45,60 L60,60 L60,80 L51,80 L51,95 L45,95 Z" />
+                            <!-- و -->
+                            <path d="M65,60 L80,60 L80,80 L71,80 L71,95 L65,95 Z" />
+                            <!-- Dot -->
+                            <rect x="35" y="100" width="6" height="6" />
+                            
+                            <!-- R Trademark symbol -->
+                            <circle cx="95" cy="5" r="4" fill="none" stroke="currentColor" stroke-width="1"/>
+                            <text x="95" y="8" font-size="6" text-anchor="middle" fill="currentColor">R</text>
+                        </svg>
+                        <span class="text-cursive text-brand-textDark text-lg -mt-1 tracking-wider">Restaurant & cafe</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 space-x-reverse items-center">
+                    <a href="#home" class="text-base font-bold text-brand-textDark/80 hover:text-brand-textDark transition-colors">الرئيسية</a>
+                    <a href="#about" class="text-base font-bold text-brand-textDark/80 hover:text-brand-textDark transition-colors">عن المطعم</a>
+                    <a href="#menu" class="text-base font-bold text-brand-textDark/80 hover:text-brand-textDark transition-colors">قائمة الطعام</a>
+                    <a href="#location" class="text-base font-bold text-brand-textDark/80 hover:text-brand-textDark transition-colors">الموقع</a>
+                    <a href="https://wa.me/966565366373" target="_blank" class="mr-4 bg-brand-textDark text-brand-bgLight px-6 py-2.5 rounded-sm text-sm font-bold hover:bg-black transition-all transform hover:-translate-y-0.5 shadow-lg">
+                        حجز طاولة
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-brand-textDark hover:text-black focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-bg border-t border-brand-textDark/10 absolute w-full left-0 shadow-xl">
+            <div class="px-4 pt-2 pb-6 space-y-1 text-center">
+                <a href="#home" class="block px-3 py-3 text-base font-bold text-brand-textDark border-b border-black/5">الرئيسية</a>
+                <a href="#about" class="block px-3 py-3 text-base font-bold text-brand-textDark border-b border-black/5">عن المطعم</a>
+                <a href="#menu" class="block px-3 py-3 text-base font-bold text-brand-textDark border-b border-black/5">قائمة الطعام</a>
+                <a href="#location" class="block px-3 py-3 text-base font-bold text-brand-textDark border-b border-black/5">الموقع</a>
+                <a href="https://wa.me/966565366373" target="_blank" class="block mt-4 w-full bg-brand-textDark text-brand-bgLight px-6 py-3 rounded-sm text-base font-bold hover:bg-black">
+                    حجز عبر الواتساب
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden">
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full z-10">
+            <!-- Text Content -->
+            <div class="text-right animate-fade-in order-2 lg:order-1">
+                <span class="font-heading text-brand-textDark/60 text-lg md:text-xl tracking-wide mb-4 block">مرحباً بكم في</span>
+                <h1 class="font-heading text-6xl md:text-8xl font-black text-brand-textDark mb-4 leading-tight">
+                    لوب <br/>
+                </h1>
+                <h2 class="text-cursive text-4xl md:text-6xl text-brand-textDark/80 mb-8 -mt-4 mr-2">Restaurant & Cafe</h2>
+                
+                <p class="text-brand-textDark/70 text-lg md:text-xl mb-10 max-w-lg leading-relaxed font-medium">
+                    تجربة طعام فريدة تجمع بين الأصالة واللمسة العصرية في قلب الدمام. استمتع بأجواء استثنائية وأطباق محضرة بشغف.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-start">
+                    <a href="#menu" class="bg-brand-textDark text-brand-bgLight px-8 py-3.5 rounded-sm text-base font-bold hover:bg-black transition-all text-center shadow-xl">
+                        استكشف القائمة
+                    </a>
+                    <a href="#location" class="bg-transparent border-2 border-brand-textDark text-brand-textDark px-8 py-3.5 rounded-sm text-base font-bold hover:bg-brand-textDark hover:text-brand-bgLight transition-all text-center">
+                        موقعنا
+                    </a>
+                </div>
+            </div>
+
+            <!-- Hero Image Montage -->
+            <div class="relative order-1 lg:order-2 h-[400px] lg:h-[600px] w-full">
+                <!-- Decorative background shape -->
+                <div class="absolute inset-0 bg-brand-textDark/5 rounded-tl-[100px] rounded-br-[100px] transform -rotate-3 scale-105"></div>
+                
+                <div class="grid grid-cols-2 gap-4 h-full relative z-10 p-4">
+                    <img src="https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=600&q=80" alt="Restaurant Ambiance" class="w-full h-full object-cover rounded-tl-[40px] rounded-br-[40px] shadow-lg">
+                    <div class="grid grid-rows-2 gap-4 h-full">
+                        <img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?auto=format&fit=crop&w=600&q=80" alt="Cafe Drink" class="w-full h-full object-cover rounded-tr-[40px] shadow-lg">
+                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt="Fine Dining Food" class="w-full h-full object-cover rounded-bl-[40px] shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-brand-bgLight">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <div class="relative order-2 lg:order-1">
+                    <div class="absolute inset-0 border-4 border-brand-textDark transform translate-x-4 translate-y-4 rounded-sm"></div>
+                    <img src="https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?auto=format&fit=crop&w=800&q=80" alt="Cafe Interior" class="relative z-10 shadow-xl object-cover h-[500px] w-full rounded-sm">
+                </div>
+
+                <div class="order-1 lg:order-2">
+                    <div class="flex items-center gap-4 mb-6 justify-start">
+                        <span class="text-brand-textDark/60 tracking-widest text-sm uppercase font-bold">قصتنا</span>
+                        <div class="h-[2px] w-12 bg-brand-textDark"></div>
+                    </div>
+                    <h2 class="font-heading text-4xl md:text-5xl font-black mb-6 text-brand-textDark leading-tight">شغفنا بتقديم<br>الأفضل دائمًا</h2>
+                    <p class="text-brand-textDark/80 mb-6 leading-relaxed text-lg font-medium">
+                        في "لوب"، نؤمن بأن الطعام ليس مجرد وجبة، بل هو تجربة متكاملة تبدأ من اختيار أفضل المكونات الطازجة وتنتهي بخدمة استثنائية في أجواء مريحة وأنيقة.
+                    </p>
+                    <p class="text-brand-textDark/80 mb-8 leading-relaxed text-lg font-medium">
+                        سواء كنت تبحث عن فنجان قهوة مثالي لبدء يومك، أو وجبة عشاء فاخرة مع العائلة والأصدقاء، فإن مطعم ومقهى لوب هو وجهتك المثالية في مدينة الدمام.
+                    </p>
+                    
+                    <div class="grid grid-cols-2 gap-6 mt-8">
+                        <div class="border-r-4 border-brand-textDark pr-4">
+                            <h4 class="font-heading font-bold text-2xl text-brand-textDark mb-1">+٥٠</h4>
+                            <p class="text-sm font-bold text-brand-textDark/60">صنف في القائمة</p>
+                        </div>
+                        <div class="border-r-4 border-brand-textDark pr-4">
+                            <h4 class="font-heading font-bold text-2xl text-brand-textDark mb-1">١٠٠٪</h4>
+                            <p class="text-sm font-bold text-brand-textDark/60">جودة ومكونات طازجة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="py-24 bg-brand-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-heading text-4xl md:text-5xl font-black text-brand-textDark mb-4">أطباق مميزة</h2>
+                <p class="text-brand-textDark/60 text-lg max-w-2xl mx-auto font-medium">تذوق تشكيلة واسعة من الأطباق المحضرة بعناية لتناسب جميع الأذواق.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Menu Item 1 -->
+                <div class="menu-card bg-white rounded-sm overflow-hidden shadow-lg border border-black/5 group">
+                    <div class="overflow-hidden h-64 relative">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800&q=80" alt="Pizza" class="menu-img w-full h-full object-cover transition-transform duration-700">
+                        <div class="absolute top-4 right-4 bg-brand-bg text-brand-textDark text-xs font-bold px-3 py-1 rounded-sm shadow-md">الأكثر طلباً</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-heading font-black text-brand-textDark">بيتزا مارغريتا لوب</h3>
+                            <span class="text-brand-textDark font-black bg-brand-bgLight px-2 py-1 rounded-sm">٤٥ ر.س</span>
+                        </div>
+                        <p class="text-brand-textDark/70 text-sm mb-4 leading-relaxed font-medium">
+                            عجينة نابولية مخبوزة على الحطب مع صلصة الطماطم الطازجة وجبنة الموزاريلا الفاخرة وأوراق الريحان.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Menu Item 2 -->
+                <div class="menu-card bg-white rounded-sm overflow-hidden shadow-lg border border-black/5 group">
+                    <div class="overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80" alt="Salad" class="menu-img w-full h-full object-cover transition-transform duration-700">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-heading font-black text-brand-textDark">سلطة الكينوا الصحية</h3>
+                            <span class="text-brand-textDark font-black bg-brand-bgLight px-2 py-1 rounded-sm">٣٨ ر.س</span>
+                        </div>
+                        <p class="text-brand-textDark/70 text-sm mb-4 leading-relaxed font-medium">
+                            كينوا عضوية، أفوكادو، طماطم كرزية، ورمان مع تتبيلة الليمون وزيت الزيتون البكر.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Menu Item 3 -->
+                <div class="menu-card bg-white rounded-sm overflow-hidden shadow-lg border border-black/5 group">
+                    <div class="overflow-hidden h-64">
+                        <img src="https://images.unsplash.com/photo-1572449043416-55f4685c9bb7?auto=format&fit=crop&w=800&q=80" alt="Specialty Coffee" class="menu-img w-full h-full object-cover transition-transform duration-700">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-heading font-black text-brand-textDark">قهوة لوب المختصة</h3>
+                            <span class="text-brand-textDark font-black bg-brand-bgLight px-2 py-1 rounded-sm">٢٢ ر.س</span>
+                        </div>
+                        <p class="text-brand-textDark/70 text-sm mb-4 leading-relaxed font-medium">
+                            مزيجنا الخاص من حبوب البن المحمصة بعناية، متوفرة حارة أو باردة مع اختيارات متعددة من الحليب.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <a href="https://wa.me/966565366373" class="inline-flex items-center gap-3 bg-white border border-brand-textDark text-brand-textDark hover:bg-brand-textDark hover:text-white transition-all font-bold px-8 py-4 rounded-sm shadow-sm">
+                    <i class="fa-solid fa-file-pdf"></i> طلب القائمة الكاملة
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="location" class="py-24 bg-brand-bgLight">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 shadow-2xl bg-white rounded-sm overflow-hidden">
+                
+                <!-- Contact Info -->
+                <div class="p-10 lg:col-span-5 flex flex-col justify-center bg-brand-textDark text-brand-bgLight">
+                    <h2 class="font-heading text-3xl font-black mb-8">نسعد بزيارتكم</h2>
+                    
+                    <div class="space-y-8">
+                        <div class="flex gap-4 items-start">
+                            <div class="w-12 h-12 rounded-sm bg-white/10 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-location-dot text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1 text-lg">الموقع</h4>
+                                <p class="text-brand-bgLight/70 text-base leading-relaxed">الدمام، المملكة العربية السعودية</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 items-start">
+                            <div class="w-12 h-12 rounded-sm bg-white/10 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-clock text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1 text-lg">ساعات العمل</h4>
+                                <p class="text-brand-bgLight/70 text-base">يومياً: ٧:٠٠ صباحاً - ١٢:٠٠ منتصف الليل</p>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 items-start">
+                            <div class="w-12 h-12 rounded-sm bg-white/10 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-phone text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1 text-lg">للتواصل والحجز</h4>
+                                <a href="https://wa.me/966565366373" dir="ltr" class="text-white hover:text-brand-bg/80 transition-colors text-xl font-bold block mt-1 tracking-wider">
+                                    +966 56 536 6373
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Map Embed based on the provided search link -->
+                <div class="lg:col-span-7 h-[400px] lg:h-auto min-h-[500px]">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114294.04167389803!2d50.1581452!3d26.4027415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49e61db1d7a3db%3A0x82dbd5c95bd8103c!2sDammam%20Saudi%20Arabia!5e0!3m2!1sen!2s!4v1717400000000!5m2!1sen!2s" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade"
+                        class="grayscale hover:grayscale-0 transition-all duration-700">
+                    </iframe>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-textDark pt-16 pb-8 border-t border-black/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-8">
+                
+                <!-- Footer Logo Area -->
+                <div class="flex flex-col items-center">
+                    <span class="font-heading text-3xl font-black tracking-wider text-brand-bgLight">لــــوب</span>
+                    <span class="text-cursive text-brand-bgLight/80 text-xl mt-1">Loop Restaurant & Cafe</span>
+                </div>
+                
+                <!-- Social Links -->
+                <div class="flex space-x-4 space-x-reverse">
+                    <a href="#" class="w-12 h-12 rounded-sm bg-white/5 border border-white/10 flex items-center justify-center text-brand-bgLight hover:bg-white hover:text-brand-textDark transition-all">
+                        <i class="fa-brands fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-sm bg-white/5 border border-white/10 flex items-center justify-center text-brand-bgLight hover:bg-white hover:text-brand-textDark transition-all">
+                        <i class="fa-brands fa-tiktok text-xl"></i>
+                    </a>
+                    <a href="#" class="w-12 h-12 rounded-sm bg-white/5 border border-white/10 flex items-center justify-center text-brand-bgLight hover:bg-white hover:text-brand-textDark transition-all">
+                        <i class="fa-brands fa-snapchat text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-brand-bgLight/50 font-medium">
+                <p>&copy; ٢٠٢٦ مطعم ومقهى لوب، الدمام. جميع الحقوق محفوظة.</p>
+                <div class="flex space-x-6 space-x-reverse">
+                    <a href="#" class="hover:text-white transition-colors">سياسة الخصوصية</a>
+                    <a href="#" class="hover:text-white transition-colors">الشروط والأحكام</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/966565366373" target="_blank" aria-label="تواصل معنا عبر واتساب" class="fixed bottom-6 left-6 z-50 group flex items-center gap-3">
+        <div class="bg-white border border-black/10 text-brand-textDark font-bold text-sm px-4 py-2 rounded-sm shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 translate-x-2 group-hover:translate-x-0 hidden md:block">
+            تواصل معنا للحجز!
+        </div>
+        <div class="relative">
+            <div class="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-20"></div>
+            <div class="w-16 h-16 bg-[#25D366] rounded-full flex items-center justify-center text-white text-4xl shadow-xl hover:scale-110 transition-transform duration-300 relative z-10">
+                <i class="fa-brands fa-whatsapp"></i>
+            </div>
+        </div>
+    </a>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-md', 'bg-[#EBE5D9]');
+                navbar.classList.remove('glass-nav');
+            } else {
+                navbar.classList.remove('shadow-md', 'bg-[#EBE5D9]');
+                navbar.classList.add('glass-nav');
+            }
+        });
+    </script>
+</body>
+</html>
