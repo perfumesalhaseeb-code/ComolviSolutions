@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solace Bakery & Coffee House | سولاس</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Playfair+Display:ital,wght@0,500;1,400&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#2a3d34',    // Dark forest green
+                            accent: '#8fb3a6',  // Mint/sage green
+                            gold: '#cba171',    // Muted gold
+                            light: '#f9f6f0',   // Cream/off-white
+                            darker: '#1d2a24'   // Deep background
+                        }
+                    },
+                    fontFamily: {
+                        arabic: ['Tajawal', 'sans-serif'],
+                        english: ['Cinzel', 'serif'],
+                        script: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #f9f6f0;
+            color: #2a3d34;
+            overflow-x: hidden;
+        }
+
+        /* Scroll Animations */
+        .observe-me {
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .fade-up { transform: translateY(40px); }
+        .fade-right { transform: translateX(40px); }
+        .fade-left { transform: translateX(-40px); }
+        .scale-in { transform: scale(0.95); }
+        
+        .observe-me.in-view {
+            opacity: 1;
+            transform: translate(0) scale(1);
+        }
+
+        /* Delay utilities */
+        .delay-100 { transition-delay: 100ms; }
+        .delay-200 { transition-delay: 200ms; }
+        .delay-300 { transition-delay: 300ms; }
+
+        /* Interactive Image Slider */
+        .slider-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            aspect-ratio: 4/3;
+        }
+        
+        .slider-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .img-bw {
+            filter: grayscale(100%) contrast(1.2);
+            z-index: 1;
+        }
+
+        .img-color-wrapper {
+            position: absolute;
+            top: 0;
+            right: 0; /* Starts from right in RTL */
+            width: 50%; /* Initial position */
+            height: 100%;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .img-color {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100vw; /* Very important: Image must remain full size relative to container */
+            max-width: 800px;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-handle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 50%;
+            width: 4px;
+            background-color: #cba171;
+            z-index: 3;
+            transform: translateX(50%); /* Center the line */
+            pointer-events: none;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+        }
+
+        .slider-handle::after {
+            content: '↔';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background-color: #2a3d34;
+            color: #cba171;
+            border: 2px solid #cba171;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-family: sans-serif;
+        }
+
+        .slider-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            z-index: 4;
+            cursor: ew-resize;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f9f6f0; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8fb3a6; 
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2a3d34; 
+        }
+
+        .glass-nav {
+            background: rgba(42, 61, 52, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(143, 179, 166, 0.2);
+        }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, #cba171 0%, #b38959 100%);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .btn-gold:hover {
+            box-shadow: 0 4px 15px rgba(203, 161, 113, 0.4);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-accent selection:text-brand-dark">
+
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24">
+                
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="flex flex-col items-center">
+                        <svg width="60" height="70" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" class="mb-1">
+                            <!-- Arch -->
+                            <path d="M50 10 L20 40 V110 H35 V40 L50 25 L65 40 V110 H80 V40 Z" fill="#8fb3a6"/>
+                            <!-- Center Line -->
+                            <rect x="48.5" y="40" width="3" height="60" fill="#8fb3a6"/>
+                            <!-- Swirls (Abstracted floral/S shapes) -->
+                            <path d="M48 55 C 40 55, 38 65, 48 65" fill="none" stroke="#8fb3a6" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M48 65 C 40 65, 38 75, 48 75" fill="none" stroke="#8fb3a6" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M52 55 C 60 55, 62 65, 52 65" fill="none" stroke="#8fb3a6" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M52 65 C 60 65, 62 75, 52 75" fill="none" stroke="#8fb3a6" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                        <div class="text-center">
+                            <span class="block text-brand-light font-english text-xl tracking-[0.2em] leading-none mb-1">SOLACE</span>
+                            <span class="block text-brand-gold font-script text-[0.6rem] tracking-widest italic">bakery & coffee house</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8 space-x-reverse">
+                    <a href="#home" class="text-brand-light hover:text-brand-gold transition-colors font-medium text-lg">الرئيسية</a>
+                    <a href="#about" class="text-brand-light hover:text-brand-gold transition-colors font-medium text-lg">من نحن</a>
+                    <a href="#menu" class="text-brand-light hover:text-brand-gold transition-colors font-medium text-lg">قائمتنا</a>
+                    <a href="#location" class="text-brand-light hover:text-brand-gold transition-colors font-medium text-lg">الموقع</a>
+                </div>
+
+                <!-- Socials & CTA -->
+                <div class="hidden md:flex items-center space-x-4 space-x-reverse">
+                    <a href="https://www.instagram.com/solace.ksa" target="_blank" class="text-brand-accent hover:text-brand-gold transition">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="https://www.tiktok.com/@ksa.solace" target="_blank" class="text-brand-accent hover:text-brand-gold transition">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-brand-accent hover:text-brand-gold focus:outline-none">
+                        <svg class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-24 overflow-hidden bg-brand-dark">
+        <!-- Background elements with looping video -->
+        <div class="absolute inset-0 z-0 bg-brand-dark">
+            <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-30">
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-pouring-coffee-into-a-white-cup-2321-large.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/80 to-brand-dark/40 z-10"></div>
+        
+        <!-- Decorative subtle patterns -->
+        <div class="absolute inset-0 z-10 opacity-10" style="background-image: radial-gradient(#8fb3a6 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+        <div class="relative z-20 text-center px-4 max-w-4xl mx-auto">
+            <h2 class="text-brand-accent font-english text-xl md:text-2xl tracking-[0.3em] mb-4 observe-me fade-up">WELCOME TO</h2>
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-brand-light mb-6 observe-me fade-up delay-100 drop-shadow-lg font-english tracking-wider">
+                SOLACE
+            </h1>
+            <p class="text-xl md:text-3xl text-brand-gold font-script italic mb-8 observe-me fade-up delay-200">
+                bakery & coffee house
+            </p>
+            <p class="text-lg md:text-2xl text-brand-light/90 mb-10 leading-relaxed observe-me fade-up delay-300 max-w-2xl mx-auto">
+                حيث يلتقي عبق القهوة المختصة بطعم المخبوزات الطازجة، لنوفر لك ملاذاً هادئاً في قلب مدينة الدمام.
+            </p>
+            <div class="observe-me fade-up delay-300">
+                <a href="#menu" class="inline-block btn-gold px-10 py-4 rounded-full text-lg font-bold shadow-lg">
+                    استكشف قائمتنا
+                </a>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+            <svg class="w-6 h-6 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+        </div>
+    </section>
+
+    <section id="about" class="py-24 bg-brand-light relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                
+                <!-- Text Content -->
+                <div class="observe-me fade-right">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="h-[1px] w-12 bg-brand-gold"></div>
+                        <h3 class="text-brand-gold font-bold text-xl uppercase tracking-wider">من نحن</h3>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-brand-dark mb-6 leading-tight">
+                        قصة شغف في كل كوب وقطعة
+                    </h2>
+                    <p class="text-lg text-gray-700 mb-6 leading-relaxed">
+                        في سولاس، نؤمن أن القهوة ليست مجرد مشروب، بل هي تجربة تلامس الحواس. تأسسنا في مدينة الدمام لنقدم لضيوفنا مساحة من الهدوء (Solace) وسط صخب الحياة.
+                    </p>
+                    <p class="text-lg text-gray-700 mb-8 leading-relaxed">
+                        نحرص على انتقاء أجود أنواع حبوب البن وتحميصها بعناية، ونقدم إلى جانبها تشكيلة مبتكرة من المخبوزات والحلويات المصنوعة يومياً بكل حب وشغف، لتكتمل تجربتكم معنا.
+                    </p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-center gap-3 text-brand-dark font-medium">
+                            <svg class="w-6 h-6 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            قهوة مختصة بأعلى المعايير
+                        </li>
+                        <li class="flex items-center gap-3 text-brand-dark font-medium">
+                            <svg class="w-6 h-6 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            حلويات ومخبوزات طازجة يومياً
+                        </li>
+                        <li class="flex items-center gap-3 text-brand-dark font-medium">
+                            <svg class="w-6 h-6 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            أجواء مريحة تناسب العائلة والأصدقاء
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Image Grid -->
+                <div class="relative observe-me fade-left">
+                    <div class="absolute inset-0 bg-brand-accent/20 rounded-3xl transform rotate-3 scale-105 -z-10"></div>
+                    <img src="n.jpg" alt="Solace Storefront" class="rounded-3xl shadow-2xl w-full h-auto object-cover aspect-[4/5]">
+                    
+                    <!-- Floating badge -->
+                    <div class="absolute -bottom-8 -right-8 bg-brand-dark text-brand-light p-6 rounded-full shadow-xl flex flex-col items-center justify-center w-32 h-32 border-4 border-brand-light">
+                        <span class="text-3xl font-bold text-brand-gold">١٠٠٪</span>
+                        <span class="text-sm font-medium mt-1">جودة عالية</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-brand-dark relative overflow-hidden">
+        <div class="absolute inset-0 opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M54.627 0l.83.83-54.627 54.627-.83-.83L54.627 0zm0 60l.83-.83L.83 4.543l-.83.83L54.627 60zM60 54.627l-.83.83-54.627-54.627.83-.83L60 54.627zm0-54.627l-.83-.83L4.543 60l.83.83L60 0z\' fill=\'%238fb3a6\' fill-opacity=\'1\' fill-rule=\'evenodd\'/%3E%3C/svg%3E');"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 observe-me fade-up">
+                <h3 class="text-brand-accent font-bold text-xl uppercase tracking-wider mb-2">اكتشف تفاصيل النكهة</h3>
+                <h2 class="text-4xl md:text-5xl font-bold text-brand-light">فن صناعة الحلويات</h2>
+                <p class="mt-4 text-brand-light/70 max-w-2xl mx-auto text-lg">اسحب الخط لترى كيف نضفي الألوان والحياة على أطباقنا المميزة.</p>
+            </div>
+
+            <!-- The Slider -->
+            <div class="observe-me scale-in">
+                <div class="slider-container" id="imageSlider">
+                    <!-- Bottom Image (Grayscale) -->
+                    <img src="solace.ksa_1778418068_3893975440466900785_45181518444.jpg" alt="Dessert B&W" class="slider-img img-bw">
+                    
+                    <!-- Top Image (Color) with wrapper -->
+                    <div class="img-color-wrapper" id="colorWrapper">
+                        <img src="m.jpg" alt="Dessert Color" class="img-color">
+                    </div>
+                    
+                    <!-- Slider Handle Line -->
+                    <div class="slider-handle" id="sliderHandle"></div>
+                    
+                    <!-- Invisible Range Input to control -->
+                    <input type="range" min="0" max="100" value="50" class="slider-input" id="sliderInput">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="py-24 bg-brand-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 observe-me fade-up">
+                <div class="flex items-center justify-center gap-4 mb-4">
+                    <div class="h-[1px] w-8 bg-brand-gold"></div>
+                    <h3 class="text-brand-gold font-bold text-xl uppercase tracking-wider">الأكثر طلباً</h3>
+                    <div class="h-[1px] w-8 bg-brand-gold"></div>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-brand-dark mb-4">أطباقنا المميزة</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">تشكيلة مختارة بعناية ترضي ذائقتكم، محضرة من أفضل المكونات وبلمسة سولاس الخاصة.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                
+                <!-- Menu Item 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group observe-me fade-up">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="solace.ksa_1778418068_3893975440466900785_45181518444.jpg" alt="Warm Chocolate Cake" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-brand-dark text-brand-gold px-3 py-1 rounded-full text-sm font-bold shadow-md">
+                            جديد
+                        </div>
+                    </div>
+                    <div class="p-8 text-center relative">
+                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-brand-accent w-12 h-12 rounded-full flex items-center justify-center shadow-lg border-4 border-white text-white">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                        </div>
+                        <h4 class="text-2xl font-bold text-brand-dark mb-2 mt-4 font-english tracking-wide">Warm Chocolate</h4>
+                        <h5 class="text-xl font-bold text-brand-dark mb-3">كيكة الشوكولاتة الدافئة</h5>
+                        <p class="text-gray-600 text-sm mb-4">كيكة شوكولاتة غنية تقدم دافئة مع آيس كريم الفانيليا الفاخر وصوص الشوكولاتة اللذيذ.</p>
+                        <span class="text-brand-gold font-bold text-xl">45 ريال</span>
+                    </div>
+                </div>
+
+                <!-- Menu Item 2 (Placeholder using generic aesthetic) -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group observe-me fade-up delay-100">
+                    <div class="relative h-72 overflow-hidden bg-brand-darker flex items-center justify-center">
+                        <!-- Simulated Coffee Image -->
+                        <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Specialty Coffee" class="w-full h-full object-cover opacity-80 transition-transform duration-700 group-hover:scale-110 mix-blend-overlay">
+                    </div>
+                    <div class="p-8 text-center relative">
+                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-brand-dark w-12 h-12 rounded-full flex items-center justify-center shadow-lg border-4 border-white text-brand-gold">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                        </div>
+                        <h4 class="text-2xl font-bold text-brand-dark mb-2 mt-4 font-english tracking-wide">V60 Coffee</h4>
+                        <h5 class="text-xl font-bold text-brand-dark mb-3">قهوة V60 المقطرة</h5>
+                        <p class="text-gray-600 text-sm mb-4">قهوة مختصة مقطرة بعناية لاستخلاص أفضل الإيحاءات من محاصيلنا المميزة.</p>
+                        <span class="text-brand-gold font-bold text-xl">22 ريال</span>
+                    </div>
+                </div>
+
+                <!-- Menu Item 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 group observe-me fade-up delay-200">
+                    <div class="relative h-72 overflow-hidden">
+                        <img src="solace.ksa_1776934817_3881533035175965775_45181518444.jpg" alt="Solace Offer" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-md">
+                            عرض خاص
+                        </div>
+                    </div>
+                    <div class="p-8 text-center relative">
+                        <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 bg-brand-gold w-12 h-12 rounded-full flex items-center justify-center shadow-lg border-4 border-white text-white">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <h4 class="text-2xl font-bold text-brand-dark mb-2 mt-4 font-english tracking-wide">Solace Combo</h4>
+                        <h5 class="text-xl font-bold text-brand-dark mb-3">عرض الحلا والقهوة</h5>
+                        <p class="text-gray-600 text-sm mb-4">استمتع بحلاك المفضل وقهوتك أو الشاي علينا. متوفر من 2 ظهراً إلى 7 مساءً.</p>
+                        <span class="text-brand-gold font-bold text-xl">اطلب الآن</span>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="text-center mt-12 observe-me fade-up">
+                <a href="#" class="inline-block border-2 border-brand-dark text-brand-dark hover:bg-brand-dark hover:text-brand-light transition-colors px-8 py-3 rounded-full font-bold">
+                    عرض القائمة كاملة
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-brand-dark text-brand-light relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 observe-me fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">لماذا سولاس؟</h2>
+                <p class="text-brand-accent max-w-2xl mx-auto text-lg">تفاصيل صغيرة تصنع فرقاً كبيراً في تجربتك معنا.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+                <div class="observe-me fade-up">
+                    <div class="w-20 h-20 mx-auto bg-brand-accent/20 rounded-full flex items-center justify-center mb-6 border border-brand-accent/50">
+                        <svg class="w-10 h-10 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">جودة المكونات</h3>
+                    <p class="text-brand-light/70">نستخدم أفضل المكونات الطبيعية والمحلية لضمان طعم غني وفريد في كل صنف.</p>
+                </div>
+                
+                <div class="observe-me fade-up delay-100">
+                    <div class="w-20 h-20 mx-auto bg-brand-accent/20 rounded-full flex items-center justify-center mb-6 border border-brand-accent/50">
+                        <svg class="w-10 h-10 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">أجواء استثنائية</h3>
+                    <p class="text-brand-light/70">تصميم داخلي هادئ يمزج بين الأناقة والراحة ليناسب أوقات عملك أو استرخائك.</p>
+                </div>
+
+                <div class="observe-me fade-up delay-200">
+                    <div class="w-20 h-20 mx-auto bg-brand-accent/20 rounded-full flex items-center justify-center mb-6 border border-brand-accent/50">
+                        <svg class="w-10 h-10 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">شغف الضيافة</h3>
+                    <p class="text-brand-light/70">فريقنا مدرب ليقدم لك خدمة بابتسامة واهتمام بتفاصيل طلبك لرضاك التام.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="location" class="relative">
+        <!-- Google Map Iframe -->
+        <div class="h-96 w-full grayscale contrast-125 opacity-90 hover:grayscale-0 hover:opacity-100 transition-all duration-700">
+            <!-- Using a general embedded map for Dammam since exact coordinate isn't provided, 
+                 but keeping it functional and styled nicely -->
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114312.4339890695!2d50.040212!3d26.399250!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e49e5f524dfce0b%3A0xc3b8388837e33719!2sDammam%20Saudi%20Arabia!5e0!3m2!1sen!2sus!4v1650000000000!5m2!1sen!2sus" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy" 
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+        </div>
+
+        <footer class="bg-brand-darker text-brand-light pt-16 pb-8 border-t-4 border-brand-accent">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                    
+                    <!-- Brand info -->
+                    <div class="text-center md:text-right">
+                        <svg width="60" height="70" viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg" class="mb-4 mx-auto md:mx-0">
+                            <path d="M50 10 L20 40 V110 H35 V40 L50 25 L65 40 V110 H80 V40 Z" fill="#8fb3a6"/>
+                            <rect x="48.5" y="40" width="3" height="60" fill="#8fb3a6"/>
+                            <path d="M48 55 C 40 55, 38 65, 48 65" fill="none" stroke="#8fb3a6" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M48 65 C 40 65, 38 75, 48 75" fill="none" stroke="#8fb3a6" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M52 55 C 60 55, 62 65, 52 65" fill="none" stroke="#8fb3a6" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M52 65 C 60 65, 62 75, 52 75" fill="none" stroke="#8fb3a6" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                        <h3 class="text-2xl font-english tracking-widest mb-1">SOLACE</h3>
+                        <p class="text-brand-gold font-script italic text-sm mb-4">bakery & coffee house</p>
+                        <p class="text-sm text-brand-light/70 max-w-xs">وجهتكم الأولى للقهوة المختصة والحلويات الفاخرة في المنطقة الشرقية.</p>
+                    </div>
+
+                    <!-- Contact & Location -->
+                    <div class="text-center md:text-right">
+                        <h4 class="text-brand-gold font-bold text-lg mb-6">تواصل معنا</h4>
+                        <ul class="space-y-4 text-sm text-brand-light/80">
+                            <li class="flex items-start justify-center md:justify-start gap-3">
+                                <svg class="w-5 h-5 text-brand-accent mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                <span>الدمام، المملكة العربية السعودية</span>
+                            </li>
+                            <li class="flex items-center justify-center md:justify-start gap-3">
+                                <svg class="w-5 h-5 text-brand-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                <span dir="ltr">يومياً: 7:00 AM - 12:00 AM</span>
+                            </li>
+                            <li class="flex items-center justify-center md:justify-start gap-3 text-brand-gold mt-4">
+                                <a href="https://www.instagram.com/solace.ksa" target="_blank" class="hover:text-white transition p-2 bg-brand-dark rounded-full">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                                </a>
+                                <a href="https://www.tiktok.com/@ksa.solace" target="_blank" class="hover:text-white transition p-2 bg-brand-dark rounded-full">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="text-center md:text-right">
+                        <h4 class="text-brand-gold font-bold text-lg mb-6">روابط سريعة</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#home" class="text-brand-light/80 hover:text-brand-gold transition">الرئيسية</a></li>
+                            <li><a href="#about" class="text-brand-light/80 hover:text-brand-gold transition">من نحن</a></li>
+                            <li><a href="#menu" class="text-brand-light/80 hover:text-brand-gold transition">قائمتنا</a></li>
+                            <li><a href="#" class="text-brand-light/80 hover:text-brand-gold transition">سياسة الخصوصية</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="border-t border-brand-light/10 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-brand-light/50">
+                    <p>&copy; 2024 Solace Bakery & Coffee House. جميع الحقوق محفوظة.</p>
+                    <p class="mt-2 md:mt-0 font-english tracking-wider">Designed with passion.</p>
+                </div>
+            </div>
+        </footer>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Scroll Animations Setup using Intersection Observer
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('in-view');
+                        // Optional: Stop observing once animated to keep it visible
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const animatedElements = document.querySelectorAll('.observe-me');
+            animatedElements.forEach(el => observer.observe(el));
+
+            // 2. Navbar Background Change on Scroll
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('shadow-lg');
+                    navbar.style.background = 'rgba(42, 61, 52, 0.98)';
+                } else {
+                    navbar.classList.remove('shadow-lg');
+                    navbar.style.background = 'rgba(42, 61, 52, 0.95)';
+                }
+            });
+
+            // 3. Interactive Image Slider Logic (B&W to Color)
+            const sliderInput = document.getElementById('sliderInput');
+            const colorWrapper = document.getElementById('colorWrapper');
+            const sliderHandle = document.getElementById('sliderHandle');
+
+            function updateSlider() {
+                // Since layout is RTL, input value 0 means handle is at far right.
+                // We want the color image to reveal from right to left.
+                // However, standard range slider in RTL browsers might reverse automatically.
+                // Let's rely on the value percentage directly.
+                const val = sliderInput.value;
+                
+                // Set the width of the color image wrapper
+                colorWrapper.style.width = `${val}%`;
+                
+                // Move the handle
+                // In RTL, right is 0%. So right position is (100 - val)%
+                sliderHandle.style.right = `${val}%`;
+            }
+
+            // Add events
+            sliderInput.addEventListener('input', updateSlider);
+            // Initialize
+            updateSlider();
+        });
+    </script>
+</body>
+</html>
