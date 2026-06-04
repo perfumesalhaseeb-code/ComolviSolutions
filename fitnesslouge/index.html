@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Lounge | Elite Training Studio Islamabad</title>
+    <meta name="description" content="Join Fitness Lounge in Islamabad. Elite training studio offering gym, supplements, and clothing. Located in Blue Area.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-yellow': '#DFFF00', // Vibrant neon yellow
+                        'brand-black': '#050505',
+                        'brand-dark': '#121212',
+                        'brand-gray': '#1E1E1E',
+                    },
+                    fontFamily: {
+                        'heading': ['Oswald', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('https://images.unsplash.com/photo-1526506114642-54effc929a55?q=80&w=2070&auto=format&fit=crop')",
+                        'section-pattern': "url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2069&auto=format&fit=crop')"
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6, .font-heading {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #DFFF00;
+        }
+
+        /* Glow Effects & Buttons */
+        .glow-text {
+            text-shadow: 0 0 20px rgba(223, 255, 0, 0.5);
+        }
+        .btn-primary {
+            background-color: #DFFF00;
+            color: #000;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(223, 255, 0, 0.2);
+        }
+        .btn-primary:hover {
+            background-color: #fff;
+            box-shadow: 0 0 25px rgba(223, 255, 0, 0.6);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            border: 2px solid #DFFF00;
+            color: #DFFF00;
+            transition: all 0.3s ease;
+        }
+        .btn-outline:hover {
+            background-color: #DFFF00;
+            color: #000;
+            box-shadow: 0 0 20px rgba(223, 255, 0, 0.4);
+        }
+
+        /* Overlays */
+        .hero-overlay {
+            background: linear-gradient(90deg, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.8) 50%, rgba(5,5,5,0.4) 100%);
+        }
+        .section-overlay {
+            background: linear-gradient(to top, rgba(5,5,5,1) 0%, rgba(5,5,5,0.85) 50%, rgba(5,5,5,1) 100%);
+        }
+
+        /* Image Grayscale Hover */
+        .gym-img {
+            filter: grayscale(100%);
+            transition: filter 0.5s ease;
+        }
+        .gym-img:hover {
+            filter: grayscale(0%);
+        }
+
+        /* Marquee Animation */
+        .marquee {
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 20s linear infinite;
+        }
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+
+        /* Scroll Reveal Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-yellow selection:text-black">
+
+    <nav class="fixed w-full z-50 transition-all duration-300 py-4 px-4 md:px-8 bg-brand-black/90 backdrop-blur-md border-b border-white/5" id="navbar">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            
+            <!-- Custom Generated Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-full border-2 border-brand-yellow flex items-center justify-center bg-brand-dark group-hover:bg-brand-yellow transition-colors duration-300">
+                    <!-- SVG Dumbbell Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-brand-yellow group-hover:text-black transition-colors duration-300">
+                        <path d="M7.5 3.375c0-1.036.84-1.875 1.875-1.875h.375a3.75 3.75 0 013.75 3.75v1.5c0 1.036-.84 1.875-1.875 1.875h-.375A3.75 3.75 0 017.5 6.875v-3.5zm0 13.75c0-1.036.84-1.875 1.875-1.875h.375a3.75 3.75 0 013.75 3.75v1.5c0 1.036-.84 1.875-1.875 1.875h-.375A3.75 3.75 0 017.5 18.625v-1.5zm-5-8.25C2.5 7.84 3.34 7 4.375 7h.375A3.75 3.75 0 018.5 10.75v2.5c0 1.036-.84 1.875-1.875 1.875h-.375A3.75 3.75 0 012.5 11.375v-2.5zm14 0c0-1.036.84-1.875 1.875-1.875h.375A3.75 3.75 0 0122.5 10.75v2.5c0 1.036-.84 1.875-1.875 1.875h-.375a3.75 3.75 0 01-3.75-3.75v-2.5z" />
+                    </svg>
+                </div>
+                <div class="flex flex-col">
+                    <span class="font-heading text-2xl font-bold tracking-wider leading-none text-brand-yellow">FITNESS</span>
+                    <span class="font-heading text-lg font-bold tracking-widest leading-none text-white">LOUNGE</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-gray-300 hover:text-brand-yellow font-heading text-lg tracking-wide transition-colors">Home</a>
+                <a href="#about" class="text-gray-300 hover:text-brand-yellow font-heading text-lg tracking-wide transition-colors">About</a>
+                <a href="#services" class="text-gray-300 hover:text-brand-yellow font-heading text-lg tracking-wide transition-colors">Services</a>
+                <a href="#contact" class="text-gray-300 hover:text-brand-yellow font-heading text-lg tracking-wide transition-colors">Contact</a>
+                <a href="https://wa.me/923315417985" target="_blank" class="btn-primary font-heading font-bold text-lg py-2 px-6 rounded uppercase flex items-center gap-2">
+                    <i class="fab fa-whatsapp text-xl"></i> Join Now
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white text-2xl focus:outline-none" id="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="md:hidden absolute top-full left-0 w-full bg-brand-dark hidden flex-col py-6 px-6 space-y-6 shadow-2xl border-b border-gray-800" id="mobile-menu">
+            <a href="#home" class="block text-gray-300 hover:text-brand-yellow font-heading text-2xl mobile-link text-center border-b border-gray-800 pb-2">Home</a>
+            <a href="#about" class="block text-gray-300 hover:text-brand-yellow font-heading text-2xl mobile-link text-center border-b border-gray-800 pb-2">About</a>
+            <a href="#services" class="block text-gray-300 hover:text-brand-yellow font-heading text-2xl mobile-link text-center border-b border-gray-800 pb-2">Services</a>
+            <a href="#contact" class="block text-gray-300 hover:text-brand-yellow font-heading text-2xl mobile-link text-center border-b border-gray-800 pb-2">Contact</a>
+            <a href="https://wa.me/923315417985" class="btn-primary font-heading font-bold py-3 px-6 rounded uppercase text-center flex justify-center items-center gap-2 mt-4 text-xl">
+                <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+        </div>
+    </nav>
+
+    <section id="home" class="relative min-h-screen flex items-center justify-start bg-hero-pattern bg-cover bg-center bg-fixed bg-no-repeat">
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 hero-overlay"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10 w-full pt-20">
+            <div class="w-full md:w-2/3 lg:w-1/2 reveal">
+                
+                <div class="inline-flex items-center gap-2 bg-brand-dark/80 border border-brand-yellow/30 text-brand-yellow font-bold px-4 py-1.5 rounded-full mb-6 uppercase tracking-widest text-xs font-heading backdrop-blur-sm">
+                    <span class="w-2 h-2 rounded-full bg-brand-yellow animate-pulse"></span>
+                    Elite Training Studio Islamabad
+                </div>
+                
+                <h1 class="text-6xl md:text-8xl font-black mb-2 leading-none tracking-tight">
+                    <span class="text-white block">BUILD YOUR</span>
+                    <span class="text-brand-yellow block glow-text">LEGACY</span>
+                </h1>
+                
+                <p class="text-lg md:text-xl text-gray-300 mb-8 mt-6 max-w-lg font-body leading-relaxed">
+                    Welcome to Fitness Lounge. The premier destination in Blue Area, Islamabad for serious fitness, authentic supplements, and exclusive gear. No excuses, just results.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row items-center gap-4">
+                    <a href="https://wa.me/923315417985" target="_blank" class="w-full sm:w-auto btn-primary font-heading font-bold text-xl py-4 px-8 rounded uppercase text-center">
+                        Start Training
+                    </a>
+                    <a href="#services" class="w-full sm:w-auto btn-outline font-heading font-bold text-xl py-4 px-8 rounded uppercase text-center">
+                        Explore Facilities
+                    </a>
+                </div>
+                
+                <!-- Trust Indicators -->
+                <div class="flex items-center gap-8 mt-12 border-t border-white/10 pt-8">
+                    <div>
+                        <div class="text-4xl font-heading font-bold text-white">100%</div>
+                        <div class="text-xs text-gray-400 uppercase tracking-widest mt-1">Authentic Gear</div>
+                    </div>
+                    <div class="w-px h-12 bg-white/10"></div>
+                    <div>
+                        <div class="text-4xl font-heading font-bold text-brand-yellow">ELITE</div>
+                        <div class="text-xs text-gray-400 uppercase tracking-widest mt-1">Environment</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce opacity-70">
+            <span class="text-xs text-gray-400 uppercase tracking-widest font-heading mb-2">Scroll</span>
+            <i class="fas fa-chevron-down text-brand-yellow"></i>
+        </div>
+    </section>
+
+    <div class="bg-brand-yellow py-3 border-y border-brand-yellow overflow-hidden relative z-20">
+        <div class="marquee font-heading font-black text-2xl uppercase tracking-widest text-black">
+            <span>
+                TRAIN HARD &nbsp; &bull; &nbsp; PREMIUM SUPPLEMENTS &nbsp; &bull; &nbsp; EXCLUSIVE CLOTHING &nbsp; &bull; &nbsp; ELITE MACHINES &nbsp; &bull; &nbsp; BLUE AREA ISLAMABAD &nbsp; &bull; &nbsp; NO EXCUSES &nbsp; &bull; &nbsp; TRAIN HARD &nbsp; &bull; &nbsp; PREMIUM SUPPLEMENTS &nbsp; &bull; &nbsp; EXCLUSIVE CLOTHING &nbsp; &bull; &nbsp; ELITE MACHINES
+            </span>
+        </div>
+    </div>
+
+    <section id="about" class="py-24 bg-brand-black">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="flex flex-col lg:flex-row gap-16 items-center">
+                
+                <!-- Images Matrix (Male/Equipment only) -->
+                <div class="w-full lg:w-1/2 grid grid-cols-2 gap-4 reveal">
+                    <!-- Top Left: Dumbbells -->
+                    <div class="h-64 rounded-lg overflow-hidden border border-white/10">
+                        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=1000&auto=format&fit=crop" alt="Gym Weights" class="w-full h-full object-cover gym-img">
+                    </div>
+                    <!-- Top Right: Info Card -->
+                    <div class="h-64 rounded-lg bg-brand-gray border border-white/5 flex flex-col items-center justify-center p-6 text-center shadow-lg">
+                        <div class="w-16 h-16 rounded-full border-2 border-brand-yellow flex items-center justify-center bg-black mb-4">
+                            <i class="fas fa-map-marker-alt text-brand-yellow text-2xl"></i>
+                        </div>
+                        <h4 class="font-heading font-bold text-xl text-white mb-2">PRIME LOCATION</h4>
+                        <p class="text-sm text-gray-400">Blue Area, Opposite G7/3, Islamabad</p>
+                    </div>
+                    <!-- Bottom Left: Male Athlete / Equipment -->
+                    <div class="h-48 rounded-lg overflow-hidden border border-white/10 col-span-2">
+                        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2000&auto=format&fit=crop" alt="Gym Equipment" class="w-full h-full object-cover gym-img object-center">
+                    </div>
+                </div>
+
+                <!-- Content -->
+                <div class="w-full lg:w-1/2 reveal">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="h-px bg-brand-yellow w-12"></div>
+                        <h4 class="text-brand-yellow font-heading tracking-widest text-sm uppercase">About Fitness Lounge</h4>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-black mb-6 leading-tight">MORE THAN JUST A <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-yellow to-white">GYM</span></h2>
+                    
+                    <p class="text-gray-400 mb-6 text-lg leading-relaxed font-body">
+                        Located in the heart of Islamabad at Blue Area, <strong class="text-white">Fitness Lounge</strong> is designed for those who are serious about their health, strength, and physique. We provide an aggressive, motivating environment equipped with state-of-the-art machinery and heavy free weights.
+                    </p>
+                    <p class="text-gray-400 mb-8 text-lg leading-relaxed font-body">
+                        We are a complete elite training studio. Alongside our heavy-duty gym floor, we house an authentic supplement shop and premium fitness apparel to keep you fueled and looking sharp while you grind.
+                    </p>
+                    
+                    <ul class="space-y-4 mb-10">
+                        <li class="flex items-center gap-4 bg-brand-gray/50 p-4 rounded border border-white/5">
+                            <div class="w-10 h-10 rounded bg-brand-yellow/10 flex items-center justify-center text-brand-yellow shrink-0">
+                                <i class="fas fa-dumbbell"></i>
+                            </div>
+                            <span class="text-lg font-medium text-gray-200 font-heading tracking-wide">Heavy-Duty Iron & Machines</span>
+                        </li>
+                        <li class="flex items-center gap-4 bg-brand-gray/50 p-4 rounded border border-white/5">
+                            <div class="w-10 h-10 rounded bg-brand-yellow/10 flex items-center justify-center text-brand-yellow shrink-0">
+                                <i class="fas fa-pills"></i>
+                            </div>
+                            <span class="text-lg font-medium text-gray-200 font-heading tracking-wide">100% Authentic Supplements</span>
+                        </li>
+                    </ul>
+
+                    <a href="#contact" class="inline-flex items-center gap-3 text-brand-yellow font-heading text-xl uppercase tracking-wider hover:text-white transition-colors group">
+                        Find Our Location 
+                        <span class="w-8 h-8 rounded-full bg-brand-yellow text-black flex items-center justify-center group-hover:bg-white transition-colors">
+                            <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-24 bg-section-pattern bg-cover bg-center bg-fixed relative">
+        <div class="absolute inset-0 section-overlay"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <div class="flex items-center justify-center gap-4 mb-4">
+                    <div class="h-px bg-brand-yellow w-12"></div>
+                    <h4 class="text-brand-yellow font-heading tracking-widest text-sm uppercase">What We Offer</h4>
+                    <div class="h-px bg-brand-yellow w-12"></div>
+                </div>
+                <h2 class="text-5xl md:text-6xl font-black uppercase tracking-tight">Our <span class="text-brand-yellow">Services</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1: Gym -->
+                <div class="bg-brand-black/80 backdrop-blur-md border border-white/10 p-10 rounded-lg hover:border-brand-yellow hover:-translate-y-2 transition-all duration-300 group reveal">
+                    <div class="w-20 h-20 bg-brand-gray rounded-full flex items-center justify-center text-brand-yellow text-4xl mb-8 group-hover:bg-brand-yellow group-hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(223,255,0,0.1)]">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4 font-heading tracking-wide text-white">Elite Gym Floor</h3>
+                    <p class="text-gray-400 leading-relaxed font-body">
+                        Access top-tier cardio and heavy strength training equipment. Built for bodybuilders, powerlifters, and serious athletes focused on real results.
+                    </p>
+                </div>
+
+                <!-- Service 2: Supplements -->
+                <div class="bg-brand-black/80 backdrop-blur-md border border-white/10 p-10 rounded-lg hover:border-brand-yellow hover:-translate-y-2 transition-all duration-300 group reveal delay-100">
+                    <div class="w-20 h-20 bg-brand-gray rounded-full flex items-center justify-center text-brand-yellow text-4xl mb-8 group-hover:bg-brand-yellow group-hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(223,255,0,0.1)]">
+                        <i class="fas fa-prescription-bottle-alt"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4 font-heading tracking-wide text-white">Supplements</h3>
+                    <p class="text-gray-400 leading-relaxed font-body">
+                        Fuel your gains. We stock a curated selection of 100% authentic, imported whey proteins, pre-workouts, creatines, and essential vitamins.
+                    </p>
+                </div>
+
+                <!-- Service 3: Clothing -->
+                <div class="bg-brand-black/80 backdrop-blur-md border border-white/10 p-10 rounded-lg hover:border-brand-yellow hover:-translate-y-2 transition-all duration-300 group reveal delay-200">
+                    <div class="w-20 h-20 bg-brand-gray rounded-full flex items-center justify-center text-brand-yellow text-4xl mb-8 group-hover:bg-brand-yellow group-hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(223,255,0,0.1)]">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3 class="text-3xl font-bold mb-4 font-heading tracking-wide text-white">Fitness Apparel</h3>
+                    <p class="text-gray-400 leading-relaxed font-body">
+                        Look sharp while pushing limits. Shop our exclusive, high-quality line of durable workout clothing, lifting belts, and essential gym gear.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Banner CTA inside services -->
+            <div class="mt-20 bg-brand-yellow rounded-xl p-8 md:p-12 flex flex-col md:flex-row items-center justify-between reveal shadow-[0_0_30px_rgba(223,255,0,0.2)]">
+                <div>
+                    <h3 class="text-black font-black text-4xl md:text-5xl mb-2 font-heading tracking-tight">READY TO CRUSH IT?</h3>
+                    <p class="text-gray-800 font-bold text-xl font-heading tracking-widest uppercase">Visit our Blue Area branch today.</p>
+                </div>
+                <a href="tel:+923315417985" class="mt-8 md:mt-0 bg-black text-brand-yellow font-heading font-bold text-2xl py-4 px-10 rounded uppercase hover:bg-gray-900 transition-all shadow-xl hover:shadow-2xl flex items-center gap-3 border border-black hover:border-brand-yellow">
+                    <i class="fas fa-phone-alt"></i> Call Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 bg-brand-black relative">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-16 reveal">
+                <div class="flex items-center justify-center gap-4 mb-4">
+                    <div class="h-px bg-brand-yellow w-12"></div>
+                    <h4 class="text-brand-yellow font-heading tracking-widest text-sm uppercase">Get In Touch</h4>
+                    <div class="h-px bg-brand-yellow w-12"></div>
+                </div>
+                <h2 class="text-5xl md:text-6xl font-black uppercase tracking-tight">Find <span class="text-brand-yellow">Us</span></h2>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-0 rounded-2xl overflow-hidden shadow-2xl border border-white/10 reveal">
+                
+                <!-- Contact Info Panel -->
+                <div class="w-full lg:w-2/5 p-10 md:p-14 bg-brand-gray relative overflow-hidden">
+                    <!-- Background Decoration -->
+                    <i class="fas fa-dumbbell absolute -bottom-10 -right-10 text-[150px] text-black/40 transform -rotate-45"></i>
+                    
+                    <h3 class="text-4xl font-black mb-10 font-heading text-white tracking-wide">CONTACT INFO</h3>
+                    
+                    <div class="space-y-10 relative z-10">
+                        <!-- Address -->
+                        <div class="flex items-start gap-6">
+                            <div class="w-14 h-14 bg-black border border-brand-yellow/30 rounded-full flex items-center justify-center text-brand-yellow shrink-0 shadow-[0_0_10px_rgba(223,255,0,0.1)]">
+                                <i class="fas fa-map-marker-alt text-2xl"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-xl font-bold text-white mb-2 font-heading tracking-wider">LOCATION</h5>
+                                <p class="text-gray-400 leading-relaxed font-body">
+                                    Lower ground of Nayab labs, Blue Area.<br>
+                                    Opposite G7/3 Islamabad.<br>
+                                    Islamabad, Pakistan, 44000
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Phone -->
+                        <div class="flex items-start gap-6">
+                            <div class="w-14 h-14 bg-black border border-brand-yellow/30 rounded-full flex items-center justify-center text-brand-yellow shrink-0 shadow-[0_0_10px_rgba(223,255,0,0.1)]">
+                                <i class="fas fa-phone-alt text-2xl"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-xl font-bold text-white mb-2 font-heading tracking-wider">CALL US</h5>
+                                <a href="tel:+923315417985" class="block text-brand-yellow text-lg font-bold hover:text-white transition-colors">+92 331 5417985</a>
+                            </div>
+                        </div>
+
+                        <!-- Social -->
+                        <div class="flex items-start gap-6">
+                            <div class="w-14 h-14 bg-black border border-brand-yellow/30 rounded-full flex items-center justify-center text-brand-yellow shrink-0 shadow-[0_0_10px_rgba(223,255,0,0.1)]">
+                                <i class="fas fa-share-alt text-2xl"></i>
+                            </div>
+                            <div>
+                                <h5 class="text-xl font-bold text-white mb-3 font-heading tracking-wider">FOLLOW US</h5>
+                                <div class="flex gap-4">
+                                    <a href="https://www.facebook.com/fitnesslounge.gym/" target="_blank" class="w-12 h-12 bg-black border border-white/10 rounded-full flex items-center justify-center hover:bg-[#1877F2] hover:border-[#1877F2] hover:text-white transition-all duration-300">
+                                        <i class="fab fa-facebook-f text-xl"></i>
+                                    </a>
+                                    <a href="https://wa.me/923315417985" target="_blank" class="w-12 h-12 bg-black border border-white/10 rounded-full flex items-center justify-center hover:bg-[#25D366] hover:border-[#25D366] hover:text-white transition-all duration-300">
+                                        <i class="fab fa-whatsapp text-xl"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map & Form Area -->
+                <div class="w-full lg:w-3/5 bg-black flex flex-col">
+                    <!-- Google Maps Iframe Pointing to Fitness Lounge Blue Area Islamabad -->
+                    <div class="h-64 md:h-80 w-full border-b border-white/10">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13276.516086884632!2d73.0543635!3d33.7227181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38dfbfbba655c7f7%3A0xa956e763ef084428!2sFitness%20Lounge%20-%20Blue%20Area!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" width="100%" height="100%" style="border:0; filter: grayscale(100%) invert(90%) contrast(1.2);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    
+                    <div class="p-10 md:p-14">
+                        <h3 class="text-3xl font-bold mb-8 font-heading text-white uppercase tracking-wide">Send a Message</h3>
+                        <form class="space-y-6" onsubmit="event.preventDefault(); alert('Inquiry Sent! We will contact you soon.');">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-bold text-brand-yellow uppercase tracking-widest mb-2 font-heading">Full Name</label>
+                                    <input type="text" required class="w-full bg-brand-gray border border-white/10 rounded p-4 text-white focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow outline-none transition-all font-body" placeholder="ENTER YOUR NAME">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold text-brand-yellow uppercase tracking-widest mb-2 font-heading">Phone Number</label>
+                                    <input type="tel" required class="w-full bg-brand-gray border border-white/10 rounded p-4 text-white focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow outline-none transition-all font-body" placeholder="03XX XXXXXXX">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-brand-yellow uppercase tracking-widest mb-2 font-heading">Message</label>
+                                <textarea rows="3" required class="w-full bg-brand-gray border border-white/10 rounded p-4 text-white focus:border-brand-yellow focus:ring-1 focus:ring-brand-yellow outline-none transition-all font-body resize-none" placeholder="HOW CAN WE HELP YOU?"></textarea>
+                            </div>
+                            <button type="submit" class="btn-primary font-bold font-heading text-xl py-4 px-10 rounded uppercase w-full sm:w-auto tracking-wider">
+                                Submit Inquiry
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black pt-20 pb-10 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-12 mb-16">
+                
+                <!-- Brand Info -->
+                <div class="md:col-span-5">
+                    <a href="#" class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-full border border-brand-yellow flex items-center justify-center bg-brand-dark">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 text-brand-yellow">
+                                <path d="M7.5 3.375c0-1.036.84-1.875 1.875-1.875h.375a3.75 3.75 0 013.75 3.75v1.5c0 1.036-.84 1.875-1.875 1.875h-.375A3.75 3.75 0 017.5 6.875v-3.5zm0 13.75c0-1.036.84-1.875 1.875-1.875h.375a3.75 3.75 0 013.75 3.75v1.5c0 1.036-.84 1.875-1.875 1.875h-.375A3.75 3.75 0 017.5 18.625v-1.5zm-5-8.25C2.5 7.84 3.34 7 4.375 7h.375A3.75 3.75 0 018.5 10.75v2.5c0 1.036-.84 1.875-1.875 1.875h-.375A3.75 3.75 0 012.5 11.375v-2.5zm14 0c0-1.036.84-1.875 1.875-1.875h.375A3.75 3.75 0 0122.5 10.75v2.5c0 1.036-.84 1.875-1.875 1.875h-.375a3.75 3.75 0 01-3.75-3.75v-2.5z" />
+                            </svg>
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-heading text-xl font-bold tracking-wider leading-none text-brand-yellow">FITNESS</span>
+                            <span class="font-heading text-base font-bold tracking-widest leading-none text-white">LOUNGE</span>
+                        </div>
+                    </a>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6 font-body pr-4">
+                        The ultimate fitness destination in Islamabad. We provide elite machinery, genuine supplements, and premium clothing to help you build your legacy.
+                    </p>
+                    <a href="https://www.facebook.com/fitnesslounge.gym/" target="_blank" class="inline-flex items-center gap-2 text-gray-400 hover:text-[#1877F2] transition-colors">
+                        <i class="fab fa-facebook text-xl"></i> 
+                        <span class="font-heading tracking-widest text-sm uppercase">Facebook Page</span>
+                    </a>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="md:col-span-3">
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase tracking-widest border-l-2 border-brand-yellow pl-3">Navigation</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#home" class="text-gray-500 hover:text-brand-yellow transition-colors font-heading tracking-wider uppercase text-sm flex items-center gap-2"><i class="fas fa-caret-right text-brand-yellow text-xs"></i> Home</a></li>
+                        <li><a href="#about" class="text-gray-500 hover:text-brand-yellow transition-colors font-heading tracking-wider uppercase text-sm flex items-center gap-2"><i class="fas fa-caret-right text-brand-yellow text-xs"></i> About Us</a></li>
+                        <li><a href="#services" class="text-gray-500 hover:text-brand-yellow transition-colors font-heading tracking-wider uppercase text-sm flex items-center gap-2"><i class="fas fa-caret-right text-brand-yellow text-xs"></i> Services</a></li>
+                        <li><a href="#contact" class="text-gray-500 hover:text-brand-yellow transition-colors font-heading tracking-wider uppercase text-sm flex items-center gap-2"><i class="fas fa-caret-right text-brand-yellow text-xs"></i> Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Short -->
+                <div class="md:col-span-4">
+                    <h4 class="text-white font-heading font-bold text-lg mb-6 uppercase tracking-widest border-l-2 border-brand-yellow pl-3">Get in Touch</h4>
+                    <p class="text-gray-400 text-sm mb-4 font-body flex items-start gap-3">
+                        <i class="fas fa-map-marker-alt text-brand-yellow mt-1"></i> 
+                        <span>Lower ground of Nayab labs, Blue Area. Opposite G7/3 Islamabad.</span>
+                    </p>
+                    <p class="text-gray-400 text-sm mb-6 font-body flex items-center gap-3">
+                        <i class="fas fa-phone text-brand-yellow"></i> 
+                        <span>+92 331 5417985</span>
+                    </p>
+                    <a href="https://wa.me/923315417985" target="_blank" class="inline-flex items-center gap-2 bg-transparent border border-[#25D366] text-[#25D366] px-5 py-2.5 rounded font-heading font-bold tracking-widest uppercase hover:bg-[#25D366] hover:text-black transition-all text-sm">
+                        <i class="fab fa-whatsapp text-lg"></i> WhatsApp Us
+                    </a>
+                </div>
+            </div>
+
+            <!-- Copyright -->
+            <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+                <p class="text-gray-600 text-xs font-body tracking-wide">
+                    &copy; <script>document.write(new Date().getFullYear())</script> FITNESS LOUNGE. ALL RIGHTS RESERVED.
+                </p>
+                <div class="text-brand-yellow text-xs font-heading tracking-widest uppercase">
+                    Designed for Elite Performance.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const icon = btn.querySelector('i');
+
+        function toggleMenu() {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        }
+
+        btn.addEventListener('click', toggleMenu);
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+
+        // Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('py-2', 'bg-brand-black');
+                navbar.classList.remove('py-4', 'bg-brand-black/90');
+                navbar.classList.add('shadow-lg', 'shadow-brand-yellow/5');
+            } else {
+                navbar.classList.add('py-4', 'bg-brand-black/90');
+                navbar.classList.remove('py-2', 'bg-brand-black');
+                navbar.classList.remove('shadow-lg', 'shadow-brand-yellow/5');
+            }
+        });
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger on initial load
+    </script>
+</body>
+</html>
